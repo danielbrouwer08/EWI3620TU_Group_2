@@ -159,7 +159,7 @@ GameObject:
   - 54: {fileID: 1679474960}
   - 114: {fileID: 1679474959}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -177,7 +177,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 200
-  moveForce: 20
+  walkForce: 4
+  runForce: 6
 --- !u!54 &1679474960
 Rigidbody:
   m_ObjectHideFlags: 0
