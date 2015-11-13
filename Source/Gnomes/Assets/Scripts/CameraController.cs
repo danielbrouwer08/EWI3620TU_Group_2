@@ -7,8 +7,11 @@ public class CameraController : MonoBehaviour {
     private Vector3 offset1;
     private Vector3 offset2;
     private Vector3 combinedoffset;
+    private Vector3 combinedposition;
     private Vector3 playerdistances;
-    public int mindistance;
+    private Vector3 cameradistance;
+    private float cameratrigger;
+    public int sensitivity;
 	
 	void Start () {
         offset1 = transform.position - Player1.transform.position;
@@ -17,17 +20,26 @@ public class CameraController : MonoBehaviour {
 
     void LateUpdate () {
         UpdateCamera();
+        UpdateDistance();
 	}
 
-    void CameraOffset(){
+    void CameraProperties(){
         combinedoffset = (offset1 + offset2) / 2;
+        combinedposition = (Player1.transform.position + Player2.transform.position) / 2;
         playerdistances = Player1.transform.position - Player2.transform.position;
     }
 
-    void UpdateCamera(){
-        CameraOffset();
-        if (combinedoffset.magnitude > mindistance){
-            transform.position = (Player1.transform.position + Player2.transform.position) / 2 + combinedoffset;
+    void UpdateDistance(){
+        CameraProperties();
+        cameratrigger = playerdistances.magnitude * sensitivity;
+        if (Camera.main.fieldOfView < 100 && Camera.main.fieldOfView > 50 && cameratrigger > 50 && cameratrigger < 100)
+        {
+            Camera.main.fieldOfView = cameratrigger;
         }
+    }
+
+    void UpdateCamera(){
+        CameraProperties();
+        transform.position = combinedposition + combinedoffset;
     }
 }
