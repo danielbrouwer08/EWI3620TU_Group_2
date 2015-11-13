@@ -7,6 +7,7 @@ public class CameraController : MonoBehaviour {
     private Vector3 offset1;
     private Vector3 offset2;
     private Vector3 combinedoffset;
+    private Vector3 playerdistances;
     public int mindistance;
 	
 	void Start () {
@@ -20,13 +21,13 @@ public class CameraController : MonoBehaviour {
 
     void CameraOffset(){
         combinedoffset = (offset1 + offset2) / 2;
+        playerdistances = Player1.transform.position - Player2.transform.position;
     }
 
     void UpdateCamera(){
         CameraOffset();
-        if (combinedoffset.magnitude > 1){
+        if (combinedoffset.magnitude > mindistance){
             transform.position = (Player1.transform.position + Player2.transform.position) / 2 + combinedoffset;
         }
-        
     }
 }
