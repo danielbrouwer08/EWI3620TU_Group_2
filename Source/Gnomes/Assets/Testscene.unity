@@ -551,4 +551,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player1: {fileID: 382338827}
   Player2: {fileID: 659509530}
-  sensitivity: 12
+  sensitivity: 50

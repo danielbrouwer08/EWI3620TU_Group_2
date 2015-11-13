@@ -42,4 +42,6 @@ public class CameraController : MonoBehaviour {
         CameraProperties();
         transform.position = combinedposition + combinedoffset;
     }
+
+
 }
