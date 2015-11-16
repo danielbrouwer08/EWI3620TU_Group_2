@@ -99,7 +99,7 @@ GameObject:
   - 114: {fileID: 382338832}
   - 54: {fileID: 382338833}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Player 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -230,7 +230,7 @@ GameObject:
   - 54: {fileID: 659509536}
   - 114: {fileID: 659509535}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: Player 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -326,6 +326,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 674234123}
+  - 114: {fileID: 674234124}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -346,6 +347,20 @@ Transform:
   - {fileID: 2068094495}
   m_Father: {fileID: 0}
   m_RootOrder: 3
+--- !u!114 &674234124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 674234122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c5d8a067161ed34597cc3c6e36efca5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player1: {fileID: 659509530}
+  Player2: {fileID: 382338827}
+  sensitivity: 12
 --- !u!1 &1173107048
 GameObject:
   m_ObjectHideFlags: 0
@@ -491,7 +506,6 @@ GameObject:
   - 92: {fileID: 2068094493}
   - 124: {fileID: 2068094492}
   - 81: {fileID: 2068094491}
-  - 114: {fileID: 2068094496}
   - 114: {fileID: 2068094497}
   m_Layer: 0
   m_Name: Main Camera
@@ -539,7 +553,7 @@ Camera:
     height: 1
   near clip plane: .300000012
   far clip plane: 1000
-  field of view: 60
+  field of view: 68.9000015
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -567,20 +581,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 674234123}
   m_RootOrder: 0
---- !u!114 &2068094496
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2068094490}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c5d8a067161ed34597cc3c6e36efca5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player1: {fileID: 382338827}
-  Player2: {fileID: 659509530}
-  sensitivity: 9
 --- !u!114 &2068094497
 MonoBehaviour:
   m_ObjectHideFlags: 0
