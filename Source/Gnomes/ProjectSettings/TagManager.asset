@@ -6,6 +6,7 @@ TagManager:
   tags:
   - GrassTerrain
   - Player
+  - Mushroom
   layers:
   - Default
   - TransparentFX
