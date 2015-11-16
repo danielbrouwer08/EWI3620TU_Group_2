@@ -14,8 +14,8 @@ public class CameraController : MonoBehaviour {
     public int sensitivity;
 	
 	void Start () {
-        offset1 = transform.position - Player1.transform.position;
-        offset2 = transform.position - Player2.transform.position;
+        offset1 = Camera.main.transform.position - Player1.transform.position;
+        offset2 = Camera.main.transform.position - Player2.transform.position;
     }
 
     void LateUpdate () {
@@ -29,11 +29,21 @@ public class CameraController : MonoBehaviour {
         playerdistances = Player1.transform.position - Player2.transform.position;
     }
 
+    void RoundTrigger(){
+        if (cameratrigger <= 50)
+        {
+            cameratrigger = 50;
+        }
+        if (cameratrigger >= 100){
+            cameratrigger = 100;
+        }
+    }
+
     void UpdateDistance(){
         CameraProperties();
         cameratrigger = playerdistances.magnitude * sensitivity;
-        if (Camera.main.fieldOfView < 100 && Camera.main.fieldOfView > 50 && cameratrigger > 50 && cameratrigger < 100)
-        {
+        RoundTrigger();
+        if (Camera.main.fieldOfView <= 100 && Camera.main.fieldOfView >= 50){
             Camera.main.fieldOfView = cameratrigger;
         }
     }
