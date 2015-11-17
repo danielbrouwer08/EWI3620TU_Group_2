@@ -14,18 +14,16 @@ public class CompanionScript : MonoBehaviour {
         if (Input.GetMouseButtonDown(1))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
+            
             RaycastHit hit;
-
+            
             if(Physics.Raycast(ray, out hit))
             {
                 agent.SetDestination(hit.point);
             }        
         }
-        Debug.Log(agent.isOnOffMeshLink);
         if (agent.isOnOffMeshLink)
         {
-            Debug.Log(agent.velocity.y);
             if(agent.velocity.y < 0.0f)
             {
                 agent.speed = 8;
