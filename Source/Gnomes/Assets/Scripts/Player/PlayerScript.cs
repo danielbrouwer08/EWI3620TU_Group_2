@@ -44,7 +44,7 @@ public class PlayerScript : MonoBehaviour
 		rb.AddForce(movement,ForceMode.VelocityChange);
 
 		//if button pressed, do a jump
-		rb.AddForce (jump);
+		rb.AddForce (jump,ForceMode.VelocityChange);
 	}
 
 	//Get input from user
@@ -60,13 +60,19 @@ public class PlayerScript : MonoBehaviour
 			jump = new Vector3 (0.0f, 0.0f, 0.0f);
 		}
 
-		//if player presses run button
-		if (Input.GetButton ("Fire2")) {
-			movement = new Vector3 (horizontalInput * runForce/10, 0.0f, verticalInput * runForce/10);
-		}else
-		{
-			movement = new Vector3 (horizontalInput * walkForce/10, 0.0f, verticalInput * walkForce/10);
-		}
+        //if player presses run button
+        if (Input.GetButton("Fire2"))
+        {
+            movement = new Vector3(horizontalInput * runForce / 10, 0.0f, verticalInput * runForce / 10);
+        }
+        else
+        {
+            movement = new Vector3(horizontalInput * walkForce / 10, 0.0f, verticalInput * walkForce / 10);
+        }
+        if(Mathf.Abs(rb.velocity.y) >= 0.01)
+        {
+            movement = movement * 0.1f;
+        }
 	}
 
 }

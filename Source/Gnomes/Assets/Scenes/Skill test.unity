@@ -159,6 +159,7 @@ GameObject:
   - 54: {fileID: 1119372497}
   - 114: {fileID: 1119372502}
   - 114: {fileID: 1119372503}
+  - 114: {fileID: 1119372504}
   m_Layer: 0
   m_Name: Dun
   m_TagString: Untagged
@@ -174,7 +175,7 @@ Rigidbody:
   m_GameObject: {fileID: 1119372496}
   serializedVersion: 2
   m_Mass: 60
-  m_Drag: 0
+  m_Drag: 1
   m_AngularDrag: 1
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -248,10 +249,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a783dba167d98b24f8a1000161556a5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 30000
-  walkForce: 3
-  runForce: 5
+  jumpForce: 15
+  walkForce: 6
+  runForce: 9
 --- !u!114 &1119372503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1119372496}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83ba247ad0acfc04ea5a4d3cb384519b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flycap: 50
+  flyvelocity: 10
+--- !u!114 &1119372504
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -259,9 +273,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1119372496}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83ba247ad0acfc04ea5a4d3cb384519b, type: 3}
+  m_Script: {fileID: 11500000, guid: 081bca0df488d7740a669a11b25b4ca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  floatvelocity: 1
 --- !u!1 &1238100932
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,7 +345,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1238100932}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 1, z: 0}
+  m_LocalPosition: {x: 43.0999985, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 2, z: 5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -490,7 +505,7 @@ Transform:
   m_GameObject: {fileID: 1451694930}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 10, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -508,6 +523,7 @@ GameObject:
   - 54: {fileID: 1711941072}
   - 114: {fileID: 1711941077}
   - 114: {fileID: 1711941078}
+  - 114: {fileID: 1711941079}
   m_Layer: 0
   m_Name: Dik
   m_TagString: Untagged
@@ -597,10 +613,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a783dba167d98b24f8a1000161556a5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 30000
-  walkForce: 2
-  runForce: 4
+  jumpForce: 10
+  walkForce: 4
+  runForce: 6
 --- !u!114 &1711941078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1711941071}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06a94f6bc68a3fd4ba30aa8336f53c3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 192038, guid: 5e2e1ae273aaf7d44a029e2daeef5635, type: 2}
+  blockcap: 3
+--- !u!114 &1711941079
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -608,8 +637,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1711941071}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06a94f6bc68a3fd4ba30aa8336f53c3d, type: 3}
+  m_Script: {fileID: 11500000, guid: c19b9bf732947ec4799421fe831ad14e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 192038, guid: 5e2e1ae273aaf7d44a029e2daeef5635, type: 2}
-  blockcap: 3
