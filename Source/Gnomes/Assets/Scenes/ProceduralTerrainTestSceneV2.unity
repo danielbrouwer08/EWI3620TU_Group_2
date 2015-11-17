@@ -431,12 +431,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51b537c05ca90184f8c09a572f1962e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  addHeightChance: 1
+  addHeightChance: .75
   risingFactor: .100000001
   amountOfTerrainsToSpawn: 10
   BaseTerrain: {fileID: 169536, guid: a65fdecf060ff98429d0f9d3e4cf835a, type: 2}
+  grassRemoveHeight: .600000024
   water: {fileID: 161862, guid: 987ca400d6ab108409a6fe65af37ef11, type: 2}
-  waterHeight: .100000001
+  waterHeight: .00999999978
   Mushroom: {fileID: 116206, guid: 2658652493da8c34eb165236a6a737db, type: 2}
   mushroomYOffset: .5
   amountOfMushrooms: 20
