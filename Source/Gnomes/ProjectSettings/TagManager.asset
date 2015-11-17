@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Player
+  - Mushroom
+  - GrassTerrain
+  - Water
   layers:
   - Default
   - TransparentFX
