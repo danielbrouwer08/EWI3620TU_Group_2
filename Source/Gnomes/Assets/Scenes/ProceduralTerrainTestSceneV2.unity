@@ -372,7 +372,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 713312179}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.5, y: 0, z: 15.8999996}
+  m_LocalPosition: {x: 6.5, y: 9.30000019, z: 15.8999996}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -525,8 +525,12 @@ MonoBehaviour:
   amountOfTerrainsToSpawn: 10
   BaseTerrain: {fileID: 169536, guid: a65fdecf060ff98429d0f9d3e4cf835a, type: 2}
   grassRemoveHeight: .600000024
-  water: {fileID: 161862, guid: 987ca400d6ab108409a6fe65af37ef11, type: 2}
-  waterHeight: .00999999978
-  Mushroom: {fileID: 116206, guid: 2658652493da8c34eb165236a6a737db, type: 2}
+  water: {fileID: 100116, guid: 8a1c6cc97b80b6b45ade3ef9bc245c73, type: 2}
+  waterHeight: .0500000007
+  Mushroom: {fileID: 159134, guid: 6f9fc038f5e8c9b4c8c7b6ec35cc88ab, type: 2}
   mushroomYOffset: .5
-  amountOfMushrooms: 20
+  amountOfMushrooms: 40
+  mushroomXRotationRange: 10
+  mushroomYRotationRange: 10
+  mushroomZRotationRange: 10
+  scaleIntensity: 1

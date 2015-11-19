@@ -1,8 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PlayerScript.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\TerrainSpawner.cs">
     <Files>
-      <File FileName="Assets\Scripts\PlayerScript.cs" Line="4" Column="1" />
+      <File FileName="Assets\Scripts\MushroomShake.cs" Line="30" Column="70" />
+      <File FileName="Assets\Scripts\TerrainSpawner.cs" Line="39" Column="32" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

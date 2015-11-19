@@ -25,11 +25,16 @@ public class TerrainSpawner : MonoBehaviour
 	public GameObject Mushroom;		//Mushroom prefab
 	public float mushroomYOffset;	//Y offset for the mushroom spawning
 	public int amountOfMushrooms;	//amount of mushrooms to try and spawn
+	public float mushroomXRotationRange;
+	public float mushroomYRotationRange;
+	public float mushroomZRotationRange;
+	public float scaleIntensity;
 
 	//Properties of the patches (patchlength * amount of patches should be equal to the heigtmapdetail (65 in this case))
 	private int lengthOfPatch = 13;
 	private int widthOfPatch = 13;
 	private int amountOfPatches2D = 5;
+	private float terrainLength = 50;
 
 	// Use this for initialization
 	void Start ()
@@ -44,7 +49,7 @@ public class TerrainSpawner : MonoBehaviour
 
 		//Generate and place all terrains pieces in a row
 		for (int i=0; i<length; i++) {
-			TerrainSpawnPosition = new Vector3 (i * 25.0f, 0.0f, 0.0f);
+			TerrainSpawnPosition = new Vector3 (i * terrainLength, 0.0f, 0.0f);
 			createTerrain (TerrainSpawnPosition, i);
 		}
 
@@ -89,7 +94,7 @@ public class TerrainSpawner : MonoBehaviour
 		addMushrooms (terrain, amountOfMushrooms);
 
 		//Add Water to the terrain
-		GameObject.Instantiate (water, TerrainSpawnPosition + new Vector3 (12, waterHeight * risingFactor, 12), Quaternion.Euler (0, 0, 0));
+		GameObject.Instantiate (water, TerrainSpawnPosition + new Vector3 (0, waterHeight * risingFactor, 0), Quaternion.Euler (0, 0, 0));
 
 		//Remove grass
 		terrain.terrainData.SetDetailLayer (0, 0, 0, calculateNewDetailmap (terrain, heightmap)); //add new detailmap that has some patches of grass removed
@@ -121,7 +126,14 @@ public class TerrainSpawner : MonoBehaviour
 
 		//Generate random list of patchnumbers for x-axis where mushrooms have to be placed. List has a max length of 10 and min length of 1.
 		for (int i=0; i<amount; i++) {
-			patchN0 = Random.Range (0, amountOfPatches2D);
+			patchN0 = Random.Range (1, (amountOfPatches2D-1)); //range from 1 to amountOfPatches2D-1 so the outer edges dont get mushrooms.
+			if (patchN0 % 2 != 0) {//only allow even numbers as patches (fixes bug that mushrooms spawn to close together)
+				if (patchN0 == (amountOfPatches2D)) {
+					patchN0--;
+				} else {
+					patchN0++;
+				}
+			}
 			if (!patchN0ListX.Contains (patchN0)) {
 				//Only add a patch to the list if the list not already contains it.
 				patchN0ListX.Add (patchN0);
@@ -130,7 +142,17 @@ public class TerrainSpawner : MonoBehaviour
 
 		//Generate random list of patchnumbers for z-axis where mushrooms have to be placed. List has the same length as patches data for X
 		for (int i=0; i<patchN0ListX.Count; i++) {
-			patchN0 = Random.Range (0, amountOfPatches2D);
+			patchN0 = Random.Range (0, (amountOfPatches2D));
+
+		
+
+			if (patchN0 % 2 != 0) {//only allow even numbers as patches (fixes bug that mushrooms spawn to close together)
+				if (patchN0 == (amountOfPatches2D)) {
+					patchN0--;
+				} else {
+					patchN0++;
+				}
+			}
 			patchN0ListZ.Add (patchN0);
 		}
 
@@ -154,8 +176,19 @@ public class TerrainSpawner : MonoBehaviour
 			//	TESTCoord[1] = h;
 			//	removeGrass(terrain, TESTCoord);
 			//}
-			//Spawn the mushroom
-			GameObject.Instantiate (Mushroom, mushroomSpawnPosition, Quaternion.Euler (0, 0, 0));
+
+			//Spawn the mushroom avoiding water
+			if (terrain.SampleHeight (new Vector3 (xCoord, 0.0f, zCoord)) >= waterHeight) {
+				float xRot = Random.Range (-mushroomXRotationRange, mushroomXRotationRange);
+				float yRot = Random.Range (-mushroomYRotationRange, mushroomYRotationRange);
+				float zRot = Random.Range (-mushroomZRotationRange, mushroomZRotationRange);
+				//spawn mushroom with random rotation
+				GameObject spawnedMushroom = (GameObject)GameObject.Instantiate (Mushroom, mushroomSpawnPosition, Quaternion.Euler (xRot, yRot, zRot));
+
+				float scaleFactor = scaleIntensity*Random.Range (0.5f,2.0f); //random scaling of each mushroom
+
+				spawnedMushroom.transform.localScale=new Vector3(scaleFactor,scaleFactor,scaleFactor);
+			}
 		}
 
 
