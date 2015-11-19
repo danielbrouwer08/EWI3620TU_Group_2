@@ -20,7 +20,7 @@ public class PlayerScript : MonoBehaviour
 	private Vector3 jump;
 	private float verticalInput;
 	private float horizontalInput;
-	private bool gameOver = false;
+	//private bool gameOver = false;
 
 	// Iinitialization
 	void Start ()
