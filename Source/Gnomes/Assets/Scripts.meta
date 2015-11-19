@@ -1,5 +1,6 @@
 fileFormatVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
 guid: 456c4fc60a5356749bf3ed45db7373b5
 folderAsset: yes
 timeCreated: 1447335267
@@ -8,6 +9,11 @@ guid: 989df77312dd20c4cada7d22e701c566
 folderAsset: yes
 timeCreated: 1447360371
 >>>>>>> develop
+=======
+guid: bf360cec50a25fc4fa37936d969977ff
+folderAsset: yes
+timeCreated: 1447342855
+>>>>>>> feature/Mushroom_model
 licenseType: Free
 DefaultImporter:
   userData: 
