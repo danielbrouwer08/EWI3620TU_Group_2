@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public float jumpForce;
     public float walkSpeed;
     public float runSpeed;
+    public float slideSpeed;
 
     //Audio properties
     //private AudioSource jumpSound;
@@ -41,7 +42,14 @@ public class PlayerController : MonoBehaviour
             transform.forward = new Vector3(movement.x,0,movement.z);
         }
         //Move the player
-        rb.velocity = new Vector3(movement.x, rb.velocity.y, movement.z);
+        if (!Physics.Raycast(transform.position, transform.forward, 1.207f))
+        {
+            rb.velocity = new Vector3(movement.x, rb.velocity.y, movement.z);
+        }
+        else
+        {
+            rb.AddForce(movement/10, ForceMode.VelocityChange);
+        }
 
         //if button pressed, do a jump
         rb.AddForce(jump, ForceMode.VelocityChange);
@@ -52,10 +60,10 @@ public class PlayerController : MonoBehaviour
     {
         verticalInput = Input.GetAxis("Vertical");
         horizontalInput = Input.GetAxis("Horizontal");
-
         //if player presses jump button and is not already in a jump (y velocuty is zero)
-        if (Input.GetButtonDown("Fire1") && Mathf.Abs(rb.velocity.y) < 0.01)
+        if (Input.GetButtonDown("Fire1") && Physics.Raycast(transform.position, -Vector3.up, 1.208f))
         {
+            
             jump = new Vector3(0,jumpForce,0);
         }
         else
@@ -64,13 +72,14 @@ public class PlayerController : MonoBehaviour
         }
 
         //if player presses run button
+        
         if (Input.GetButton("Fire2"))
         {
-            movement = new Vector3(horizontalInput * runSpeed / 10, 0, verticalInput * runSpeed / 10);
+            movement = new Vector3(horizontalInput * runSpeed, 0, verticalInput * runSpeed);
         }
         else
         {
-            movement = new Vector3(horizontalInput * walkSpeed / 10, 0, verticalInput * walkSpeed / 10);
+            movement = new Vector3(horizontalInput * walkSpeed, 0, verticalInput * walkSpeed);
         }
     }
 
