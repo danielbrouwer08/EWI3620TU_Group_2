@@ -530,7 +530,8 @@ MonoBehaviour:
   Mushroom: {fileID: 159134, guid: 6f9fc038f5e8c9b4c8c7b6ec35cc88ab, type: 2}
   mushroomYOffset: .5
   amountOfMushrooms: 40
-  mushroomXRotationRange: 10
-  mushroomYRotationRange: 10
-  mushroomZRotationRange: 10
+  mushroomXRotationRange: .200000003
+  mushroomYRotationRange: .200000003
+  mushroomZRotationRange: .200000003
   scaleIntensity: 1
+  vegetation: {fileID: 111232, guid: 72464edbd2c019245a6655d943c9a0b6, type: 2}

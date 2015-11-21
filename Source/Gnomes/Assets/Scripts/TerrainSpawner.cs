@@ -30,6 +30,9 @@ public class TerrainSpawner : MonoBehaviour
 	public float mushroomZRotationRange;
 	public float scaleIntensity;
 
+	//Vegetationproperties
+	public GameObject vegetation;
+
 	//Properties of the patches (patchlength * amount of patches should be equal to the heigtmapdetail (65 in this case))
 	private int lengthOfPatch = 13;
 	private int widthOfPatch = 13;
@@ -182,8 +185,17 @@ public class TerrainSpawner : MonoBehaviour
 				float xRot = Random.Range (-mushroomXRotationRange, mushroomXRotationRange);
 				float yRot = Random.Range (-mushroomYRotationRange, mushroomYRotationRange);
 				float zRot = Random.Range (-mushroomZRotationRange, mushroomZRotationRange);
+
+
 				//spawn mushroom with random rotation
-				GameObject spawnedMushroom = (GameObject)GameObject.Instantiate (Mushroom, mushroomSpawnPosition, Quaternion.Euler (xRot, yRot, zRot));
+				int random = Random.Range(0,2);
+				GameObject toSpawn = Mushroom;
+				if(random<1)
+				{
+					toSpawn = vegetation;
+				}
+
+				GameObject spawnedMushroom = (GameObject)GameObject.Instantiate (toSpawn, mushroomSpawnPosition, Quaternion.Euler (xRot, yRot, zRot));
 
 				float scaleFactor = scaleIntensity*Random.Range (0.5f,2.0f); //random scaling of each mushroom
 
