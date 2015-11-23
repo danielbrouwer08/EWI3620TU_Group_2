@@ -35,7 +35,9 @@ public class VegetationGenerator : MonoBehaviour
 		GameObject startBranch = GameObject.CreatePrimitive (PrimitiveType.Cylinder);
 		startBranch.name = "startBranch";
 		startBranch.transform.localScale = new Vector3 (widthScaleFactor, heightScaleFactor, widthScaleFactor);
-		
+
+		startBranch.transform.position = transform.position;
+
 		GameObject lastBranch = startBranch;
 
 		lastBranch.GetComponent<Renderer>().material = Resources.Load("VegetationMaterialTop") as Material;
@@ -44,7 +46,7 @@ public class VegetationGenerator : MonoBehaviour
 		lastBranch.GetComponent<MushroomShake>().speed = shakeSpeed;
 		lastBranch.GetComponent<MushroomShake>().flipTime = flipTime;
 
-		Vector3 spawnPosition = new Vector3 (0, (1.0f + localScaleFactor), 0);
+		Vector3 spawnPosition = new Vector3 (0, (1.0f + localScaleFactor), 0) + transform.position;
 
 		string ruleString = generateRule ();
 		//char[] drawRule = ruleString.ToCharArray;
@@ -69,7 +71,10 @@ public class VegetationGenerator : MonoBehaviour
 				lastBranch = previousBranches [previousBranches.Count - 2]; //get last saved branch
 
 				//ruleString.Remove (ruleString.IndexOf (']'));
-				previousBranches.RemoveAt (previousBranches.Count-2); //remove second to last
+				if(previousBranches.Count>1)
+				{
+					previousBranches.RemoveAt (previousBranches.Count-2); //remove second to last
+				}
 				previousBranches.RemoveAt (previousBranches.Count-1); //remove last
 				ruleSplit = ruleString.Split (new char[] {']'}, 2);
 			} else {

@@ -40,28 +40,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amountOfBranches: 0
-  ruleLength: 100
-  chanceF: 100
-  chanceX: 20
+  ruleLength: 150
+  chanceF: 150
+  chanceX: 50
   chancePlus: 100
-  chanceMin: 0
-  chanceStart: .300000012
-  chanceEnd: .300000012
+  chanceMin: 20
+  chanceStart: .25
+  chanceEnd: .150000006
   shakeSpeed: 7
   flipTime: 4
-  rotationIntensityX: 10
-  rotationIntensityY: 45
-  rotationIntensityZ: 10
-  localScaleFactor: .699999988
-  widthScaleFactor: .25
-  heightScaleFactor: .5
+  rotationIntensityX: 15
+  rotationIntensityY: 15
+  rotationIntensityZ: 15
+  localScaleFactor: .800000012
+  widthScaleFactor: .5
+  heightScaleFactor: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: heightScaleFactor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: widthScaleFactor
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: ruleLength
+      value: 150
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 111232}

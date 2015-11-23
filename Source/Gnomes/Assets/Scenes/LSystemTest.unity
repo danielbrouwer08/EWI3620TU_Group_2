@@ -124,9 +124,17 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 111232, guid: 72464edbd2c019245a6655d943c9a0b6, type: 2}
-      propertyPath: m_Name
-      value: VegetationGenerator
+    - target: {fileID: 11442356, guid: 72464edbd2c019245a6655d943c9a0b6, type: 2}
+      propertyPath: chanceStart
+      value: .25
+      objectReference: {fileID: 0}
+    - target: {fileID: 11442356, guid: 72464edbd2c019245a6655d943c9a0b6, type: 2}
+      propertyPath: chanceEnd
+      value: .150000006
+      objectReference: {fileID: 0}
+    - target: {fileID: 11442356, guid: 72464edbd2c019245a6655d943c9a0b6, type: 2}
+      propertyPath: localScaleFactor
+      value: .800000012
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 72464edbd2c019245a6655d943c9a0b6, type: 2}
