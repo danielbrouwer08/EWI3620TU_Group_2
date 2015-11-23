@@ -8,6 +8,7 @@ TagManager:
   - Mushroom
   - GrassTerrain
   - Water
+  - TowerTarget
   layers:
   - Default
   - TransparentFX
