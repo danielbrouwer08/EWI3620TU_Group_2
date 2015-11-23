@@ -411,8 +411,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83ba247ad0acfc04ea5a4d3cb384519b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flycap: 3
-  flyvelocity: 0
+  flycap: 50
+  flyvelocity: 5
 --- !u!114 &1119372504
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -74,15 +74,24 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\CameraController.cs" />
+    <Compile Include="Assets\Scripts\CameraShake.cs" />
+    <Compile Include="Assets\Scripts\CompanionScript.cs" />
+    <Compile Include="Assets\Scripts\EnemyAI.cs" />
     <Compile Include="Assets\Scripts\EnemySight.cs" />
+    <Compile Include="Assets\Scripts\MushroomShake.cs" />
+    <Compile Include="Assets\Scripts\PickUpItem.cs" />
     <Compile Include="Assets\Scripts\Player\Heavyplayer.cs" />
     <Compile Include="Assets\Scripts\Player\Lightplayer.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerScript.cs" />
+    <Compile Include="Assets\Scripts\PlayerOnPickUp.cs" />
     <Compile Include="Assets\Scripts\Skills\Build.cs" />
     <Compile Include="Assets\Scripts\Skills\Demolish.cs" />
     <Compile Include="Assets\Scripts\Skills\Float.cs" />
     <Compile Include="Assets\Scripts\Skills\Fly.cs" />
+    <Compile Include="Assets\Scripts\TerrainGenerator.cs" />
+    <Compile Include="Assets\Scripts\TerrainSpawner.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
