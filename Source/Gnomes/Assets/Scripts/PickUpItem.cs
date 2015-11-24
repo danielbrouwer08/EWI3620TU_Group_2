@@ -8,16 +8,16 @@ public class PickUpItem : MonoBehaviour {
     bool beingCarried = false;
     private Rigidbody rb;
 
-    void OnTriggerEnter(Collider other)
+    void OnCollisionEnter(Collision other)
     {
-        if (other.CompareTag("Player"))
+        if (other.collider.CompareTag("Player"))
         {
             player = other.transform;
             hasPlayer = true;
         }
     }
 
-    void OnTriggerExit(Collider other)
+    void OnCollisionExit(Collision other)
     {
         hasPlayer = false;
     }
@@ -27,11 +27,11 @@ public class PickUpItem : MonoBehaviour {
     }
 	// Update is called once per frame
 	void Update () {
-        Debug.Log(hasPlayer);
         if (beingCarried)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetKeyDown("e"))
             {
+                Destroy(player.gameObject.GetComponent<Fly>());
                 rb.isKinematic = false;
                 transform.parent = null;
                 beingCarried = false;
@@ -40,14 +40,21 @@ public class PickUpItem : MonoBehaviour {
         }
         else
         {
-            if (Input.GetMouseButtonDown(0) && hasPlayer)
+            if (Input.GetKeyDown("e") && hasPlayer)
             {
+                player.gameObject.AddComponent<Fly>();
                 rb.isKinematic = true;
                 transform.parent = player;
-                transform.localPosition = new Vector3(0.0f, 0.75f, 0.0f);
+                //DE Y-WAARDE IS AFHANKELIJK VAN HOE GROOT DE PLAYER IS
+                transform.localPosition = new Vector3(0.0f, 1.3f, 0.0f);
                 //KAN OOK NOG DE HOEK VAN T OBJECT VERANDEREN
                 beingCarried = true;
             }
         }
+
+        //if(rb.velocity.sqrMagnitude < 0.01)
+        //{
+        //    rb.isKinematic = true;
+        //}
     }
 }

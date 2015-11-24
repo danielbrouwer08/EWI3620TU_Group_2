@@ -3,10 +3,10 @@ using System.Collections;
 
 public class Fly : MonoBehaviour {
 
-    public float flycap = 3;
+    public float flycap = 50;
     private Rigidbody rb;
     private float fly = 0;
-    public float flyvelocity;
+    public float flyvelocity = 5f;
 
     void Start ()
     {
@@ -15,6 +15,7 @@ public class Fly : MonoBehaviour {
 	
 	void FixedUpdate ()
     {
+
         if (Input.GetButton("Fire3") && fly < flycap)
         {
             float velocityold = rb.velocity.y;
