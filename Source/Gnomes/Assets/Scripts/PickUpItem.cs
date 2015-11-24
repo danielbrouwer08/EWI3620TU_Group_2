@@ -2,22 +2,24 @@
 using System.Collections;
 
 public class PickUpItem : MonoBehaviour {
-    private Transform player;
+    private GameObject player;
     public float throwforce;
     bool hasPlayer = false;
     bool beingCarried = false;
     private Rigidbody rb;
 
-    void OnTriggerEnter(Collider other)
+    void OnCollisionEnter(Collision other)
     {
-        if (other.CompareTag("Player"))
+        Debug.Log("Collision");
+        if (other.gameObject.CompareTag("Player"))
         {
-            player = other.transform;
+            Debug.Log("Player found");
+            player = other.gameObject;
             hasPlayer = true;
         }
     }
 
-    void OnTriggerExit(Collider other)
+    void OnCollisionExit(Collision other)
     {
         hasPlayer = false;
     }
@@ -27,23 +29,26 @@ public class PickUpItem : MonoBehaviour {
     }
 	// Update is called once per frame
 	void Update () {
-        Debug.Log(hasPlayer);
         if (beingCarried)
         {
             if (Input.GetMouseButtonDown(0))
             {
+                Destroy(player.GetComponent<Build>());
                 rb.isKinematic = false;
                 transform.parent = null;
                 beingCarried = false;
-                rb.AddForce(player.forward * throwforce);
+                rb.AddForce(player.transform.forward * throwforce);
             }
         }
         else
         {
+            Debug.Log("Not being carried");
             if (Input.GetMouseButtonDown(0) && hasPlayer)
             {
+                Debug.Log(player.name);
+                player.GetComponent<Build>();
                 rb.isKinematic = true;
-                transform.parent = player;
+                transform.parent = player.transform;
                 transform.localPosition = new Vector3(0.0f, 0.75f, 0.0f);
                 //KAN OOK NOG DE HOEK VAN T OBJECT VERANDEREN
                 beingCarried = true;

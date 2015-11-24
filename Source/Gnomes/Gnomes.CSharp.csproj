@@ -74,6 +74,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\BridgeScript.cs" />
+    <Compile Include="Assets\Scripts\Build.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\CameraShake.cs" />
     <Compile Include="Assets\Scripts\CompanionScript.cs" />
@@ -86,12 +88,13 @@
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerScript.cs" />
     <Compile Include="Assets\Scripts\PlayerOnPickUp.cs" />
-    <Compile Include="Assets\Scripts\Skills\Build.cs" />
     <Compile Include="Assets\Scripts\Skills\Demolish.cs" />
     <Compile Include="Assets\Scripts\Skills\Float.cs" />
     <Compile Include="Assets\Scripts\Skills\Fly.cs" />
     <Compile Include="Assets\Scripts\TerrainGenerator.cs" />
     <Compile Include="Assets\Scripts\TerrainSpawner.cs" />
+    <Compile Include="Assets\Scripts\TowerFire\Missile.cs" />
+    <Compile Include="Assets\Scripts\TowerFire\MissileScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
