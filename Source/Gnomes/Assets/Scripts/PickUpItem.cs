@@ -2,22 +2,16 @@
 using System.Collections;
 
 public class PickUpItem : MonoBehaviour {
-    private GameObject player;
+    public float pickdistance = 5;
+    private GameObject[] player;
+    private int playerinrange;
+    private GameObject carrier;
     public float throwforce;
     bool hasPlayer = false;
     bool beingCarried = false;
     private Rigidbody rb;
-
-    void OnCollisionEnter(Collision other)
-    {
-        Debug.Log("Collision");
-        if (other.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("Player found");
-            player = other.gameObject;
-            hasPlayer = true;
-        }
-    }
+    private Collider col;
+    public struct T { };
 
     void OnCollisionExit(Collision other)
     {
@@ -26,32 +20,45 @@ public class PickUpItem : MonoBehaviour {
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        col = GetComponent<Collider>();
+        player = GameObject.FindGameObjectsWithTag("Player");
     }
-	// Update is called once per frame
+
 	void Update () {
-        if (beingCarried)
+
+        playerinrange = -1;
+        for(int i = 0; i < 2; i++)
         {
-            if (Input.GetMouseButtonDown(0))
+            if(Vector3.Magnitude(transform.position - player[i].transform.position) < pickdistance)
             {
-                Destroy(player.GetComponent<Build>());
+                playerinrange = i;
+            }
+        }
+
+        if (carrier != null)
+        {
+            if (Input.GetKeyDown("e"))
+            {
+                Destroy(carrier.GetComponent<Fly>());
+                carrier = null;
                 rb.isKinematic = false;
+                rb.detectCollisions = true;
                 transform.parent = null;
-                beingCarried = false;
-                rb.AddForce(player.transform.forward * throwforce);
+                rb.AddForce(carrier.transform.forward * throwforce);
             }
         }
         else
         {
-            Debug.Log("Not being carried");
-            if (Input.GetMouseButtonDown(0) && hasPlayer)
+            if (Input.GetKeyDown("e") && playerinrange >= 0)
             {
-                Debug.Log(player.name);
-                player.GetComponent<Build>();
+                carrier = player[playerinrange];
+                Debug.Log(carrier.name);
+                carrier.AddComponent<T>();
                 rb.isKinematic = true;
-                transform.parent = player.transform;
+                rb.detectCollisions = false;
+                transform.parent = player[playerinrange].transform;
                 transform.localPosition = new Vector3(0.0f, 0.75f, 0.0f);
                 //KAN OOK NOG DE HOEK VAN T OBJECT VERANDEREN
-                beingCarried = true;
             }
         }
     }
