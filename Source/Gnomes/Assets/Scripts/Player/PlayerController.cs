@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
 
         //RAYCAST IS AFHANKELIJK VAN GROOTTE VAN PLAYER
 
-        if (Input.GetButtonDown("Fire1") && Physics.Raycast(transform.position, -Vector3.up, 2.208f)) 
+        if (Input.GetButtonDown("Fire1") && Physics.Raycast(transform.position, -Vector3.up, 1.208f)) 
         {
             
             jump = new Vector3(0,jumpForce,0);

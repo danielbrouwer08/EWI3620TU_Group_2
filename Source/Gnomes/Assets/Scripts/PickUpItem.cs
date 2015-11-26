@@ -1,60 +1,63 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PickUpItem : MonoBehaviour {
-    private Transform player;
+public class PickUpItem : MonoBehaviour
+{
+    public float pickdistance = 5;
+    private GameObject[] player;
+    private int playerinrange;
+    private GameObject carrier;
     public float throwforce;
     bool hasPlayer = false;
     bool beingCarried = false;
     private Rigidbody rb;
+    private Collider col;
 
-    void OnCollisionEnter(Collision other)
-    {
-        if (other.collider.CompareTag("Player"))
-        {
-            player = other.transform;
-            hasPlayer = true;
-        }
-    }
-
-    void OnCollisionExit(Collision other)
-    {
-        hasPlayer = false;
-    }
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        col = GetComponent<Collider>();
+        player = GameObject.FindGameObjectsWithTag("Player");
     }
-	// Update is called once per frame
-	void Update () {
-        if (beingCarried)
+
+    void Update()
+    {
+
+        playerinrange = -1;
+        for (int i = 0; i < player.Length; i++)
+        {
+            if (Vector3.Magnitude(transform.position - player[i].transform.position) < pickdistance)
+            {
+                playerinrange = i;
+            }
+        }
+
+        if (carrier != null)
         {
             if (Input.GetKeyDown("e"))
             {
-                Destroy(player.gameObject.GetComponent<Fly>());
+                Destroy(carrier.GetComponent<Fly>());
                 rb.isKinematic = false;
+                rb.detectCollisions = true;
                 transform.parent = null;
-                beingCarried = false;
-                rb.AddForce(player.forward * throwforce);
+                rb.AddForce(carrier.transform.forward * throwforce);
+                carrier = null;
             }
         }
         else
         {
-            if (Input.GetKeyDown("e") && hasPlayer)
+            if (Input.GetKeyDown("e") && playerinrange >= 0)
             {
-                player.gameObject.AddComponent<Fly>();
+                carrier = player[playerinrange];
+                Debug.Log(carrier.name);
+                carrier.AddComponent<Fly>();
                 rb.isKinematic = true;
-                transform.parent = player;
-                //DE Y-WAARDE IS AFHANKELIJK VAN HOE GROOT DE PLAYER IS
-                transform.localPosition = new Vector3(0.0f, 1.3f, 0.0f);
+                rb.detectCollisions = false;
+                transform.parent = player[playerinrange].transform;
+                transform.localPosition = new Vector3(0.0f, 1.53f, 0.0f);
                 //KAN OOK NOG DE HOEK VAN T OBJECT VERANDEREN
-                beingCarried = true;
             }
         }
-
-        //if(rb.velocity.sqrMagnitude < 0.01)
-        //{
-        //    rb.isKinematic = true;
-        //}
     }
 }
+
