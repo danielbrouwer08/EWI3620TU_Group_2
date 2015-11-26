@@ -54,7 +54,8 @@ public class PickUpItem : MonoBehaviour
                 rb.isKinematic = true;
                 rb.detectCollisions = false;
                 transform.parent = player[playerinrange].transform;
-                transform.localPosition = new Vector3(0.0f, 1.53f, 0.0f);
+                transform.localPosition = new Vector3(0.0179f, 1.516f, 0.1079f);
+                transform.localEulerAngles = new Vector3(0, 0, 0);
                 //KAN OOK NOG DE HOEK VAN T OBJECT VERANDEREN
             }
         }
