@@ -1,53 +1,63 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PickUpItem : MonoBehaviour {
-    private Transform player;
+public class PickUpItem : MonoBehaviour
+{
+    public float pickdistance = 5;
+    private GameObject[] player;
+    private int playerinrange;
+    private GameObject carrier;
     public float throwforce;
     bool hasPlayer = false;
     bool beingCarried = false;
     private Rigidbody rb;
+    private Collider col;
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            player = other.transform;
-            hasPlayer = true;
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        hasPlayer = false;
-    }
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        col = GetComponent<Collider>();
+        player = GameObject.FindGameObjectsWithTag("Player");
     }
-	// Update is called once per frame
-	void Update () {
-        Debug.Log(hasPlayer);
-        if (beingCarried)
+
+    void Update()
+    {
+
+        playerinrange = -1;
+        for (int i = 0; i < player.Length; i++)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Vector3.Magnitude(transform.position - player[i].transform.position) < pickdistance)
             {
+                playerinrange = i;
+            }
+        }
+
+        if (carrier != null)
+        {
+            if (Input.GetKeyDown("e"))
+            {
+                Destroy(carrier.GetComponent<Fly>());
                 rb.isKinematic = false;
+                rb.detectCollisions = true;
                 transform.parent = null;
-                beingCarried = false;
-                rb.AddForce(player.forward * throwforce);
+                rb.AddForce(carrier.transform.forward * throwforce);
+                carrier = null;
             }
         }
         else
         {
-            if (Input.GetMouseButtonDown(0) && hasPlayer)
+            if (Input.GetKeyDown("e") && playerinrange >= 0)
             {
+                carrier = player[playerinrange];
+                Debug.Log(carrier.name);
+                carrier.AddComponent<Fly>();
                 rb.isKinematic = true;
-                transform.parent = player;
-                transform.localPosition = new Vector3(0.0f, 0.75f, 0.0f);
+                rb.detectCollisions = false;
+                transform.parent = player[playerinrange].transform;
+                transform.localPosition = new Vector3(0.0f, 1.53f, 0.0f);
                 //KAN OOK NOG DE HOEK VAN T OBJECT VERANDEREN
-                beingCarried = true;
             }
         }
     }
 }
+
