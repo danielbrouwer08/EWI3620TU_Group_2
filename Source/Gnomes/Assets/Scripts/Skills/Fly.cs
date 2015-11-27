@@ -3,10 +3,10 @@ using System.Collections;
 
 public class Fly : MonoBehaviour {
 
-    public float flycap = 3;
+    public float flycap = 50;
     private Rigidbody rb;
-    private float fly = 0;
-    public float flyvelocity;
+    private float fly;
+    public float flyvelocity = 5;
 
     void Start ()
     {
