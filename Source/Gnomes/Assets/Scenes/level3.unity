@@ -200,7 +200,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 92669339}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: .100000001
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 1
@@ -323,7 +323,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 153169544}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: .100000001
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 1
@@ -446,7 +446,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 272895687}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: .100000001
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 1
@@ -626,7 +626,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 397929348}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: .100000001
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 1
@@ -648,8 +648,8 @@ MonoBehaviour:
   player: {fileID: 1119372496}
   companion: {fileID: 1711941071}
   pickupRadius: 2
-  x_offset_rope: 1
-  y_offset_rope: 1
+  x_offset_rope: -1
+  y_offset_rope: 2
   z_offset_rope: 0
   isEndPoint: 1
   playerGrabbedRope: 0
@@ -783,7 +783,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 647041874}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: .100000001
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 1
@@ -939,7 +939,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 745412334}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: .100000001
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 1
@@ -1063,7 +1063,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 762321416}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: .100000001
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 1
@@ -1219,7 +1219,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 847647385}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: .100000001
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 1
@@ -1285,7 +1285,7 @@ MonoBehaviour:
   player: {fileID: 1119372496}
   companion: {fileID: 1711941071}
   pickupRadius: 2
-  x_offset_rope: 1
+  x_offset_rope: -1
   y_offset_rope: 1
   z_offset_rope: 0
   isEndPoint: 0
@@ -1406,7 +1406,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 889310738}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: .100000001
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 1
@@ -1431,7 +1431,7 @@ GameObject:
   - 114: {fileID: 1119372502}
   m_Layer: 0
   m_Name: Dun
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1449,7 +1449,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!23 &1119372498
 MeshRenderer:
@@ -1502,7 +1502,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1119372496}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.21999979, y: 11.6000004, z: 17.2000008}
+  m_LocalPosition: {x: 31.4799995, y: 11.6000004, z: 17.2000008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1547,6 +1547,7 @@ MonoBehaviour:
   walkSpeed: 5
   runSpeed: 10
   slideSpeed: 3
+  playerNum: 1
 --- !u!1 &1125010627
 GameObject:
   m_ObjectHideFlags: 0
@@ -1586,7 +1587,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1125010627}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: .100000001
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 1
@@ -1794,7 +1795,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1440883379}
   m_LocalRotation: {x: .50000006, y: 0, z: 0, w: .866025388}
-  m_LocalPosition: {x: 5, y: 30, z: 10}
+  m_LocalPosition: {x: 32.7999992, y: 30, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1830,7 +1831,7 @@ GameObject:
   - 114: {fileID: 1711941077}
   m_Layer: 0
   m_Name: Dik
-  m_TagString: Untagged
+  m_TagString: Companion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1901,7 +1902,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1711941071}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.94000006, y: 14.3000002, z: 24.2299995}
+  m_LocalPosition: {x: 3.94000006, y: 14.3000002, z: 16.3500004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1921,6 +1922,7 @@ MonoBehaviour:
   walkSpeed: 3
   runSpeed: 6
   slideSpeed: 5
+  playerNum: 2
 --- !u!114 &1711941078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2054,7 +2056,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1854122817}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: .100000001
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 1
@@ -2241,7 +2243,7 @@ HingeJoint:
     max: 0
     bounciness: 0
     bounceMinVelocity: .200000003
-    contactDistance: 0
+    contactDistance: .100000001
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
@@ -2253,7 +2255,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2020088556}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: .100000001
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 1

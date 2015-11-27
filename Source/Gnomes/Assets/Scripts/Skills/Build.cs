@@ -17,7 +17,19 @@ public class Build : MonoBehaviour {
 	
 	void Update ()
     {
-	    if(Input.GetButtonDown("Fire3"))
+		string Fire3 = null;
+		if(this.GetComponent<PlayerController>().playerNum == 1)
+		{
+			Fire3 = "Fire3Player";
+		}else if(this.GetComponent<PlayerController>().playerNum == 2)
+		{
+			Fire3 = "Fire3Companion";
+		}else {
+			print ("Player " + this.GetComponent<PlayerController>().playerNum + " is not valid");
+		}
+
+
+		if(Input.GetButtonDown(Fire3))
         {
             Destroy(blocks[i]);
             blocks[i] = Instantiate(prefab, rb.position + transform.forward + new Vector3(0, -0.5f, 0), Quaternion.identity) as GameObject;

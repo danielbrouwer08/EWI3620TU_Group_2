@@ -15,7 +15,19 @@ public class Fly : MonoBehaviour {
 	
 	void FixedUpdate ()
     {
-        if (Input.GetButton("Fire3") && fly < flycap)
+		string Fire3 = null;
+		if(this.GetComponent<PlayerController>().playerNum == 1)
+		{
+			Fire3 = "Fire3Player";
+		}else if(this.GetComponent<PlayerController>().playerNum == 2)
+		{
+			Fire3 = "Fire3Companion";
+		}else {
+			print ("Player " + this.GetComponent<PlayerController>().playerNum + " is not valid");
+		}
+
+
+		if (Input.GetButtonDown(Fire3))
         {
             float velocityold = rb.velocity.y;
             rb.velocity = new Vector3(rb.velocity.x, flyvelocity, rb.velocity.z);
