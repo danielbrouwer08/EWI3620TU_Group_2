@@ -3,15 +3,11 @@ using System.Collections;
 
 public class Fly : MonoBehaviour {
 
-    public float flycap = 50;
+    public float flycap = 3;
     private Rigidbody rb;
     private float fly = 0;
-<<<<<<< HEAD
-    public float flyvelocity = 5f;
-=======
     public float flyvelocity;
 	private string Fire3;
->>>>>>> feature/Puzzle.NO3
 
     void Start ()
     {
@@ -33,12 +29,8 @@ public class Fly : MonoBehaviour {
 	void FixedUpdate ()
     {
 
-<<<<<<< HEAD
-        if (Input.GetButton("Fire3") && fly < flycap)
-=======
 
 		if (Input.GetButtonDown(Fire3))
->>>>>>> feature/Puzzle.NO3
         {
             float velocityold = rb.velocity.y;
             rb.velocity = new Vector3(rb.velocity.x, flyvelocity, rb.velocity.z);

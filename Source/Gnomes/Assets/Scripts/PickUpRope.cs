@@ -34,7 +34,7 @@ public class PickUpRope : MonoBehaviour
 		bool playerInRange = (x_pos_player && y_pos_player && z_pos_player);
 
 		if (playerInRange) { //if player is in the neighborhood
-			if (Input.GetButton("Fire3Player")) {
+			if (Input.GetButton("Fire4Player")) {
 				if(playerGrabbedRope==false && isEndPoint)
 				{
 					transform.parent = player.transform;
@@ -60,7 +60,7 @@ public class PickUpRope : MonoBehaviour
 
 			}
 		} else if (companionInRange) { //if companion is in the neighborhood
-			if (Input.GetButton("Fire3Companion")) {
+			if (Input.GetButton("Fire4Companion")) {
 				if(playerGrabbedRope==false && isEndPoint)
 				{
 					transform.parent = companion.transform;

@@ -58,19 +58,6 @@ public class PlayerController : MonoBehaviour
 		rb.AddForce (jump, ForceMode.VelocityChange);
 	}
 
-<<<<<<< HEAD
-    //Get input from user
-    void getInput()
-    {
-        verticalInput = Input.GetAxis("Vertical");
-        horizontalInput = Input.GetAxis("Horizontal");
-        //if player presses jump button and is not already in a jump (y velocuty is zero)
-
-        //RAYCAST IS AFHANKELIJK VAN GROOTTE VAN PLAYER
-
-        if (Input.GetButtonDown("Fire1") && Physics.Raycast(transform.position, -Vector3.up, 1.208f)) 
-        {
-=======
 	//Get input from player 1
 	void getPlayerInput ()
 	{
@@ -79,7 +66,6 @@ public class PlayerController : MonoBehaviour
 		HorizontalPlayerInput = Input.GetAxis ("HorizontalPlayer");
 		//if player presses jump button and is not already in a jump (y velocuty is zero)
 		if (Input.GetButtonDown ("Fire1Player") && Physics.Raycast (transform.position, -Vector3.up, 1.208f)) {
->>>>>>> feature/Puzzle.NO3
             
 			jump = new Vector3 (0, jumpForce, 0);
 		} else {

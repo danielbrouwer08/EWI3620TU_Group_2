@@ -1,11 +1,6 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Source/Gnomes/Assets/New Terrain.asset.meta
-guid: 04b9e30e0616797479eb5841d6c35b70
-timeCreated: 1448355264
-=======
 guid: 16b806fd465bbb041a698917558661cb
 timeCreated: 1448638570
->>>>>>> feature/Puzzle.NO3:Source/Gnomes/Assets/Prefabs/Puzzle3.prefab.meta
 licenseType: Free
 NativeFormatImporter:
   userData: 
