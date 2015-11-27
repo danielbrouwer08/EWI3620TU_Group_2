@@ -3,11 +3,16 @@ using System.Collections;
 
 public class Fly : MonoBehaviour {
 
-    public float flycap = 3;
+    public float flycap = 50;
     private Rigidbody rb;
+<<<<<<< HEAD
     private float fly = 0;
     public float flyvelocity;
 	private string Fire3;
+=======
+    private float fly;
+    public float flyvelocity = 5;
+>>>>>>> feature/Level_2
 
     void Start ()
     {

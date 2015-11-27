@@ -3,12 +3,16 @@ using System.Collections;
 
 public class Build : MonoBehaviour {
 
-    public GameObject prefab;
-    public int blockcap;
+    public GameObject prefab = Resources.Load("Block") as GameObject;
+    public int blockcap = 3;
     private Rigidbody rb;
     private GameObject[] blocks;
+<<<<<<< HEAD:Source/Gnomes/Assets/Scripts/Skills/Build.cs
     private int i = 0;
 	private string Fire3;
+=======
+    private int j = 0;
+>>>>>>> feature/Level_2:Source/Gnomes/Assets/Build.cs
 
 	void Start ()
     {
@@ -30,14 +34,24 @@ public class Build : MonoBehaviour {
     {
 		if(Input.GetButtonDown(Fire3))
         {
-            Destroy(blocks[i]);
-            blocks[i] = Instantiate(prefab, rb.position + transform.forward + new Vector3(0, -0.5f, 0), Quaternion.identity) as GameObject;
-            i++;
-            if(i >= blockcap)
+            Destroy(blocks[j]);
+            blocks[j] = Instantiate(prefab, rb.position + transform.forward + new Vector3(0, -0.5f, 0), Quaternion.identity) as GameObject;
+            j++;
+            if(j >= blockcap)
             {
-                i = 0;
+                j = 0;
             }
         }
 	}
+
+    void OnDestroy()
+    {
+        for(int i = 0; i < 3; i++)
+        {
+            Destroy(blocks[i]);
+        }
+    }
+
+
 }
 
