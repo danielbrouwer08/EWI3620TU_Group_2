@@ -329,7 +329,27 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11430470, guid: 6e8deeab43e2cd64cb2e27de6872169d, type: 2}
       propertyPath: throwforce
-      value: 2000
+      value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500674, guid: 6e8deeab43e2cd64cb2e27de6872169d, type: 2}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500674, guid: 6e8deeab43e2cd64cb2e27de6872169d, type: 2}
+      propertyPath: m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500674, guid: 6e8deeab43e2cd64cb2e27de6872169d, type: 2}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500674, guid: 6e8deeab43e2cd64cb2e27de6872169d, type: 2}
+      propertyPath: m_Size.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500674, guid: 6e8deeab43e2cd64cb2e27de6872169d, type: 2}
+      propertyPath: m_Size.x
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6e8deeab43e2cd64cb2e27de6872169d, type: 2}
@@ -389,8 +409,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 444799467}
   m_LocalRotation: {x: 0, y: 0, z: .707106829, w: .707106709}
-  m_LocalPosition: {x: -.561999977, y: -.0130000003, z: -0}
-  m_LocalScale: {x: .773100495, y: .0156674925, z: .718729734}
+  m_LocalPosition: {x: -.561999977, y: .00300000003, z: -0}
+  m_LocalScale: {x: .917244375, y: .0156674925, z: .936077416}
   m_Children: []
   m_Father: {fileID: 548032174}
   m_RootOrder: 0
@@ -406,12 +426,13 @@ GameObject:
   - 23: {fileID: 506024830}
   - 65: {fileID: 506024831}
   - 114: {fileID: 506024834}
+  - 208: {fileID: 506024835}
   m_Layer: 0
   m_Name: Water
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!23 &506024830
 MeshRenderer:
@@ -463,8 +484,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 506024829}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 28.1499996, y: -.5, z: 25}
-  m_LocalScale: {x: 18.3677711, y: 1, z: 50}
+  m_LocalPosition: {x: 24.5, y: -.5, z: 25}
+  m_LocalScale: {x: 48.1387901, y: 1, z: 50}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
@@ -479,6 +500,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b28ccb01e184db4484cc33b6d152495, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!208 &506024835
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 506024829}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: .5, y: .5, z: .5}
+  m_MoveThreshold: .100000001
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: .5
 --- !u!1 &548032170
 GameObject:
   m_ObjectHideFlags: 0
@@ -1002,6 +1038,10 @@ Prefab:
       propertyPath: m_ConnectedAnchor.y
       value: -.759565353
       objectReference: {fileID: 0}
+    - target: {fileID: 194456, guid: 2e092aba315700b4b81c673b70ec962f, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11483926, guid: 2e092aba315700b4b81c673b70ec962f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 2e092aba315700b4b81c673b70ec962f, type: 2}
@@ -1039,6 +1079,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickdistance: 5
   throwforce: 2000
+  skill: 
 --- !u!23 &815976839
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1459,7 +1500,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 107de2fbb6d08114bb16cafee4da3f4e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.96000004
+      value: 3.27999997
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 107de2fbb6d08114bb16cafee4da3f4e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1537,6 +1578,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickdistance: 5
   throwforce: 2000
+  skill: Fly
 --- !u!54 &1248331793
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1642,6 +1684,33 @@ Transform:
   - {fileID: 344173459}
   m_Father: {fileID: 1820052176}
   m_RootOrder: 1
+--- !u!1 &1558878114
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1558878115}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1558878115
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1558878114}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 7.76000023}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
 --- !u!1 &1798738396
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,6 +21,8 @@ public class Fly : MonoBehaviour {
             float velocityold = rb.velocity.y;
             rb.velocity = new Vector3(rb.velocity.x, flyvelocity, rb.velocity.z);
             fly = fly - velocityold + rb.velocity.y;
+            Debug.Log(transform.GetChild(0));
+            transform.GetChild(0).GetComponent<Transform>().localEulerAngles += new Vector3(0, 20, 0);
         }
     }
 
