@@ -8,16 +8,13 @@ public class Build : MonoBehaviour {
     private Rigidbody rb;
     private GameObject[] blocks;
     private int i = 0;
+	private string Fire3;
 
 	void Start ()
     {
         rb = GetComponent<Rigidbody>();
         blocks = new GameObject[blockcap];
-	}
-	
-	void Update ()
-    {
-		string Fire3 = null;
+		Fire3 = null;
 		if(this.GetComponent<PlayerController>().playerNum == 1)
 		{
 			Fire3 = "Fire3Player";
@@ -27,8 +24,10 @@ public class Build : MonoBehaviour {
 		}else {
 			print ("Player " + this.GetComponent<PlayerController>().playerNum + " is not valid");
 		}
-
-
+	}
+	
+	void Update ()
+    {
 		if(Input.GetButtonDown(Fire3))
         {
             Destroy(blocks[i]);
@@ -41,3 +40,4 @@ public class Build : MonoBehaviour {
         }
 	}
 }
+

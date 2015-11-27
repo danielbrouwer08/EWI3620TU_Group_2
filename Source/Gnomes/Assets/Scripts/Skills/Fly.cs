@@ -7,15 +7,12 @@ public class Fly : MonoBehaviour {
     private Rigidbody rb;
     private float fly = 0;
     public float flyvelocity;
+	private string Fire3;
 
     void Start ()
     {
         rb = GetComponent<Rigidbody>();
-    }
-	
-	void FixedUpdate ()
-    {
-		string Fire3 = null;
+		Fire3 = null;
 		if(this.GetComponent<PlayerController>().playerNum == 1)
 		{
 			Fire3 = "Fire3Player";
@@ -25,6 +22,12 @@ public class Fly : MonoBehaviour {
 		}else {
 			print ("Player " + this.GetComponent<PlayerController>().playerNum + " is not valid");
 		}
+
+
+    }
+	
+	void FixedUpdate ()
+    {
 
 
 		if (Input.GetButtonDown(Fire3))
