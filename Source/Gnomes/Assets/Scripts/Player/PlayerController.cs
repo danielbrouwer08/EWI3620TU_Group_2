@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
 		VerticalPlayerInput = Input.GetAxis ("VerticalPlayer");
 		HorizontalPlayerInput = Input.GetAxis ("HorizontalPlayer");
 		//if player presses jump button and is not already in a jump (y velocuty is zero)
-		if (Input.GetButtonDown ("Fire1Player") && Physics.Raycast (transform.position, -Vector3.up, 1.208f)) {
+		if (Input.GetButtonDown ("Fire1Player") && Physics.Raycast (transform.position, -Vector3.up, 1.708f)) {
             
 			jump = new Vector3 (0, jumpForce, 0);
 		} else {
