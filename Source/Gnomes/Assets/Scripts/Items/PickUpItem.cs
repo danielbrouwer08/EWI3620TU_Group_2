@@ -42,11 +42,11 @@ public class PickUpItem : MonoBehaviour
             if (Input.GetKeyDown("e"))
             {
                 DeleteSkillfromPlayer(skill);
-                carrier = null;
                 rb.isKinematic = false;
                 rb.detectCollisions = true;
                 transform.parent = null;
                 rb.AddForce(carrier.transform.forward * throwforce);
+                carrier = null;
             }
         }
         else

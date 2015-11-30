@@ -3,8 +3,8 @@ using System.Collections;
 
 public class Build : MonoBehaviour {
 
-    public GameObject prefab;
-    public int blockcap;
+    private GameObject prefab;
+    private int blockcap = 3;
     private Rigidbody rb;
     private GameObject[] blocks;
     private int i = 0;
@@ -15,6 +15,7 @@ public class Build : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         blocks = new GameObject[blockcap];
 		Fire3 = null;
+        prefab = Resources.Load("Block") as GameObject;
 		if(this.GetComponent<PlayerController>().playerNum == 1)
 		{
 			Fire3 = "Fire3Player";
