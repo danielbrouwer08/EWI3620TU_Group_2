@@ -3,10 +3,10 @@ using System.Collections;
 
 public class Fly : MonoBehaviour {
 
-    public float flycap = 3;
+    public float flycap = 50;
     private Rigidbody rb;
     private float fly = 0;
-    public float flyvelocity;
+    public float flyvelocity = 5;
 	private string Fire3;
 
     void Start ()
@@ -30,7 +30,7 @@ public class Fly : MonoBehaviour {
     {
 
 
-		if (Input.GetButtonDown(Fire3))
+		if (Input.GetButton(Fire3))
         {
             float velocityold = rb.velocity.y;
             rb.velocity = new Vector3(rb.velocity.x, flyvelocity, rb.velocity.z);
