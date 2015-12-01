@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Source/Gnomes/Assets/Scripts/Terrain/TerrainSpawner.cs.meta
 guid: bf24a83e4e319a64baedc37b721de155
 timeCreated: 1448910772
+=======
+guid: ac001e8e99a0eef4ba977a2f517b134d
+timeCreated: 1448892927
+>>>>>>> feature/Level_4:Source/Gnomes/Assets/Scripts/Terrain/TerrainSpawner.cs.meta
 licenseType: Free
 MonoImporter:
   serializedVersion: 2

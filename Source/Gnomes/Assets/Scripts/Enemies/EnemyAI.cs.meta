@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Source/Gnomes/Assets/Scripts/Enemies/EnemyAI.cs.meta
 guid: 4a15b9fb882d0ea49b9d0531fbf0d899
 timeCreated: 1448910771
+=======
+guid: 3813470c0a22b034e95a8d8d1eccf8c4
+timeCreated: 1448892927
+>>>>>>> feature/Level_4:Source/Gnomes/Assets/Scripts/Enemies/EnemyAI.cs.meta
 licenseType: Free
 MonoImporter:
   serializedVersion: 2

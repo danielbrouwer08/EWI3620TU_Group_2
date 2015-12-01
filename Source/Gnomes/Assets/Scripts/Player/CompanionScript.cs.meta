@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Source/Gnomes/Assets/Scripts/Player/CompanionScript.cs.meta
 guid: 3c7e872230c37c04e8f97afaa7a233d4
 timeCreated: 1448910771
+=======
+guid: 9477fa01f805c554e96256d3fe9c1907
+timeCreated: 1448892927
+>>>>>>> feature/Level_4:Source/Gnomes/Assets/Scripts/Player/CompanionScript.cs.meta
 licenseType: Free
 MonoImporter:
   serializedVersion: 2

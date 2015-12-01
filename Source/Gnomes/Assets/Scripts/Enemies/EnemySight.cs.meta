@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Source/Gnomes/Assets/Scripts/Enemies/EnemySight.cs.meta
 guid: a20886c0337b2974f8ae5bfb79339f45
 timeCreated: 1448910772
+=======
+guid: 8490f801197b6a945b60b7dafe757e15
+timeCreated: 1448892927
+>>>>>>> feature/Level_4:Source/Gnomes/Assets/Scripts/Enemies/EnemySight.cs.meta
 licenseType: Free
 MonoImporter:
   serializedVersion: 2

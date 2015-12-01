@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Source/Gnomes/Assets/Scripts/Items/PickUpItem.cs.meta
 guid: ae7a3ecbfea1332488d0a1e6fc1e9bd7
 timeCreated: 1448910772
+=======
+guid: fa44c287e4ca8a947b3ae411d1aa027a
+timeCreated: 1448892931
+>>>>>>> feature/Level_4:Source/Gnomes/Assets/Scripts/Items/PickUpItem.cs.meta
 licenseType: Free
 MonoImporter:
   serializedVersion: 2

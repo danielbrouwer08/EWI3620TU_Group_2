@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Source/Gnomes/Assets/Scripts/Player/PlayerOnPickUp.cs.meta
 guid: 90a09bd93ad3bbb4a94987e66d466b0d
 timeCreated: 1448910772
+=======
+guid: f51441368c2faf047a75becb4f927101
+timeCreated: 1448892927
+>>>>>>> feature/Level_4:Source/Gnomes/Assets/Scripts/Player/PlayerOnPickUp.cs.meta
 licenseType: Free
 MonoImporter:
   serializedVersion: 2

@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Source/Gnomes/Assets/Scripts/Terrain/MushroomShake.cs.meta
 guid: b406ba4e0308f224bae71eae8def71fc
 timeCreated: 1448910772
+=======
+guid: cf9d027fd696d6345895d2c7c9257716
+timeCreated: 1448892927
+>>>>>>> feature/Level_4:Source/Gnomes/Assets/Scripts/Terrain/MushroomShake.cs.meta
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
