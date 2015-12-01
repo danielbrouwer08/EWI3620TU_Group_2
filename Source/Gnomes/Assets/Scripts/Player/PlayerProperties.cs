@@ -12,7 +12,10 @@ public class PlayerProperties : MonoBehaviour {
 	
 	void Update ()
     {
-	
+        if(health <= 0)
+        {
+            Destroy(gameObject);
+        }
 	}
 
     public void TakeDamage(float damage)

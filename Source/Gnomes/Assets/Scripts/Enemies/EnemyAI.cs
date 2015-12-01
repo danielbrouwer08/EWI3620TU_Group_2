@@ -3,14 +3,16 @@ using System.Collections;
 
 public class EnemyAI : MonoBehaviour
 {
-    public Transform goal;
+    private Transform goal;
     private NavMeshAgent agent;
     private int playerinrange;
     public float triggerdistance = 10;
     public float lookdistance = 15;
     private GameObject[] player;
     private Vector3 start;
-    private float damage = 5;
+    private float damage = 20;
+    public float Knockback;
+    public float nomovementtime;
 
     void Awake ()
     {
@@ -47,11 +49,12 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter(Collider col)
+    void OnCollisionEnter(Collision col)
     {
         if(col.gameObject.CompareTag("Player"))
         {
             col.gameObject.GetComponent<PlayerProperties>().TakeDamage(damage);
+            col.gameObject.GetComponent<PlayerController>().ExternalForce((col.gameObject.transform.position-transform.position)*Knockback,nomovementtime);
         }
     }
 }

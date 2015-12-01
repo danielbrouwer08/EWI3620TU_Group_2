@@ -812,9 +812,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efaffc6bb5ff5264281516cf95d5b270, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goal: {fileID: 0}
   triggerdistance: 10
   lookdistance: 15
+  Knockback: 10
+  nomovementtime: .400000006
 --- !u!23 &1416237775
 MeshRenderer:
   m_ObjectHideFlags: 0
