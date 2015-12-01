@@ -42,11 +42,11 @@ public class PickUpItem : MonoBehaviour
             if (Input.GetKeyDown("e"))
             {
                 DeleteSkillfromPlayer(skill);
-                carrier = null;
                 rb.isKinematic = false;
                 rb.detectCollisions = true;
                 transform.parent = null;
                 rb.AddForce(carrier.transform.forward * throwforce);
+                carrier = null;
             }
         }
         else
@@ -58,7 +58,7 @@ public class PickUpItem : MonoBehaviour
                 rb.isKinematic = true;
                 rb.detectCollisions = false;
                 transform.parent = player[playerinrange].transform;
-                transform.localPosition = new Vector3(0.0f, 0.75f, 0.0f);
+                transform.localPosition = new Vector3(0.0f, 1.53f, 0.0f);
                 //KAN OOK NOG DE HOEK VAN T OBJECT VERANDEREN
             }
         }
