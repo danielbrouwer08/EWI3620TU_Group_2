@@ -3,32 +3,26 @@ using System.Collections;
 
 public class Build : MonoBehaviour {
 
-    public GameObject prefab;
-    public int blockcap;
+    private GameObject prefab;
+    private int blockcap = 3;
     private Rigidbody rb;
     private GameObject[] blocks;
     private int i = 0;
 	private string Fire3;
+    private int playerNum;
 
 	void Start ()
     {
+        playerNum = GetComponent<PlayerController>().playerNum;
         rb = GetComponent<Rigidbody>();
         blocks = new GameObject[blockcap];
 		Fire3 = null;
-		if(this.GetComponent<PlayerController>().playerNum == 1)
-		{
-			Fire3 = "Fire3Player";
-		}else if(this.GetComponent<PlayerController>().playerNum == 2)
-		{
-			Fire3 = "Fire3Companion";
-		}else {
-			print ("Player " + this.GetComponent<PlayerController>().playerNum + " is not valid");
-		}
+        prefab = Resources.Load("Block") as GameObject;
 	}
 	
 	void Update ()
     {
-		if(Input.GetButtonDown(Fire3))
+		if(Input.GetButtonDown("Item" + playerNum))
         {
             Destroy(blocks[i]);
             blocks[i] = Instantiate(prefab, rb.position + transform.forward + new Vector3(0, -0.5f, 0), Quaternion.identity) as GameObject;

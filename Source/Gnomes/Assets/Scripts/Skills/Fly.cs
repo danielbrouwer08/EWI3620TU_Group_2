@@ -7,30 +7,17 @@ public class Fly : MonoBehaviour {
     private Rigidbody rb;
     private float fly = 0;
     public float flyvelocity = 5;
-	private string Fire3;
+    private int playerNum;
 
     void Start ()
     {
         rb = GetComponent<Rigidbody>();
-		Fire3 = null;
-		if(this.GetComponent<PlayerController>().playerNum == 1)
-		{
-			Fire3 = "Fire3Player";
-		}else if(this.GetComponent<PlayerController>().playerNum == 2)
-		{
-			Fire3 = "Fire3Companion";
-		}else {
-			print ("Player " + this.GetComponent<PlayerController>().playerNum + " is not valid");
-		}
-
-
+        playerNum = GetComponent<PlayerController>().playerNum;
     }
 	
 	void FixedUpdate ()
     {
-
-
-		if (Input.GetButton(Fire3))
+		if (Input.GetButton("Item" + playerNum))
         {
             float velocityold = rb.velocity.y;
             rb.velocity = new Vector3(rb.velocity.x, flyvelocity, rb.velocity.z);
@@ -40,9 +27,9 @@ public class Fly : MonoBehaviour {
         }
     }
 
-    void OnCollisionStay()
+    void OnCollisionEnter()
     {
-        if(Mathf.Abs(rb.velocity.y) < 0.01)
+        if(gameObject.GetComponent<PlayerController>().grounded())
         {
             fly = 0;
         }

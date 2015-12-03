@@ -3,25 +3,16 @@ using System.Collections;
 
 public class Demolish : MonoBehaviour {
 
-	private string Fire3;
+    private int playerNum;
 
-	void Start(){
+	void Start()
+    {
+        playerNum = GetComponent<PlayerController>().playerNum;
+    }
 
-	}
-
-    void OnCollisionStay(Collision other){
-		Fire3 = null;
-		if(this.GetComponent<PlayerController>().playerNum == 1)
-		{
-			Fire3 = "Fire3Player";
-		}else if(this.GetComponent<PlayerController>().playerNum == 2)
-		{
-			Fire3 = "Fire3Companion";
-		}else {
-			print ("Player " + this.GetComponent<PlayerController>().playerNum + " is not valid");
-		}
-
-		if(Input.GetButton(Fire3) && other.gameObject.CompareTag("Breakable"))
+    void OnCollisionStay(Collision other)
+    {
+		if(Input.GetButton("Item" + playerNum) && other.gameObject.CompareTag("Breakable"))
 			{
 				Debug.Log("verwijder");
 				other.gameObject.SetActive(false);

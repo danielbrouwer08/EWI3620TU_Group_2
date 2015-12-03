@@ -3,7 +3,6 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
-
 	//Player properties
 	private Rigidbody rb;
 	public float jumpForce;
@@ -11,6 +10,7 @@ public class PlayerController : MonoBehaviour
 	public float runSpeed;
 	public float slideSpeed;
 	public int playerNum;
+    public float rotatespeed;
 
 	//Audio properties
 	//private AudioSource jumpSound;
@@ -19,9 +19,10 @@ public class PlayerController : MonoBehaviour
 
 	//Variables
 	private Vector3 movement;
-	private Vector3 jump;
+	private bool jump;
 	private float VerticalPlayerInput;
 	private float HorizontalPlayerInput;
+    private float nomovementtime = 0;
 	//private bool gameOver = false;
 
 	// Iinitialization
@@ -33,76 +34,84 @@ public class PlayerController : MonoBehaviour
 	// Update is called every fixed framerate frame
 	void FixedUpdate ()
 	{
-		//Get input from p1 or p2
-		if (playerNum == 1) {
-			getPlayerInput ();
-		} else if (playerNum == 2) {
-			getCompanionInput ();
-		} else {
-			print ("Player " + playerNum + " is not valid");
-		}
+        if (nomovementtime > 0)
+        {
+            nomovementtime -= Time.fixedDeltaTime;
+        }
+        else
+        {
+            //Get input from p1 or p2
+            getPlayerInput();
 
-		//Only execute if movement isn't all zero because transform.forward generates lots of 'annoying' notifications then.
-		if (!movement.Equals (new Vector3 (0.0f, 0.0f, 0.0f))) {
-			//Make player look in direction of movement
-			transform.forward = new Vector3 (movement.x, 0, movement.z);
-		}
-		//Move the player
-		if (!Physics.Raycast (transform.position, transform.forward, 1.207f)) {
-			rb.velocity = new Vector3 (movement.x, rb.velocity.y, movement.z);
-		} else {
-			rb.AddForce (movement / 10, ForceMode.VelocityChange);
-		}
-
-		//if button pressed, do a jump
-		rb.AddForce (jump, ForceMode.VelocityChange);
+            //Only execute if movement isn't all zero because transform.forward generates lots of 'annoying' notifications then.
+            if (!movement.Equals(new Vector3(0.0f, 0.0f, 0.0f)))
+            {
+                //Make player look in direction of movement
+                transform.forward = Vector3.RotateTowards(transform.forward, new Vector3(movement.x, 0, movement.z),Time.fixedDeltaTime*rotatespeed,0);
+            }
+            //Move the player
+            if (!Physics.Raycast(transform.position, transform.forward, 1.207f))
+            {
+                if (jump)
+                {
+                    rb.velocity = new Vector3(movement.x, jumpForce, movement.z);
+                }
+                else
+                {
+                    rb.velocity = new Vector3(movement.x, rb.velocity.y, movement.z);
+                }
+            }
+            else
+            {
+                if(jump)
+                {
+                    rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
+                }
+                rb.AddForce(movement / 10, ForceMode.VelocityChange);
+            }
+        }
 	}
 
-	//Get input from player 1
+	//Get input from player
 	void getPlayerInput ()
-	{
-	
-		VerticalPlayerInput = Input.GetAxis ("VerticalPlayer");
-		HorizontalPlayerInput = Input.GetAxis ("HorizontalPlayer");
-		//if player presses jump button and is not already in a jump (y velocuty is zero)
-		if (Input.GetButtonDown ("Fire1Player") && Physics.Raycast (transform.position, -Vector3.up, 1.708f)) {
-            
-			jump = new Vector3 (0, jumpForce, 0);
+    {
+		VerticalPlayerInput = Input.GetAxis ("Vertical" + playerNum);
+		HorizontalPlayerInput = Input.GetAxis ("Horizontal" + playerNum);
+        float angle;
+        if (HorizontalPlayerInput == 0)
+        {
+            angle = Mathf.PI * (1 + 0.5f * Mathf.Sign(-VerticalPlayerInput));
+        }
+        else
+        {
+            angle = Mathf.Atan(VerticalPlayerInput / HorizontalPlayerInput);
+        }
+        //if player presses jump button and is not already in a jump (y velocuty is zero)
+        if (Input.GetButtonDown ("Jump" + playerNum) && grounded()) {
+			jump = true;
 		} else {
-			jump = new Vector3 (0, 0, 0);
+			jump = false;
 		}
 
 		//if player presses run button
-        
-		if (Input.GetButton ("Fire2Player")) {
-			movement = new Vector3 (HorizontalPlayerInput * runSpeed, 0, VerticalPlayerInput * runSpeed);
+		if (Input.GetButton ("Run" + playerNum)) {
+			movement = new Vector3 (HorizontalPlayerInput * runSpeed * Mathf.Abs(Mathf.Cos(angle)), 0, VerticalPlayerInput * runSpeed * Mathf.Abs(Mathf.Sin(angle)));
 		} else {
-			movement = new Vector3 (HorizontalPlayerInput * walkSpeed, 0, VerticalPlayerInput * walkSpeed);
+			movement = new Vector3 (HorizontalPlayerInput * walkSpeed * Mathf.Abs(Mathf.Cos(angle)), 0, VerticalPlayerInput * walkSpeed * Mathf.Abs(Mathf.Sin(angle)));
 		}
 	}
 
-	//Get input from player 1
-	void getCompanionInput ()
-	{
-			
-		VerticalPlayerInput = Input.GetAxis ("VerticalCompanion");
-		HorizontalPlayerInput = Input.GetAxis ("HorizontalCompanion");
-		//if player presses jump button and is not already in a jump (y velocuty is zero)
-		if (Input.GetButtonDown ("Fire1Companion") && Physics.Raycast (transform.position, -Vector3.up, 1.208f)) {
-				
-			jump = new Vector3 (0, jumpForce, 0);
-		} else {
-			jump = new Vector3 (0, 0, 0);
-		}
-			
-		//if player presses run button
-			
-		if (Input.GetButton ("Fire2Companion")) {
-			movement = new Vector3 (HorizontalPlayerInput * runSpeed, 0, VerticalPlayerInput * runSpeed);
-		} else {
-			movement = new Vector3 (HorizontalPlayerInput * walkSpeed, 0, VerticalPlayerInput * walkSpeed);
-		}
-	}
+    public bool grounded()
+    {
+        return Physics.Raycast(transform.position + Vector3.forward * 0.5f, -Vector3.up, 1.1f) ||
+               Physics.Raycast(transform.position - Vector3.forward * 0.5f, -Vector3.up, 1.1f) ||
+               Physics.Raycast(transform.position + Vector3.right * 0.5f, -Vector3.up, 1.1f) ||
+               Physics.Raycast(transform.position - Vector3.right * 0.5f, -Vector3.up, 1.1f);
+    }
 
-
+    public void ExternalForce(Vector3 force, float nomovementtime)
+    {
+        rb.AddForce(force, ForceMode.VelocityChange);
+        this.nomovementtime = nomovementtime;
+    }
 }
