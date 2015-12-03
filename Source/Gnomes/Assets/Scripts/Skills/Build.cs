@@ -9,27 +9,20 @@ public class Build : MonoBehaviour {
     private GameObject[] blocks;
     private int i = 0;
 	private string Fire3;
+    private int playerNum;
 
 	void Start ()
     {
+        playerNum = GetComponent<PlayerController>().playerNum;
         rb = GetComponent<Rigidbody>();
         blocks = new GameObject[blockcap];
 		Fire3 = null;
         prefab = Resources.Load("Block") as GameObject;
-		if(this.GetComponent<PlayerController>().playerNum == 1)
-		{
-			Fire3 = "Fire3Player";
-		}else if(this.GetComponent<PlayerController>().playerNum == 2)
-		{
-			Fire3 = "Fire3Companion";
-		}else {
-			print ("Player " + this.GetComponent<PlayerController>().playerNum + " is not valid");
-		}
 	}
 	
 	void Update ()
     {
-		if(Input.GetButtonDown(Fire3))
+		if(Input.GetButtonDown("Item" + playerNum))
         {
             Destroy(blocks[i]);
             blocks[i] = Instantiate(prefab, rb.position + transform.forward + new Vector3(0, -0.5f, 0), Quaternion.identity) as GameObject;

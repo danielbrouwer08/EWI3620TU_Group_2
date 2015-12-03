@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 	public float runSpeed;
 	public float slideSpeed;
 	public int playerNum;
+    public float rotatespeed;
 
 	//Audio properties
 	//private AudioSource jumpSound;
@@ -33,7 +34,6 @@ public class PlayerController : MonoBehaviour
 	// Update is called every fixed framerate frame
 	void FixedUpdate ()
 	{
-        Debug.Log(Vector3.Magnitude(rb.velocity));
         if (nomovementtime > 0)
         {
             nomovementtime -= Time.fixedDeltaTime;
@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
             if (!movement.Equals(new Vector3(0.0f, 0.0f, 0.0f)))
             {
                 //Make player look in direction of movement
-                transform.forward = new Vector3(movement.x, 0, movement.z);
+                transform.forward = Vector3.RotateTowards(transform.forward, new Vector3(movement.x, 0, movement.z),Time.fixedDeltaTime*rotatespeed,0);
             }
             //Move the player
             if (!Physics.Raycast(transform.position, transform.forward, 1.207f))
@@ -101,9 +101,12 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-    bool grounded()
+    public bool grounded()
     {
-        return Physics.CheckCapsule(transform.position - new Vector3(0, 1.1f, 0), transform.position - new Vector3(0, 1.5f, 0), 0.5f);
+        return Physics.Raycast(transform.position + Vector3.forward * 0.5f, -Vector3.up, 1.1f) ||
+               Physics.Raycast(transform.position - Vector3.forward * 0.5f, -Vector3.up, 1.1f) ||
+               Physics.Raycast(transform.position + Vector3.right * 0.5f, -Vector3.up, 1.1f) ||
+               Physics.Raycast(transform.position - Vector3.right * 0.5f, -Vector3.up, 1.1f);
     }
 
     public void ExternalForce(Vector3 force, float nomovementtime)

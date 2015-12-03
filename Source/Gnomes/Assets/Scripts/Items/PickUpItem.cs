@@ -5,7 +5,6 @@ public class PickUpItem : MonoBehaviour
 {
     public float pickdistance = 5;
     private GameObject[] player;
-    private int playerinrange;
     private GameObject carrier;
     public float throwforce;
     bool hasPlayer = false;
@@ -13,6 +12,7 @@ public class PickUpItem : MonoBehaviour
     private Rigidbody rb;
     private Collider col;
     public string skill;
+    private int playerNum;
 
     void OnCollisionExit(Collision other)
     {
@@ -23,23 +23,19 @@ public class PickUpItem : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         col = GetComponent<Collider>();
         player = GameObject.FindGameObjectsWithTag("Player");
+        if(player[0].GetComponent<PlayerController>().playerNum != 1)
+        {
+            GameObject temp = player[0];
+            player[0] = player[1];
+            player[1] = player[0];
+        }
     }
 
     void Update()
     {
-
-        playerinrange = -1;
-        for (int i = 0; i < 2; i++)
-        {
-            if (Vector3.Magnitude(transform.position - player[i].transform.position) < pickdistance)
-            {
-                playerinrange = i;
-            }
-        }
-
         if (carrier != null)
         {
-            if (Input.GetKeyDown("e"))
+            if (Input.GetButtonDown("Interact" + playerNum))
             {
                 DeleteSkillfromPlayer(skill);
                 rb.isKinematic = false;
@@ -51,15 +47,20 @@ public class PickUpItem : MonoBehaviour
         }
         else
         {
-            if (Input.GetKeyDown("e") && playerinrange >= 0)
+            for (int i = 0; i < 2; i++)
             {
-                carrier = player[playerinrange];
-                AddSkilltoPlayer(skill);
-                rb.isKinematic = true;
-                rb.detectCollisions = false;
-                transform.parent = player[playerinrange].transform;
-                transform.localPosition = new Vector3(0.0f, 0.75f, 0.0f);
-                //KAN OOK NOG DE HOEK VAN T OBJECT VERANDEREN
+                int n = i + 1;
+                if (Input.GetButtonDown("Interact" + n) && Vector3.Magnitude(transform.position - player[i].transform.position) < pickdistance)
+                {
+                    carrier = player[i];
+                    playerNum = i + 1;
+                    AddSkilltoPlayer(skill);
+                    rb.isKinematic = true;
+                    rb.detectCollisions = false;
+                    transform.parent = player[i].transform;
+                    transform.localPosition = new Vector3(0.0f, 0.75f, 0.0f);
+                    //KAN OOK NOG DE HOEK VAN T OBJECT VERANDEREN
+                }
             }
         }
     }
