@@ -5,6 +5,7 @@ public class PickUpRope : MonoBehaviour
 {
 	
 	public GameObject player;
+    private float playerNum;
 	public GameObject companion;
 	private Rigidbody rb;
 	public float pickupRadius;
@@ -18,7 +19,8 @@ public class PickUpRope : MonoBehaviour
 	void Start ()
 	{
 		rb = GetComponent<Rigidbody> ();
-	}
+        playerNum = GetComponent<PlayerController>().playerNum;
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -34,7 +36,7 @@ public class PickUpRope : MonoBehaviour
 		bool playerInRange = (x_pos_player && y_pos_player && z_pos_player);
 
 		if (playerInRange) { //if player is in the neighborhood
-			if (Input.GetButton("Fire4Player")) {
+			if (Input.GetButton("Interact" + playerNum)) {
 				if(playerGrabbedRope==false && isEndPoint)
 				{
 					transform.parent = player.transform;

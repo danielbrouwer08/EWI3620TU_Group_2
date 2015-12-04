@@ -28,7 +28,7 @@ public class WaterScript : MonoBehaviour {
         else
         {
             Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
-            rb.AddForce(new Vector3(-rb.velocity.x * 2000, -1000f, 100 + (50000 * time * time)));
+            rb.AddForce(new Vector3(-rb.velocity.x * 2000, -1000f, 10000 + (50000 * time * time)));
         }
     }
 

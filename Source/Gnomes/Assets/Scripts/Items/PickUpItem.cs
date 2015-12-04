@@ -59,7 +59,7 @@ public class PickUpItem : MonoBehaviour
                 rb.detectCollisions = false;
                 transform.parent = player[playerinrange].transform;
                 transform.localPosition = new Vector3(0.0f, 1.53f, 0.0f);
-                //KAN OOK NOG DE HOEK VAN T OBJECT VERANDEREN
+                transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
             }
         }
     }

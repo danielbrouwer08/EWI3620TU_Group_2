@@ -1,21 +1,34 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Float : MonoBehaviour {
+public class Float : MonoBehaviour
+{
 
     private Rigidbody rb;
+    public float floatvelocity = 0.8f;
+    private bool floating = false;
     private int playerNum;
-    public float floatvelocity;
 
-	void Start ()
+    void Start()
     {
         rb = GetComponent<Rigidbody>();
         playerNum = GetComponent<PlayerController>().playerNum;
     }
-	
-	void FixedUpdate ()
+
+    void FixedUpdate()
     {
-        if (Input.GetButton("Item" + playerNum) && rb.velocity.y < -floatvelocity)
+        if (Input.GetButtonDown("Item" + playerNum))
+        {
+            if (floating != true)
+            {
+                floating = true;
+            }
+            else
+            {
+                floating = false;
+            }
+        }
+        if (floating && rb.velocity.y < -floatvelocity)
         {
             rb.velocity = new Vector3(rb.velocity.x, -floatvelocity, rb.velocity.z);
         }
