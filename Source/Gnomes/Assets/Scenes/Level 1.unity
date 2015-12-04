@@ -977,7 +977,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 830817786}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa44c287e4ca8a947b3ae411d1aa027a, type: 3}
+  m_Script: {fileID: 11500000, guid: ae7a3ecbfea1332488d0a1e6fc1e9bd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pickdistance: 5
@@ -1559,11 +1559,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1248331790}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa44c287e4ca8a947b3ae411d1aa027a, type: 3}
+  m_Script: {fileID: 11500000, guid: ae7a3ecbfea1332488d0a1e6fc1e9bd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pickdistance: 5
-  throwforce: 500
+  throwforce: 1000
   skill: Fly
 --- !u!54 &1248331793
 Rigidbody:

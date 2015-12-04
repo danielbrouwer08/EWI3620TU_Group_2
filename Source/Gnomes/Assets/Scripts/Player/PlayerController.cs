@@ -105,4 +105,16 @@ public class PlayerController : MonoBehaviour
 	}
 
 
+    //Makes sure the player stays on a moving platform
+    void OnCollisionStay(Collision other)
+    {
+        if (other.gameObject.CompareTag("Platform"))
+        {
+            transform.parent = other.transform;
+        }
+       else
+        {
+            transform.parent = null;
+        }
+    }
 }

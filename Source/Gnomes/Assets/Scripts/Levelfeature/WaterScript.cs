@@ -17,15 +17,18 @@ public class WaterScript : MonoBehaviour {
     void OnTriggerStay(Collider other)
     {
         time += Time.deltaTime;
-
+        if (time > 10)
+        {
+            time = 10;
+        }
         if(other.GetComponent<Rigidbody>().mass < 10)
         {
-            other.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, 100 * time * time));
+            other.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, 50 + (time * time)));
         }
         else
         {
             Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
-            rb.AddForce(new Vector3(-rb.velocity.x * 2000, -1000f, 100000 * time * time));
+            rb.AddForce(new Vector3(-rb.velocity.x * 2000, -1000f, 100 + (50000 * time * time)));
         }
     }
 

@@ -4,16 +4,28 @@ using System.Collections;
 public class Float : MonoBehaviour {
 
     private Rigidbody rb;
-    public float floatvelocity;
+    public float floatvelocity = 0.8f;
+    private bool floating = false;
 
 	void Start ()
     {
         rb = GetComponent<Rigidbody>();
 	}
-	
-	void FixedUpdate ()
+
+    void FixedUpdate()
     {
-        if (Input.GetButton("Fire3") && rb.velocity.y < -floatvelocity)
+        if (Input.GetButtonDown("Fire3Player"))
+        {
+            if (floating != true)
+            {
+                floating = true;
+            }
+            else
+            {
+                floating = false;
+            }
+        }
+        if (floating && rb.velocity.y < -floatvelocity)
         {
             rb.velocity = new Vector3(rb.velocity.x, -floatvelocity, rb.velocity.z);
         }
