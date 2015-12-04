@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+<<<<<<< HEAD:Source/Gnomes/Assets/Scripts/Terrain/texture.cs.meta
+guid: bc8a4796d49a4774996c3325b68020e0
+timeCreated: 1448910772
+=======
+guid: b2b7933be3656ef4285cf1f31ab98335
+timeCreated: 1448892927
+>>>>>>> feature/Level_4:Source/Gnomes/Assets/Scripts/Terrain/texture.cs.meta
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

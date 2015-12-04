@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+<<<<<<< HEAD:Source/Gnomes/Assets/Scripts/Camera/CameraShake.cs.meta
+guid: 98b666fcf133bae409dbf3f6bc5f325a
+timeCreated: 1448910772
+=======
+guid: 9dc0b8ace39e64248a30af9b2fd17bed
+timeCreated: 1448892927
+>>>>>>> feature/Level_4:Source/Gnomes/Assets/Scripts/Camera/CameraShake.cs.meta
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
