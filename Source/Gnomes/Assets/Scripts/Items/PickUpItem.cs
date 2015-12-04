@@ -29,7 +29,7 @@ public class PickUpItem : MonoBehaviour
     {
 
         playerinrange = -1;
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < player.Length; i++)
         {
             if (Vector3.Magnitude(transform.position - player[i].transform.position) < pickdistance)
             {
