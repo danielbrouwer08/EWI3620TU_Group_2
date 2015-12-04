@@ -20,3 +20,6 @@ Source/Gnomes/Build/
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
 
+Source/Gnomes/ProjectSettings/ProjectSettings.asset
+Source/Gnomes/ProjectSettings/ProjectVersion.txt
+Source/Gnomes/ProjectSettings/TagManager.asset
