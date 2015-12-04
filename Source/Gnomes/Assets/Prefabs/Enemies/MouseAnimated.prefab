@@ -521,6 +521,7 @@ GameObject:
   - 4: {fileID: 400700}
   - 95: {fileID: 9529458}
   - 65: {fileID: 6547624}
+  - 54: {fileID: 5450730}
   m_Layer: 0
   m_Name: MouseAnimated
   m_TagString: Untagged
@@ -1117,7 +1118,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 119848}
-  m_LocalRotation: {x: .820853233, y: -.125574589, z: .549301326, w: -.0932694376}
+  m_LocalRotation: {x: .820853114, y: -.125574574, z: .549301267, w: -.0932694301}
   m_LocalPosition: {x: -2.42148161, y: -1.83557498, z: .479208112}
   m_LocalScale: {x: .999999821, y: .99999994, z: .999999881}
   m_Children: []
@@ -1234,6 +1235,21 @@ Transform:
   - {fileID: 471012}
   m_Father: {fileID: 422520}
   m_RootOrder: 0
+--- !u!54 &5450730
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 178224}
+  serializedVersion: 2
+  m_Mass: 100
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!65 &6547624
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1345,7 +1361,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Mass
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 178224}
