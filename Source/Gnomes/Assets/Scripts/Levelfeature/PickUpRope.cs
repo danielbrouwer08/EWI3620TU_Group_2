@@ -62,7 +62,7 @@ public class PickUpRope : MonoBehaviour
 
 			}
 		} else if (companionInRange) { //if companion is in the neighborhood
-			if (Input.GetButton("Fire4Companion")) {
+			if (Input.GetButton("Interact2")) {
 				if(playerGrabbedRope==false && isEndPoint)
 				{
 					transform.parent = companion.transform;

@@ -6,6 +6,7 @@ public class PickUpItem : MonoBehaviour
     public float pickdistance = 5;
     private GameObject[] player;
     private int playerinrange;
+    private int playerNum;
     private GameObject carrier;
     public float throwforce;
     bool hasPlayer = false;
@@ -13,6 +14,7 @@ public class PickUpItem : MonoBehaviour
     private Rigidbody rb;
     private Collider col;
     public string skill;
+
 
     void OnCollisionExit(Collision other)
     {
@@ -33,13 +35,15 @@ public class PickUpItem : MonoBehaviour
         {
             if (Vector3.Magnitude(transform.position - player[i].transform.position) < pickdistance)
             {
+                playerNum = player[i].GetComponent<PlayerController>().playerNum;
                 playerinrange = i;
             }
         }
+        Debug.Log(playerinrange);
 
         if (carrier != null)
         {
-            if (Input.GetKeyDown("e"))
+            if (Input.GetButtonDown("Interact" + playerNum))
             {
                 DeleteSkillfromPlayer(skill);
                 rb.isKinematic = false;
@@ -51,16 +55,20 @@ public class PickUpItem : MonoBehaviour
         }
         else
         {
-            if (Input.GetKeyDown("e") && playerinrange >= 0)
+            if(playerinrange >= 0)
             {
-                carrier = player[playerinrange];
-                AddSkilltoPlayer(skill);
-                rb.isKinematic = true;
-                rb.detectCollisions = false;
-                transform.parent = player[playerinrange].transform;
-                transform.localPosition = new Vector3(0.0f, 1.53f, 0.0f);
-                transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+                if (Input.GetButtonDown("Interact" + playerNum))
+                {
+                    carrier = player[playerinrange];
+                    AddSkilltoPlayer(skill);
+                    rb.isKinematic = true;
+                    rb.detectCollisions = false;
+                    transform.parent = player[playerinrange].transform;
+                    transform.localPosition = new Vector3(0.0f, 1.53f, 0.0f);
+                    transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+                }
             }
+
         }
     }
 

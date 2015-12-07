@@ -18,12 +18,12 @@ public class WibWabScript : MonoBehaviour {
     {
         if(other.transform.position.z > 28.62f)
         {
-            Debug.Log("groter");
+            //Debug.Log("groter");
             rb.AddTorque(10000f, 0f, 0f);
         }
         else if(other.transform.position.z < 28.62f)
         {
-            Debug.Log("kleiner");
+            //Debug.Log("kleiner");
             rb.AddTorque(-10000f,0f, 0f);
         }
     }
