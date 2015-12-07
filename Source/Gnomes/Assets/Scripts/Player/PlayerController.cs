@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
 	public float runSpeed;
 	public float slideSpeed;
 	public int playerNum;
-    public float rotatespeed;
+    public float rotatespeed = 8;
 
 	//Audio properties
 	//private AudioSource jumpSound;

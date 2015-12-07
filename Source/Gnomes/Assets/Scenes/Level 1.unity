@@ -590,7 +590,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 473622, guid: 2e092aba315700b4b81c673b70ec962f, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 473622, guid: 2e092aba315700b4b81c673b70ec962f, type: 2}
       propertyPath: m_LocalScale.x
@@ -932,6 +932,52 @@ Prefab:
     - {fileID: 11483926, guid: 2e092aba315700b4b81c673b70ec962f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 2e092aba315700b4b81c673b70ec962f, type: 2}
   m_IsPrefabParent: 0
+--- !u!1001 &741391130
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 437952, guid: 65b5074dffeabda45b891cbda4b09397, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 8.78999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 437952, guid: 65b5074dffeabda45b891cbda4b09397, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 3.50999999
+      objectReference: {fileID: 0}
+    - target: {fileID: 437952, guid: 65b5074dffeabda45b891cbda4b09397, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 7.21000004
+      objectReference: {fileID: 0}
+    - target: {fileID: 437952, guid: 65b5074dffeabda45b891cbda4b09397, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 437952, guid: 65b5074dffeabda45b891cbda4b09397, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 437952, guid: 65b5074dffeabda45b891cbda4b09397, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 437952, guid: 65b5074dffeabda45b891cbda4b09397, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 437952, guid: 65b5074dffeabda45b891cbda4b09397, type: 2}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5407578, guid: 65b5074dffeabda45b891cbda4b09397, type: 2}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 65b5074dffeabda45b891cbda4b09397, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &830817786
 GameObject:
   m_ObjectHideFlags: 0
@@ -977,11 +1023,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 830817786}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae7a3ecbfea1332488d0a1e6fc1e9bd7, type: 3}
+  m_Script: {fileID: 11500000, guid: eaf0a0f8d4eb77c469bc3f8572102c9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pickdistance: 5
-  throwforce: 1000
+  throwforce: 2000
   skill: 
 --- !u!23 &830817789
 MeshRenderer:
@@ -1077,6 +1123,7 @@ MonoBehaviour:
   runSpeed: 15
   slideSpeed: 5
   playerNum: 2
+  rotatespeed: 8
 --- !u!54 &984688137
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1166,11 +1213,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e42e6e9d137b9d40ab14b3b4316a998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 5
+  jumpForce: 8
   walkSpeed: 10
   runSpeed: 15
   slideSpeed: 5
   playerNum: 1
+  rotatespeed: 8
 --- !u!54 &1007861704
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1473,117 +1521,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1104838604}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &1248331789
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1798738397}
-    m_Modifications:
-    - target: {fileID: 400002, guid: 107de2fbb6d08114bb16cafee4da3f4e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 4.1500001
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 107de2fbb6d08114bb16cafee4da3f4e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3.27999997
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 107de2fbb6d08114bb16cafee4da3f4e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -3.98000026
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 107de2fbb6d08114bb16cafee4da3f4e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 107de2fbb6d08114bb16cafee4da3f4e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 107de2fbb6d08114bb16cafee4da3f4e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 107de2fbb6d08114bb16cafee4da3f4e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 107de2fbb6d08114bb16cafee4da3f4e, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: 107de2fbb6d08114bb16cafee4da3f4e, type: 3}
-      propertyPath: m_Name
-      value: Helicoptercap (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 107de2fbb6d08114bb16cafee4da3f4e, type: 3}
-      propertyPath: m_LocalScale.x
-      value: .5
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 107de2fbb6d08114bb16cafee4da3f4e, type: 3}
-      propertyPath: m_LocalScale.y
-      value: .5
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 107de2fbb6d08114bb16cafee4da3f4e, type: 3}
-      propertyPath: m_LocalScale.z
-      value: .5
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: 107de2fbb6d08114bb16cafee4da3f4e, type: 3}
-      propertyPath: m_TagString
-      value: ThrowingItem
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 107de2fbb6d08114bb16cafee4da3f4e, type: 3}
-  m_IsPrefabParent: 0
---- !u!1 &1248331790 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100002, guid: 107de2fbb6d08114bb16cafee4da3f4e, type: 3}
-  m_PrefabInternal: {fileID: 1248331789}
---- !u!135 &1248331791
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1248331790}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1248331792
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1248331790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae7a3ecbfea1332488d0a1e6fc1e9bd7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pickdistance: 5
-  throwforce: 1000
-  skill: Fly
---- !u!54 &1248331793
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1248331790}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: .0500000007
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!4 &1248331794 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 400002, guid: 107de2fbb6d08114bb16cafee4da3f4e, type: 3}
-  m_PrefabInternal: {fileID: 1248331789}
 --- !u!1 &1290629831
 GameObject:
   m_ObjectHideFlags: 0
@@ -1727,7 +1664,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 381458192}
-  - {fileID: 1248331794}
   m_Father: {fileID: 0}
   m_RootOrder: 8
 --- !u!54 &1814117877 stripped
@@ -1764,6 +1700,36 @@ Transform:
   - {fileID: 1290629836}
   m_Father: {fileID: 0}
   m_RootOrder: 6
+--- !u!1 &1842179854 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 189568, guid: 65b5074dffeabda45b891cbda4b09397, type: 2}
+  m_PrefabInternal: {fileID: 741391130}
+--- !u!65 &1842179856
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1842179854}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1842179857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1842179854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaf0a0f8d4eb77c469bc3f8572102c9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickdistance: 5
+  throwforce: 500
+  skill: Fly
 --- !u!1 &1873262624
 GameObject:
   m_ObjectHideFlags: 0
