@@ -8,6 +8,10 @@ TagManager:
   - Companion
   - Water
   - cheese
+  - GrassTerrain
+  - Platform
+  - Breakable
+  - Teleporter
   layers:
   - Default
   - TransparentFX
