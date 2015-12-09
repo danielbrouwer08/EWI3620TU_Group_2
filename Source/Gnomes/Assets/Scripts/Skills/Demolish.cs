@@ -5,8 +5,8 @@ public class Demolish : MonoBehaviour {
 
     private int playerNum;
 
-	void Start()
-    {
+	void Awake ()
+	{
         playerNum = GetComponent<PlayerController>().playerNum;
     }
 
