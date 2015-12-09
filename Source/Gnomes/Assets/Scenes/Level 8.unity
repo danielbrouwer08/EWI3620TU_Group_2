@@ -791,7 +791,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickdistance: 5
-  throwforce: 1000
+  throwforce: 0
   skill: Demolish
 --- !u!23 &1952346730
 MeshRenderer:
