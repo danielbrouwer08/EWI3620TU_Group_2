@@ -1,9 +1,16 @@
+<<<<<<< HEAD
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2008
 
 Project("{8C1C6E0D-8DCE-B1D3-F545-FF217144E283}") = "Gnomes", "Assembly-CSharp-firstpass.csproj", "{C16B2C49-4EB6-8C76-0035-192DB25F9BFB}"
 EndProject
 Project("{8C1C6E0D-8DCE-B1D3-F545-FF217144E283}") = "Gnomes", "Assembly-CSharp.csproj", "{FDBB3D64-074D-5825-722C-F14A37D7F227}"
+=======
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gnomes.CSharp", "Gnomes.CSharp.csproj", "{58E66EF9-57B3-26BE-3450-C53C0721FE03}"
+>>>>>>> feature/User_interface
 EndProject
 Project("{8C1C6E0D-8DCE-B1D3-F545-FF217144E283}") = "Gnomes", "Assembly-CSharp-Editor.csproj", "{D7BFBA09-5B9C-1FCA-B992-0AD11B7B18C3}"
 EndProject
@@ -13,6 +20,7 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+<<<<<<< HEAD
 		{C16B2C49-4EB6-8C76-0035-192DB25F9BFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C16B2C49-4EB6-8C76-0035-192DB25F9BFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C16B2C49-4EB6-8C76-0035-192DB25F9BFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -25,10 +33,17 @@ Global
 		{D7BFBA09-5B9C-1FCA-B992-0AD11B7B18C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7BFBA09-5B9C-1FCA-B992-0AD11B7B18C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7BFBA09-5B9C-1FCA-B992-0AD11B7B18C3}.Release|Any CPU.Build.0 = Release|Any CPU
+=======
+		{58E66EF9-57B3-26BE-3450-C53C0721FE03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58E66EF9-57B3-26BE-3450-C53C0721FE03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58E66EF9-57B3-26BE-3450-C53C0721FE03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58E66EF9-57B3-26BE-3450-C53C0721FE03}.Release|Any CPU.Build.0 = Release|Any CPU
+>>>>>>> feature/User_interface
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+<<<<<<< HEAD
 																																									GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
@@ -49,4 +64,6 @@ Global
 		$3.scope = text/plain
 	EndGlobalSection
 
+=======
+>>>>>>> feature/User_interface
 EndGlobal
