@@ -6,7 +6,7 @@ public class MenuManager : MonoBehaviour {
     public MenuController currMenu;
 
 	// Use this for initialization
-	void Start () {
+	public void Start () {
         ShowMenu(currMenu);
 	}
 
