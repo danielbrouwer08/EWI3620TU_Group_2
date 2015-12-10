@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
 	public float slideSpeed;
 	public int playerNum;
     public float rotatespeed = 8;
+    Animator anim;
 
 	//Audio properties
 	//private AudioSource jumpSound;
@@ -29,6 +30,7 @@ public class PlayerController : MonoBehaviour
 	void Start ()
 	{
 		rb = GetComponent<Rigidbody> ();
+        anim = GetComponent<Animator>();
 	}
 
 	// Update is called every fixed framerate frame
@@ -46,8 +48,13 @@ public class PlayerController : MonoBehaviour
             //Only execute if movement isn't all zero because transform.forward generates lots of 'annoying' notifications then.
             if (!movement.Equals(new Vector3(0.0f, 0.0f, 0.0f)))
             {
+                anim.SetBool("IsWalking", true);
                 //Make player look in direction of movement
                 transform.forward = Vector3.RotateTowards(transform.forward, new Vector3(movement.x, 0, movement.z),Time.fixedDeltaTime*rotatespeed,0);
+            }
+            else
+            {
+                anim.SetBool("IsWalking", false);
             }
             //Move the player
             if (!Physics.Raycast(transform.position, transform.forward, 1.207f))
@@ -88,13 +95,15 @@ public class PlayerController : MonoBehaviour
         }
         //if player presses jump button and is not already in a jump (y velocuty is zero)
         if (Input.GetButtonDown ("Jump" + playerNum) && grounded()) {
-			jump = true;
+            anim.SetTrigger("Jump");
+            jump = true;
 		} else {
 			jump = false;
 		}
 
 		//if player presses run button
 		if (Input.GetButton ("Run" + playerNum)) {
+            anim.SetBool("IsWalking", true);
 			movement = new Vector3 (HorizontalPlayerInput * runSpeed * Mathf.Abs(Mathf.Cos(angle)), 0, VerticalPlayerInput * runSpeed * Mathf.Abs(Mathf.Sin(angle)));
 		} else {
 			movement = new Vector3 (HorizontalPlayerInput * walkSpeed * Mathf.Abs(Mathf.Cos(angle)), 0, VerticalPlayerInput * walkSpeed * Mathf.Abs(Mathf.Sin(angle)));
