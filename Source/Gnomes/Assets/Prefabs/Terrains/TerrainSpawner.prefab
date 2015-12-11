@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &110360
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 479748}
+  - 114: {fileID: 11492658}
+  m_Layer: 0
+  m_Name: TerrainSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &479748
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 110360}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11492658
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 110360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf24a83e4e319a64baedc37b721de155, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  addHeightChance: .75
+  risingFactor: .100000001
+  amountOfTerrainsToSpawn: 3
+  BaseTerrain: {fileID: 169536, guid: a65fdecf060ff98429d0f9d3e4cf835a, type: 2}
+  grassRemoveHeight: .600000024
+  water: {fileID: 100116, guid: 8a1c6cc97b80b6b45ade3ef9bc245c73, type: 2}
+  waterHeight: .0500000007
+  Mushroom: {fileID: 159134, guid: 6f9fc038f5e8c9b4c8c7b6ec35cc88ab, type: 2}
+  mushroomWidth: 0
+  mushroomYOffset: .5
+  mushroomXRotationRange: .200000003
+  mushroomYRotationRange: .200000003
+  mushroomZRotationRange: .200000003
+  scaleIntensity: 1
+  amountOfMushrooms: 50
+  vegetation: {fileID: 111232, guid: 72464edbd2c019245a6655d943c9a0b6, type: 2}
+  vegetationSpawnChance: .150000006
+  spaceBetweenVegetation: 8
+  vegetationYOffset: .5
+  removeGrassOnElevatedPatches: 0
+  removeGrassOnWater: 1
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 110360}
+  m_IsPrefabParent: 1
