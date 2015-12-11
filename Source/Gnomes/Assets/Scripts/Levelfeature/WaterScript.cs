@@ -1,39 +1,72 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using System.Collections.Generic;
 
-public class WaterScript : MonoBehaviour {
+public class WaterScript : MonoBehaviour
+{
     private float time = 0f;
+    private List<Transform> waypoints = new List<Transform>();
+    public Transform WaypointList;
+
     // Use this for initialization
-    void Start () {
-	
-	}
+    void Start()
+    {
+        foreach(Transform child in WaypointList)
+        {
+            foreach(Transform waypoint in child)
+            {
+                waypoints.Add(waypoint);
+            }
+        }
+    }
 
     // Update is called once per frame
-    void Update () {
-        
+    void Update()
+    {
+
     }
     //make items 
     void OnTriggerStay(Collider other)
     {
-        time += Time.deltaTime;
-        if (time > 10)
+        if (other.CompareTag("Player"))
         {
-            time = 10;
+            other.GetComponent<PlayerController>().walkSpeed = 2;
+            other.GetComponent<PlayerController>().runSpeed = 2;
+
         }
-        if(other.GetComponent<Rigidbody>().mass < 10)
-        {
-            other.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, 50 + (time * time)));
-        }
-        else
-        {
-            Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
-            rb.AddForce(new Vector3(-rb.velocity.x * 2000, -1000f, 10000 + (50000 * time * time)));
-        }
+        GameObject closestWaypoint = FindClosestWaypoint(other);
+        float force = closestWaypoint.GetComponent<WaterWaypointScript>().force;
+        other.gameObject.GetComponent<Rigidbody>().AddForce(closestWaypoint.transform.forward * force);
+
     }
 
     void OnTriggerExit(Collider other)
     {
-        time = 0f;
+        if (other.CompareTag("Player"))
+        {
+            other.GetComponent<PlayerController>().walkSpeed = 8;
+            other.GetComponent<PlayerController>().runSpeed = 15;
+
+        }
+    }
+
+    GameObject FindClosestWaypoint(Collider other)
+    {
+
+        Transform closest = null;
+        float distance = Mathf.Infinity;
+        Vector3 position = other.transform.position;
+        foreach (Transform cur in waypoints)
+        {
+            Vector3 diff = cur.transform.position - position;
+            float curDistance = diff.sqrMagnitude;
+            if (curDistance < distance)
+            {
+                closest = cur;
+                distance = curDistance;
+            }
+        }
+        return closest.gameObject;
     }
 }

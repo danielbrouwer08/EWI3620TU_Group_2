@@ -39,7 +39,6 @@ public class PickUpItem : MonoBehaviour
                 playerinrange = i;
             }
         }
-        Debug.Log(playerinrange);
 
         if (carrier != null)
         {
