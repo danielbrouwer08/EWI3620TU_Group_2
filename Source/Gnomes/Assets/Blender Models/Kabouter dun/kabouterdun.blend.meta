@@ -128,6 +128,7 @@ ModelImporter:
     7400006: Lopen0
     7400008: Stilstaan
     9500000: //RootNode
+    11100000: //RootNode
     13700000: Kabouter_000_MeshPart0
     13700002: Kabouter_000_MeshPart1
     13700004: Ogen
@@ -609,7 +610,7 @@ ModelImporter:
     rootMotionBoneName: 
     hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 1
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
