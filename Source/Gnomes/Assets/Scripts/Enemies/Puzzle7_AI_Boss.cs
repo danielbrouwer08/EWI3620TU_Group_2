@@ -107,7 +107,7 @@ public class Puzzle7_AI_Boss : MonoBehaviour
 	
 	void FixedUpdate ()
 	{
-		print ("current state: " + actionState);
+		//print ("current state: " + actionState);
 	
 		switch (actionState) {
 		case "idle":
@@ -174,7 +174,7 @@ public class Puzzle7_AI_Boss : MonoBehaviour
 				attackTimer += Time.deltaTime;
 				if (attackTimer >= attackTime) { //wait till animation for attack is finished
 					//hit player1
-					print ("hitting player 1");
+					//print ("hitting player 1");
 					player1.GetComponent<PlayerProperties> ().TakeDamage (damage);
 				player1.GetComponent<PlayerController> ().ExternalForce ((player1.transform.position - agent.transform.position)/Vector3.Distance(player1.transform.position,agent.transform.position) * Knockback, nomovementtime);
 					actionState = "idle"; //return to the idle state after attack

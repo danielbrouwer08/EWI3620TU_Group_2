@@ -15,7 +15,7 @@ public class TerrainSpawner : MonoBehaviour
 	public int amountOfTerrainsToSpawn; //The amount of terrains to spawn
 	public GameObject BaseTerrain;
 	public float grassRemoveHeight; //Height at which grass needs to be removed
-	private Vector3 TerrainSpawnPosition = new Vector3 (0.0f, 0.0f, 0.0f);//Position of first Terrain piece placement
+	private Vector3 TerrainSpawnPosition;
 	
 	//Water properties
 	public GameObject water;
@@ -62,10 +62,10 @@ public class TerrainSpawner : MonoBehaviour
 
 	void generateTerrainSequence (int length)
 	{
-
 		//Generate and place all terrains pieces in a row
 		for (int i=0; i<length; i++) {
-			TerrainSpawnPosition = new Vector3 (i * terrainLength, 0.0f, 0.0f);
+			TerrainSpawnPosition = new Vector3 (i * terrainLength, 0.0f, 0.0f) + transform.position;
+
 			createTerrain (TerrainSpawnPosition, i);
 		}
 
@@ -131,7 +131,7 @@ public class TerrainSpawner : MonoBehaviour
 
 	void addVegetation (Terrain terrain)
 	{
-		print ("adding vegetation");
+		//print ("adding vegetation");
 		TerrainData terrainData = terrain.terrainData;
 		float terrainLength = terrainData.size.x;
 		float terrainWidth = terrainData.size.z;
@@ -164,7 +164,7 @@ public class TerrainSpawner : MonoBehaviour
 		}
 
 
-		print (occupiedByMushroom(tempCoord));
+		//print (occupiedByMushroom(tempCoord));
 
 	}
 
