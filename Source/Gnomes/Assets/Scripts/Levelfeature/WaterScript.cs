@@ -34,18 +34,31 @@ public class WaterScript : MonoBehaviour
         {
             other.GetComponent<PlayerController>().walkSpeed = 2;
             other.GetComponent<PlayerController>().runSpeed = 2;
+            List<Transform> closestWaypoints = FindClosestWaypoint(other);
+            Vector3 total = new Vector3(0, 0, 0);
+            for (int i = 0; i < closestWaypoints.Count; i++)
+            {
+                total += (closestWaypoints[i].transform.forward / distances[i]) * closestWaypoints[i].gameObject.GetComponent<WaterWaypointScript>().force;
+            }
+            total = total / total.magnitude;
+            Debug.DrawRay(other.transform.position, total * 3);
+            float force = 12000;
+            other.gameObject.GetComponent<Rigidbody>().AddForce(total * force);
+        }
+        if (!other.CompareTag("Player")){
+            other.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY;
+            List<Transform> closestWaypoints = FindClosestWaypoint(other);
+            Vector3 total = new Vector3(0, 0, 0);
+            for (int i = 0; i < closestWaypoints.Count; i++)
+            {
+                total += (closestWaypoints[i].transform.forward / distances[i]) * closestWaypoints[i].gameObject.GetComponent<WaterWaypointScript>().force;
+            }
+            total = total / total.magnitude;
+            Debug.DrawRay(other.transform.position, total * 3);
+            float force = 1000;
+            other.gameObject.GetComponent<Rigidbody>().AddForce(total * force);
+        }
 
-        }
-        List<Transform> closestWaypoints = FindClosestWaypoint(other);
-        Vector3 total = new Vector3(0,0,0);
-        for (int i = 0; i < closestWaypoints.Count; i++)
-        {
-            total += (closestWaypoints[i].transform.forward / distances[i]) * closestWaypoints[i].gameObject.GetComponent<WaterWaypointScript>().force;
-        }
-        total = total / total.magnitude;
-        Debug.DrawRay(other.transform.position, total*3);
-        float force = 8000;
-        other.gameObject.GetComponent<Rigidbody>().AddForce(total * force);
 
     }
 
