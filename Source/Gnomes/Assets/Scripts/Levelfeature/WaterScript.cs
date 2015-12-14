@@ -5,16 +5,17 @@ using System.Collections.Generic;
 
 public class WaterScript : MonoBehaviour
 {
-    private float time = 0f;
     private List<Transform> waypoints = new List<Transform>();
+    private List<float> distances;
     public Transform WaypointList;
+    public float maxWaypointDistance = 20;
 
     // Use this for initialization
     void Start()
     {
-        foreach(Transform child in WaypointList)
+        foreach (Transform child in WaypointList)
         {
-            foreach(Transform waypoint in child)
+            foreach (Transform waypoint in child)
             {
                 waypoints.Add(waypoint);
             }
@@ -35,9 +36,16 @@ public class WaterScript : MonoBehaviour
             other.GetComponent<PlayerController>().runSpeed = 2;
 
         }
-        GameObject closestWaypoint = FindClosestWaypoint(other);
-        float force = closestWaypoint.GetComponent<WaterWaypointScript>().force;
-        other.gameObject.GetComponent<Rigidbody>().AddForce(closestWaypoint.transform.forward * force);
+        List<Transform> closestWaypoints = FindClosestWaypoint(other);
+        Vector3 total = new Vector3(0,0,0);
+        for (int i = 0; i < closestWaypoints.Count; i++)
+        {
+            total += (closestWaypoints[i].transform.forward / distances[i]) * closestWaypoints[i].gameObject.GetComponent<WaterWaypointScript>().force;
+        }
+        total = total / total.magnitude;
+        Debug.DrawRay(other.transform.position, total*3);
+        float force = 8000;
+        other.gameObject.GetComponent<Rigidbody>().AddForce(total * force);
 
     }
 
@@ -47,26 +55,27 @@ public class WaterScript : MonoBehaviour
         {
             other.GetComponent<PlayerController>().walkSpeed = 8;
             other.GetComponent<PlayerController>().runSpeed = 15;
-
         }
     }
 
-    GameObject FindClosestWaypoint(Collider other)
+    List<Transform> FindClosestWaypoint(Collider other)
     {
-
-        Transform closest = null;
-        float distance = Mathf.Infinity;
+        distances = new List<float>();
+        List<Transform> closestWaypoints = new List<Transform>();
         Vector3 position = other.transform.position;
         foreach (Transform cur in waypoints)
         {
+            cur.GetComponent<WaterWaypointScript>().close = false;
             Vector3 diff = cur.transform.position - position;
             float curDistance = diff.sqrMagnitude;
-            if (curDistance < distance)
+            if (curDistance < maxWaypointDistance)
             {
-                closest = cur;
-                distance = curDistance;
+                closestWaypoints.Add(cur);
+                distances.Add(curDistance);
+                cur.GetComponent<WaterWaypointScript>().close = true;
             }
         }
-        return closest.gameObject;
+        
+        return closestWaypoints;
     }
 }
