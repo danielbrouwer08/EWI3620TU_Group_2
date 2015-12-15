@@ -4,7 +4,6 @@ using System.Collections;
 public class DumbEnemy : MonoBehaviour {
 
     public float rotationspeed;
-    private Transform tf;
     private bool goback;
 
     public GameObject pijl;
