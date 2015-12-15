@@ -28,7 +28,7 @@ public class Puzzle7_AI_Boss : MonoBehaviour
 	private float eatingTimer = 0.0f;
 	private float attackTimer = 0.0f;
 	private float thinkTimer = 0.0f;
-	public int health = 100;
+	//public int health = 100;
 	private string actionState;
 	private bool wallsAreUp = false;
 
@@ -138,8 +138,8 @@ public class Puzzle7_AI_Boss : MonoBehaviour
 				agent.Stop ();
 				//animation.Play("eat");
 				eatingTimer += Time.deltaTime; //increment the eatingTimer
-				if (health < 100) {
-					health++; //regain health while eating.
+				if (this.GetComponent<EnemyProperties>().health<100) {
+					this.GetComponent<EnemyProperties>().health++; //regain health while eating.
 				}
 				if (eatingTimer >= eatingTime) {
 					Destroy (cheese); //destroy the cheese gameobject
