@@ -24,7 +24,21 @@ public class PlatformScript : MonoBehaviour {
             //if a waypoint is reached:
             else curwaypoint = (curwaypoint + 1) % waypoints.Length;
         }
+    }
 
-
+    void OnCollisionStay(Collision other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            other.gameObject.transform.parent = gameObject.transform;
+        }
+    }
+    
+    void OnCollisionExit(Collision other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            other.gameObject.transform.parent = null;
+        }
     }
 }

@@ -40,7 +40,10 @@ public class PickUpItem : MonoBehaviour
                 Debug.Log(playerNum);
             }
         }
+<<<<<<< HEAD
         //Debug.Log(playerinrange);
+=======
+>>>>>>> 41e6782bdbc16c49496dc113108971a89452c9c1
 
         if (carrier != null)
         {

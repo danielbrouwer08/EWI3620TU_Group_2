@@ -41,11 +41,19 @@ public class PlayerController : MonoBehaviour
 	private float VerticalPlayerInput;
 	private float HorizontalPlayerInput;
     private float nomovementtime = 0;
+	public bool loadLastCheckpoint = true;
+
 	//private bool gameOver = false;
 
 	// Iinitialization
 	void Start ()
 	{
+		if(loadLastCheckpoint==true)
+		{
+			Vector3 spawnpos = new Vector3(PlayerPrefs.GetFloat("P" + playerNum + " XPOS"),PlayerPrefs.GetFloat("P" + playerNum + " YPOS"),PlayerPrefs.GetFloat("P" + playerNum + " ZPOS"));
+			transform.position = spawnpos;
+		}
+
 		rb = GetComponent<Rigidbody> ();
         anim = GetComponent<Animation>();
 
