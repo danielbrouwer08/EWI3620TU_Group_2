@@ -13,6 +13,7 @@ public class PauseMenuScript : MonoBehaviour
     public Button resumebutton;
 
     bool Paused = false;
+    
 
     void Update()
     {
