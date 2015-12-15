@@ -303,7 +303,7 @@ Transform:
   m_LocalScale: {x: 9.90812778, y: 7.18437243, z: -.298924565}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 11
 --- !u!4 &805811319 stripped
 Transform:
   m_PrefabParentObject: {fileID: 411238, guid: 3ce01cecef981b541b8b28860fa64fd4, type: 2}
@@ -685,6 +685,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 109634, guid: 0cab73e29aa7fce4f9f4f15944f9be3d, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0cab73e29aa7fce4f9f4f15944f9be3d, type: 2}
   m_IsPrefabParent: 0
@@ -802,7 +806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaf0a0f8d4eb77c469bc3f8572102c9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickdistance: 10
+  pickdistance: 2
   throwforce: 0
   skill: Demolish
 --- !u!23 &1952346730
@@ -941,7 +945,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 415678, guid: e70da4b3b85fef34fbac02fefc155c31, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 17.7199993
+      value: 19.1299992
       objectReference: {fileID: 0}
     - target: {fileID: 415678, guid: e70da4b3b85fef34fbac02fefc155c31, type: 2}
       propertyPath: m_LocalRotation.x
@@ -961,7 +965,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 415678, guid: e70da4b3b85fef34fbac02fefc155c31, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 489184, guid: e70da4b3b85fef34fbac02fefc155c31, type: 2}
       propertyPath: m_LocalRotation.x

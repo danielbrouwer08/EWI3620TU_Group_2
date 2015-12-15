@@ -37,6 +37,7 @@ public class PickUpItem : MonoBehaviour
             {
                 playerNum = player[i].GetComponent<PlayerController>().playerNum;
                 playerinrange = i;
+                Debug.Log(playerNum);
             }
         }
         //Debug.Log(playerinrange);
@@ -74,13 +75,28 @@ public class PickUpItem : MonoBehaviour
 
     void AddSkilltoPlayer(string skill)
     {
-        switch (skill)
+        if(playerNum == 1)
         {
-            case "Fly": carrier.AddComponent<Fly>(); break;
-            case "Float": carrier.AddComponent<Float>(); break;
-            case "Build": carrier.AddComponent<Build>(); break;
-            case "Demolish": carrier.AddComponent<Demolish>(); break;
+            switch (skill)
+            {
+                case "Fly": carrier.AddComponent<Fly>(); break;
+                case "Float": carrier.AddComponent<Float>(); break;
+                // case "Build": carrier.AddComponent<Build>(); break;
+                // case "Demolish": carrier.AddComponent<Demolish>(); break;
+            }
         }
+        else
+        {
+
+            switch (skill)
+            {
+                // case "Fly": carrier.AddComponent<Fly>(); break;
+                // case "Float": carrier.AddComponent<Float>(); break;
+                case "Build": carrier.AddComponent<Build>(); break;
+                case "Demolish": carrier.AddComponent<Demolish>(); break;
+            }
+        }
+
     }
 
     void DeleteSkillfromPlayer(string skill)
