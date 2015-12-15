@@ -12,23 +12,7 @@ public class PlayerController : MonoBehaviour
 	public int playerNum;
     public float rotatespeed = 8;
     private Animation anim;
-    private AnimationState Lopen1;
-    private AnimationState Lopen2;
-    private AnimationState Springen;
-    private AnimationState Stilstaan;
-
     private bool walking;
-    private bool running;
-
-    //animation speeds
-    public float animwalk1 = 3.5f;
-    public float animwalk2 = 2.8f;
-    public float animjump1 = 5f;
-    public float animjump2 = 4.5f;
-    public float animrun1 = 20f;
-    public float animrun2 = 20f;
-    public float animidle1;
-    public float animidle2;
 
 	//Audio properties
 	//private AudioSource jumpSound;
@@ -56,20 +40,15 @@ public class PlayerController : MonoBehaviour
 
 		rb = GetComponent<Rigidbody> ();
         anim = GetComponent<Animation>();
-
         if (playerNum == 1)
         {
-            anim["Springen"].speed = animjump1;
-            anim["Lopen0"].speed = animwalk1;
-            anim["Rennen"].speed = animrun1;
-
+            anim["Springen"].speed = 5f;
         }
         else
         {
-            anim["Springen"].speed = animjump2;
-            anim["Lopen"].speed = animwalk2;
-            anim["Rennen"].speed = animrun2;
+            anim["Springen"].speed = 2f;
         }
+        anim["Lopen0"].speed = 2.5f;
 	}
 
 	// Update is called every fixed framerate frame
@@ -127,47 +106,34 @@ public class PlayerController : MonoBehaviour
         {
             angle = Mathf.Atan(VerticalPlayerInput / HorizontalPlayerInput);
         }
-
-        //if player presses run button
-        if (Input.GetButton ("Run" + playerNum)) {
-            running = true;
-			movement = new Vector3 (HorizontalPlayerInput * runSpeed * Mathf.Abs(Mathf.Cos(angle)), 0, VerticalPlayerInput * runSpeed * Mathf.Abs(Mathf.Sin(angle)));
-		} else {
-            running = false;
-			movement = new Vector3 (HorizontalPlayerInput * walkSpeed * Mathf.Abs(Mathf.Cos(angle)), 0, VerticalPlayerInput * walkSpeed * Mathf.Abs(Mathf.Sin(angle)));      
-        }
-
+        
         //if player presses jump button and is not already in a jump (y velocuty is zero)
-        if (Input.GetButtonDown("Jump" + playerNum) && grounded())
-        {
+        if (Input.GetButtonDown ("Jump" + playerNum) && grounded()) {
             anim.Play("Springen");
             jump = true;
-        }
-        else if ((HorizontalPlayerInput != 0 || VerticalPlayerInput != 0))
+		} 
+        else if (HorizontalPlayerInput != 0 || VerticalPlayerInput != 0)
         {
-            if (!anim.IsPlaying("Springen"))
-            {
-                if (!running)
-                {
-                    anim.Play("Lopen0");
-                    anim.Play("Lopen");
-                }
-                else
-                {
-                    anim.Play("Rennen");
-                }
-            }
-
+            anim.Play("Lopen0");
+            anim.Play("Lopen");
             jump = false;
         }
         else
         {
-            if (!anim.IsPlaying("Springen"))
-                anim.Play("Stilstaan");
+            if (! anim.IsPlaying("Springen") )
+            anim.Play("Stilstaan");
             jump = false;
         }
 
-    }
+
+        //if player presses run button
+        if (Input.GetButton ("Run" + playerNum)) {
+			movement = new Vector3 (HorizontalPlayerInput * runSpeed * Mathf.Abs(Mathf.Cos(angle)), 0, VerticalPlayerInput * runSpeed * Mathf.Abs(Mathf.Sin(angle)));
+		} else {
+			movement = new Vector3 (HorizontalPlayerInput * walkSpeed * Mathf.Abs(Mathf.Cos(angle)), 0, VerticalPlayerInput * walkSpeed * Mathf.Abs(Mathf.Sin(angle)));
+		}
+        
+	}
 
     public bool grounded()
     {

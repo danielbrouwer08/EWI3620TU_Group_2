@@ -706,7 +706,7 @@ GameObject:
   - 114: {fileID: 11468126}
   - 111: {fileID: 11112752}
   m_Layer: 0
-  m_Name: kabouterdik2
+  m_Name: kabouterdik
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1664,14 +1664,7 @@ MonoBehaviour:
   slideSpeed: 5
   playerNum: 2
   rotatespeed: 8
-  animwalk1: 2.5
-  animwalk2: 1.79999995
-  animjump1: 5
-  animjump2: 4.5
-  animrun1: 0
-  animrun2: 0
-  animidle1: 0
-  animidle2: 0
+  loadLastCheckpoint: 1
 --- !u!137 &13761658
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
