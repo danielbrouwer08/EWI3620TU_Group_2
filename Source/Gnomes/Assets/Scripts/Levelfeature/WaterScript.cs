@@ -34,6 +34,8 @@ public class WaterScript : MonoBehaviour
         {
             other.GetComponent<PlayerController>().walkSpeed = 2;
             other.GetComponent<PlayerController>().runSpeed = 2;
+            other.GetComponent<PlayerController>().jumpForce = 2;
+
             List<Transform> closestWaypoints = FindClosestWaypoint(other);
             Vector3 total = new Vector3(0, 0, 0);
             for (int i = 0; i < closestWaypoints.Count; i++)
@@ -68,6 +70,7 @@ public class WaterScript : MonoBehaviour
         {
             other.GetComponent<PlayerController>().walkSpeed = 8;
             other.GetComponent<PlayerController>().runSpeed = 15;
+            other.GetComponent<PlayerController>().jumpForce = 10;
         }
     }
 

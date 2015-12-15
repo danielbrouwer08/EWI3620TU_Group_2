@@ -9,6 +9,8 @@ public class LeafScript : MonoBehaviour {
         for(int i = 0; i < players.Length; i++)
         {
             Physics.IgnoreCollision(transform.GetComponent<Collider>(), players[i].GetComponent<Collider>());
+            Physics.IgnoreCollision(players[i].GetComponent<Collider>(), transform.GetComponent<Collider>());
+
         }
     }
 	

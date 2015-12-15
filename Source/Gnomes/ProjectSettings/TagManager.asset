@@ -8,6 +8,8 @@ TagManager:
   - Companion
   - Water
   - cheese
+  - GrassTerrain
+  - Terrain
   layers:
   - Default
   - TransparentFX
