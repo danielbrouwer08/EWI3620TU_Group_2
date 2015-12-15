@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if(loadLastCheckpoint==true)
 		{
-			Vector3 spawnpos = new Vector3(PlayerPrefs.GetFloat("P" + playerNum + " XPOS"),PlayerPrefs.GetFloat("P" + playerNum + " YPOS"),PlayerPrefs.GetFloat("P" + playerNum + " ZPOS"));
+			Vector3 spawnpos = new Vector3(PlayerPrefs.GetFloat("P" + playerNum + "_XPOS"),PlayerPrefs.GetFloat("P" + playerNum + "_YPOS"),PlayerPrefs.GetFloat("P" + playerNum + "_ZPOS"));
 			transform.position = spawnpos;
 		}
 
