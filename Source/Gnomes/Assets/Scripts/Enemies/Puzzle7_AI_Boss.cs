@@ -12,6 +12,8 @@ public class Puzzle7_AI_Boss : MonoBehaviour
 	private GameObject[] players = new GameObject[2];
 	private GameObject cheese;
 	public GameObject MouseNavagent;
+	public GameObject leftWall;
+	public GameObject rightWall;
 	public float noticeRadius;
 	public float damage;
 	public float Knockback;
@@ -28,6 +30,9 @@ public class Puzzle7_AI_Boss : MonoBehaviour
 	private float thinkTimer = 0.0f;
 	public int health = 100;
 	private string actionState;
+	private bool wallsAreUp = false;
+
+	//public float attackAnimationSpeed;
 
 	void Awake ()
 	{
@@ -40,6 +45,7 @@ public class Puzzle7_AI_Boss : MonoBehaviour
 		player1 = players [0];
 		player2 = players [1];
 
+		//animation["Attack_01"].speed = attackAnimationSpeed;
 
 		actionState = "idle";
 
@@ -76,8 +82,19 @@ public class Puzzle7_AI_Boss : MonoBehaviour
 		//determine where to go after
 		if (cheeseInRange) {
 			actionState = "huntCheese";
+			if(!wallsAreUp) //put wall up, if not done already
+			{
+				leftWall.GetComponent<WoodenPoleWall>().appear = true;
+				rightWall.GetComponent<WoodenPoleWall>().appear = true;
+				wallsAreUp = true;
+			}
 		} else if (player1InRange || player2InRange) {
-
+			if(!wallsAreUp) //put wall up, if not done already
+			{
+				leftWall.GetComponent<WoodenPoleWall>().appear = true;
+				rightWall.GetComponent<WoodenPoleWall>().appear = true;
+				wallsAreUp = true;
+			}
 			if (Vector3.Distance (player1.transform.position, agent.transform.position) < Vector3.Distance (player2.transform.position, agent.transform.position)) { //if closer to player 1
 				actionState = "huntPlayer1"; //hunt player 1 down
 			} else {
@@ -90,7 +107,7 @@ public class Puzzle7_AI_Boss : MonoBehaviour
 	
 	void FixedUpdate ()
 	{
-		print ("current state: " + actionState);
+		//print ("current state: " + actionState);
 	
 		switch (actionState) {
 		case "idle":
@@ -129,6 +146,10 @@ public class Puzzle7_AI_Boss : MonoBehaviour
 					actionState = "idle"; //when cheese is gone, goto idle state.
 					eatingTimer = 0.0f; //reset the eatingtimer
 				}
+				if(Vector3.Distance (cheese.transform.position, agent.transform.position) > takeActionDistance) //if cheese its position is moved out of the eatinrange, stop eating.
+				{
+					actionState = "idle";
+				}
 				break;
 			}
 		case "huntPlayer1":
@@ -151,13 +172,13 @@ public class Puzzle7_AI_Boss : MonoBehaviour
 			{
 				agent.Stop ();
 				attackTimer += Time.deltaTime;
-				if (attackTime >= attackTime) { //wait till animation for attack is finished
+				if (attackTimer >= attackTime) { //wait till animation for attack is finished
 					//hit player1
-					print ("hitting player 1");
+					//print ("hitting player 1");
 					player1.GetComponent<PlayerProperties> ().TakeDamage (damage);
-					player1.GetComponent<PlayerController> ().ExternalForce ((player1.transform.position - agent.transform.position) * Knockback, nomovementtime);
+				player1.GetComponent<PlayerController> ().ExternalForce ((player1.transform.position - agent.transform.position)/Vector3.Distance(player1.transform.position,agent.transform.position) * Knockback, nomovementtime);
 					actionState = "idle"; //return to the idle state after attack
-					attackTime = 0.0f; //reset the attacktimer
+					attackTimer = 0.0f; //reset the attacktimer
 				}
 				break;
 			}
@@ -181,14 +202,13 @@ public class Puzzle7_AI_Boss : MonoBehaviour
 			{
 				agent.Stop ();
 				attackTimer += Time.deltaTime;
-				if (attackTime >= attackTime) { //wait till animation for attack is finished
-					print ("hitting player 2");
+				if (attackTimer >= attackTime) { //wait till animation for attack is finished
 					//hit player2
 					player2.GetComponent<PlayerProperties> ().TakeDamage (damage);
 					//player2.GetComponent<Rigidbody>().AddForce((player2.transform.position - transform.position) * Knockback);
-					player2.GetComponent<PlayerController> ().ExternalForce ((player2.transform.position - agent.transform.position) * Knockback, nomovementtime);
+				player2.GetComponent<PlayerController> ().ExternalForce ((player2.transform.position - agent.transform.position)/Vector3.Distance(player1.transform.position,agent.transform.position) * Knockback, nomovementtime);
 					actionState = "idle"; //return to the idle state after attack
-					attackTime = 0.0f; //reset the attacktimer
+					attackTimer = 0.0f; //reset the attacktimer
 				}
 				break;
 			}
