@@ -957,23 +957,27 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 489184, guid: e70da4b3b85fef34fbac02fefc155c31, type: 2}
       propertyPath: m_LocalRotation.x
-      value: .733696043
+      value: .733696103
       objectReference: {fileID: 0}
     - target: {fileID: 489184, guid: e70da4b3b85fef34fbac02fefc155c31, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -.675069332
+      value: -.675069392
       objectReference: {fileID: 0}
     - target: {fileID: 489184, guid: e70da4b3b85fef34fbac02fefc155c31, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -.0769677758
+      value: -.0769677833
       objectReference: {fileID: 0}
     - target: {fileID: 489184, guid: e70da4b3b85fef34fbac02fefc155c31, type: 2}
       propertyPath: m_LocalRotation.w
-      value: .00688858237
+      value: .00688858284
       objectReference: {fileID: 0}
     - target: {fileID: 11462596, guid: e70da4b3b85fef34fbac02fefc155c31, type: 2}
       propertyPath: loadLastCheckpoint
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11409864, guid: e70da4b3b85fef34fbac02fefc155c31, type: 2}
+      propertyPath: startinghealth
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e70da4b3b85fef34fbac02fefc155c31, type: 2}

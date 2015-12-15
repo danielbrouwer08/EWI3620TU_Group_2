@@ -705,6 +705,7 @@ GameObject:
   - 65: {fileID: 6559816}
   - 114: {fileID: 11468126}
   - 111: {fileID: 11112752}
+  - 114: {fileID: 11497336}
   m_Layer: 0
   m_Name: kabouterdik
   m_TagString: Player
@@ -1664,7 +1665,30 @@ MonoBehaviour:
   slideSpeed: 5
   playerNum: 2
   rotatespeed: 8
+  animwalk1: 3.5
+  animwalk2: 2.79999995
+  animjump1: 5
+  animjump2: 4.5
+  animrun1: 20
+  animrun2: 20
+  animidle1: 0
+  animidle2: 0
   loadLastCheckpoint: 1
+--- !u!114 &11497336
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 177162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff28d44b41b7ceb4284e3f5c99b6edb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startinghealth: 100
+  healthbar: {fileID: 0}
+  health: 0
+  score: 0
 --- !u!137 &13761658
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -1961,6 +1985,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Size.z
       value: .899999976
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: startinghealth
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
