@@ -1,25 +1,40 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class PlayerProperties : MonoBehaviour {
 
-    private float health;
+    public float startinghealth;
+    public Slider healthbar;
+    public float currenthealth;
 
-	void Start ()
+    bool damaged;
+    bool dead;
+
+	void Awake ()
     {
-        health = 100;
+        startinghealth = 100;
+        currenthealth = startinghealth;
+        healthbar.value = currenthealth;
 	}
 	
 	void Update ()
     {
-        if(health <= 0)
+        if(currenthealth <= 0)
         {
-            Destroy(gameObject);
+            //Death();
         }
+        healthbar.value = currenthealth;
 	}
 
     public void TakeDamage(float damage)
     {
-        health -= damage;
+        damaged = true;
+        currenthealth -= damage;
+    }
+
+    public void Death()
+    {
+        Destroy(gameObject);
     }
 }
