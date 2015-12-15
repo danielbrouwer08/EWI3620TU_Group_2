@@ -691,7 +691,7 @@ GameObject:
   - 114: {fileID: 11462596}
   - 111: {fileID: 11100002}
   m_Layer: 0
-  m_Name: kabouterdun
+  m_Name: kabouterdun2
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1000,7 +1000,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 182986}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.9400005, y: 20, z: 24.2199993}
+  m_LocalPosition: {x: 22.9400005, y: 20, z: 17.7199993}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 494440}
@@ -1465,7 +1465,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 176400}
-  m_LocalRotation: {x: .733696043, y: -.675069332, z: -.0769677758, w: .00688858423}
+  m_LocalRotation: {x: .733696043, y: -.675069332, z: -.0769677758, w: .00688858284}
   m_LocalPosition: {x: -.466966361, y: .0743087679, z: -.131630912}
   m_LocalScale: {x: 1, y: .99999994, z: 1}
   m_Children:
@@ -1627,8 +1627,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: .75, y: 4, z: 2}
-  m_Center: {x: -.25, y: 2, z: 0}
+  m_Size: {x: 1, y: 4.5, z: .800000012}
+  m_Center: {x: 0, y: 2.20000005, z: -.349999994}
 --- !u!111 &11100002
 Animation:
   m_ObjectHideFlags: 1
@@ -1854,7 +1854,7 @@ SkinnedMeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 858e8e368f022db41ae3c714f8d26800, type: 2}
+  - {fileID: 2100000, guid: 08fae20f5524063408392f2732f3574d, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1949,6 +1949,26 @@ Prefab:
       propertyPath: m_Animations.Array.data[3]
       value: 
       objectReference: {fileID: 7400010, guid: 5b3e2d15d4b779d44b8af0380f8b2299, type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Center.y
+      value: 2.20000005
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Size.y
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Center.z
+      value: -.349999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Size.z
+      value: .800000012
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 182986}

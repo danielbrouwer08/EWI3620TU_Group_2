@@ -706,7 +706,7 @@ GameObject:
   - 114: {fileID: 11468126}
   - 111: {fileID: 11112752}
   m_Layer: 0
-  m_Name: kabouterdik
+  m_Name: kabouterdik2
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1627,8 +1627,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 4, z: 1}
-  m_Center: {x: 0, y: 2, z: -.25}
+  m_Size: {x: 1, y: 4.5, z: .899999976}
+  m_Center: {x: 0, y: 2.25, z: -.300000012}
 --- !u!111 &11112752
 Animation:
   m_ObjectHideFlags: 1
@@ -1949,6 +1949,26 @@ Prefab:
       propertyPath: m_Animations.Array.data[3]
       value: 
       objectReference: {fileID: 7400008, guid: 704480d7fd28b6f41b16eb70dbe724e6, type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Center.y
+      value: 2.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Size.y
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Center.z
+      value: -.300000012
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Size.z
+      value: .899999976
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 177162}

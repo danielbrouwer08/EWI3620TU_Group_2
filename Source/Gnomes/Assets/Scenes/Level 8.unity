@@ -212,22 +212,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 11
       objectReference: {fileID: 0}
-    - target: {fileID: 177162, guid: 2a8179a4112d1ce47afec03366eb5092, type: 2}
-      propertyPath: m_Name
-      value: kabouterdik
-      objectReference: {fileID: 0}
-    - target: {fileID: 11468126, guid: 2a8179a4112d1ce47afec03366eb5092, type: 2}
-      propertyPath: animwalk2
-      value: 2.79999995
-      objectReference: {fileID: 0}
-    - target: {fileID: 11468126, guid: 2a8179a4112d1ce47afec03366eb5092, type: 2}
-      propertyPath: animrun1
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 11468126, guid: 2a8179a4112d1ce47afec03366eb5092, type: 2}
-      propertyPath: animrun2
-      value: 20
-      objectReference: {fileID: 0}
+    - target: {fileID: 13791600, guid: 2a8179a4112d1ce47afec03366eb5092, type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 08fae20f5524063408392f2732f3574d, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2a8179a4112d1ce47afec03366eb5092, type: 2}
   m_IsPrefabParent: 0
@@ -977,43 +965,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 489184, guid: e70da4b3b85fef34fbac02fefc155c31, type: 2}
       propertyPath: m_LocalRotation.w
-      value: .00688858377
-      objectReference: {fileID: 0}
-    - target: {fileID: 182986, guid: e70da4b3b85fef34fbac02fefc155c31, type: 2}
-      propertyPath: m_Name
-      value: kabouterdun
-      objectReference: {fileID: 0}
-    - target: {fileID: 11462596, guid: e70da4b3b85fef34fbac02fefc155c31, type: 2}
-      propertyPath: animjump1
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 11462596, guid: e70da4b3b85fef34fbac02fefc155c31, type: 2}
-      propertyPath: animwalk1
-      value: 3.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 11462596, guid: e70da4b3b85fef34fbac02fefc155c31, type: 2}
-      propertyPath: animrun1
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 11462596, guid: e70da4b3b85fef34fbac02fefc155c31, type: 2}
-      propertyPath: animrun2
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 6580756, guid: e70da4b3b85fef34fbac02fefc155c31, type: 2}
-      propertyPath: m_Size.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6580756, guid: e70da4b3b85fef34fbac02fefc155c31, type: 2}
-      propertyPath: m_Center.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6580756, guid: e70da4b3b85fef34fbac02fefc155c31, type: 2}
-      propertyPath: m_Size.z
-      value: .75
-      objectReference: {fileID: 0}
-    - target: {fileID: 6580756, guid: e70da4b3b85fef34fbac02fefc155c31, type: 2}
-      propertyPath: m_Center.z
-      value: -.25
+      value: .00688858237
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e70da4b3b85fef34fbac02fefc155c31, type: 2}

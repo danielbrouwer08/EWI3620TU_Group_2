@@ -3,25 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - ThrowingItem
-  - Companion
-  - Water
-  - cheese
-  - GrassTerrain
-  - Platform
-  - Terrain
-  - Breakable
-  - Teleporter
-<<<<<<< HEAD
-  - Mushroom
-  - Arrow
-  - Terrain
-  - DumbEnemy
-=======
-  - Checkpoint
-  - Enemy
->>>>>>> 41e6782bdbc16c49496dc113108971a89452c9c1
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -56,9 +38,6 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Background
-    uniqueID: 2142443339
-    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
