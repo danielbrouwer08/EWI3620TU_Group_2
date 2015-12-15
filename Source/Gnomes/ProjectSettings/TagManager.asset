@@ -13,6 +13,10 @@ TagManager:
   - Terrain
   - Breakable
   - Teleporter
+  - Mushroom
+  - Arrow
+  - Terrain
+  - DumbEnemy
   layers:
   - Default
   - TransparentFX

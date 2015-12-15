@@ -1,0 +1,195 @@
+fileFormatVersion: 2
+guid: 21d0fd26fe5feb44e97f30cfc9ede5a3
+timeCreated: 1450104628
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Armature
+    100002: Cubicle
+    100004: Cubicle_002
+    100006: foot_L
+    100008: foot_R
+    100010: hand_L
+    100012: hand_L_002
+    100014: Head
+    100016: index1_L
+    100018: index1_R
+    100020: index2_L
+    100022: index2_R
+    100024: index3_L
+    100026: index3_R
+    100028: Kabouter_000
+    100030: Kabouter_000_MeshPart0
+    100032: Kabouter_000_MeshPart1
+    100034: //RootNode
+    100036: lowerArm_L
+    100038: lowerArm_R
+    100040: lowerLeg_L
+    100042: lowerLeg_R
+    100044: mid1_L
+    100046: mid1_R
+    100048: mid2_L
+    100050: mid2_R
+    100052: mid3_L
+    100054: mid3_R
+    100056: Neck
+    100058: Ogen
+    100060: pink1_L
+    100062: pink1_R
+    100064: pink2_L
+    100066: pink2_R
+    100068: pink3_L
+    100070: pink3_R
+    100072: ring1_L
+    100074: ring1_R
+    100076: ring2_L
+    100078: ring2_R
+    100080: ring3_L
+    100082: ring3_R
+    100084: Root
+    100086: Spine1
+    100088: Spine2
+    100090: thumb1_L
+    100092: thumb1_R
+    100094: thumb2_L
+    100096: thumb2_R
+    100098: thumb3_L
+    100100: thumb3_R
+    100102: too_L
+    100104: too_R
+    100106: upperArm_L
+    100108: upperArm_R
+    100110: upperLeg_L
+    100112: upperLeg_R
+    400000: Armature
+    400002: Cubicle
+    400004: Cubicle_002
+    400006: foot_L
+    400008: foot_R
+    400010: hand_L
+    400012: hand_L_002
+    400014: Head
+    400016: index1_L
+    400018: index1_R
+    400020: index2_L
+    400022: index2_R
+    400024: index3_L
+    400026: index3_R
+    400028: Kabouter_000
+    400030: Kabouter_000_MeshPart0
+    400032: Kabouter_000_MeshPart1
+    400034: //RootNode
+    400036: lowerArm_L
+    400038: lowerArm_R
+    400040: lowerLeg_L
+    400042: lowerLeg_R
+    400044: mid1_L
+    400046: mid1_R
+    400048: mid2_L
+    400050: mid2_R
+    400052: mid3_L
+    400054: mid3_R
+    400056: Neck
+    400058: Ogen
+    400060: pink1_L
+    400062: pink1_R
+    400064: pink2_L
+    400066: pink2_R
+    400068: pink3_L
+    400070: pink3_R
+    400072: ring1_L
+    400074: ring1_R
+    400076: ring2_L
+    400078: ring2_R
+    400080: ring3_L
+    400082: ring3_R
+    400084: Root
+    400086: Spine1
+    400088: Spine2
+    400090: thumb1_L
+    400092: thumb1_R
+    400094: thumb2_L
+    400096: thumb2_R
+    400098: thumb3_L
+    400100: thumb3_R
+    400102: too_L
+    400104: too_R
+    400106: upperArm_L
+    400108: upperArm_R
+    400110: upperLeg_L
+    400112: upperLeg_R
+    4300000: Kabouter_000_MeshPart0
+    4300002: Kabouter_000_MeshPart1
+    4300004: Ogen
+    7400000: Default Take
+    7400002: Lopen
+    7400004: Springen
+    9500000: //RootNode
+    13700000: Kabouter_000_MeshPart0
+    13700002: Kabouter_000_MeshPart1
+    13700004: Ogen
+  materials:
+    importMaterials: 1
+    materialName: 1
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .300000012
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 0
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
