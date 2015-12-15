@@ -691,7 +691,7 @@ GameObject:
   - 114: {fileID: 11462596}
   - 111: {fileID: 11100002}
   m_Layer: 0
-  m_Name: kabouterdun2
+  m_Name: kabouterdun
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1465,7 +1465,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 176400}
-  m_LocalRotation: {x: .733696043, y: -.675069332, z: -.0769677758, w: .00688858284}
+  m_LocalRotation: {x: .733696103, y: -.675069392, z: -.0769677833, w: .0068885833}
   m_LocalPosition: {x: -.466966361, y: .0743087679, z: -.131630912}
   m_LocalScale: {x: 1, y: .99999994, z: 1}
   m_Children:
@@ -1664,14 +1664,7 @@ MonoBehaviour:
   slideSpeed: 5
   playerNum: 1
   rotatespeed: 8
-  animwalk1: 2.5
-  animwalk2: 1.79999995
-  animjump1: 5
-  animjump2: 4.5
-  animrun1: 0
-  animrun2: 0
-  animidle1: 0
-  animidle2: 0
+  loadLastCheckpoint: 1
 --- !u!137 &13712816
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

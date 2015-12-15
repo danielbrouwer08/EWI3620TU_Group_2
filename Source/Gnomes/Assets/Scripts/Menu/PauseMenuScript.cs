@@ -13,10 +13,11 @@ public class PauseMenuScript : MonoBehaviour
     public Button resumebutton;
 
     bool Paused = false;
+    
 
     void Update()
     {
-        Debug.Log(Paused);
+        //Debug.Log(Paused);
         if (Input.GetKeyDown("escape")){
             if (Paused == true)
             {

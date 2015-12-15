@@ -29,10 +29,13 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+																																																																																			GlobalSection(MonoDevelopProperties) = preSolution
+=======
 																																																																																										GlobalSection(MonoDevelopProperties) = preSolution
 =======
 																																																																GlobalSection(MonoDevelopProperties) = preSolution
 >>>>>>> 41e6782bdbc16c49496dc113108971a89452c9c1
+>>>>>>> 675bd35fad532a10756c2f0d8bcc8b1fe002474a
 =======
 																																															GlobalSection(MonoDevelopProperties) = preSolution
 >>>>>>> feature/animaties_kabouter

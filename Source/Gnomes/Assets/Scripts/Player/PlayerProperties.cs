@@ -6,7 +6,6 @@ public class PlayerProperties : MonoBehaviour {
 
     public float startinghealth;
     public Slider healthbar;
-    public float currenthealth;
     public float health;
 	public int score;
 
@@ -16,25 +15,23 @@ public class PlayerProperties : MonoBehaviour {
 	void Awake ()
     {
         startinghealth = 100;
-        currenthealth = startinghealth;
-        healthbar.value = currenthealth;
-		score = 0;
-        health = 100;
+        health = startinghealth;
+        healthbar.value = health;
 	}
 	
 	void Update ()
     {
-        if(currenthealth <= 0)
+        if(health <= 0)
         {
             //Death();
         }
-        healthbar.value = currenthealth;
+        healthbar.value = health;
 	}
 
     public void TakeDamage(float damage)
     {
         damaged = true;
-        currenthealth -= damage;
+        health -= damage;
     }
 
     public void Death()
