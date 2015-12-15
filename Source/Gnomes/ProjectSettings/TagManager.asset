@@ -13,6 +13,8 @@ TagManager:
   - Terrain
   - Breakable
   - Teleporter
+  - Checkpoint
+  - Enemy
   layers:
   - Default
   - TransparentFX

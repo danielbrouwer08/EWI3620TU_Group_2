@@ -192,6 +192,7 @@ GameObject:
   - 65: {fileID: 6581182}
   - 114: {fileID: 11494084}
   - 111: {fileID: 11138666}
+  - 114: {fileID: 11494882}
   m_Layer: 0
   m_Name: kabouterdik
   m_TagString: Player
@@ -1159,7 +1160,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 135816}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23.7900009, y: 18.8600006, z: 26.2999992}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 441130}
@@ -1627,8 +1628,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 4, z: 1}
-  m_Center: {x: 0, y: 2, z: -.25}
+  m_Size: {x: 1, y: 4.5, z: .899999976}
+  m_Center: {x: 0, y: 2.25, z: -.300000012}
 --- !u!111 &11138666
 Animation:
   m_ObjectHideFlags: 1
@@ -1656,12 +1657,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e42e6e9d137b9d40ab14b3b4316a998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 5
+  jumpForce: 10
   walkSpeed: 10
   runSpeed: 15
   slideSpeed: 5
   playerNum: 2
   rotatespeed: 8
+  loadLastCheckpoint: 1
+--- !u!114 &11494882
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 135816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff28d44b41b7ceb4284e3f5c99b6edb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  score: 0
 --- !u!137 &13742530
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

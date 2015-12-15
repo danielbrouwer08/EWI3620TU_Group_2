@@ -474,9 +474,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 451248}
   - 54: {fileID: 5452112}
-  - 65: {fileID: 6555682}
   - 114: {fileID: 11423694}
   - 111: {fileID: 11163438}
+  - 114: {fileID: 11458608}
+  - 65: {fileID: 6541186}
   m_Layer: 0
   m_Name: kabouterdun
   m_TagString: Player
@@ -1205,7 +1206,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 168436}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.9400005, y: 20, z: 24.2199993}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 421808}
@@ -1493,7 +1494,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 121518}
-  m_LocalRotation: {x: .733696043, y: -.675069332, z: -.0769677758, w: .00688858423}
+  m_LocalRotation: {x: .733696103, y: -.675069392, z: -.0769677833, w: .00688858423}
   m_LocalPosition: {x: -.466966361, y: .0743087679, z: -.131630912}
   m_LocalScale: {x: 1, y: .99999994, z: 1}
   m_Children:
@@ -1617,7 +1618,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!65 &6555682
+--- !u!65 &6541186
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1627,8 +1628,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: .75, y: 4, z: 2}
-  m_Center: {x: -.25, y: 2, z: 0}
+  m_Size: {x: 1, y: 4.5, z: .800000012}
+  m_Center: {x: 0, y: 2.20000005, z: -.349999994}
 --- !u!111 &11163438
 Animation:
   m_ObjectHideFlags: 1
@@ -1657,12 +1658,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e42e6e9d137b9d40ab14b3b4316a998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 5
+  jumpForce: 10
   walkSpeed: 10
   runSpeed: 15
   slideSpeed: 5
   playerNum: 1
   rotatespeed: 8
+  loadLastCheckpoint: 1
+--- !u!114 &11458608
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 168436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff28d44b41b7ceb4284e3f5c99b6edb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  score: 0
 --- !u!137 &13724076
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

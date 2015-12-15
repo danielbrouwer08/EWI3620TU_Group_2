@@ -3,10 +3,12 @@ using System.Collections;
 
 public class PlayerProperties : MonoBehaviour {
 
-    private float health;
+    public float health;
+	public int score;
 
 	void Start ()
     {
+		score = 0;
         health = 100;
 	}
 	
