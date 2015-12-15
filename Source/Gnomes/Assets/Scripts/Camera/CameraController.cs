@@ -12,10 +12,16 @@ public class CameraController : MonoBehaviour {
     private Vector3 cameradistance;
     private float cameratrigger;
     public int sensitivity;
+	public Vector3 cameraOffset;
+
 	
 	void Start () {
-        offset1 = Camera.main.transform.position - Player1.transform.position;
-        offset2 = Camera.main.transform.position - Player2.transform.position;
+
+
+		Vector3 camerapos = new Vector3((PlayerPrefs.GetFloat("P1 XPOS") + PlayerPrefs.GetFloat ("P2 XPOS"))/2,(PlayerPrefs.GetFloat("P1 YPOS") + PlayerPrefs.GetFloat ("P2 YPOS"))/2,(PlayerPrefs.GetFloat("P1 ZPOS") + PlayerPrefs.GetFloat ("P2 ZPOS"))/2) + cameraOffset;
+
+        offset1 = camerapos - Player1.transform.position;
+        offset2 = camerapos - Player2.transform.position;
     }
 
     void LateUpdate () {

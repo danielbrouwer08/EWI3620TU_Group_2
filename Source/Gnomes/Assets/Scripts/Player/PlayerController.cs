@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
 	public float slideSpeed;
 	public int playerNum;
     public float rotatespeed = 8;
+    private Animation anim;
+    private bool walking;
 
 	//Audio properties
 	//private AudioSource jumpSound;
@@ -23,17 +25,36 @@ public class PlayerController : MonoBehaviour
 	private float VerticalPlayerInput;
 	private float HorizontalPlayerInput;
     private float nomovementtime = 0;
+	public bool loadLastCheckpoint = true;
+
 	//private bool gameOver = false;
 
 	// Iinitialization
 	void Start ()
 	{
+		if(loadLastCheckpoint==true)
+		{
+			Vector3 spawnpos = new Vector3(PlayerPrefs.GetFloat("P" + playerNum + " XPOS"),PlayerPrefs.GetFloat("P" + playerNum + " YPOS"),PlayerPrefs.GetFloat("P" + playerNum + " ZPOS"));
+			transform.position = spawnpos;
+		}
+
 		rb = GetComponent<Rigidbody> ();
+        anim = GetComponent<Animation>();
+        if (playerNum == 1)
+        {
+            anim["Springen"].speed = 5f;
+        }
+        else
+        {
+            anim["Springen"].speed = 2f;
+        }
+        anim["Lopen0"].speed = 2.5f;
 	}
 
 	// Update is called every fixed framerate frame
 	void FixedUpdate ()
 	{
+        
         if (nomovementtime > 0)
         {
             nomovementtime -= Time.fixedDeltaTime;
@@ -42,7 +63,6 @@ public class PlayerController : MonoBehaviour
         {
             //Get input from p1 or p2
             getPlayerInput();
-
             //Only execute if movement isn't all zero because transform.forward generates lots of 'annoying' notifications then.
             if (!movement.Equals(new Vector3(0.0f, 0.0f, 0.0f)))
             {
@@ -86,19 +106,33 @@ public class PlayerController : MonoBehaviour
         {
             angle = Mathf.Atan(VerticalPlayerInput / HorizontalPlayerInput);
         }
+        
         //if player presses jump button and is not already in a jump (y velocuty is zero)
         if (Input.GetButtonDown ("Jump" + playerNum) && grounded()) {
-			jump = true;
-		} else {
-			jump = false;
-		}
+            anim.Play("Springen");
+            jump = true;
+		} 
+        else if (HorizontalPlayerInput != 0 || VerticalPlayerInput != 0)
+        {
+            anim.Play("Lopen0");
+            anim.Play("Lopen");
+            jump = false;
+        }
+        else
+        {
+            if (! anim.IsPlaying("Springen") )
+            anim.Play("Stilstaan");
+            jump = false;
+        }
 
-		//if player presses run button
-		if (Input.GetButton ("Run" + playerNum)) {
+
+        //if player presses run button
+        if (Input.GetButton ("Run" + playerNum)) {
 			movement = new Vector3 (HorizontalPlayerInput * runSpeed * Mathf.Abs(Mathf.Cos(angle)), 0, VerticalPlayerInput * runSpeed * Mathf.Abs(Mathf.Sin(angle)));
 		} else {
 			movement = new Vector3 (HorizontalPlayerInput * walkSpeed * Mathf.Abs(Mathf.Cos(angle)), 0, VerticalPlayerInput * walkSpeed * Mathf.Abs(Mathf.Sin(angle)));
 		}
+        
 	}
 
     public bool grounded()

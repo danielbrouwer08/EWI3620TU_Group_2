@@ -57,7 +57,7 @@ public class VegetationGenerator : MonoBehaviour
 
 		//ruleString = "F[-F+F]F[++F]";
 
-		print ("rulestring: " + ruleString);
+		//print ("rulestring: " + ruleString);
 
 		List<GameObject> previousBranches = new List<GameObject> ();
 		previousBranches.Add (lastBranch);

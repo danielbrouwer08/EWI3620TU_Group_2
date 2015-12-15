@@ -10,8 +10,11 @@ TagManager:
   - cheese
   - GrassTerrain
   - Platform
+  - Terrain
   - Breakable
   - Teleporter
+  - Checkpoint
+  - Enemy
   layers:
   - Default
   - TransparentFX
