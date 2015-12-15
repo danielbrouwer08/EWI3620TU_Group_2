@@ -7,6 +7,7 @@ public class arrowcollider : MonoBehaviour {
     public float shootSpeed;
     private float starttime;
     private float lifetime;
+    public float damage;
 
 	// Use this for initialization
 	void Start () {
@@ -39,6 +40,7 @@ public class arrowcollider : MonoBehaviour {
         if (other.gameObject.tag == "Player")
         {
             Debug.Log("player hit");
+            other.GetComponent<PlayerProperties>().TakeDamage(damage);
         }
 
         Destroy(gameObject);
