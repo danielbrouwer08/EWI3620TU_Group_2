@@ -11,6 +11,11 @@ TagManager:
   - cheese
   - Platform
   - Breakable
+  - Arrow
+  - GrassTerrain
+  - Water
+  - Pause
+  - GameManager
   layers:
   - Default
   - TransparentFX

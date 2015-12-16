@@ -13,13 +13,20 @@ public class CameraController : MonoBehaviour {
     private float cameratrigger;
     public int sensitivity;
 	public Vector3 cameraOffset;
-
+	private GameManger gameManager;
+	public bool LoadLastCheckpoint;
 	
 	void Start () {
+		gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManger>();
+		Vector3 camerapos;
 
-
-		Vector3 camerapos = new Vector3((PlayerPrefs.GetFloat("P1 XPOS") + PlayerPrefs.GetFloat ("P2 XPOS"))/2,(PlayerPrefs.GetFloat("P1 YPOS") + PlayerPrefs.GetFloat ("P2 YPOS"))/2,(PlayerPrefs.GetFloat("P1 ZPOS") + PlayerPrefs.GetFloat ("P2 ZPOS"))/2) + cameraOffset;
-
+		if(LoadLastCheckpoint)
+		{
+			camerapos = (gameManager.returnCurrent().P1Pos + gameManager.returnCurrent().P2Pos)/2.0f + cameraOffset;
+		}else
+		{
+			camerapos = transform.position;
+		}
         offset1 = camerapos - Player1.transform.position;
         offset2 = camerapos - Player2.transform.position;
     }

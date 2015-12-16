@@ -38,14 +38,30 @@ public class PlayerController : MonoBehaviour
     private float nomovementtime = 0;
 	public bool loadLastCheckpoint = true;
 
+	private GameManger gameManager;
+
 	//private bool gameOver = false;
 
 	// Iinitialization
 	void Start ()
 	{
+		gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManger>();
+
+
 		if(loadLastCheckpoint==true)
 		{
-			Vector3 spawnpos = new Vector3(PlayerPrefs.GetFloat("P" + playerNum + "_XPOS"),PlayerPrefs.GetFloat("P" + playerNum + "_YPOS"),PlayerPrefs.GetFloat("P" + playerNum + "_ZPOS"));
+			Vector3 spawnpos;
+
+			if(playerNum==1)
+			{
+				spawnpos = gameManager.returnCurrent().P1Pos;
+				print("p1 spawn pos: " + spawnpos);
+			}else
+			{
+				spawnpos = gameManager.returnCurrent().P2Pos;
+				print("p2 spawn pos: " + spawnpos);
+			}
+
 			transform.position = spawnpos;
 		}
 
