@@ -1674,6 +1674,11 @@ MonoBehaviour:
   animidle1: 0
   animidle2: 0
   loadLastCheckpoint: 0
+<<<<<<< HEAD
+=======
+  isSinglePlayer: 1
+  isActive: 0
+>>>>>>> feature/SinglePlayerMode
 --- !u!114 &11497336
 MonoBehaviour:
   m_ObjectHideFlags: 1
