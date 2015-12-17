@@ -37,6 +37,9 @@ public class PlayerController : MonoBehaviour
 	private float HorizontalPlayerInput;
     private float nomovementtime = 0;
 	public bool loadLastCheckpoint = true;
+    public bool isSinglePlayer = true;
+    public bool isActive;
+    private int input;
 
 	private GameManger gameManager;
 
@@ -47,6 +50,23 @@ public class PlayerController : MonoBehaviour
 	{
 		gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManger>();
 
+        if (playerNum == 1)
+        {
+            isActive = true;
+        }
+        else
+        {
+            isActive = false;
+        }
+
+        if (isSinglePlayer)
+        {
+            input = 1;
+        }
+        else
+        {
+            input = playerNum;
+        }
 
 		if(loadLastCheckpoint==true)
 		{
@@ -92,8 +112,17 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            //Get input from p1 or p2
-            getPlayerInput();
+            if (isActive)
+            {
+                //Get input from p1 or p2
+                getPlayerInput();
+            }
+            else
+            {
+                movement = new Vector3(0, 0, 0);
+                anim.Play("Stilstaan");
+            }
+
             //Only execute if movement isn't all zero because transform.forward generates lots of 'annoying' notifications then.
             if (!movement.Equals(new Vector3(0.0f, 0.0f, 0.0f)))
             {
@@ -126,8 +155,8 @@ public class PlayerController : MonoBehaviour
 	//Get input from player
 	void getPlayerInput ()
     {
-		VerticalPlayerInput = Input.GetAxis ("Vertical" + playerNum);
-		HorizontalPlayerInput = Input.GetAxis ("Horizontal" + playerNum);
+		VerticalPlayerInput = Input.GetAxis ("Vertical" + input);
+		HorizontalPlayerInput = Input.GetAxis ("Horizontal" + input);
         float angle;
         if (HorizontalPlayerInput == 0)
         {
@@ -139,7 +168,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //if player presses run button
-        if (Input.GetButton("Run" + playerNum))
+        if (Input.GetButton("Run" + input))
         {
             running = true;
             movement = new Vector3(HorizontalPlayerInput * runSpeed * Mathf.Abs(Mathf.Cos(angle)), 0, VerticalPlayerInput * runSpeed * Mathf.Abs(Mathf.Sin(angle)));
@@ -151,7 +180,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //if player presses jump button and is not already in a jump (y velocuty is zero)
-        if (Input.GetButtonDown("Jump" + playerNum) && grounded())
+        if (Input.GetButtonDown("Jump" + input) && grounded())
         {
             anim.Play("Springen");
             jump = true;

@@ -1673,7 +1673,9 @@ MonoBehaviour:
   animrun2: 20
   animidle1: 0
   animidle2: 0
-  loadLastCheckpoint: 1
+  loadLastCheckpoint: 0
+  isSinglePlayer: 1
+  isActive: 0
 --- !u!114 &11497336
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1989,6 +1991,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: startinghealth
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: loadLastCheckpoint
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
