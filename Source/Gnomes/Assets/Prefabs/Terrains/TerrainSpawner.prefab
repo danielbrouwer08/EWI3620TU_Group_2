@@ -54,6 +54,14 @@ MonoBehaviour:
   mushroomZRotationRange: .200000003
   scaleIntensity: 1
   amountOfMushrooms: 50
+  Coin: {fileID: 160384, guid: 53c774d0c05657843b1a522d30149c2a, type: 2}
+  coinWidth: 0
+  coinYOffset: 1.5
+  amountOfCoins: 10
+  dumbEnemy: {fileID: 109634, guid: 0cab73e29aa7fce4f9f4f15944f9be3d, type: 2}
+  enemyWidth: 0
+  enemyYOffset: 0
+  amountOfEnemys: 1
   vegetation: {fileID: 111232, guid: 72464edbd2c019245a6655d943c9a0b6, type: 2}
   vegetationSpawnChance: .150000006
   spaceBetweenVegetation: 8
@@ -66,7 +74,31 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: Coin
+      value: 
+      objectReference: {fileID: 160384, guid: 53c774d0c05657843b1a522d30149c2a, type: 2}
+    - target: {fileID: 0}
+      propertyPath: amountOfCoins
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: coinYOffset
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: amountOfMushrooms
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: dumbEnemy
+      value: 
+      objectReference: {fileID: 109634, guid: 0cab73e29aa7fce4f9f4f15944f9be3d, type: 2}
+    - target: {fileID: 0}
+      propertyPath: amountOfEnemys
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 110360}

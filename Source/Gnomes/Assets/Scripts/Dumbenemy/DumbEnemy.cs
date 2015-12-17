@@ -19,22 +19,7 @@ public class DumbEnemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        if (goback)
-        {
-            transform.Rotate(0, -rotationspeed, 0);
-            if(transform.eulerAngles.y <= 90)
-            {
-                goback = false;
-            }
-        }
-        else
-        {
-            transform.Rotate(0, rotationspeed, 0);
-            if (transform.eulerAngles.y >= 270)
-            {
-                goback = true;
-            }
-        }
+        transform.Rotate(0, rotationspeed, 0);
 
         if (Time.time > nextFire)
         {
