@@ -3,21 +3,34 @@ using System.Collections;
 using UnityEngine.Experimental.Networking;
 using SimpleJSON;
 using System.Collections.Generic;
+using System;
 
 public class GameManger : MonoBehaviour
 {
 	public  int saveslots = 3;
 	private  Savegame[] saves = new Savegame[3];
 	public  int currentslot;
-	
+	DateTime serverTimeStamp;
+	//private Savegame[] serversaves = new Savegame[3];
+
 	void Awake()
 	{
-		Savegame[] local = readPlayerPrefs ();
+		StartCoroutine(GetTimeStamp()); //get timestamp from server
+		Savegame[] local = readPlayerPrefs (); //get local saves
 
-		//Savegame[] server = readServerSaves();
+		DateTime currentTimeStamp = DateTime.Parse(PlayerPrefs.GetString ("timeStamp"));
+	
+		int temp = DateTime.Compare(currentTimeStamp,serverTimeStamp);
+		if (temp>0)
+		{
+			Debug.Log("using local save file");
+			saves = local;
+		}else
+		{
+			Debug.Log("using server save file");
+			StartCoroutine(GetSaveGame()); //get new saves from server
+		}
 
-		//hier moet nog code komen voor timestamp te vergelijken
-		saves = local;
 	}
 
 	public Savegame returnCurrent(){
@@ -44,12 +57,6 @@ public class GameManger : MonoBehaviour
 		{
 			PlayerPrefs.SetString ("saveNo" + i, Savegame.getJSON (saves[i]));
 		}
-
-	}
-
-	private Savegame[] readServerSaves(){
-		//to be implemented
-		return null;
 
 	}
 	
@@ -98,7 +105,20 @@ public class GameManger : MonoBehaviour
 		}
 	}
 
-	
+	IEnumerator GetTimeStamp(){
+		UnityWebRequest www = UnityWebRequest.Get ("http://drproject.twi.tudelft.nl:8083/getTimeStamp");
+		yield return www.Send ();
+		
+		if (www.isError) {
+			Debug.Log (www.error);
+		} else {
+			// Show results as text
+			Debug.Log (www.downloadHandler.text);
+			string receivedString = www.downloadHandler.text;
+			serverTimeStamp = DateTime.Parse(receivedString.Replace("\"",""));
+			Debug.Log(receivedString);
+		}
+	}
 
 	//Get saves over the interwebs
 	IEnumerator GetSaveGame ()
@@ -112,10 +132,29 @@ public class GameManger : MonoBehaviour
 			// Show results as text
 			Debug.Log (www.downloadHandler.text);
 			string receivedString = www.downloadHandler.text;
-			
-			var a = JSON.Parse (receivedString);
 
-			
+			Debug.Log("received:");
+			Debug.Log(receivedString);
+
+			string[] parts = receivedString.Split(new string[] {"},{"}, System.StringSplitOptions.None);
+
+			parts[0] = parts[0].Replace("[{","");
+			parts[parts.Length-1] = parts[parts.Length-1].Replace("}]","");
+			Savegame temp;
+
+			Debug.Log("The parts:");
+		
+			for(int i=0;i<parts.Length;i++)
+			{
+				parts[i] = "{" + parts[i] + "}";
+				temp = Savegame.parseJSON(parts[i]);
+				saves[i] = temp; //add saves to saves list
+				//Debug.Log("Partsno" + i + ": " + parts[i]);
+				//Debug.Log("Extracted savefile" + i + ": " + temp.toString());
+			}
+
+
+
 		}
 	}	
 
