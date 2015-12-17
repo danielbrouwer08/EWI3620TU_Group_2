@@ -179,11 +179,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 428964, guid: 2a8179a4112d1ce47afec03366eb5092, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 33.2599983
+      value: 26.2999992
       objectReference: {fileID: 0}
     - target: {fileID: 428964, guid: 2a8179a4112d1ce47afec03366eb5092, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 26.6200008
+      value: 63.7999992
       objectReference: {fileID: 0}
     - target: {fileID: 428964, guid: 2a8179a4112d1ce47afec03366eb5092, type: 2}
       propertyPath: m_LocalPosition.z
@@ -217,6 +217,10 @@ Prefab:
       propertyPath: healthbar
       value: 
       objectReference: {fileID: 549556644}
+    - target: {fileID: 11468126, guid: 2a8179a4112d1ce47afec03366eb5092, type: 2}
+      propertyPath: jumpForce
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2a8179a4112d1ce47afec03366eb5092, type: 2}
   m_IsPrefabParent: 0
@@ -236,7 +240,7 @@ GameObject:
   - 4: {fileID: 970155569}
   - 114: {fileID: 970155568}
   m_Layer: 0
-  m_Name: Chapter1
+  m_Name: Chapter2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -259,9 +263,9 @@ MonoBehaviour:
     type: 2}
   ChapterEndCheckpoint: {fileID: 101870, guid: 3aca59e383666cb4688e6c818c722c5a, type: 2}
   levels:
-  - {fileID: 134648, guid: eb81b894a3d1d714681fae8f932d0e9b, type: 2}
-  - {fileID: 120970, guid: 356ef6945d371594083bb0c371f14741, type: 2}
-  - {fileID: 110686, guid: e682bb0444acb594680d498d1f8f9776, type: 2}
+  - {fileID: 134886, guid: 32b7f9483c7394e47baf056b1ec22081, type: 2}
+  - {fileID: 143502, guid: a509fd20a566c31499dc616169237ad2, type: 2}
+  - {fileID: 148470, guid: 8ff3ffb998d115b46a9b42079c922fdc, type: 2}
 --- !u!4 &970155569
 Transform:
   m_ObjectHideFlags: 0
@@ -394,7 +398,7 @@ MonoBehaviour:
   Player1: {fileID: 353573648}
   Player2: {fileID: 1263723300}
   sensitivity: 2
-  cameraOffset: {x: 0, y: 25, z: -10}
+  cameraOffset: {x: 0, y: 20, z: -15}
   LoadLastCheckpoint: 1
 --- !u!1001 &1501774692
 Prefab:
@@ -451,11 +455,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 415678, guid: e70da4b3b85fef34fbac02fefc155c31, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 22.9400005
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 415678, guid: e70da4b3b85fef34fbac02fefc155c31, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 28.3999996
+      value: 65.5999985
       objectReference: {fileID: 0}
     - target: {fileID: 415678, guid: e70da4b3b85fef34fbac02fefc155c31, type: 2}
       propertyPath: m_LocalPosition.z
@@ -505,6 +509,10 @@ Prefab:
       propertyPath: healthbar
       value: 
       objectReference: {fileID: 419984176}
+    - target: {fileID: 11462596, guid: e70da4b3b85fef34fbac02fefc155c31, type: 2}
+      propertyPath: jumpForce
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e70da4b3b85fef34fbac02fefc155c31, type: 2}
   m_IsPrefabParent: 0
