@@ -15,11 +15,18 @@ public class GameManger : MonoBehaviour
 
 	void Awake()
 	{
-		StartCoroutine(GetTimeStamp()); //get timestamp from server
-		Savegame[] local = readPlayerPrefs (); //get local saves
+		LoadSaves();
+	}
 
+	private void LoadSaves ()
+	{
+		StartCoroutine(GetTimeStamp()); //get timestamp from server (blocking)
+
+		Savegame[] local = readPlayerPrefs (); //get local saves
+		
 		DateTime currentTimeStamp = DateTime.Parse(PlayerPrefs.GetString ("timeStamp"));
-	
+		
+		
 		int temp = DateTime.Compare(currentTimeStamp,serverTimeStamp);
 		if (temp>0)
 		{
@@ -28,9 +35,8 @@ public class GameManger : MonoBehaviour
 		}else
 		{
 			Debug.Log("using server save file");
-			StartCoroutine(GetSaveGame()); //get new saves from server
+			StartCoroutine(GetSaveGame()); //get new saves from server and wait (blocking)
 		}
-
 	}
 
 	public Savegame returnCurrent(){
@@ -40,6 +46,7 @@ public class GameManger : MonoBehaviour
 	//add new savegame to the savesarray and add to the playerprefs the json string
 	public  void addNewSave (Savegame savegame)
 	{
+		Debug.Log("Adding the following savefile to the playerprefs: " + savegame.toString() );
 		saves [currentslot] = savegame;
 		addToPlayerPrefs (savegame);
 
@@ -55,7 +62,10 @@ public class GameManger : MonoBehaviour
 		PlayerPrefs.SetString("timeStamp",System.DateTime.Now.ToString ("yyyy-MM-dd HH:mm:ss"));
 		for(int i = 0;i<saveslots;i++)
 		{
-			PlayerPrefs.SetString ("saveNo" + i, Savegame.getJSON (saves[i]));
+			if( (saves[i])!=null)
+			{
+				PlayerPrefs.SetString ("saveNo" + i, Savegame.getJSON (saves[i]));
+			}
 		}
 
 	}
@@ -67,8 +77,11 @@ public class GameManger : MonoBehaviour
 		string temp;
 
 		for (int i=0; i<saveslots; i++) {
-			saves [i] = Savegame.parseJSON (PlayerPrefs.GetString ("saveNo" + i));
-			//Debug.Log("Wat ik heb geparst: " + saves[i].toString());
+			if(PlayerPrefs.GetString ("saveNo" + i)!=null)
+			{
+				saves [i] = Savegame.parseJSON (PlayerPrefs.GetString ("saveNo" + i));
+				Debug.Log("Wat ik heb geparst: " + saves[i].toString());
+			}
 		}
 
 		return saves;

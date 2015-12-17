@@ -1,7 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Source/Gnomes/Assets/plugins/Android/libs/x86/libGameAnalytics.so.meta
 guid: 6a2e1ff04747ebf4cb80eed35101866e
 timeCreated: 1434465480
 licenseType: Pro
+=======
+guid: eb071b18f69d9314eb764df8564b5d93
+>>>>>>> develop:Source/Gnomes/Assets/plugins/ICSharpCode.SharpZipLib.dll.meta
 PluginImporter:
   serializedVersion: 1
   iconMap: {}
