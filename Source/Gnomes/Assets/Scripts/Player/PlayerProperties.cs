@@ -34,6 +34,11 @@ public class PlayerProperties : MonoBehaviour {
         health -= damage;
     }
 
+    public void UpdateScore(int newscore)
+    {
+        score = score + newscore;
+    }
+
     public void Death()
     {
         Destroy(gameObject);
