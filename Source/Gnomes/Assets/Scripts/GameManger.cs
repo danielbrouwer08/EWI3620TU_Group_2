@@ -62,7 +62,10 @@ public class GameManger : MonoBehaviour
 		PlayerPrefs.SetString("timeStamp",System.DateTime.Now.ToString ("yyyy-MM-dd HH:mm:ss"));
 		for(int i = 0;i<saveslots;i++)
 		{
-			PlayerPrefs.SetString ("saveNo" + i, Savegame.getJSON (saves[i]));
+			if( (saves[i])!=null)
+			{
+				PlayerPrefs.SetString ("saveNo" + i, Savegame.getJSON (saves[i]));
+			}
 		}
 
 	}
@@ -74,8 +77,11 @@ public class GameManger : MonoBehaviour
 		string temp;
 
 		for (int i=0; i<saveslots; i++) {
-			saves [i] = Savegame.parseJSON (PlayerPrefs.GetString ("saveNo" + i));
-			Debug.Log("Wat ik heb geparst: " + saves[i].toString());
+			if(PlayerPrefs.GetString ("saveNo" + i)!=null)
+			{
+				saves [i] = Savegame.parseJSON (PlayerPrefs.GetString ("saveNo" + i));
+				Debug.Log("Wat ik heb geparst: " + saves[i].toString());
+			}
 		}
 
 		return saves;
