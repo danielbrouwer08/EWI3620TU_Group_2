@@ -1,12 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: eb071b18f69d9314eb764df8564b5d93
-timeCreated: 1450275696
-=======
-guid: 1b6329a8df227054c86988e9ff43454f
-timeCreated: 1450272907
->>>>>>> feature/SinglePlayerMode
-licenseType: Free
 PluginImporter:
   serializedVersion: 1
   iconMap: {}
