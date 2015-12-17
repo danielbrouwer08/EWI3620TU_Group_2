@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Analytics;
+using System.Collections.Generic;
 
 public class PickUpItem : MonoBehaviour
 {
@@ -7,6 +9,8 @@ public class PickUpItem : MonoBehaviour
     private GameObject[] player;
     private int playerinrange;
     private int playerNum;
+    private float xPosPlayer;
+    private float zPosPlayer;
     private GameObject carrier;
     public float throwforce;
     bool hasPlayer = false;
@@ -36,6 +40,9 @@ public class PickUpItem : MonoBehaviour
             if (Vector3.Magnitude(transform.position - player[i].transform.position) < pickdistance)
             {
                 playerNum = player[i].GetComponent<PlayerController>().playerNum;
+                xPosPlayer = player[i].GetComponent<Transform>().position.x;
+                zPosPlayer = player[i].GetComponent<Transform>().position.z;
+
                 playerinrange = i;
                 Debug.Log(playerNum);
             }
@@ -75,7 +82,17 @@ public class PickUpItem : MonoBehaviour
 
     void AddSkilltoPlayer(string skill)
     {
-        if(playerNum == 1)
+
+        Analytics.CustomEvent("pickUpItem", new Dictionary<string, object>
+        {
+            { "skill", skill },
+            { "playerNum",  playerNum},
+            { "xPos", xPosPlayer },
+            { "zPos", zPosPlayer }
+
+        });
+
+        if (playerNum == 1)
         {
             switch (skill)
             {

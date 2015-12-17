@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Analytics;
+using System.Collections.Generic;
 
 public class arrowcollider : MonoBehaviour {
 
@@ -30,7 +32,6 @@ public class arrowcollider : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("hit");
 
         if(other.gameObject.tag == "DumbEnemy")
         {
@@ -41,6 +42,14 @@ public class arrowcollider : MonoBehaviour {
         {
             Debug.Log("player hit");
             other.GetComponent<PlayerProperties>().TakeDamage(damage);
+
+            Analytics.CustomEvent("playerHit", new Dictionary<string, object>
+            {
+                { "x-location",  gameObject.transform.position.x},
+                { "z-location", gameObject.transform.position.z},
+                { "playerNum", other.gameObject.GetComponent<PlayerController>().playerNum }
+            });
+
         }
 
         Destroy(gameObject);
