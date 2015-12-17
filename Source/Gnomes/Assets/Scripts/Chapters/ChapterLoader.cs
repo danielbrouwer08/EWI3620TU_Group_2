@@ -2,15 +2,19 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Chapter1 : MonoBehaviour {
+public class ChapterLoader : MonoBehaviour {
 
 	public GameObject terrainGenerator;
 	public GameObject interpolator;
+	public GameObject chapterStartCheckpoint;
+	public GameObject ChapterEndCheckpoint;
 	public GameObject[] levels;
 	private Vector3 spawnOffset = new Vector3(0.0f,0.0f,0.0f);
 
 	// Use this for initialization
 	void Start () {
+
+		instantiateCheckpointTerrain(chapterStartCheckpoint);
 
 		for(int i=0;i<levels.Length;i++)
 		//for(int i=0;i<1;i++)
@@ -21,7 +25,7 @@ public class Chapter1 : MonoBehaviour {
 			instantiateRandomTerrain();
 		}
 
-
+		instantiateCheckpointTerrain(ChapterEndCheckpoint);
 	
 	}
 
@@ -157,6 +161,12 @@ public class Chapter1 : MonoBehaviour {
 	{
 		GameObject.Instantiate (terrainGenerator, spawnOffset, Quaternion.Euler (0, 0, 0));
 		spawnOffset += new Vector3(terrainGenerator.GetComponent<TerrainSpawner>().amountOfTerrainsToSpawn*50,0.0f,0.0f);
+	}
+
+	void instantiateCheckpointTerrain(GameObject terrain)
+	{
+		GameObject.Instantiate (terrain, spawnOffset, Quaternion.Euler (0, 0, 0));
+		spawnOffset += new Vector3(50.0f,0.0f,0.0f);
 	}
 
 
