@@ -15,11 +15,17 @@ public class GameManger : MonoBehaviour
 
 	void Awake()
 	{
-		StartCoroutine(GetTimeStamp()); //get timestamp from server
-		Savegame[] local = readPlayerPrefs (); //get local saves
+		StartCoroutine(LoadSaves ());
+	}
 
+	IEnumerator LoadSaves ()
+	{
+		yield return StartCoroutine(GetTimeStamp()); //get timestamp from server (blocking)
+		Savegame[] local = readPlayerPrefs (); //get local saves
+		
 		DateTime currentTimeStamp = DateTime.Parse(PlayerPrefs.GetString ("timeStamp"));
-	
+		
+		
 		int temp = DateTime.Compare(currentTimeStamp,serverTimeStamp);
 		if (temp>0)
 		{
@@ -28,9 +34,8 @@ public class GameManger : MonoBehaviour
 		}else
 		{
 			Debug.Log("using server save file");
-			StartCoroutine(GetSaveGame()); //get new saves from server
+			yield return StartCoroutine(GetSaveGame()); //get new saves from server and wait (blocking)
 		}
-
 	}
 
 	public Savegame returnCurrent(){
