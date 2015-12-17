@@ -48,8 +48,8 @@ public class CameraController : MonoBehaviour {
         {
             cameratrigger = 50;
         }
-        if (cameratrigger >= 100){
-            cameratrigger = 100;
+        if (cameratrigger >= 70){
+            cameratrigger = 70;
         }
     }
 
@@ -57,7 +57,7 @@ public class CameraController : MonoBehaviour {
         CameraProperties();
         cameratrigger = playerdistances.magnitude * sensitivity;
         RoundTrigger();
-        if (Camera.main.fieldOfView <= 100 && Camera.main.fieldOfView >= 50){
+        if (Camera.main.fieldOfView <= 70 && Camera.main.fieldOfView >= 50){
             Camera.main.fieldOfView = cameratrigger;
         }
     }

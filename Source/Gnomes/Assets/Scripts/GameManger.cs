@@ -8,14 +8,15 @@ using System;
 public class GameManger : MonoBehaviour
 {
 	public  int saveslots = 3;
-	private  Savegame[] saves = new Savegame[3];
-	public  int currentslot;
+	public  Savegame[] saves = new Savegame[3];
+	private  int currentslot;
 	DateTime serverTimeStamp;
 	//private Savegame[] serversaves = new Savegame[3];
 
 	void Awake()
 	{
-		LoadSaves();
+        currentslot = PlayerPrefs.GetInt("saveslot");
+        LoadSaves();
 	}
 
 	private void LoadSaves ()
