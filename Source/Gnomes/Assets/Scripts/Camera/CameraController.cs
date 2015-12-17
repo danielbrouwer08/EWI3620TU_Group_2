@@ -22,6 +22,7 @@ public class CameraController : MonoBehaviour {
 
 		if(LoadLastCheckpoint)
 		{
+			Debug.Log (gameManager.returnCurrent().toString());
 			camerapos = (gameManager.returnCurrent().P1Pos + gameManager.returnCurrent().P2Pos)/2.0f + cameraOffset;
 		}else
 		{

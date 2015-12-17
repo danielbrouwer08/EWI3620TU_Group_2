@@ -15,12 +15,13 @@ public class GameManger : MonoBehaviour
 
 	void Awake()
 	{
-		StartCoroutine(LoadSaves ());
+		LoadSaves();
 	}
 
-	IEnumerator LoadSaves ()
+	private void LoadSaves ()
 	{
-		yield return StartCoroutine(GetTimeStamp()); //get timestamp from server (blocking)
+		StartCoroutine(GetTimeStamp()); //get timestamp from server (blocking)
+
 		Savegame[] local = readPlayerPrefs (); //get local saves
 		
 		DateTime currentTimeStamp = DateTime.Parse(PlayerPrefs.GetString ("timeStamp"));
@@ -34,7 +35,7 @@ public class GameManger : MonoBehaviour
 		}else
 		{
 			Debug.Log("using server save file");
-			yield return StartCoroutine(GetSaveGame()); //get new saves from server and wait (blocking)
+			StartCoroutine(GetSaveGame()); //get new saves from server and wait (blocking)
 		}
 	}
 
@@ -45,6 +46,7 @@ public class GameManger : MonoBehaviour
 	//add new savegame to the savesarray and add to the playerprefs the json string
 	public  void addNewSave (Savegame savegame)
 	{
+		Debug.Log("Adding the following savefile to the playerprefs: " + savegame.toString() );
 		saves [currentslot] = savegame;
 		addToPlayerPrefs (savegame);
 
@@ -73,7 +75,7 @@ public class GameManger : MonoBehaviour
 
 		for (int i=0; i<saveslots; i++) {
 			saves [i] = Savegame.parseJSON (PlayerPrefs.GetString ("saveNo" + i));
-			//Debug.Log("Wat ik heb geparst: " + saves[i].toString());
+			Debug.Log("Wat ik heb geparst: " + saves[i].toString());
 		}
 
 		return saves;

@@ -30,7 +30,7 @@ public class arrowcollider : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("hit");
+        //Debug.Log("hit");
 
         if(other.gameObject.tag == "DumbEnemy")
         {
