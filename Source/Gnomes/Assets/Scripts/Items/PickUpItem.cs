@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.Analytics;
 using System.Collections.Generic;
+using UnityEditor;
 
 public class PickUpItem : MonoBehaviour
 {
@@ -90,15 +91,21 @@ public class PickUpItem : MonoBehaviour
 
     void AddSkilltoPlayer(string skill)
     {
+        var dict = new Dictionary<string, object>();
+        dict["currentScene"] = EditorApplication.currentScene;
+        dict["skill"] = skill;
+        dict["playerNum"] = playerNum;
 
         Analytics.CustomEvent("pickUpItem", new Dictionary<string, object>
         {
             { "skill", skill },
             { "playerNum",  playerNum},
             { "xPos", xPosPlayer },
-            { "zPos", zPosPlayer }
-
+            { "zPos", zPosPlayer },
+            { "currentScene", EditorApplication.currentScene }
         });
+
+        UnityAnalyticsHeatmap.HeatmapEvent.Send("checkpoint", gameObject.transform.position, dict);
 
         if (playerNum == 1)
         {
