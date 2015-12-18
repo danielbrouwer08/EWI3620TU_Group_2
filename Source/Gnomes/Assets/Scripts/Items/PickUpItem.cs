@@ -18,6 +18,7 @@ public class PickUpItem : MonoBehaviour
     private Rigidbody rb;
     private Collider col;
     public string skill;
+    private Vector3 startpos;
 
 
     void OnCollisionExit(Collision other)
@@ -26,6 +27,7 @@ public class PickUpItem : MonoBehaviour
     }
     void Start()
     {
+        startpos = transform.position;
         rb = GetComponent<Rigidbody>();
         col = GetComponent<Collider>();
         player = GameObject.FindGameObjectsWithTag("Player");
@@ -33,7 +35,13 @@ public class PickUpItem : MonoBehaviour
 
     void Update()
     {
-
+        if(transform.position.z > 50 | transform.position.z < 0 | transform.position.x < 0)
+        {
+            transform.position = startpos;
+            transform.eulerAngles = new Vector3(0, 0, 0);
+            rb.velocity = Vector3.zero;
+        
+        }
         playerinrange = -1;
         for (int i = 0; i < player.Length; i++)
         {
