@@ -11,19 +11,21 @@ public class GameManger : MonoBehaviour
 	private string password;
 	public  int saveslots = 3;
 	public  Savegame[] saves = new Savegame[3];
-	private  int currentslot;
+	private  int currentslot = 0;
 	DateTime serverTimeStamp;
 	private Savegame[] online = new Savegame[3];
-	private bool loginSucceed = false;
-	private bool registerSucceed = false;
-	private bool onlinemode;
+	public bool loginSucceed = false;
+	public bool registerSucceed = false;
+	//private bool onlinemode;
 	//private Savegame[] serversaves = new Savegame[3];
 
 	void Awake ()
 	{
 		currentslot = PlayerPrefs.GetInt ("saveslot");
 
-		int online = PlayerPrefs.GetInt ("onlinemode");
+		//int online = PlayerPrefs.GetInt ("onlinemode");
+
+		saves = readPlayerPrefs ();
 
 		if(PlayerPrefs.GetString("teamname")!=null)
 		{
@@ -31,52 +33,35 @@ public class GameManger : MonoBehaviour
 			password = PlayerPrefs.GetString("password");
 		}
 
-		if (online == 1) {
-			onlinemode = true;
-		} else {
-			onlinemode = false;
-		}
+		Debug.Log(PlayerPrefs.GetString ("timeStamp"));
 
-		//TESTING PURPOSE:
-		//register ("blabla", "huehuehue");
-		//StartCoroutine (getSaves ()); //get new saves from server and wait (blocking)
-
-		//onlineMode (); 
-		offlineMode();
+		onlineMode("Daniel","mijn_eerste_password");
 
 	}
 
 	public void register (string user, string pass)
 	{
 		Debug.Log ("Register");
-		this.password = pass;
-		this.username = user;
-		PlayerPrefs.SetString("teamname",user);
-		PlayerPrefs.SetString("password",pass);
+		//this.password = pass;
+		//this.username = user;
+		//PlayerPrefs.SetString("teamname",user);
+		//PlayerPrefs.SetString("password",pass);
 		
-		StartCoroutine (registerOnServer ());
+		StartCoroutine (registerOnServer (user,pass));
 	}
 
-	public void onlineMode ()
+	public void onlineMode (string user, string pass)
 	{
-		StartCoroutine (getSaves()); // login and get online saves
+		PlayerPrefs.SetString("teamname",user);
+		PlayerPrefs.SetString("password",pass);
+		this.password = pass;
+		this.username = user;
+
+
 		StartCoroutine (GetTimeStamp ()); //get timestamp from server (blocking)
+		StartCoroutine (getSaves()); // login and get online saves
 
-		Savegame[] local = readPlayerPrefs (); //get local saves
-		
-		DateTime currentTimeStamp = DateTime.Parse (PlayerPrefs.GetString ("timeStamp"));
 
-		int temp = DateTime.Compare (currentTimeStamp, serverTimeStamp);
-
-		Debug.Log("Getting the latest save game...");
-
-		if (temp > 0) {
-			Debug.Log ("using local save file");
-			saves = local;
-		} else{
-			Debug.Log ("using server save file");
-			saves = online;
-		}
 	}
 
 	private void offlineMode ()
@@ -97,17 +82,15 @@ public class GameManger : MonoBehaviour
 	{
 		Debug.Log ("Adding the following savefile to the playerprefs: " + savegame.toString ());
 		saves [currentslot] = savegame;
-		addToPlayerPrefs (savegame);
+		updatePlayerPrefs ();
 
 		//upload data to the server
-		if (onlinemode) {
-			StartCoroutine (sendSave ());
-		}
+		StartCoroutine (sendSave ());
 	}
 	
 
 	//Add JSON saves array to the playerprefs
-	private  void addToPlayerPrefs (Savegame savegame)
+	private  void updatePlayerPrefs ()
 	{
 		PlayerPrefs.SetString ("timeStamp", System.DateTime.Now.ToString ("yyyy-MM-dd HH:mm:ss"));
 		for (int i = 0; i<saveslots; i++) {
@@ -117,7 +100,8 @@ public class GameManger : MonoBehaviour
 		}
 
 	}
-	
+
+
 	//Read the playerprefs and return the saves
 	private  Savegame[] readPlayerPrefs ()
 	{
@@ -189,12 +173,12 @@ public class GameManger : MonoBehaviour
 	}
 
 	//register on the server
-	IEnumerator registerOnServer ()
+	IEnumerator registerOnServer (string user,string pass)
 	{
 		WWWForm form = new WWWForm ();
 			
-		form.AddField ("user", this.username);
-		form.AddField ("pass", this.password);
+		form.AddField ("user", user);
+		form.AddField ("pass", pass);
 			
 
 		Debug.Log (form.data.GetLength (0));
@@ -230,6 +214,8 @@ public class GameManger : MonoBehaviour
 	//Get saves over the interwebs
 	IEnumerator getSaves ()
 	{
+		Debug.Log("Getting the latest save game...");
+		Savegame[] local = readPlayerPrefs (); //get local saves
 
 		UnityWebRequest www = UnityWebRequest.Get ("http://drproject.twi.tudelft.nl:8083/getSaves");
 
@@ -265,13 +251,27 @@ public class GameManger : MonoBehaviour
 					parts [i] = "{" + parts [i] + "}";
 					temp = Savegame.parseJSON (parts [i]);
 					online [i] = temp; //add saves to saves list
-					//Debug.Log("Partsno" + i + ": " + parts[i]);
-					//Debug.Log("Extracted savefile" + i + ": " + temp.toString());
+					Debug.Log("Partsno" + i + ": " + parts[i]);
+					Debug.Log("Extracted savefile" + i + ": " + temp.toString());
 
 
 				}
 
 
+			}
+
+			DateTime currentTimeStamp = DateTime.Parse (PlayerPrefs.GetString ("timeStamp"));
+			
+			int datecompare = DateTime.Compare (currentTimeStamp, serverTimeStamp);
+			
+			if (datecompare < 0) {
+				Debug.Log ("using server save file");
+				saves = online;
+				updatePlayerPrefs ();
+			} else{
+				Debug.Log ("using local save file");
+				saves = local;
+				updatePlayerPrefs ();
 			}
 
 
