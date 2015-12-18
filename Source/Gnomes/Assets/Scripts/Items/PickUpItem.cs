@@ -50,7 +50,7 @@ public class PickUpItem : MonoBehaviour
                 rb.isKinematic = false;
                 rb.detectCollisions = true;
                 transform.parent = null;
-                rb.AddForce(carrier.transform.forward * throwforce);
+                rb.AddForce(carrier.transform.forward * throwforce + Vector3.up * throwforce * 0.1f);
                 carrier = null;
             }
         }
