@@ -1,11 +1,11 @@
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2008
-
-Project("{8C1C6E0D-8DCE-B1D3-F545-FF217144E283}") = "Gnomes", "Assembly-CSharp-firstpass.csproj", "{C16B2C49-4EB6-8C76-0035-192DB25F9BFB}"
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gnomes.CSharp.Plugins", "Gnomes.CSharp.Plugins.csproj", "{8D89BD4D-3FF0-F7B8-0BCC-68E9ECA4C61A}"
 EndProject
-Project("{8C1C6E0D-8DCE-B1D3-F545-FF217144E283}") = "Gnomes", "Assembly-CSharp.csproj", "{FDBB3D64-074D-5825-722C-F14A37D7F227}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gnomes.CSharp", "Gnomes.CSharp.csproj", "{58E66EF9-57B3-26BE-3450-C53C0721FE03}"
 EndProject
-Project("{8C1C6E0D-8DCE-B1D3-F545-FF217144E283}") = "Gnomes", "Assembly-CSharp-Editor.csproj", "{D7BFBA09-5B9C-1FCA-B992-0AD11B7B18C3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gnomes.CSharp.Editor", "Gnomes.CSharp.Editor.csproj", "{EEE79C24-9E7E-0C63-A887-2BD63524A4B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,56 +13,20 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C16B2C49-4EB6-8C76-0035-192DB25F9BFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C16B2C49-4EB6-8C76-0035-192DB25F9BFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C16B2C49-4EB6-8C76-0035-192DB25F9BFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C16B2C49-4EB6-8C76-0035-192DB25F9BFB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FDBB3D64-074D-5825-722C-F14A37D7F227}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FDBB3D64-074D-5825-722C-F14A37D7F227}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FDBB3D64-074D-5825-722C-F14A37D7F227}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FDBB3D64-074D-5825-722C-F14A37D7F227}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D7BFBA09-5B9C-1FCA-B992-0AD11B7B18C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D7BFBA09-5B9C-1FCA-B992-0AD11B7B18C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D7BFBA09-5B9C-1FCA-B992-0AD11B7B18C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D7BFBA09-5B9C-1FCA-B992-0AD11B7B18C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D89BD4D-3FF0-F7B8-0BCC-68E9ECA4C61A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D89BD4D-3FF0-F7B8-0BCC-68E9ECA4C61A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D89BD4D-3FF0-F7B8-0BCC-68E9ECA4C61A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D89BD4D-3FF0-F7B8-0BCC-68E9ECA4C61A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58E66EF9-57B3-26BE-3450-C53C0721FE03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58E66EF9-57B3-26BE-3450-C53C0721FE03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58E66EF9-57B3-26BE-3450-C53C0721FE03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58E66EF9-57B3-26BE-3450-C53C0721FE03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEE79C24-9E7E-0C63-A887-2BD63524A4B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEE79C24-9E7E-0C63-A887-2BD63524A4B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEE79C24-9E7E-0C63-A887-2BD63524A4B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEE79C24-9E7E-0C63-A887-2BD63524A4B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																																																																																																																																																													GlobalSection(MonoDevelopProperties) = preSolution
-=======
-<<<<<<< HEAD
-																																																																																																																																														GlobalSection(MonoDevelopProperties) = preSolution
->>>>>>> develop
-=======
-																																																																																										GlobalSection(MonoDevelopProperties) = preSolution
-=======
-																																																																GlobalSection(MonoDevelopProperties) = preSolution
->>>>>>> 41e6782bdbc16c49496dc113108971a89452c9c1
->>>>>>> 675bd35fad532a10756c2f0d8bcc8b1fe002474a
-=======
-																																															GlobalSection(MonoDevelopProperties) = preSolution
->>>>>>> feature/animaties_kabouter
-=======
-								GlobalSection(MonoDevelopProperties) = preSolution
->>>>>>> develop
-		StartupItem = Assembly-CSharp.csproj
-		Policies = $0
-		$0.TextStylePolicy = $1
-		$1.inheritsSet = null
-		$1.scope = text/x-csharp
-		$0.CSharpFormattingPolicy = $2
-		$2.inheritsSet = Mono
-		$2.inheritsScope = text/x-csharp
-		$2.scope = text/x-csharp
-		$0.TextStylePolicy = $3
-		$3.FileWidth = 120
-		$3.TabWidth = 4
-		$3.IndentWidth = 4
-		$3.EolMarker = Unix
-		$3.inheritsSet = Mono
-		$3.inheritsScope = text/plain
-		$3.scope = text/plain
-	EndGlobalSection
-
 EndGlobal
