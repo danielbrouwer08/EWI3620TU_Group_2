@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.Analytics;
+using System.Collections.Generic;
+using UnityEditor;
 
 public class PlayerProperties : MonoBehaviour {
 
@@ -23,7 +26,7 @@ public class PlayerProperties : MonoBehaviour {
     {
         if(health <= 0)
         {
-            //Death();
+            Death();
         }
         healthbar.value = health;
 	}
@@ -41,6 +44,19 @@ public class PlayerProperties : MonoBehaviour {
 
     public void Death()
     {
+        int playerNum = GetComponent<PlayerController>().playerNum;
+
+        Analytics.CustomEvent("gameOver", new Dictionary<string, object>
+        {
+            { "score", score },
+            { "x-location",  gameObject.transform.position.x},
+            { "z-location", gameObject.transform.position.z},
+            { "playerNum",  playerNum},
+            { "currentScene", EditorApplication.currentScene}
+
+        });
+
         Destroy(gameObject);
+
     }
 }

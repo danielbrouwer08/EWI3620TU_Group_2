@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.Analytics;
+using System.Collections.Generic;
+using UnityEditor;
 
 public class PauseMenuScript : MonoBehaviour
 {
@@ -11,9 +14,14 @@ public class PauseMenuScript : MonoBehaviour
     public BackgroundController backgroundimage;
     public BackgroundController ingameinterface;
     public Button resumebutton;
+    public GameObject[] players;
 
     bool Paused = false;
     
+    void Start()
+    {
+        players = GameObject.FindGameObjectsWithTag("Player");
+    }
 
     void Update()
     {
@@ -26,6 +34,16 @@ public class PauseMenuScript : MonoBehaviour
             else if (Paused == false)
             {
                 PauseMenu();
+          
+                Analytics.CustomEvent("pauseClicked", new Dictionary<string, object>
+                {
+                    { "x-location1",  players[0].transform.position.x},
+                    { "z-location1", players[0].transform.position.z},
+                    { "x-location2",  players[1].transform.position.x},
+                    { "z-location2", players[1].transform.position.z},
+                    { "currentScene", EditorApplication.currentScene }
+                });
+               
             }
         }
         resumebutton.onClick.AddListener(delegate () { ResumeTime(); });
@@ -49,5 +67,10 @@ public class PauseMenuScript : MonoBehaviour
         ingameinterface.IsPause = false;
         pausemenu.IsOpen = false;
         Paused = false;
+    }
+
+    public void Mainmenu()
+    {
+        Application.LoadLevel("Main Menu");
     }
 }

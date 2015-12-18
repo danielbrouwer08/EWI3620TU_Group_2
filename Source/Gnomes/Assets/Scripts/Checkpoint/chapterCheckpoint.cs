@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Analytics;
+using System.Collections.Generic;
 //using UnityEngine.Experimental.Networking;
 
 public class chapterCheckpoint : MonoBehaviour
@@ -107,10 +109,33 @@ public class chapterCheckpoint : MonoBehaviour
 	{
 
 		if (collision.gameObject.tag.Equals ("Player")) {
-			if (collision.gameObject.GetComponent<PlayerController> ().playerNum == 1) {
-				player1In = true;
+
+            if (collision.gameObject.GetComponent<PlayerController> ().playerNum == 1) {
+
+                if (!player1In)
+                {
+                    Analytics.CustomEvent("checkPoint", new Dictionary<string, object>
+                    {
+                        { "x-location",  gameObject.transform.position.x},
+                        { "z-location", gameObject.transform.position.z},
+                        { "playerNum",  1}
+                    });
+                }
+
+                player1In = true;
 				player1 = collision.gameObject;
 			} else if (collision.gameObject.GetComponent<PlayerController> ().playerNum == 2) {
+
+                if (!player2In)
+                {
+                    Analytics.CustomEvent("checkPoint", new Dictionary<string, object>
+                    {
+                        { "x-location",  gameObject.transform.position.x},
+                        { "z-location", gameObject.transform.position.z},
+                        { "playerNum",  2}
+                    });
+                }
+
 				player2In = true;
 				player2 = collision.gameObject;
 			}

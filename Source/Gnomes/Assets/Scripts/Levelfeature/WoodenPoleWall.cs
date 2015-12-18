@@ -15,7 +15,7 @@ public class WoodenPoleWall : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		print ("appear: " + appear);
+		//print ("appear: " + appear);
 		if(appear && transform.position.y < finalYPosition)
 		{
 			transform.position = transform.position + new Vector3(0.0f,appearSpeed*Time.deltaTime,0.0f);
