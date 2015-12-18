@@ -11,8 +11,8 @@ public class PlayerProperties : MonoBehaviour {
     public Slider healthbar;
     public float health;
 	public int score;
-
-
+    private GameManger gameManager;
+    private int playerNum;
     bool damaged;
     bool dead;
 
@@ -22,6 +22,12 @@ public class PlayerProperties : MonoBehaviour {
         health = startinghealth;
         healthbar.value = health;
 	}
+
+    void Start()
+    {
+        gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManger>();
+        playerNum = GetComponent<PlayerController>().playerNum;
+    }
 	
 	void Update ()
     {
@@ -72,7 +78,27 @@ public class PlayerProperties : MonoBehaviour {
             UnityAnalyticsHeatmap.HeatmapEvent.Send("playerTwoDeath", GetComponent<Transform>().position, dict3);
         }
 
-        Destroy(gameObject);
+        Vector3 position = getLastSavedPos();
+        transform.position = position;
 
+    }
+
+    public Vector3 getLastSavedPos()
+    {
+        Vector3 spawnpos;
+
+        if (playerNum == 1)
+        {
+            spawnpos = gameManager.returnCurrent().P1Pos;
+            print("p1 spawn pos: " + spawnpos);
+        }
+        else
+        {
+            spawnpos = gameManager.returnCurrent().P2Pos;
+            print("p2 spawn pos: " + spawnpos);
+        }
+
+        transform.position = spawnpos;
+        return spawnpos;
     }
 }

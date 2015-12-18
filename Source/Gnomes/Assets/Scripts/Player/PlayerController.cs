@@ -70,19 +70,8 @@ public class PlayerController : MonoBehaviour
 
 		if(loadLastCheckpoint==true)
 		{
-			Vector3 spawnpos;
-
-			if(playerNum==1)
-			{
-				spawnpos = gameManager.returnCurrent().P1Pos;
-				print("p1 spawn pos: " + spawnpos);
-			}else
-			{
-				spawnpos = gameManager.returnCurrent().P2Pos;
-				print("p2 spawn pos: " + spawnpos);
-			}
-
-			transform.position = spawnpos;
+            Vector3 position = getLastSavedPos();
+			transform.position = position;
 		}
 
 		rb = GetComponent<Rigidbody> ();
@@ -105,7 +94,12 @@ public class PlayerController : MonoBehaviour
 	// Update is called every fixed framerate frame
 	void FixedUpdate ()
 	{
-        
+        if(transform.position.z > 50 | transform.position.z < 0)
+        {
+            Vector3 position = getLastSavedPos();
+            transform.position = position;
+        }
+
         if (nomovementtime > 0)
         {
             nomovementtime -= Time.fixedDeltaTime;
@@ -221,5 +215,24 @@ public class PlayerController : MonoBehaviour
     {
         rb.AddForce(force, ForceMode.VelocityChange);
         this.nomovementtime = nomovementtime;
+    }
+
+public Vector3 getLastSavedPos()
+    {
+        Vector3 spawnpos;
+
+        if (playerNum == 1)
+        {
+            spawnpos = gameManager.returnCurrent().P1Pos;
+            print("p1 spawn pos: " + spawnpos);
+        }
+        else
+        {
+            spawnpos = gameManager.returnCurrent().P2Pos;
+            print("p2 spawn pos: " + spawnpos);
+        }
+
+        transform.position = spawnpos;
+        return spawnpos;
     }
 }

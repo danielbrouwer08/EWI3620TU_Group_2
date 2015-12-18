@@ -57,7 +57,7 @@ public class WaterScript : MonoBehaviour
             }
             total = total / total.magnitude;
             Debug.DrawRay(other.transform.position, total * 3);
-            float force = 1000;
+            float force = 500;
             other.gameObject.GetComponent<Rigidbody>().AddForce(total * force);
         }
 
