@@ -63,19 +63,19 @@ public class PlayerProperties : MonoBehaviour {
 
         });
 
-        var dict = new Dictionary<string, object>();
+        var dict3 = new Dictionary<string, object>();
 
-        dict["currentScene"] = EditorApplication.currentScene;
-        dict["Score"] = score;
+        dict3["currentScene"] = EditorApplication.currentScene;
+        dict3["Score"] = score;
 
         if (playerNum == 1)
         {
-            UnityAnalyticsHeatmap.HeatmapEvent.Send("playerOneDeath", GetComponent<Transform>().position, dict);
+            UnityAnalyticsHeatmap.HeatmapEvent.Send("playerOneDeath", GetComponent<Transform>().position, dict3);
         }
 
         if (playerNum == 2)
         {
-            UnityAnalyticsHeatmap.HeatmapEvent.Send("playerTwoDeath", GetComponent<Transform>().position, dict);
+            UnityAnalyticsHeatmap.HeatmapEvent.Send("playerTwoDeath", GetComponent<Transform>().position, dict3);
         }
 
         Vector3 position = getLastSavedPos();

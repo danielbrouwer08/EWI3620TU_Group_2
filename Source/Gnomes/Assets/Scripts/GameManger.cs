@@ -25,6 +25,12 @@ public class GameManger : MonoBehaviour
 
 		int online = PlayerPrefs.GetInt ("onlinemode");
 
+		if(PlayerPrefs.GetString("teamname")!=null)
+		{
+			username = PlayerPrefs.GetString("teamname");
+			password = PlayerPrefs.GetString("password");
+		}
+
 		if (online == 1) {
 			onlinemode = true;
 		} else {
@@ -45,6 +51,8 @@ public class GameManger : MonoBehaviour
 		Debug.Log ("Register");
 		this.password = pass;
 		this.username = user;
+		PlayerPrefs.SetString("teamname",user);
+		PlayerPrefs.SetString("password",pass);
 		
 		StartCoroutine (registerOnServer ());
 	}
