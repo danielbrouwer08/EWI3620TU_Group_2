@@ -91,15 +91,15 @@ public class checkpoint : MonoBehaviour
 	{
 
 		if (collision.gameObject.tag.Equals ("Player")) {
-            var dict = new Dictionary<string, object>();
+            var dict2 = new Dictionary<string, object>();
 
             if (collision.gameObject.GetComponent<PlayerController> ().playerNum == 1) {
 
 
                 if (!player1In)
                 {
-                    dict["currentScene"] = EditorApplication.currentScene;
-                    dict["playerNum"] = 1;
+                    dict2["currentScene"] = EditorApplication.currentScene;
+                    dict2["playerNum"] = 1;
 
                     Analytics.CustomEvent("checkPoint", new Dictionary<string, object>
                     {
@@ -108,7 +108,7 @@ public class checkpoint : MonoBehaviour
                         { "playerNum",  1}
                     });
 
-                    UnityAnalyticsHeatmap.HeatmapEvent.Send("checkpoint", gameObject.transform.position, dict);
+                    UnityAnalyticsHeatmap.HeatmapEvent.Send("checkpoint", gameObject.transform.position, dict2);
                 }
 
                 player1In = true;
@@ -117,8 +117,8 @@ public class checkpoint : MonoBehaviour
 
                 if (!player2In)
                 {
-                    dict["currentScene"] = EditorApplication.currentScene;
-                    dict["playerNum"] = 1;
+                    dict2["currentScene"] = EditorApplication.currentScene;
+                    dict2["playerNum"] = 1;
 
                     Analytics.CustomEvent("checkPoint", new Dictionary<string, object>
                     {
@@ -127,7 +127,7 @@ public class checkpoint : MonoBehaviour
                         { "playerNum",  2}
                     });
 
-                    UnityAnalyticsHeatmap.HeatmapEvent.Send("checkpoint", gameObject.transform.position, dict);
+                    UnityAnalyticsHeatmap.HeatmapEvent.Send("checkpoint", gameObject.transform.position, dict2);
                 }
 
 

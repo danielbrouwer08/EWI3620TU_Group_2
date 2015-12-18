@@ -125,7 +125,7 @@ ModelImporter:
     7400000: Default Take
     7400002: Lopen
     7400004: Springen
-    7400006: Lopen0
+    7400006: Lopen
     7400008: Stilstaan
     7400010: Rennen
     9500000: //RootNode
@@ -154,7 +154,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Lopen0
+      name: Lopen
       takeName: Lopen
       firstFrame: -1
       lastFrame: 19

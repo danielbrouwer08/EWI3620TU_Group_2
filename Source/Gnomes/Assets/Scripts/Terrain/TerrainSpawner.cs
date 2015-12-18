@@ -314,7 +314,7 @@ public class TerrainSpawner : MonoBehaviour
             }
         }
 
-        Debug.Log("COINSADDED" + coinsadded);
+        //Debug.Log("COINSADDED" + coinsadded);
     }
 
     void addEnemy(Terrain terrain, int amount)
