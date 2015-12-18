@@ -29,10 +29,18 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+<<<<<<< HEAD
 																																																																																																																																																																		GlobalSection(MonoDevelopProperties) = preSolution
+=======
+																																																																																																																																					GlobalSection(MonoDevelopProperties) = preSolution
+=======
+<<<<<<< HEAD
+																																																																																																																																																									GlobalSection(MonoDevelopProperties) = preSolution
+>>>>>>> 23a19f014f2c763841da973fb8cfb6dfbb32411d
 =======
 <<<<<<< HEAD
 																																																																																																																																														GlobalSection(MonoDevelopProperties) = preSolution
+>>>>>>> develop
 >>>>>>> develop
 =======
 																																																																																										GlobalSection(MonoDevelopProperties) = preSolution
@@ -43,8 +51,11 @@ Global
 =======
 																																															GlobalSection(MonoDevelopProperties) = preSolution
 >>>>>>> feature/animaties_kabouter
+<<<<<<< HEAD
+=======
 =======
 								GlobalSection(MonoDevelopProperties) = preSolution
+>>>>>>> develop
 >>>>>>> develop
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
