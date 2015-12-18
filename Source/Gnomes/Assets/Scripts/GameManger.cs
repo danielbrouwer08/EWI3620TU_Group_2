@@ -23,7 +23,9 @@ public class GameManger : MonoBehaviour
 	{
 		currentslot = PlayerPrefs.GetInt ("saveslot");
 
-		int online = PlayerPrefs.GetInt ("onlinemode");
+		//int online = PlayerPrefs.GetInt ("onlinemode");
+
+		saves = readPlayerPrefs ();
 
 		if(PlayerPrefs.GetString("teamname")!=null)
 		{
