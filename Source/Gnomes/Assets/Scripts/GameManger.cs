@@ -11,7 +11,7 @@ public class GameManger : MonoBehaviour
 	private string password;
 	public  int saveslots = 3;
 	public  Savegame[] saves = new Savegame[3];
-	private  int currentslot = 0;
+	public  int currentslot = 0;
 	DateTime serverTimeStamp;
 	private Savegame[] online = new Savegame[3];
 	public bool loginSucceed = false;
@@ -35,7 +35,7 @@ public class GameManger : MonoBehaviour
 
 		Debug.Log(PlayerPrefs.GetString ("timeStamp"));
 
-		onlineMode("Daniel","mijn_eerste_password");
+		//onlineMode("Daniel","mijn_eerste_password");
 
 	}
 

@@ -19,7 +19,7 @@ public class Savegame{
 
 	public String toString()
 	{
-		String temp = P1Pos.ToString() + "," + P1Health + "," + P1Score + "," + P2Pos.ToString() + "," + P2Health + "," + P2Score;
+		String temp = P1Pos.ToString() + "," + P1Health + "," + P1Score + "," + P2Pos.ToString() + "," + P2Health + "," + P2Score + "," + chapter;
 		return temp;
 	}
 

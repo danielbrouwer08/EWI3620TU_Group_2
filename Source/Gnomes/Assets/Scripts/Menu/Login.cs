@@ -20,20 +20,21 @@ public class Login : MonoBehaviour {
     {
         string user = Teamname.text;
         string pass = pw.text;
-        if (user == pass)
+        gamemanager.onlineMode(user, pass);
+        StartCoroutine(Registerthread());
+    }
+
+    IEnumerator Registerthread()
+    {
+        yield return new WaitForSeconds(2);
+        if (gamemanager.loginSucceed == true)
         {
-            Registerthread();
+            PlayerPrefs.SetString("menuteamname", Teamname.text);
+            Application.LoadLevel("Main Menu");
         }
         else
         {
             menus.ShowMenu(wrongpws);
         }
-    }
-
-    IEnumerator Registerthread()
-    {
-        yield return new WaitForSeconds(4);
-        //if (gamemanager.registerSucceed == true) menus.ShowMenu(confirmmenu);
-        Debug.Log("blablabla");
     }
 }

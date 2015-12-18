@@ -24,8 +24,7 @@ public class Registration : MonoBehaviour {
         string pass2 = pw2.text;
         if (pass1 == pass2)
         {
-            //gamemanager.register(teamtxt, pass1);
-            Debug.Log("blob");
+            gamemanager.register(teamtxt, pass1);
             StartCoroutine(Registerthread());
         }
         else
@@ -36,9 +35,8 @@ public class Registration : MonoBehaviour {
 
     IEnumerator Registerthread()
     {
-        yield return new WaitForSeconds(4);
-        //if (gamemanager.registerSucceed == true) menus.ShowMenu(confirmmenu);
-        Debug.Log("blablabla");
+        yield return new WaitForSeconds(2);
+        if (gamemanager.registerSucceed == true) menus.ShowMenu(confirmmenu);
     }
 
 }
