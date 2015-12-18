@@ -21,14 +21,13 @@ public class PickUpItem : MonoBehaviour
     public string skill;
     private Vector3 startpos;
 
-
     void OnCollisionExit(Collision other)
     {
         hasPlayer = false;
     }
     void Start()
     {
-        startpos = transform.position;
+        startpos = GetComponent<Transform>().position;
         rb = GetComponent<Rigidbody>();
         col = GetComponent<Collider>();
         player = GameObject.FindGameObjectsWithTag("Player");
@@ -36,7 +35,7 @@ public class PickUpItem : MonoBehaviour
 
     void Update()
     {
-        if(transform.position.z > 50 | transform.position.z < 0 | transform.position.x < 0)
+        if(transform.position.z > 50 || transform.position.z < 0 || transform.position.x < 0)
         {
             transform.position = startpos;
             transform.eulerAngles = new Vector3(0, 0, 0);

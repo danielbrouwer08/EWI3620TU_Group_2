@@ -4,7 +4,7 @@ using System.Collections;
 public class EnemyAI : MonoBehaviour
 {
     private Transform goal;
-    private NavMeshAgent agent;
+    //private NavMeshAgent agent;
     private int playerinrange;
     public float triggerdistance = 10;
     public float lookdistance = 15;
@@ -16,7 +16,7 @@ public class EnemyAI : MonoBehaviour
 
     void Awake ()
     {
-        agent = GetComponent<NavMeshAgent>();
+        //agent = GetComponent<NavMeshAgent>();
         playerinrange = -1;
         player = GameObject.FindGameObjectsWithTag("Player");
         start = transform.position;
@@ -40,11 +40,11 @@ public class EnemyAI : MonoBehaviour
             if(Vector3.Magnitude(transform.position - player[playerinrange].transform.position) > lookdistance)
             {
                 playerinrange = -1;
-                agent.SetDestination(start);
+                //agent.SetDestination(start);
             }
             else
             {
-                agent.SetDestination(goal.position);
+                //agent.SetDestination(goal.position);
             }
         }
     }
