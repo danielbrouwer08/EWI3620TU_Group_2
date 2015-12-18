@@ -23,7 +23,7 @@ public class LeafSpawnerScript : MonoBehaviour {
         float randomTime = Random.Range(1, spawnrange * 0.1f);
 
         float rnd = Random.value * spawnrange;
-        Rigidbody clone = (Rigidbody)Instantiate(leaf, new Vector3(rnd + transform.position.x - 0.5f * spawnrange, 0, 0), transform.rotation);
+        Rigidbody clone = (Rigidbody)Instantiate(leaf, new Vector3(rnd + transform.position.x - 0.5f * spawnrange, transform.position.y, 1f), transform.rotation);
 
         Invoke("Spawn", randomTime);
     }
