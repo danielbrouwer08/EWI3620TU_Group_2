@@ -225,15 +225,15 @@ public class Puzzle7_AI_Boss : MonoBehaviour
 	
 	}
 
-//	void OnCollisionEnter (Collision col)
-//	{
-//		if (col.gameObject.CompareTag ("cheese")) {
-//			Destroy (col.gameObject); //destroy the cheese with certain time delay
-//		}
-//
-//		if (col.gameObject.CompareTag ("Player")) {
-//			col.gameObject.GetComponent<PlayerProperties> ().TakeDamage (damage);
-//			col.gameObject.GetComponent<PlayerController> ().ExternalForce ((col.gameObject.transform.position - transform.position) * Knockback, nomovementtime);
-//		}
-//	}
+	void OnCollisionEnter (Collision col)
+	{
+		if (col.gameObject.CompareTag ("Hammer")) {
+			Destroy (col.gameObject); //destroy the cheese with certain time delay
+		}
+
+		if (col.gameObject.CompareTag ("Player")) {
+			col.gameObject.GetComponent<PlayerProperties> ().TakeDamage (damage);
+			col.gameObject.GetComponent<PlayerController> ().ExternalForce ((col.gameObject.transform.position - transform.position) * Knockback, nomovementtime);
+		}
+	}
 }
