@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.Analytics;
 using System.Collections.Generic;
+using UnityEditor;
 //using UnityEngine.Experimental.Networking;
 
 public class checkpoint : MonoBehaviour
@@ -90,16 +91,24 @@ public class checkpoint : MonoBehaviour
 	{
 
 		if (collision.gameObject.tag.Equals ("Player")) {
-			if (collision.gameObject.GetComponent<PlayerController> ().playerNum == 1) {
+            var dict = new Dictionary<string, object>();
+
+            if (collision.gameObject.GetComponent<PlayerController> ().playerNum == 1) {
+
 
                 if (!player1In)
                 {
+                    dict["currentScene"] = EditorApplication.currentScene;
+                    dict["playerNum"] = 1;
+
                     Analytics.CustomEvent("checkPoint", new Dictionary<string, object>
                     {
                         { "x-location",  gameObject.transform.position.x},
                         { "z-location", gameObject.transform.position.z},
                         { "playerNum",  1}
                     });
+
+                    UnityAnalyticsHeatmap.HeatmapEvent.Send("checkpoint", gameObject.transform.position, dict);
                 }
 
                 player1In = true;
@@ -108,12 +117,17 @@ public class checkpoint : MonoBehaviour
 
                 if (!player2In)
                 {
+                    dict["currentScene"] = EditorApplication.currentScene;
+                    dict["playerNum"] = 1;
+
                     Analytics.CustomEvent("checkPoint", new Dictionary<string, object>
                     {
                         { "x-location",  gameObject.transform.position.x},
                         { "z-location", gameObject.transform.position.z},
                         { "playerNum",  2}
                     });
+
+                    UnityAnalyticsHeatmap.HeatmapEvent.Send("checkpoint", gameObject.transform.position, dict);
                 }
 
 
