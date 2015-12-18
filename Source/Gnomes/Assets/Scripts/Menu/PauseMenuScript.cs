@@ -68,4 +68,9 @@ public class PauseMenuScript : MonoBehaviour
         pausemenu.IsOpen = false;
         Paused = false;
     }
+
+    public void Mainmenu()
+    {
+        Application.LoadLevel("Main Menu");
+    }
 }
