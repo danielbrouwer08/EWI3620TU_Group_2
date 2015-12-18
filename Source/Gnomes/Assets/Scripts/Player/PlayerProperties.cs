@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.Analytics;
 using System.Collections.Generic;
-using UnityEditor;
+//using UnityEditor;
 
 public class PlayerProperties : MonoBehaviour {
 
@@ -59,13 +59,13 @@ public class PlayerProperties : MonoBehaviour {
             { "x-location",  gameObject.transform.position.x},
             { "z-location", gameObject.transform.position.z},
             { "playerNum",  playerNum},
-            { "currentScene", EditorApplication.currentScene}
+			{ "currentScene", Application.loadedLevelName}
 
         });
 
         var dict3 = new Dictionary<string, object>();
 
-        dict3["currentScene"] = EditorApplication.currentScene;
+		dict3["currentScene"] = Application.loadedLevelName;
         dict3["Score"] = score;
 
         if (playerNum == 1)

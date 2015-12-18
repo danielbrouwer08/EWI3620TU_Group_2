@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.Analytics;
 using System.Collections.Generic;
-using UnityEditor;
+//using UnityEditor;
 
 public class PauseMenuScript : MonoBehaviour
 {
@@ -41,7 +41,7 @@ public class PauseMenuScript : MonoBehaviour
                     { "z-location1", players[0].transform.position.z},
                     { "x-location2",  players[1].transform.position.x},
                     { "z-location2", players[1].transform.position.z},
-                    { "currentScene", EditorApplication.currentScene }
+					{ "currentScene", Application.loadedLevelName }
                 });
                
             }

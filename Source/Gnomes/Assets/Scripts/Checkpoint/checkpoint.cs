@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.Analytics;
 using System.Collections.Generic;
-using UnityEditor;
+//using UnityEditor;
 //using UnityEngine.Experimental.Networking;
 
 public class checkpoint : MonoBehaviour
@@ -98,7 +98,7 @@ public class checkpoint : MonoBehaviour
 
                 if (!player1In)
                 {
-                    dict2["currentScene"] = EditorApplication.currentScene;
+					dict2["currentScene"] = Application.loadedLevelName;
                     dict2["playerNum"] = 1;
 
                     Analytics.CustomEvent("checkPoint", new Dictionary<string, object>
@@ -117,7 +117,7 @@ public class checkpoint : MonoBehaviour
 
                 if (!player2In)
                 {
-                    dict2["currentScene"] = EditorApplication.currentScene;
+					dict2["currentScene"] = Application.loadedLevelName;
                     dict2["playerNum"] = 1;
 
                     Analytics.CustomEvent("checkPoint", new Dictionary<string, object>
