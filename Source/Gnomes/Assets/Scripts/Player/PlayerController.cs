@@ -49,6 +49,14 @@ public class PlayerController : MonoBehaviour
 	void Start ()
 	{
 		gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManger>();
+        if(PlayerPrefs.GetString("playermode") == "single")
+        {
+            isSinglePlayer = true;
+        }
+        else
+        {
+            isSinglePlayer = false;
+        }
 
         if (playerNum == 1)
         {
