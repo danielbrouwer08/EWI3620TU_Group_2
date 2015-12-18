@@ -137,7 +137,7 @@ public class ChapterLoader : MonoBehaviour {
 		float y_offset_terrain = lastTerrainPiece(returnTerrainObjects(level)).transform.position.y;
 		GameObject.Instantiate (level, spawnOffset - new Vector3(0.0f,y_offset_terrain,0.0f), Quaternion.Euler (0, 0, 0));
 	
-		print ("terrainlength: " + terrainLength(level));
+		//print ("terrainlength: " + terrainLength(level));
 		spawnOffset += new Vector3(terrainLength(level),0.0f,0.0f);
 	}
 

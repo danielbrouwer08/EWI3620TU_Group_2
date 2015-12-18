@@ -45,7 +45,6 @@ public class PickUpItem : MonoBehaviour
                 zPosPlayer = player[i].GetComponent<Transform>().position.z;
 
                 playerinrange = i;
-                Debug.Log(playerNum);
             }
         }
         //Debug.Log(playerinrange);

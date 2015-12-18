@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
         if (playerNum == 1)
         {
             anim["Springen"].speed = animjump1;
-            anim["Lopen0"].speed = animwalk1;
+            anim["Lopen"].speed = animwalk1;
             anim["Rennen"].speed = animrun1;
 
         }
@@ -191,7 +191,6 @@ public class PlayerController : MonoBehaviour
             {
                 if (!running)
                 {
-                    anim.Play("Lopen0");
                     anim.Play("Lopen");
                 }
                 else
