@@ -32,11 +32,11 @@ public class GameManger : MonoBehaviour
 		}
 
 		//TESTING PURPOSE:
-		register ("blabla", "huehuehue");
+		//register ("blabla", "huehuehue");
 		//StartCoroutine (getSaves ()); //get new saves from server and wait (blocking)
 
-		onlineMode (); 
-
+		//onlineMode (); 
+		offlineMode();
 
 	}
 
