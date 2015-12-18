@@ -12,6 +12,7 @@ public class PlayerProperties : MonoBehaviour {
     public float health;
 	public int score;
 
+
     bool damaged;
     bool dead;
 
@@ -55,6 +56,21 @@ public class PlayerProperties : MonoBehaviour {
             { "currentScene", EditorApplication.currentScene}
 
         });
+
+        var dict = new Dictionary<string, object>();
+
+        dict["currentScene"] = EditorApplication.currentScene;
+        dict["Score"] = score;
+
+        if (playerNum == 1)
+        {
+            UnityAnalyticsHeatmap.HeatmapEvent.Send("playerOneDeath", GetComponent<Transform>().position, dict);
+        }
+
+        if (playerNum == 2)
+        {
+            UnityAnalyticsHeatmap.HeatmapEvent.Send("playerTwoDeath", GetComponent<Transform>().position, dict);
+        }
 
         Destroy(gameObject);
 

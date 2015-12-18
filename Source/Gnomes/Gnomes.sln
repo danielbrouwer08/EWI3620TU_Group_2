@@ -29,7 +29,12 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+<<<<<<< HEAD
 																																																																																																																																																									GlobalSection(MonoDevelopProperties) = preSolution
+=======
+<<<<<<< HEAD
+																																																																																																																																														GlobalSection(MonoDevelopProperties) = preSolution
+>>>>>>> develop
 =======
 																																																																																										GlobalSection(MonoDevelopProperties) = preSolution
 =======
@@ -61,4 +66,9 @@ Global
 		$3.scope = text/plain
 	EndGlobalSection
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> develop
+>>>>>>> develop
 EndGlobal
