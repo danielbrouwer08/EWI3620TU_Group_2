@@ -58,14 +58,14 @@ public class PlayerController : MonoBehaviour
             isSinglePlayer = false;
         }
 
-        if (playerNum == 1)
-        {
-            isActive = true;
-        }
-        else
-        {
-            isActive = false;
-        }
+		if (playerNum == 2 && isSinglePlayer)
+		{
+			isActive = false;
+		}
+		else
+		{
+			isActive = true;
+		}
 
         if (isSinglePlayer)
         {

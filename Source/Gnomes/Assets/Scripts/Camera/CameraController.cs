@@ -48,8 +48,8 @@ public class CameraController : MonoBehaviour {
         {
             cameratrigger = 50;
         }
-        if (cameratrigger >= 120){
-            cameratrigger = 120;
+        if (cameratrigger >= 70){
+            cameratrigger = 70;
         }
     }
 
