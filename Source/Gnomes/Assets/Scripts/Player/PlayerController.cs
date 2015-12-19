@@ -157,7 +157,8 @@ public class PlayerController : MonoBehaviour
 	//Get input from player
 	void getPlayerInput ()
     {
-		VerticalPlayerInput = Input.GetAxis ("Vertical" + input);
+        Debug.Log("Jippie player input :)");
+        VerticalPlayerInput = Input.GetAxis ("Vertical" + input);
 		HorizontalPlayerInput = Input.GetAxis ("Horizontal" + input);
         float angle;
         if (HorizontalPlayerInput == 0)
