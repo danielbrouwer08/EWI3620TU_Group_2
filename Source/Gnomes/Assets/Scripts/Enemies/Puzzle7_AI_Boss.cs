@@ -111,7 +111,7 @@ public class Puzzle7_AI_Boss : MonoBehaviour
 		case "idle":
 			{
 				animation.Play ("idle");
-				if (agent != null) {
+				if (agent.isActiveAndEnabled) {
 					agent.Stop ();
 					determineInrangeObjects ();
 				

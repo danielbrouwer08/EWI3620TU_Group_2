@@ -13,7 +13,7 @@ public class GameManger : MonoBehaviour
 	public  Savegame[] saves = new Savegame[3];
 	public  int currentslot = 0;
 	DateTime serverTimeStamp;
-	private Savegame[] online = new Savegame[3];
+	//private Savegame[] online = new Savegame[3];
 	public bool loginSucceed = false;
 	public bool registerSucceed = false;
 	//private bool onlinemode;
@@ -21,11 +21,16 @@ public class GameManger : MonoBehaviour
 
 	void Awake ()
 	{
-		currentslot = PlayerPrefs.GetInt ("saveslot");
-
-		//int online = PlayerPrefs.GetInt ("onlinemode");
-
 		saves = readPlayerPrefs ();
+
+		if(!(PlayerPrefs.GetInt ("saveslot")==null))
+		{
+			currentslot = PlayerPrefs.GetInt ("saveslot");
+		}else
+		{
+			currentslot = 0;
+		}
+		//int online = PlayerPrefs.GetInt ("onlinemode");
 
 		if(PlayerPrefs.GetString("teamname")!=null)
 		{
@@ -33,7 +38,7 @@ public class GameManger : MonoBehaviour
 			password = PlayerPrefs.GetString("password");
 		}
 
-		Debug.Log(PlayerPrefs.GetString ("timeStamp"));
+		//Debug.Log(PlayerPrefs.GetString ("timeStamp"));
 
 		//onlineMode("Daniel","mijn_eerste_password");
 
@@ -66,10 +71,10 @@ public class GameManger : MonoBehaviour
 
 	private void offlineMode ()
 	{
-		Savegame[] local = readPlayerPrefs (); //get local saves
+		//Savegame[] local = readPlayerPrefs (); //get local saves
 
 		Debug.Log ("using local save file");
-		saves = local;
+		//saves = local;
 	}
 	
 	public Savegame returnCurrent ()
@@ -88,7 +93,26 @@ public class GameManger : MonoBehaviour
 		StartCoroutine (sendSave ());
 	}
 
-	public void emptySave ()
+	public void emptySaves()
+	{
+		PlayerPrefs.DeleteAll();
+		Vector3 P1Pos = new Vector3(23.5f, 3.5f, 25.0f);
+		Vector3 P2Pos = new Vector3(26.5f, 3.5f, 25.0f);
+		float P1Health = 100;
+		float P2Health = 100;
+		int P1Score = 0;
+		int P2Score = 0;
+		currentslot = 0;
+		//Debug.Log ("Adding the following savefile to the playerprefs: " + savegame.toString ());
+		for(int i=0;i<saves.Length;i++)
+		{
+			saves[i] = new Savegame(P1Pos, P1Health, P1Score, P2Pos, P2Health, P2Score,"Chapter1");
+		}
+	
+		updatePlayerPrefs ();
+	}
+
+	public Savegame emptySave ()
 	{
 		Vector3 P1Pos = new Vector3(23.5f, 3.5f, 25.0f);
 		Vector3 P2Pos = new Vector3(26.5f, 3.5f, 25.0f);
@@ -98,8 +122,8 @@ public class GameManger : MonoBehaviour
 		int P2Score = 0;
 		currentslot = 0;
 		//Debug.Log ("Adding the following savefile to the playerprefs: " + savegame.toString ());
-		saves [currentslot] = new Savegame(P1Pos, P1Health, P1Score, P2Pos, P2Health, P2Score,"Chapter1");
-		updatePlayerPrefs ();
+		return new Savegame(P1Pos, P1Health, P1Score, P2Pos, P2Health, P2Score,"Chapter1");
+		//updatePlayerPrefs ();
 		
 		//upload data to the server
 		//StartCoroutine (sendSave ());
@@ -114,6 +138,9 @@ public class GameManger : MonoBehaviour
 		for (int i = 0; i<saveslots; i++) {
 			if ((saves [i]) != null) {
 				PlayerPrefs.SetString ("saveNo" + i, Savegame.getJSON (saves [i]));
+			}else
+			{
+				PlayerPrefs.SetString ("saveNo" + i, Savegame.getJSON(emptySave()));
 			}
 		}
 
@@ -130,6 +157,9 @@ public class GameManger : MonoBehaviour
 			if (PlayerPrefs.GetString ("saveNo" + i) != null) {
 				saves [i] = Savegame.parseJSON (PlayerPrefs.GetString ("saveNo" + i));
 				//Debug.Log ("Wat ik heb geparst: " + saves [i].toString ());
+			}else
+			{
+				saves[i] = emptySave();
 			}
 		}
 
@@ -233,7 +263,7 @@ public class GameManger : MonoBehaviour
 	IEnumerator getSaves ()
 	{
 		Debug.Log("Getting the latest save game...");
-		Savegame[] local = readPlayerPrefs (); //get local saves
+		Savegame[] online = new Savegame[saveslots]; //get local saves
 
 		UnityWebRequest www = UnityWebRequest.Get ("http://drproject.twi.tudelft.nl:8083/getSaves");
 
@@ -288,8 +318,8 @@ public class GameManger : MonoBehaviour
 				updatePlayerPrefs ();
 			} else{
 				Debug.Log ("using local save file");
-				saves = local;
-				updatePlayerPrefs ();
+				//saves = local;
+				//updatePlayerPrefs ();
 			}
 
 

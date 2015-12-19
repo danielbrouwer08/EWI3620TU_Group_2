@@ -12,7 +12,7 @@ public class GameStart : MonoBehaviour {
 
     public void ChapterLoad()
     {
-		gamemanager.emptySave ();
+		gamemanager.emptySaves ();
 		Debug.Log("loading chapter 1");
         Application.LoadLevel("Chapter1");
     }
