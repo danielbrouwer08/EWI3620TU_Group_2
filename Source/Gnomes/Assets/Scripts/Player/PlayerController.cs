@@ -104,8 +104,10 @@ public class PlayerController : MonoBehaviour
 	{
         if(transform.position.z > 50 | transform.position.z < 0)
         {
-            Vector3 position = getLastSavedPos();
-            transform.position = position;
+            GetComponent<PlayerProperties>().Death();
+
+            //Vector3 position = getLastSavedPos();
+            //transform.position = position;
         }
 
         if (nomovementtime > 0)

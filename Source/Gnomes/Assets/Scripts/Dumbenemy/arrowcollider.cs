@@ -40,7 +40,6 @@ public class arrowcollider : MonoBehaviour {
 
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("player hit");
             other.GetComponent<PlayerProperties>().TakeDamage(damage);
 
             Analytics.CustomEvent("playerHit", new Dictionary<string, object>

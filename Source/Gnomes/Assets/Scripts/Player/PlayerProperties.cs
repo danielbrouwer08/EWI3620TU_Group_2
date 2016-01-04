@@ -81,6 +81,8 @@ public class PlayerProperties : MonoBehaviour {
         Vector3 position = getLastSavedPos();
         transform.position = position;
 
+        health = startinghealth;
+
     }
 
     public Vector3 getLastSavedPos()
