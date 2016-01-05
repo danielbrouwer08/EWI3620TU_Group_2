@@ -36,7 +36,7 @@ public class WallOfDeath : MonoBehaviour {
 			if(transform.position.z<0)
 			{
 				movewall = false;
-				GameObject.Destroy(this);
+				Destroy(this.gameObject);
 			}
 
 		}
