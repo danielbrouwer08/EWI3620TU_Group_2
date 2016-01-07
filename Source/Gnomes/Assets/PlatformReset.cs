@@ -1,15 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlatformScript : MonoBehaviour {
+public class PlatformReset : MonoBehaviour {
+    public GameObject[] player;
     public Transform[] waypoints;
     private int curwaypoint = 0;
     public float speed = 1;
     public SwitchScript switcher;
+
+    void Start ()
+    {
+        player = GameObject.FindGameObjectsWithTag("Player");
+    }
 	
-	// Update is called once per frame
-	void FixedUpdate () {
-        if (switcher.switchon)
+	void Update ()
+    {
+	    if(transform.position.x - player[0].transform.position.x > 10 && transform.position.x - player[1].transform.position.x > 10)
         {
             //Check if you are on a waypoint, if not:
             if (transform.position != waypoints[curwaypoint].position)
@@ -20,21 +26,5 @@ public class PlatformScript : MonoBehaviour {
             //if a waypoint is reached:
             else curwaypoint = (curwaypoint + 1) % waypoints.Length;
         }
-    }
-
-    void OnCollisionStay(Collision other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            other.gameObject.transform.parent = gameObject.transform;
-        }
-    }
-    
-    void OnCollisionExit(Collision other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            other.gameObject.transform.parent = null;
-        }
-    }
+	}
 }
