@@ -151,7 +151,7 @@ public class PlayerController : MonoBehaviour
                 {
                     rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
                 }
-                rb.AddForce(movement / 10, ForceMode.VelocityChange);
+                rb.AddForce(movement / 20, ForceMode.VelocityChange);
             }
         }
 	}
@@ -211,14 +211,53 @@ public class PlayerController : MonoBehaviour
                 anim.Play("Stilstaan");
             jump = false;
         }
-}
+    }
+
+    /*public bool grounded()
+    {
+        RaycastHit[] hit;
+        hit = new RaycastHit[8];
+        float[] distance;
+        distance = new float[8];
+        for(int i = 0; i<8; i++)
+        {
+            Vector3 displacement;
+            if (i < 2)
+            {
+                displacement = Vector3.forward * 0.1f;
+            }
+            else if(i < 4)
+            {
+                displacement = - Vector3.forward * 0.1f;
+            }
+            else if(i < 6)
+            {
+                displacement = Vector3.right * 0.1f;
+            }
+            else
+            {
+                displacement = -Vector3.right * 0.1f;
+            }
+            Physics.Raycast(transform.position + displacement, Vector3.up * (i % 2 * 2 - 1), out hit[i], 0.25f);
+            distance[i] = hit[i].distance;
+            //Debug.Log(distance[i]);
+        }
+        float som = 0;
+        for (int i = 0; i < 4; i++)
+        {
+            float afstand = Mathf.Max(distance[i * 2], distance[i * 2 + 1]);
+            if(afstand == 0)
+            {
+                afstand = 0.25f;
+            }
+            som += afstand;
+        }
+        return som < 0.5f;
+    }*/
 
     public bool grounded()
     {
-        return Physics.Raycast(transform.position + Vector3.forward * 0.5f, -Vector3.up, 1.1f) ||
-               Physics.Raycast(transform.position - Vector3.forward * 0.5f, -Vector3.up, 1.1f) ||
-               Physics.Raycast(transform.position + Vector3.right * 0.5f, -Vector3.up, 1.1f) ||
-               Physics.Raycast(transform.position - Vector3.right * 0.5f, -Vector3.up, 1.1f);
+        return Physics.Raycast(transform.position + 0.1f * Vector3.up, -Vector3.up, 0.25f);
     }
 
     public void ExternalForce(Vector3 force, float nomovementtime)
