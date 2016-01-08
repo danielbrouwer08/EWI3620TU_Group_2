@@ -9,7 +9,9 @@ public class ChapterLoader : MonoBehaviour {
 	public GameObject chapterStartCheckpoint;
 	public GameObject ChapterEndCheckpoint;
 	public GameObject[] levels;
-	private Vector3 spawnOffset = new Vector3(0.0f,0.0f,0.0f);
+	public Vector3 spawnOffset = new Vector3(0.0f,0.0f,0.0f);
+    public bool doneLoading = false;
+
 
 	// Use this for initialization
 	void Start () {
@@ -26,7 +28,7 @@ public class ChapterLoader : MonoBehaviour {
 		}
 
 		instantiateCheckpointTerrain(ChapterEndCheckpoint);
-	
+        doneLoading = true;	
 	}
 
 
