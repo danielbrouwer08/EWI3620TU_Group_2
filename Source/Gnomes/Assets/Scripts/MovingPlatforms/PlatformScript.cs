@@ -6,10 +6,6 @@ public class PlatformScript : MonoBehaviour {
     private int curwaypoint = 0;
     public float speed = 1;
     public SwitchScript switcher;
-
-	// Use this for initialization
-	void Start () {
-	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
