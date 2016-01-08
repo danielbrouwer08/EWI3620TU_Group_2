@@ -62,4 +62,13 @@ public class EnemySight : MonoBehaviour {
         }
         return false;
 	}
+
+    void OnCollisionStay(Collision other)
+    {
+        if (other.transform.CompareTag("Player"))
+        {
+            Debug.Log("Muis raakt player");
+            other.transform.GetComponent<PlayerProperties>().health -= 1;
+        }
+    }
 }
