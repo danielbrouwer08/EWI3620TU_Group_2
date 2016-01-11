@@ -14,6 +14,7 @@ public class ChapterLoader : MonoBehaviour
 	public GameObject[] levels;
 	private GameObject lastTerrainSpawner;
 	private Vector3 spawnOffset = new Vector3 (0.0f, 0.0f, 0.0f);
+	public bool doneLoading;
 
 	// Use this for initialization
 	void Start ()
@@ -43,6 +44,7 @@ public class ChapterLoader : MonoBehaviour
 		}
 		//instantiate all mountains
 		instantiateMountains ();
+		doneLoading = true;
 	}
 
 	void instantiateMountains ()
