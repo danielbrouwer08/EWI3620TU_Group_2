@@ -197,7 +197,13 @@ public class PlayerController : MonoBehaviour
             {
                 if (!running)
                 {
-                    anim.Play("Lopen");
+                    if (GetComponent <Fly> () != null && Input.GetButton("Item" + playerNum))
+                    {
+                    } 
+                    else
+                    {
+                        anim.Play("Lopen");
+                    }  
                 }
                 else
                 {
