@@ -56,12 +56,12 @@ public class PauseMenuScript : MonoBehaviour
 
     void PauseMenu()
     {
+        audiopaused.TransitionTo(0.01f);
         Time.timeScale = 0;
         backgroundimage.IsPause = true;
         ingameinterface.IsPause = true;
         menu.ShowMenu(pausemenu);
         Paused = true;
-        audiopaused.TransitionTo(1f);
         
     }
 
@@ -72,7 +72,7 @@ public class PauseMenuScript : MonoBehaviour
         ingameinterface.IsPause = false;
         pausemenu.IsOpen = false;
         Paused = false;
-        audiounpaused.TransitionTo(1f);
+        audiounpaused.TransitionTo(0.01f);
     }
 
     public void Mainmenu()
