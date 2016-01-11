@@ -49,7 +49,9 @@ public class PlayerController : MonoBehaviour
 	void Start ()
 	{
 		gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManger>();
-        if(PlayerPrefs.GetString("playermode") == "single")
+        Debug.Log("Ik zit hier naar te kijken: " + PlayerPrefs.GetString("playermode"));
+        Debug.Log("Ik zit hier naar te kijken: " + PlayerPrefs.GetString("playermode"));
+        if (PlayerPrefs.GetString("playermode") == "single")
         {
             isSinglePlayer = true;
         }
@@ -159,8 +161,8 @@ public class PlayerController : MonoBehaviour
 	//Get input from player
 	void getPlayerInput ()
     {
-        VerticalPlayerInput = Input.GetAxis ("Vertical" + input);
-		HorizontalPlayerInput = Input.GetAxis ("Horizontal" + input);
+        VerticalPlayerInput = Input.GetAxis ("Vertical" + playerNum);
+		HorizontalPlayerInput = Input.GetAxis ("Horizontal" + playerNum);
         float angle;
         if (HorizontalPlayerInput == 0)
         {
@@ -172,7 +174,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //if player presses run button
-        if (Input.GetButton("Run" + input))
+        if (Input.GetButton("Run" + playerNum))
         {
             running = true;
             movement = new Vector3(HorizontalPlayerInput * runSpeed * Mathf.Abs(Mathf.Cos(angle)), 0, VerticalPlayerInput * runSpeed * Mathf.Abs(Mathf.Sin(angle)));
@@ -184,7 +186,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //if player presses jump button and is not already in a jump (y velocuty is zero)
-        if (Input.GetButtonDown("Jump" + input) && grounded())
+        if (Input.GetButtonDown("Jump" + playerNum) && grounded())
         {
             anim.Play("Springen");
             jump = true;
@@ -195,7 +197,13 @@ public class PlayerController : MonoBehaviour
             {
                 if (!running)
                 {
-                    anim.Play("Lopen");
+                    if (GetComponent <Fly> () != null && Input.GetButton("Item" + playerNum))
+                    {
+                    } 
+                    else
+                    {
+                        anim.Play("Lopen");
+                    }  
                 }
                 else
                 {
