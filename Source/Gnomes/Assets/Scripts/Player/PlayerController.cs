@@ -49,7 +49,9 @@ public class PlayerController : MonoBehaviour
 	void Start ()
 	{
 		gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManger>();
-        if(PlayerPrefs.GetString("playermode") == "single")
+        Debug.Log("Ik zit hier naar te kijken: " + PlayerPrefs.GetString("playermode"));
+        Debug.Log("Ik zit hier naar te kijken: " + PlayerPrefs.GetString("playermode"));
+        if (PlayerPrefs.GetString("playermode") == "single")
         {
             isSinglePlayer = true;
         }
@@ -151,7 +153,7 @@ public class PlayerController : MonoBehaviour
                 {
                     rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
                 }
-                rb.AddForce(movement / 10, ForceMode.VelocityChange);
+                rb.AddForce(movement / 20, ForceMode.VelocityChange);
             }
         }
 	}
@@ -159,8 +161,8 @@ public class PlayerController : MonoBehaviour
 	//Get input from player
 	void getPlayerInput ()
     {
-        VerticalPlayerInput = Input.GetAxis ("Vertical" + input);
-		HorizontalPlayerInput = Input.GetAxis ("Horizontal" + input);
+        VerticalPlayerInput = Input.GetAxis ("Vertical" + playerNum);
+		HorizontalPlayerInput = Input.GetAxis ("Horizontal" + playerNum);
         float angle;
         if (HorizontalPlayerInput == 0)
         {
@@ -172,7 +174,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //if player presses run button
-        if (Input.GetButton("Run" + input))
+        if (Input.GetButton("Run" + playerNum))
         {
             running = true;
             movement = new Vector3(HorizontalPlayerInput * runSpeed * Mathf.Abs(Mathf.Cos(angle)), 0, VerticalPlayerInput * runSpeed * Mathf.Abs(Mathf.Sin(angle)));
@@ -184,7 +186,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //if player presses jump button and is not already in a jump (y velocuty is zero)
-        if (Input.GetButtonDown("Jump" + input) && grounded())
+        if (Input.GetButtonDown("Jump" + playerNum) && grounded())
         {
             anim.Play("Springen");
             jump = true;
@@ -211,14 +213,53 @@ public class PlayerController : MonoBehaviour
                 anim.Play("Stilstaan");
             jump = false;
         }
-}
+    }
+
+    /*public bool grounded()
+    {
+        RaycastHit[] hit;
+        hit = new RaycastHit[8];
+        float[] distance;
+        distance = new float[8];
+        for(int i = 0; i<8; i++)
+        {
+            Vector3 displacement;
+            if (i < 2)
+            {
+                displacement = Vector3.forward * 0.1f;
+            }
+            else if(i < 4)
+            {
+                displacement = - Vector3.forward * 0.1f;
+            }
+            else if(i < 6)
+            {
+                displacement = Vector3.right * 0.1f;
+            }
+            else
+            {
+                displacement = -Vector3.right * 0.1f;
+            }
+            Physics.Raycast(transform.position + displacement, Vector3.up * (i % 2 * 2 - 1), out hit[i], 0.25f);
+            distance[i] = hit[i].distance;
+            //Debug.Log(distance[i]);
+        }
+        float som = 0;
+        for (int i = 0; i < 4; i++)
+        {
+            float afstand = Mathf.Max(distance[i * 2], distance[i * 2 + 1]);
+            if(afstand == 0)
+            {
+                afstand = 0.25f;
+            }
+            som += afstand;
+        }
+        return som < 0.5f;
+    }*/
 
     public bool grounded()
     {
-        return Physics.Raycast(transform.position + Vector3.forward * 0.5f, -Vector3.up, 1.1f) ||
-               Physics.Raycast(transform.position - Vector3.forward * 0.5f, -Vector3.up, 1.1f) ||
-               Physics.Raycast(transform.position + Vector3.right * 0.5f, -Vector3.up, 1.1f) ||
-               Physics.Raycast(transform.position - Vector3.right * 0.5f, -Vector3.up, 1.1f);
+        return Physics.Raycast(transform.position + 0.1f * Vector3.up, -Vector3.up, 0.25f);
     }
 
     public void ExternalForce(Vector3 force, float nomovementtime)

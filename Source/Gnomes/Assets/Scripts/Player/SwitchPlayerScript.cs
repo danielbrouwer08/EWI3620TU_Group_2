@@ -7,7 +7,7 @@ public class SwitchPlayerScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         players = GameObject.FindGameObjectsWithTag("Player");
-        if (players[0].GetComponent<PlayerController>().isSinglePlayer)
+        if (PlayerPrefs.GetString("playermode") == "single")
         {
             SinglePlayer = true;
         }
@@ -20,6 +20,7 @@ public class SwitchPlayerScript : MonoBehaviour {
             foreach(GameObject cur in players)
             {
                 cur.GetComponent<PlayerController>().isActive = !cur.GetComponent<PlayerController>().isActive;
+                cur.GetComponent<PlayerController>().playerNum = 3 - cur.GetComponent<PlayerController>().playerNum;
                 //cur.GetComponent<AIPath>().enabled = !cur.GetComponent<AIPath>().enabled;
                 //if (cur.GetComponent<Rigidbody>() == null)
                 //{
