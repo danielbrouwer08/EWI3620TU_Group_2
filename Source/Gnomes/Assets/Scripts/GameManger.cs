@@ -95,7 +95,7 @@ public class GameManger : MonoBehaviour
 
 	public void emptySaves()
 	{
-		PlayerPrefs.DeleteAll();
+		//PlayerPrefs.DeleteAll();
 		Vector3 P1Pos = new Vector3(23.5f, 3.5f, 25.0f);
 		Vector3 P2Pos = new Vector3(26.5f, 3.5f, 25.0f);
 		float P1Health = 100;

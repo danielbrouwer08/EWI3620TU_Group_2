@@ -5,10 +5,10 @@ public class MenuManager : MonoBehaviour {
 
     public MenuController currMenu;
 
-	// Use this for initialization
-	public void Start () {
+    // Use this for initialization
+    public void Start() {
         ShowMenu(currMenu);
-	}
+    }
 
     public void ShowMenu(MenuController menu)
     {
@@ -17,5 +17,10 @@ public class MenuManager : MonoBehaviour {
 
         currMenu = menu;
         currMenu.IsOpen = true;
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }

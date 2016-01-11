@@ -79,8 +79,20 @@ public class PlayerProperties : MonoBehaviour {
         }
 
         Vector3 position = getLastSavedPos();
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        
         transform.position = position;
-
+        if(players[0].transform.position.x - players[1].transform.position.x > 100)
+        {
+            if(players[0].name.Equals(gameObject.name))
+            {
+                players[1].GetComponent<PlayerProperties>().Death();
+            }
+            else
+            {
+                players[0].GetComponent<PlayerProperties>().Death();
+            }
+        }
         health = startinghealth;
 
     }

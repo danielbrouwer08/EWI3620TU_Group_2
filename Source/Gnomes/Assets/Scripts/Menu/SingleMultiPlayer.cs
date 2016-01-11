@@ -6,11 +6,13 @@ public class SingleMultiPlayer : MonoBehaviour {
     public void SetSinglePlayer()
     {
         PlayerPrefs.SetString("playermode", "single");
+        Debug.Log(PlayerPrefs.GetString("player_mode"));
     }
 
     public void SetMultiPLayer()
     {
         PlayerPrefs.SetString("playermode", "multi");
+        Debug.Log(PlayerPrefs.GetString("player_mode"));
     }
 
     public void SwitchMode()
