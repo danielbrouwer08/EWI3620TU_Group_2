@@ -12,15 +12,17 @@ public class ChapterLoader : MonoBehaviour
 	public GameObject mountain;
 	public GameObject interpolatorMountain;
 	public GameObject invisibleWall;
+	public GameObject mountainBegin;
+	public GameObject mountainEnd;
 	public GameObject[] levels;
 	private GameObject lastTerrainSpawner;
-	private Vector3 spawnOffset = new Vector3 (0.0f, 0.0f, 0.0f);
+	private Vector3 spawnOffset = new Vector3 (-50.0f, 0.0f, 0.0f);
 	public bool doneLoading;
 
 	// Use this for initialization
 	void Start ()
 	{
-
+		instantiateCustomTerrain(mountainBegin);
 		instantiateCheckpointTerrain (chapterStartCheckpoint);
 
 		for (int i=0; i<levels.Length; i++) {
@@ -32,7 +34,7 @@ public class ChapterLoader : MonoBehaviour
 		}
 
 		instantiateCheckpointTerrain (ChapterEndCheckpoint);
-
+		instantiateCustomTerrain(mountainEnd);
 		//Wait till everything is spawned and then instantiate all mountains
 		StartCoroutine (spawnMountainsWhenDone ());
 	}
@@ -307,6 +309,13 @@ public class ChapterLoader : MonoBehaviour
 	}
 
 	void instantiateCheckpointTerrain (GameObject terrain)
+	{
+		GameObject.Instantiate (terrain, spawnOffset, Quaternion.Euler (0, 0, 0));
+		//instantiateMountains(terrain);
+		spawnOffset += new Vector3 (50.0f, 0.0f, 0.0f);
+	}
+
+	void instantiateCustomTerrain (GameObject terrain)
 	{
 		GameObject.Instantiate (terrain, spawnOffset, Quaternion.Euler (0, 0, 0));
 		//instantiateMountains(terrain);
