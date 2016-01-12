@@ -5,10 +5,13 @@ public class PlayerController : MonoBehaviour
 {
 	//Player properties
 	private Rigidbody rb;
-	public float jumpForce;
-	public float walkSpeed;
-	public float runSpeed;
-	public float slideSpeed;
+	public float jumpForcebegin;
+	public float walkSpeedbegin;
+	public float runSpeedbegin;
+    public float jumpForce;
+    public float walkSpeed;
+    public float runSpeed;
+    public float slideSpeed;
 	public int playerNum;
     public float rotatespeed = 8;
     public Animation anim;
@@ -48,7 +51,10 @@ public class PlayerController : MonoBehaviour
 	// Iinitialization
 	void Start ()
 	{
-		gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManger>();
+        jumpForce = jumpForcebegin;
+        walkSpeed = walkSpeedbegin;
+        runSpeed = runSpeedbegin;
+        gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManger>();
         Debug.Log("Ik zit hier naar te kijken: " + PlayerPrefs.GetString("playermode"));
         Debug.Log("Ik zit hier naar te kijken: " + PlayerPrefs.GetString("playermode"));
         if (PlayerPrefs.GetString("playermode") == "single")

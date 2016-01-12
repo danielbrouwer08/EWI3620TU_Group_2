@@ -15,6 +15,7 @@ public class PlayerProperties : MonoBehaviour {
     private int playerNum;
     bool damaged;
     bool dead;
+    public GameObject item;
 
 	void Awake ()
     {
@@ -68,14 +69,20 @@ public class PlayerProperties : MonoBehaviour {
 		dict3["currentScene"] = Application.loadedLevelName;
         dict3["Score"] = score;
 
-        if (playerNum == 1)
+        if (gameObject.name.Equals("kabouterdun"))
         {
             UnityAnalyticsHeatmap.HeatmapEvent.Send("playerOneDeath", GetComponent<Transform>().position, dict3);
         }
 
-        if (playerNum == 2)
+        if (gameObject.name.Equals("kabouterdik"))
         {
             UnityAnalyticsHeatmap.HeatmapEvent.Send("playerTwoDeath", GetComponent<Transform>().position, dict3);
+        }
+
+        if(item != null)
+        {
+            item.GetComponent<PickUpItem>().Respawnitem();
+            item.GetComponent<PickUpItem>().Loseitem();
         }
 
         Vector3 position = getLastSavedPos();
