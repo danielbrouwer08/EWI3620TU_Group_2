@@ -110,7 +110,7 @@ public class PlayerController : MonoBehaviour
 	// Update is called every fixed framerate frame
 	void FixedUpdate ()
 	{
-		if(transform.position.y < -2.0f)
+		if(transform.position.y < -25.0f)
         {
             GetComponent<PlayerProperties>().Death();
 
@@ -271,7 +271,7 @@ public class PlayerController : MonoBehaviour
 
     public bool grounded()
     {
-        return Physics.Raycast(transform.position + 0.1f * Vector3.up, -Vector3.up, 0.25f);
+        return Physics.Raycast(transform.position + 0.1f * Vector3.up, -Vector3.up, 0.20f);
     }
 
     public void ExternalForce(Vector3 force, float nomovementtime)
