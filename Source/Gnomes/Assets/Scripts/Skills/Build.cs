@@ -24,8 +24,9 @@ public class Build : MonoBehaviour {
     {
 		if(Input.GetButtonDown("Item" + playerNum))
         {
+            Debug.Log("blokje");
             Destroy(blocks[i]);
-            blocks[i] = Instantiate(prefab, rb.position + transform.forward + new Vector3(0, -0.5f, 0), Quaternion.identity) as GameObject;
+            blocks[i] = Instantiate(prefab, rb.position + transform.forward + new Vector3(0, 3, 0), Quaternion.identity) as GameObject;
             i++;
             if(i >= blockcap)
             {
@@ -33,5 +34,13 @@ public class Build : MonoBehaviour {
             }
         }
 	}
+
+    void OnDisable()
+    {
+        for(int i = 0; i < blockcap; i++)
+        {
+            Destroy(blocks[i]);
+        }
+    }
 }
 

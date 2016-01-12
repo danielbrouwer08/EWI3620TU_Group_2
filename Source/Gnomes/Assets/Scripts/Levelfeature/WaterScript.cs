@@ -22,11 +22,6 @@ public class WaterScript : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     //make items 
     void OnTriggerStay(Collider other)
     {
@@ -47,7 +42,8 @@ public class WaterScript : MonoBehaviour
             float force = 12000;
             other.gameObject.GetComponent<Rigidbody>().AddForce(total * force);
         }
-        if (!other.CompareTag("Player")){
+        else
+        {
             other.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY;
             List<Transform> closestWaypoints = FindClosestWaypoint(other);
             Vector3 total = new Vector3(0, 0, 0);
@@ -68,9 +64,13 @@ public class WaterScript : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<PlayerController>().walkSpeed = 8;
-            other.GetComponent<PlayerController>().runSpeed = 15;
-            other.GetComponent<PlayerController>().jumpForce = 10;
+            other.GetComponent<PlayerController>().walkSpeed = other.GetComponent<PlayerController>().walkSpeedbegin;
+            other.GetComponent<PlayerController>().runSpeed = other.GetComponent<PlayerController>().runSpeedbegin;
+            other.GetComponent<PlayerController>().jumpForce = other.GetComponent<PlayerController>().jumpForcebegin;
+        }
+        else
+        {
+            other.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
         }
     }
 
