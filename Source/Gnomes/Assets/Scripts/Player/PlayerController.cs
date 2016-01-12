@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
 	// Update is called every fixed framerate frame
 	void FixedUpdate ()
 	{
-        if(transform.position.z > 50 | transform.position.z < 0)
+		if(transform.position.y < -2.0f)
         {
             GetComponent<PlayerProperties>().Death();
 
