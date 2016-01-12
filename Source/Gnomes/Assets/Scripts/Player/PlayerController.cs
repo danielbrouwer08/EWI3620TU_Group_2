@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
 	public float slideSpeed;
 	public int playerNum;
     public float rotatespeed = 8;
-    private Animation anim;
+    public Animation anim;
     public bool walking;
     public bool running;
 
