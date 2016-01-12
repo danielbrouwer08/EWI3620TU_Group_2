@@ -4,6 +4,7 @@ using System.Collections;
 public class GraphController : MonoBehaviour {
     public AstarPath Astar;
     public ChapterLoader loader;
+    private bool loaded = false;
 
 	// Use this for initialization
 	void Start () {
@@ -12,9 +13,9 @@ public class GraphController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (loader.doneLoading)
+        if (loader.doneLoading && loaded == false)
         {
-            loader.doneLoading = false;
+            loaded = true;
             Astar.Scan();
         }
 	}
