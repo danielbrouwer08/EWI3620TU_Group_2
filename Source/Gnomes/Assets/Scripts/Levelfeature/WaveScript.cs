@@ -53,6 +53,6 @@ public class WaveScript : MonoBehaviour {
         {
             speed = 6;
         }
-        transform.Translate(speed*Time.deltaTime*(new Vector3(1,1,0)));
+        transform.Translate(speed*Time.deltaTime*(new Vector3(1,0,0)));
     }
 }
