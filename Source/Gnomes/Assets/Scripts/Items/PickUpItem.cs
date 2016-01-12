@@ -35,12 +35,9 @@ public class PickUpItem : MonoBehaviour
 
     void Update()
     {
-        if(transform.position.z > 50 || transform.position.z < 0 || transform.position.x < 0)
+        if((transform.position.z > 50 || transform.position.z < 0 || transform.position.x < 0) && carrier == null)
         {
-            transform.position = startpos;
-            transform.eulerAngles = new Vector3(0, 0, 0);
-            rb.velocity = Vector3.zero;
-        
+            Respawnitem();
         }
         playerinrange = -1;
         for (int i = 0; i < player.Length; i++)
@@ -60,21 +57,17 @@ public class PickUpItem : MonoBehaviour
         {
             if (Input.GetButtonDown("Interact" + playerNum))
             {
-                DeleteSkillfromPlayer(skill);
-                rb.isKinematic = false;
-                rb.detectCollisions = true;
-                transform.parent = null;
-                rb.AddForce(carrier.transform.forward * throwforce + Vector3.up * throwforce * 0.1f);
-                carrier = null;
+                Loseitem();
             }
         }
         else
         {
-            if(playerinrange >= 0)
+            if(playerinrange >= 0 && player[playerinrange].GetComponent<PlayerProperties>().item == null)
             {
                 if (Input.GetButtonDown("Interact" + playerNum))
                 {
                     carrier = player[playerinrange];
+                    carrier.GetComponent<PlayerProperties>().item = gameObject;
                     AddSkilltoPlayer(skill);
                     rb.isKinematic = true;
                     rb.detectCollisions = false;
@@ -85,6 +78,24 @@ public class PickUpItem : MonoBehaviour
             }
 
         }
+    }
+
+    public void Loseitem()
+    {
+        DeleteSkillfromPlayer(skill);
+        carrier.GetComponent<PlayerProperties>().item = null;
+        rb.isKinematic = false;
+        rb.detectCollisions = true;
+        transform.parent = null;
+        rb.AddForce(carrier.transform.forward * throwforce + Vector3.up * throwforce * 0.1f);
+        carrier = null;
+    }
+
+    public void Respawnitem()
+    {
+        transform.position = startpos;
+        transform.eulerAngles = new Vector3(0, 0, 0);
+        rb.velocity = Vector3.zero;
     }
 
     void AddSkilltoPlayer(string skill)
@@ -105,7 +116,7 @@ public class PickUpItem : MonoBehaviour
 
         UnityAnalyticsHeatmap.HeatmapEvent.Send("checkpoint", gameObject.transform.position, dict);
 
-        if (playerNum == 1)
+        if (carrier.name.Equals("kabouterdun"))
         {
             switch (skill)
             {
