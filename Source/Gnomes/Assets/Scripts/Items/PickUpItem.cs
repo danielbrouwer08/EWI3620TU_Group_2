@@ -8,7 +8,7 @@ public class PickUpItem : MonoBehaviour
 {
     public float pickdistance = 5;
     private GameObject[] player;
-    private int playerinrange;
+    private bool[] playerinrange;
     private int playerNum;
     private float xPosPlayer;
     private float zPosPlayer;
@@ -31,52 +31,44 @@ public class PickUpItem : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         col = GetComponent<Collider>();
         player = GameObject.FindGameObjectsWithTag("Player");
+        playerinrange = new bool[player.Length];
     }
 
     void Update()
     {
-        if((transform.position.z > 50 || transform.position.z < 0 || transform.position.x < 0) && carrier == null)
+        if ((transform.position.z > 50 || transform.position.z < 0 || transform.position.x < 0) && carrier == null)
         {
             Respawnitem();
         }
-        playerinrange = -1;
         for (int i = 0; i < player.Length; i++)
         {
-            if (Vector3.Magnitude(transform.position - player[i].transform.position) < pickdistance)
+            playerNum = player[i].GetComponent<PlayerController>().playerNum;
+            if (carrier == null)
             {
-                playerNum = player[i].GetComponent<PlayerController>().playerNum;
-                xPosPlayer = player[i].GetComponent<Transform>().position.x;
-                zPosPlayer = player[i].GetComponent<Transform>().position.z;
-
-                playerinrange = i;
+                if (Vector3.Magnitude(transform.position - player[i].transform.position) < pickdistance)
+                {
+                    if (Input.GetButtonDown("Interact" + playerNum) && player[i].GetComponent<PlayerProperties>().item == null)
+                    {
+                        carrier = player[i];
+                        carrier.GetComponent<PlayerProperties>().item = gameObject;
+                        AddSkilltoPlayer(skill);
+                        rb.isKinematic = true;
+                        rb.detectCollisions = false;
+                        transform.parent = player[i].transform;
+                        transform.localPosition = new Vector3(0.0f, 4.1f, 0.0f);
+                        transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+                    }
+                    xPosPlayer = player[i].GetComponent<Transform>().position.x;
+                    zPosPlayer = player[i].GetComponent<Transform>().position.z;
+                }
             }
-        }
-        //Debug.Log(playerinrange);
-
-        if (carrier != null)
-        {
-            if (Input.GetButtonDown("Interact" + playerNum))
-            {
-                Loseitem();
-            }
-        }
-        else
-        {
-            if(playerinrange >= 0 && player[playerinrange].GetComponent<PlayerProperties>().item == null)
+            else
             {
                 if (Input.GetButtonDown("Interact" + playerNum))
                 {
-                    carrier = player[playerinrange];
-                    carrier.GetComponent<PlayerProperties>().item = gameObject;
-                    AddSkilltoPlayer(skill);
-                    rb.isKinematic = true;
-                    rb.detectCollisions = false;
-                    transform.parent = player[playerinrange].transform;
-                    transform.localPosition = new Vector3(0.0f, 4.1f, 0.0f);
-                    transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+                    Loseitem();
                 }
             }
-
         }
     }
 
