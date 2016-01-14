@@ -70,7 +70,7 @@ public class ChapterLoader : MonoBehaviour
 			//Add the terraincomponent to the GameObject
 			CopyTerrain.AddComponent<Terrain> ();
 			//Copy the data from the prefab for the new terrain
-			
+		
 			TerrainData BaseTerrainData = mountain.GetComponent<Terrain> ().terrainData;
 			if (allTerrains [k].name == "Interpolator") {
 				BaseTerrainData = interpolatorMountain.GetComponent<Terrain> ().terrainData;
@@ -79,6 +79,9 @@ public class ChapterLoader : MonoBehaviour
 			TerrainData CopyTerrainData = (TerrainData)Object.Instantiate (BaseTerrainData);
 			Terrain mountainTerrain = CopyTerrain.GetComponent<Terrain> ();
 			mountainTerrain.terrainData = CopyTerrainData;
+
+			//increase the viewing distance of grass on terrain
+			mountainTerrain.detailObjectDistance = 250;
 			TerrainData lastTerrainData = allTerrains [k].GetComponent<Terrain> ().terrainData;
 			
 			//Allocating space for a new heightmap for the terrain
@@ -146,6 +149,8 @@ public class ChapterLoader : MonoBehaviour
 			TerrainData CopyTerrainData = (TerrainData)Object.Instantiate (BaseTerrainData);
 			Terrain mountainTerrain = CopyTerrain.GetComponent<Terrain> ();
 			mountainTerrain.terrainData = CopyTerrainData;
+			//increase the viewing distance of grass on terrain
+			mountainTerrain.detailObjectDistance = 250;
 			TerrainData lastTerrainData = allTerrains [k].GetComponent<Terrain> ().terrainData;
 
 			//Allocating space for a new heightmap for the terrain
@@ -211,7 +216,9 @@ public class ChapterLoader : MonoBehaviour
 		TerrainData CopyTerrainData = (TerrainData)Object.Instantiate (BaseTerrainData);
 		Terrain interpolatorTerrain = CopyTerrain.GetComponent<Terrain> ();
 		interpolatorTerrain.terrainData = CopyTerrainData;
-		
+
+		//increase the viewing distance of grass on terrain
+		interpolatorTerrain.detailObjectDistance = 250;
 
 		TerrainData lastTerrainData = lastTerrain.GetComponent<Terrain> ().terrainData;
 
