@@ -43,12 +43,12 @@ public class PickUpItem : MonoBehaviour
 
     void Update()
     {
-		if((Vector3.Magnitude(transform.position - player[0].transform.position) < pickdistance || Vector3.Magnitude(transform.position - player[1].transform.position) < pickdistance) && !beingCarried)
+		if((Vector3.Magnitude(transform.position - player[0].transform.position) < pickdistance || Vector3.Magnitude(transform.position - player[1].transform.position) < pickdistance) && !beingCarried && header!=null)
 		{
 			header.SetActive(true);
 			string displayText = "Press '.' (P1) or 'v' (P2) to pick up the " + skill + " skill";
 			text.GetComponent<Text>().text=displayText;
-		}else
+		}else if(header!=null)
 		{
 			header.SetActive(false);
 		}
