@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.Analytics;
 using System.Collections.Generic;
+using UnityEngine.UI;
 //using UnityEditor;
 
 public class PickUpItem : MonoBehaviour
@@ -20,6 +21,8 @@ public class PickUpItem : MonoBehaviour
     private Collider col;
     public string skill;
     private Vector3 startpos;
+	public GameObject header;
+	public GameObject text;
 
     void OnCollisionExit(Collision other)
     {
@@ -27,6 +30,10 @@ public class PickUpItem : MonoBehaviour
     }
     void Start()
     {
+		if(header!=null && text!=null)
+		{
+			header.SetActive(false);
+		}
         startpos = GetComponent<Transform>().position;
         rb = GetComponent<Rigidbody>();
         col = GetComponent<Collider>();
@@ -36,6 +43,17 @@ public class PickUpItem : MonoBehaviour
 
     void Update()
     {
+		if((Vector3.Magnitude(transform.position - player[0].transform.position) < pickdistance || Vector3.Magnitude(transform.position - player[1].transform.position) < pickdistance) && !beingCarried)
+		{
+			header.SetActive(true);
+			string displayText = "Press '.' (P1) or 'v' (P2) to pick up the " + skill + " skill";
+			text.GetComponent<Text>().text=displayText;
+		}else
+		{
+			header.SetActive(false);
+		}
+
+
         if ((transform.position.z > 50 || transform.position.z < 0 || transform.position.x < 0) && carrier == null)
         {
             Respawnitem();
@@ -57,7 +75,9 @@ public class PickUpItem : MonoBehaviour
                         transform.parent = player[i].transform;
                         transform.localPosition = new Vector3(0.0f, 4.1f, 0.0f);
                         transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
-                    }
+						beingCarried = true;
+					}
+
                     xPosPlayer = player[i].GetComponent<Transform>().position.x;
                     zPosPlayer = player[i].GetComponent<Transform>().position.z;
                 }
@@ -69,6 +89,9 @@ public class PickUpItem : MonoBehaviour
                     Loseitem();
                 }
             }
+
+
+
         }
     }
 
@@ -81,6 +104,7 @@ public class PickUpItem : MonoBehaviour
         transform.parent = null;
         rb.AddForce(carrier.transform.forward * throwforce + Vector3.up * throwforce * 0.1f);
         carrier = null;
+		beingCarried = false;
     }
 
     public void Respawnitem()
