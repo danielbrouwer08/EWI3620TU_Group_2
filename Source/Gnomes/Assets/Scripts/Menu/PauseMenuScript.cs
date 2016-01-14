@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.Analytics;
+using UnityEngine.Audio;
 using System.Collections.Generic;
 //using UnityEditor;
 
@@ -13,6 +14,9 @@ public class PauseMenuScript : MonoBehaviour
     public MenuController optionsmenu;
     public BackgroundController backgroundimage;
     public BackgroundController ingameinterface;
+    public AudioMixerSnapshot audiopaused;
+    public AudioMixerSnapshot audiounpaused;
+
     public Button resumebutton;
     public GameObject[] players;
 
@@ -57,6 +61,7 @@ public class PauseMenuScript : MonoBehaviour
         ingameinterface.IsPause = true;
         menu.ShowMenu(pausemenu);
         Paused = true;
+        audiopaused.TransitionTo(.01f);
 
     }
 
@@ -67,6 +72,7 @@ public class PauseMenuScript : MonoBehaviour
         ingameinterface.IsPause = false;
         pausemenu.IsOpen = false;
         Paused = false;
+        audiounpaused.TransitionTo(.01f);
     }
 
     public void Mainmenu()
