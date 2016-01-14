@@ -11,15 +11,18 @@ public class ChapterLoader : MonoBehaviour
 	public GameObject ChapterEndCheckpoint;
 	public GameObject mountain;
 	public GameObject interpolatorMountain;
+	public GameObject invisibleWall;
+	public GameObject mountainBegin;
+	public GameObject mountainEnd;
 	public GameObject[] levels;
 	private GameObject lastTerrainSpawner;
-	private Vector3 spawnOffset = new Vector3 (0.0f, 0.0f, 0.0f);
+	private Vector3 spawnOffset = new Vector3 (-50.0f, 0.0f, 0.0f);
 	public bool doneLoading;
 
 	// Use this for initialization
 	void Start ()
 	{
-
+		instantiateCustomTerrain(mountainBegin);
 		instantiateCheckpointTerrain (chapterStartCheckpoint);
 
 		for (int i=0; i<levels.Length; i++) {
@@ -31,7 +34,7 @@ public class ChapterLoader : MonoBehaviour
 		}
 
 		instantiateCheckpointTerrain (ChapterEndCheckpoint);
-
+		instantiateCustomTerrain(mountainEnd);
 		//Wait till everything is spawned and then instantiate all mountains
 		StartCoroutine (spawnMountainsWhenDone ());
 	}
@@ -43,21 +46,86 @@ public class ChapterLoader : MonoBehaviour
 			//nasty wait loop that waits till all randomterrain pieces are spawned
 		}
 		//instantiate all mountains
-		instantiateMountains ();
+		GameObject[] allTerrains = GameObject.FindGameObjectsWithTag ("Terrain");
+		instantiateBackMountains (allTerrains);
+		instantiateFrontMountains (allTerrains);
 		doneLoading = true;
 	}
 
-	void instantiateMountains ()
+	void instantiateFrontMountains (GameObject[] allTerrains)
 	{
-		//List<GameObject> childs = returnTerrainObjects(terrain);
-		//
-		//if(childs.Count==0)//on start and end terrain the gameobject itself represents a terrain therefore no childs have to be found;
-		//{
-		//	childs.Add(terrain);
-		//}
-
 		//Find all terrain pieces in the level
-		GameObject[] allTerrains = GameObject.FindGameObjectsWithTag ("Terrain");
+		
+		Debug.Log ("Amount of terrains: " + allTerrains.Length);
+		//Debug.Log ("Childs aantal: " + childs.Count);
+		//For all terrain pieces in a level add a wall / mountain to the side
+		for (int k=0; k<allTerrains.Length; k++) {
+			//Make a new GameObject for the mountain terrain
+			GameObject CopyTerrain = new GameObject ();
+			string terrainName = "Mountain";
+			CopyTerrain.name = terrainName;
+			CopyTerrain.transform.position = allTerrains [k].transform.position + new Vector3 (0.0f, -50.0f, -allTerrains [k].GetComponent<Terrain> ().terrainData.size.z);
+			CopyTerrain.tag = "Mountain";
+			
+			//Add the terraincomponent to the GameObject
+			CopyTerrain.AddComponent<Terrain> ();
+			//Copy the data from the prefab for the new terrain
+		
+			TerrainData BaseTerrainData = mountain.GetComponent<Terrain> ().terrainData;
+			if (allTerrains [k].name == "Interpolator") {
+				BaseTerrainData = interpolatorMountain.GetComponent<Terrain> ().terrainData;
+			}
+			
+			TerrainData CopyTerrainData = (TerrainData)Object.Instantiate (BaseTerrainData);
+			Terrain mountainTerrain = CopyTerrain.GetComponent<Terrain> ();
+			mountainTerrain.terrainData = CopyTerrainData;
+
+			//increase the viewing distance of grass on terrain
+			mountainTerrain.detailObjectDistance = 250;
+			TerrainData lastTerrainData = allTerrains [k].GetComponent<Terrain> ().terrainData;
+			
+			//Allocating space for a new heightmap for the terrain
+			int heightmapWidth = mountainTerrain.terrainData.heightmapWidth;
+			int heightmapHeight = mountainTerrain.terrainData.heightmapHeight;
+			
+			
+			float[,] heightsOfLastTerrain = lastTerrainData.GetHeights (0, 0, lastTerrainData.heightmapWidth, lastTerrainData.heightmapHeight);
+			float[,] heightmap = new float[heightmapWidth, heightmapHeight];
+			float heightScaleFactor = lastTerrainData.size.y / mountainTerrain.terrainData.size.y;
+			
+			//Create same contour
+			for (int i=0; i<heightmapWidth; i++) {
+				for (int j=0; j<heightmapHeight; j++) {
+					int i_coord = (int)i * lastTerrainData.heightmapResolution / mountainTerrain.terrainData.heightmapResolution;
+					int j_coord = (int)j * lastTerrainData.heightmapResolution / mountainTerrain.terrainData.heightmapResolution;
+					
+					//float height = (heightsOfLastTerrain[i_coord,lastTerrainData.heightmapHeight-1] * heightScaleFactor);
+					float height = ((heightsOfLastTerrain [0, j_coord]) * heightScaleFactor);
+					heightmap [i, j] = height;
+				}
+			}
+			
+			//Create a slope
+			for (int j=0; j<heightmapHeight; j++) {
+				for (int i=0;i<heightmapWidth; i++) {
+					//slope with abs of sinusoid to create contours on the mountain 
+					//heightmap [i, j] = heightmap [i, j] + (0.001f*i*i)*heightScaleFactor/lastTerrainData.size.y + Mathf.Abs(0.05f*Mathf.Sin(i*0.015f*Mathf.PI));
+					heightmap [i, j] = heightmap [i, j] - (0.0005f*(heightmapWidth-i)*(heightmapWidth-i))*heightScaleFactor/lastTerrainData.size.y + 50.0f*heightScaleFactor/lastTerrainData.size.y;
+					//heightmap [i, j] = heightmap [i, j] + (50*Mathf.Sin((0.5f*Mathf.PI*i)/heightmapWidth))*heightScaleFactor/lastTerrainData.size.y;
+				}
+			}
+			
+			
+			mountainTerrain.terrainData.SetHeights (0, 0, heightmap);
+			CopyTerrain.AddComponent<TerrainCollider> ().terrainData = mountainTerrain.terrainData;
+
+		}
+	}
+
+	void instantiateBackMountains (GameObject[] allTerrains)
+	{
+		//Find all terrain pieces in the level
+
 		Debug.Log ("Amount of terrains: " + allTerrains.Length);
 		//Debug.Log ("Childs aantal: " + childs.Count);
 		//For all terrain pieces in a level add a wall / mountain to the side
@@ -81,6 +149,8 @@ public class ChapterLoader : MonoBehaviour
 			TerrainData CopyTerrainData = (TerrainData)Object.Instantiate (BaseTerrainData);
 			Terrain mountainTerrain = CopyTerrain.GetComponent<Terrain> ();
 			mountainTerrain.terrainData = CopyTerrainData;
+			//increase the viewing distance of grass on terrain
+			mountainTerrain.detailObjectDistance = 250;
 			TerrainData lastTerrainData = allTerrains [k].GetComponent<Terrain> ().terrainData;
 
 			//Allocating space for a new heightmap for the terrain
@@ -117,7 +187,9 @@ public class ChapterLoader : MonoBehaviour
 		
 			mountainTerrain.terrainData.SetHeights (0, 0, heightmap);
 			CopyTerrain.AddComponent<TerrainCollider> ().terrainData = mountainTerrain.terrainData;
-		
+
+			//spawn invisible wall so players cant get up the mountain
+			GameObject.Instantiate (invisibleWall, allTerrains [k].transform.position + new Vector3 (25.0f, 25.0f, allTerrains [k].GetComponent<Terrain> ().terrainData.size.z + allTerrains [k].GetComponent<Terrain> ().terrainData.size.z/4.0f), Quaternion.Euler (-90, 0, 0));
 			//spawnOffset += new Vector3(0.0f,0.0f,mountainTerrain.terrainData.size.y);
 		}
 	}
@@ -144,7 +216,9 @@ public class ChapterLoader : MonoBehaviour
 		TerrainData CopyTerrainData = (TerrainData)Object.Instantiate (BaseTerrainData);
 		Terrain interpolatorTerrain = CopyTerrain.GetComponent<Terrain> ();
 		interpolatorTerrain.terrainData = CopyTerrainData;
-		
+
+		//increase the viewing distance of grass on terrain
+		interpolatorTerrain.detailObjectDistance = 250;
 
 		TerrainData lastTerrainData = lastTerrain.GetComponent<Terrain> ().terrainData;
 
@@ -242,6 +316,13 @@ public class ChapterLoader : MonoBehaviour
 	}
 
 	void instantiateCheckpointTerrain (GameObject terrain)
+	{
+		GameObject.Instantiate (terrain, spawnOffset, Quaternion.Euler (0, 0, 0));
+		//instantiateMountains(terrain);
+		spawnOffset += new Vector3 (50.0f, 0.0f, 0.0f);
+	}
+
+	void instantiateCustomTerrain (GameObject terrain)
 	{
 		GameObject.Instantiate (terrain, spawnOffset, Quaternion.Euler (0, 0, 0));
 		//instantiateMountains(terrain);

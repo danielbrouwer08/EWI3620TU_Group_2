@@ -89,7 +89,7 @@ public class PlayerProperties : MonoBehaviour {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         
         transform.position = position;
-        if(players[0].transform.position.x - players[1].transform.position.x > 100)
+        if(Mathf.Abs(players[0].transform.position.x - players[1].transform.position.x) > 100)
         {
             if(players[0].name.Equals(gameObject.name))
             {

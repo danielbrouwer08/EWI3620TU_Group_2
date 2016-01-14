@@ -148,6 +148,8 @@ public class TerrainSpawner : MonoBehaviour
 
 		//updateNewDetailmap(terrain);
 
+		//increase the viewing distance of grass on terrain
+		terrain.detailObjectDistance = 250;
 
 		//Add a terrainCollider to the GameObject
 		CopyTerrain.AddComponent<TerrainCollider> ().terrainData = terrain.terrainData;
@@ -549,7 +551,6 @@ public class TerrainSpawner : MonoBehaviour
 
 		}
 
-		
 		return DetailMap;
 
 		//loop throug whole map
