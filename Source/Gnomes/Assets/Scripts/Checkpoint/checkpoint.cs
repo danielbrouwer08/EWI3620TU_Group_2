@@ -15,6 +15,8 @@ public class checkpoint : MonoBehaviour
     private int state = 0;
     private GameObject gamemanager;
     private GameObject[] players;
+    public bool[] audioplayed;
+   
 
     void Start()
     {
@@ -94,13 +96,12 @@ public class checkpoint : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-
         if (collision.gameObject.tag.Equals("Player"))
         {
             var dict2 = new Dictionary<string, object>();
             if (collision.gameObject.Equals(players[0]))
             {
-
+                audioplayed[0] = true;
 
                 if (!player1In)
                 {
@@ -122,6 +123,7 @@ public class checkpoint : MonoBehaviour
             }
             else if (collision.gameObject.Equals(players[1]))
             {
+                audioplayed[1] = true;
 
                 if (!player2In)
                 {
