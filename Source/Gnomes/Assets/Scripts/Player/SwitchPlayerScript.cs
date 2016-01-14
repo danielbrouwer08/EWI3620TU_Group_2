@@ -10,6 +10,7 @@ public class SwitchPlayerScript : MonoBehaviour {
         if (PlayerPrefs.GetString("playermode") == "single")
         {
             SinglePlayer = true;
+            players[1].GetComponent<PlayerController>().enabled = false;
         }
 	}
 	
@@ -21,17 +22,8 @@ public class SwitchPlayerScript : MonoBehaviour {
             {
                 cur.GetComponent<PlayerController>().isActive = !cur.GetComponent<PlayerController>().isActive;
                 cur.GetComponent<PlayerController>().playerNum = 3 - cur.GetComponent<PlayerController>().playerNum;
-                //cur.GetComponent<AIPath>().enabled = !cur.GetComponent<AIPath>().enabled;
-                //if (cur.GetComponent<Rigidbody>() == null)
-                //{
-                //    cur.AddComponent<Rigidbody>();
-                //    cur.GetComponent<Rigidbody>().mass = 90;
-                //    cur.GetComponent<Rigidbody>().freezeRotation = true;
-                //}
-                //else
-                //{
-                //    Destroy(cur.GetComponent<Rigidbody>());
-                //}
+                cur.GetComponent<PlayerController>().enabled = !cur.GetComponent<PlayerController>().enabled;
+                cur.GetComponent<AIPath>().enabled = !cur.GetComponent<AIPath>().enabled;
             }
         }
 	}
