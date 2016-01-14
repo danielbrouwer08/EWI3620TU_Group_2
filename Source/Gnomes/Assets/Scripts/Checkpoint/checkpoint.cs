@@ -15,7 +15,6 @@ public class checkpoint : MonoBehaviour
     private int state = 0;
     private GameObject gamemanager;
     private GameObject[] players;
-    public bool[] audioplayed;
 
     void Start()
     {
