@@ -67,12 +67,15 @@ public class TerrainSpawner : MonoBehaviour
     public bool removeGrassOnElevatedPatches;
 	public bool removeGrassOnWater;
 
+	public bool done;
 
 	// Use this for initialization
 	void Start ()
 	{
+		done = false;
 		//generate #amountOfTerrainsToSpawn terrains
 		generateTerrainSequence (amountOfTerrainsToSpawn);
+		done = true; //indicate that script is done spawning
 	}
 
 	void generateTerrainSequence (int length)
@@ -92,6 +95,7 @@ public class TerrainSpawner : MonoBehaviour
 		GameObject CopyTerrain = new GameObject ();
 		string terrainName = "TerrainN0" + index.ToString ();
 		CopyTerrain.name = terrainName;
+		CopyTerrain.tag = "Terrain";
 
 		//Locate the GameObject to the right place
 		CopyTerrain.transform.position = TerrainSpawnPosition;
@@ -144,6 +148,8 @@ public class TerrainSpawner : MonoBehaviour
 
 		//updateNewDetailmap(terrain);
 
+		//increase the viewing distance of grass on terrain
+		terrain.detailObjectDistance = 250;
 
 		//Add a terrainCollider to the GameObject
 		CopyTerrain.AddComponent<TerrainCollider> ().terrainData = terrain.terrainData;
@@ -545,7 +551,6 @@ public class TerrainSpawner : MonoBehaviour
 
 		}
 
-		
 		return DetailMap;
 
 		//loop throug whole map

@@ -5,10 +5,13 @@ public class PlayerController : MonoBehaviour
 {
 	//Player properties
 	private Rigidbody rb;
-	public float jumpForce;
-	public float walkSpeed;
-	public float runSpeed;
-	public float slideSpeed;
+	public float jumpForcebegin;
+	public float walkSpeedbegin;
+	public float runSpeedbegin;
+    public float jumpForce;
+    public float walkSpeed;
+    public float runSpeed;
+    public float slideSpeed;
 	public int playerNum;
     public float rotatespeed = 8;
     private Animation anim;
@@ -48,7 +51,10 @@ public class PlayerController : MonoBehaviour
 	// Iinitialization
 	void Start ()
 	{
-		gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManger>();
+        jumpForce = jumpForcebegin;
+        walkSpeed = walkSpeedbegin;
+        runSpeed = runSpeedbegin;
+        gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManger>();
         Debug.Log("Ik zit hier naar te kijken: " + PlayerPrefs.GetString("playermode"));
         Debug.Log("Ik zit hier naar te kijken: " + PlayerPrefs.GetString("playermode"));
         if (PlayerPrefs.GetString("playermode") == "single")
@@ -104,7 +110,7 @@ public class PlayerController : MonoBehaviour
 	// Update is called every fixed framerate frame
 	void FixedUpdate ()
 	{
-        if(transform.position.z > 50 | transform.position.z < 0)
+		if(transform.position.y < -25.0f)
         {
             GetComponent<PlayerProperties>().Death();
 
@@ -197,7 +203,13 @@ public class PlayerController : MonoBehaviour
             {
                 if (!running)
                 {
-                    anim.Play("Lopen");
+                    if (GetComponent <Fly> () != null && Input.GetButton("Item" + playerNum))
+                    {
+                    } 
+                    else
+                    {
+                        anim.Play("Lopen");
+                    }  
                 }
                 else
                 {
@@ -259,7 +271,7 @@ public class PlayerController : MonoBehaviour
 
     public bool grounded()
     {
-        return Physics.Raycast(transform.position + 0.1f * Vector3.up, -Vector3.up, 0.25f);
+        return Physics.Raycast(transform.position + 0.1f * Vector3.up, -Vector3.up, 0.20f);
     }
 
     public void ExternalForce(Vector3 force, float nomovementtime)
