@@ -8,6 +8,7 @@ public class WaveScript : MonoBehaviour {
     public GameObject[] players;
     public GameObject[] levels;
     public float speed;
+	public float multiplier = 0.5f;
 
     // Use this for initialization
     void Start () {
@@ -37,6 +38,7 @@ public class WaveScript : MonoBehaviour {
                 speed = levels[i].GetComponent<LevelScript>().speedvar;
             }
         }
+
         int count = 0;
         for (int i = 0; i < players.Length; i++)
         {
@@ -46,13 +48,13 @@ public class WaveScript : MonoBehaviour {
             }
             if (transform.position.x > players[i].transform.position.x + 1)
             {
-                transform.position = new Vector3(players[i].GetComponent<PlayerController>().getLastSavedPos().x - 10, 0, 25f);
+                transform.position = new Vector3(players[i].GetComponent<PlayerController>().getLastSavedPos().x - 25, 0, 25f);
             }
         }
         if (count == 2)
         {
             speed = 6;
         }
-        transform.Translate(speed*Time.deltaTime*(new Vector3(1,0,0)));
+		transform.Translate(speed*multiplier*Time.deltaTime*(new Vector3(1,0,0)));
     }
 }
