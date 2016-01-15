@@ -16,6 +16,7 @@ public class PlayerProperties : MonoBehaviour {
     bool damaged;
     bool dead;
     public GameObject item;
+    private Text scoretext;
 
 	void Awake ()
     {
@@ -28,6 +29,7 @@ public class PlayerProperties : MonoBehaviour {
     {
         gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManger>();
         playerNum = GetComponent<PlayerController>().playerNum;
+        scoretext = GameObject.FindGameObjectWithTag("IngamePanel").transform.FindChild("Player " + playerNum).GetChild(1).GetChild(1).GetChild(0).GetComponent<Text>();
     }
 	
 	void Update ()
@@ -48,6 +50,7 @@ public class PlayerProperties : MonoBehaviour {
     public void UpdateScore(int newscore)
     {
         score = score + newscore;
+        scoretext.text = score.ToString();
     }
 
     public void Death()
