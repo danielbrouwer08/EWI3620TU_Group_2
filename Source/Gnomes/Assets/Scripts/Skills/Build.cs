@@ -4,7 +4,7 @@ using System.Collections;
 public class Build : MonoBehaviour {
 
     private GameObject prefab;
-    private int blockcap = 3;
+    private int blockcap = 5;
     private Rigidbody rb;
     private GameObject[] blocks;
     private int i = 0;
