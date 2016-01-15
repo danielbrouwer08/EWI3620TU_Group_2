@@ -16,7 +16,7 @@ public class TutorialText : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(between (10,40))
+		if(between (10,60))
 		{
 			header.SetActive(true);
 			string displayText = "P1 can move with the 'arrow' keys. P2 can move with the 'W,A,S,D' keys. To run press 'RIGHT-SHIFT' (P1) or 'LEFT-SHIFT' (P2). To jump press '/' (P1) or 'C' (P2). Don't let the wave get to close!";
@@ -41,7 +41,7 @@ public class TutorialText : MonoBehaviour {
 		else if (between(360,400))
 		{
 			header.SetActive(true);
-			string displayText = "With the wingsuit the skinny player can Float to the other side. To enable/disable Float mode press ','. The hammer van be used by the fat player. To use it press 'V'. Try to hit the boulder and see what happends";
+			string displayText = "With the wingsuit the skinny player can Float to the other side. To enable/disable Float mode press ','. The hammer van be used by the fat player. To use it press 'B'. Try to hit the boulder and see what happends";
 			text.GetComponent<Text>().text=displayText;
 		}
 		else if (between(630,660))
