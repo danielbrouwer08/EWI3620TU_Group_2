@@ -15,8 +15,19 @@ public class DumbEnemy : MonoBehaviour {
 	void Start () {
         transform.eulerAngles = new Vector3(0, 180, 0);
         sight = GetComponent<EnemySight>();
-        state = 1;
+        state = Random.Range(0, 4);
 	}
+
+    void shootArrow()
+    {
+        if (Time.time > nextFire)
+        {
+            nextFire = Time.time + fireRate;
+            Vector3 rotation = transform.eulerAngles + new Vector3(0, 180, 0);
+            Instantiate(pijl, transform.position + new Vector3(0.2f, 3f, 0.2f), Quaternion.Euler(rotation));
+
+        }
+    }
 	
 	// Update is called once per frame
 	void FixedUpdate () {
@@ -24,22 +35,29 @@ public class DumbEnemy : MonoBehaviour {
         {
             case 0:
                 transform.Rotate(0, rotationspeed, 0);
-
-                if (Time.time > nextFire)
-                {
-                    nextFire = Time.time + fireRate;
-                    Vector3 rotation = transform.eulerAngles + new Vector3(0, 180, 0);
-                    Instantiate(pijl, transform.position + new Vector3(0.2f, 3f, 0.2f), Quaternion.Euler(rotation));
-
-                }
+                shootArrow();
                 break;
             case 1:
                 if(sight.seenEnemy != null)
                 {
-                    Vector3 new_rotation = Vector3.RotateTowards(transform.position, sight.seenEnemy.transform.position, 10f, 0.0f );
-                    transform.rotation = Quaternion.LookRotation(new_rotation);
+                    transform.LookAt(sight.seenEnemy.transform);
+                    if(sight.seenEnemy.transform.position.z > transform.position.z)
+                    {
+                        transform.eulerAngles = transform.eulerAngles + new Vector3(0, 5f, 0);
+                    }
+                    else if(sight.seenEnemy.transform.position.z < transform.position.z)
+                    {
+                        transform.eulerAngles = transform.eulerAngles + new Vector3(0, -5f, 0);
+                    }
+                    shootArrow();
                 }
-                
+                break;
+            case 2:
+                transform.LookAt(sight.seenEnemy.transform);
+                shootArrow();
+                break;
+            case 3:
+                shootArrow();
                 break;
             default:
                 break;
