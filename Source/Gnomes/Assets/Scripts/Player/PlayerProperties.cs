@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 using System.Collections;
 using UnityEngine.Analytics;
 using System.Collections.Generic;
@@ -16,6 +17,9 @@ public class PlayerProperties : MonoBehaviour {
     bool damaged;
     bool dead;
     public GameObject item;
+    private Text scoretext;
+    public AudioSource pijnsource;
+    public AudioClip pijnsound;
 
 	void Awake ()
     {
@@ -28,26 +32,31 @@ public class PlayerProperties : MonoBehaviour {
     {
         gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManger>();
         playerNum = GetComponent<PlayerController>().playerNum;
+        scoretext = GameObject.FindGameObjectWithTag("IngamePanel").transform.FindChild("Player " + playerNum).GetChild(1).GetChild(1).GetChild(0).GetComponent<Text>();
+        score = gameManager.getscore(playerNum);
+        scoretext.text = score.ToString();
     }
 	
 	void Update ()
     {
-        if(health <= 0)
+        if(health <= 0 || transform.position.y < -25.0f)
         {
             Death();
         }
         healthbar.value = health;
-	}
+    }
 
     public void TakeDamage(float damage)
     {
         damaged = true;
         health -= damage;
+        pijnsource.PlayOneShot(pijnsound);
     }
 
     public void UpdateScore(int newscore)
     {
         score = score + newscore;
+        scoretext.text = score.ToString();
     }
 
     public void Death()
