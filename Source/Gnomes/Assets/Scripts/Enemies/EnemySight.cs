@@ -17,7 +17,10 @@ public class EnemySight : MonoBehaviour {
     {
         //me = GetComponent<Rigidbody>();
         AI = GetComponent<AIPath>();
-        AI.canSearch = false;
+        if(AI != null)
+        {
+            AI.canSearch = false;
+        }
         playergo = GameObject.FindGameObjectsWithTag("Player");
         player = new Rigidbody[playergo.Length];
         for(int i = 0; i < playergo.Length; i++)
@@ -30,22 +33,26 @@ public class EnemySight : MonoBehaviour {
 	
     void Update ()
     {
-        if(See())
+        if(See() && AI != null)
         {
             AI.canSearch = true;
             AI.canMove = true;
             AI.target = seenEnemy.transform;
         }
-        if (AI.target != null)
-            if(AI.target.position.x > rightBound.position.x | AI.target.position.x < leftBound.position.x)
+        if (AI != null && AI.target != null)
+            if(leftBound != null && rightBound != null)
             {
-                AI.target = null;
-                AI.canMove = false;
+                if (AI.target.position.x > rightBound.position.x | AI.target.position.x < leftBound.position.x)
+                {
+                    AI.target = null;
+                    AI.canMove = false;
+                }
             }
+
     }
 
     // Returns true if the enemy can see any gameobject tagged with "Player"
-	bool See ()
+	public bool See ()
     {
         for (int i = 0; i < player.Length; i++)
         {
