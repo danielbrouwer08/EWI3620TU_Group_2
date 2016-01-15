@@ -42,4 +42,13 @@ public class WallOfDeath : MonoBehaviour {
 		}
 
 	}
+
+	void OnCollisionStay(Collision collision) {
+		if(collision.collider.tag=="Player")
+			{
+				collision.gameObject.GetComponent<PlayerProperties>().TakeDamage(50.0f);
+			}
+		}
+
+
 }
