@@ -14,6 +14,6 @@ public class GameStart : MonoBehaviour {
     {
 		gamemanager.emptySaves ();
 		Debug.Log("loading chapter 1");
-        Application.LoadLevel("Chapter1");
+        Application.LoadLevel("Chapter0");
     }
 }
