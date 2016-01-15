@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class WaterFallKill : MonoBehaviour {
-	
+
 	// Update is called once per frame
 	void Update () {
 	
@@ -12,4 +12,5 @@ public class WaterFallKill : MonoBehaviour {
 		}
 
 	}
+
 }
