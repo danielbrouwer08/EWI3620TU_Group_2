@@ -55,8 +55,8 @@ public class PlayerController : MonoBehaviour
         walkSpeed = walkSpeedbegin;
         runSpeed = runSpeedbegin;
         gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManger>();
-        Debug.Log("Ik zit hier naar te kijken: " + PlayerPrefs.GetString("playermode"));
-        Debug.Log("Ik zit hier naar te kijken: " + PlayerPrefs.GetString("playermode"));
+        //Debug.Log("Ik zit hier naar te kijken: " + PlayerPrefs.GetString("playermode"));
+        //Debug.Log("Ik zit hier naar te kijken: " + PlayerPrefs.GetString("playermode"));
         if (PlayerPrefs.GetString("playermode") == "single")
         {
             isSinglePlayer = true;
@@ -134,7 +134,8 @@ public class PlayerController : MonoBehaviour
                 transform.forward = Vector3.RotateTowards(transform.forward, new Vector3(movement.x, 0, movement.z),Time.fixedDeltaTime*rotatespeed,0);
             }
             //Move the player
-            if (!Physics.Raycast(transform.position, transform.forward, 1.207f))
+            //if (!Physics.Raycast(transform.position, transform.forward, 1.207f)) MOET GEFIXT WORDEN
+			if(true)
             {
                 if (jump)
                 {
@@ -263,7 +264,8 @@ public class PlayerController : MonoBehaviour
 
     public bool grounded()
     {
-        return Physics.Raycast(transform.position + 0.1f * Vector3.up, -Vector3.up, 0.20f);
+        //return Physics.Raycast(transform.position + 0.1f * Vector3.up, -Vector3.up, 0.20f);
+		return true; // temporary fix MOET AAN GESLEUTELD WORDEN!!!
     }
 
     public void ExternalForce(Vector3 force, float nomovementtime)
