@@ -15,9 +15,12 @@ public class checkpoint : MonoBehaviour
     private int state = 0;
     private GameObject gamemanager;
     private GameObject[] players;
+    private CheckpointScript player;
+    public bool[] collided;
 
     void Start()
     {
+        collided = new bool[2];
         gamemanager = GameObject.FindWithTag("GameManager");
         players = GameObject.FindGameObjectsWithTag("Player");
     }
@@ -97,6 +100,16 @@ public class checkpoint : MonoBehaviour
 
         if (collision.gameObject.tag.Equals("Player"))
         {
+            player = collision.gameObject.GetComponent<CheckpointScript>();
+            if (player.playernumber == 0)
+            {
+                collided[0] = true;
+            }
+            if (player.playernumber == 1)
+            {
+                collided[1] = true;
+            }
+
             var dict2 = new Dictionary<string, object>();
             if (collision.gameObject.Equals(players[0]))
             {

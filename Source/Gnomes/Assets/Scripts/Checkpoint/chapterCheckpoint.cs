@@ -33,7 +33,9 @@ public class chapterCheckpoint : MonoBehaviour
 			saveCheckpoint ();
 			if(!isLastCheckpoint)
 			{
-			loadNextChapter();
+                string currentChapter= Application.loadedLevelName;
+                currentChapter += "Storyline";
+                Application.LoadLevel(currentChapter);
 			}
 		} else if ((player1In || player2In) && state == 0) {
 			state = 1;
@@ -41,9 +43,8 @@ public class chapterCheckpoint : MonoBehaviour
 		}
 	}
 
-	void loadNextChapter()
+	public void loadNextChapter(string currentChapter)
 	{
-		string currentChapter = Application.loadedLevelName;
 		//Debug.Log ("TEST: " + currentChapter[(currentChapter.Length-1)]);
 		int temp =  (int)char.GetNumericValue(currentChapter[(currentChapter.Length-1)]);
 		//Debug.Log ("TEST2: " + temp);
