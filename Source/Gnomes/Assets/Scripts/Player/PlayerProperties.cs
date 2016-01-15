@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 using System.Collections;
 using UnityEngine.Analytics;
 using System.Collections.Generic;
@@ -17,6 +18,8 @@ public class PlayerProperties : MonoBehaviour {
     bool dead;
     public GameObject item;
     private Text scoretext;
+    public AudioSource pijnsource;
+    public AudioClip pijnsound;
 
 	void Awake ()
     {
@@ -47,6 +50,7 @@ public class PlayerProperties : MonoBehaviour {
     {
         damaged = true;
         health -= damage;
+        pijnsource.PlayOneShot(pijnsound);
     }
 
     public void UpdateScore(int newscore)
