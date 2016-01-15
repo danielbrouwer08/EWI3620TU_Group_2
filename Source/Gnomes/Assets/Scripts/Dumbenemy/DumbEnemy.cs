@@ -53,7 +53,10 @@ public class DumbEnemy : MonoBehaviour {
                 }
                 break;
             case 2:
-                transform.LookAt(sight.seenEnemy.transform);
+                if(sight.seenEnemy != null)
+                {
+                    transform.LookAt(sight.seenEnemy.transform);
+                }
                 shootArrow();
                 break;
             case 3:

@@ -18,7 +18,7 @@ public class Demolish : MonoBehaviour
 	{
 		if (Input.GetButton ("Item" + playerNum)) {
 			hammertimer += Time.deltaTime;
-			hammer = transform.FindChild ("Hammer").gameObject;
+			hammer = transform.GetComponentInChildren<PickUpItem>().gameObject;
 			if (hammertimer < 0.5) {
 				hammer.transform.localEulerAngles -= new Vector3 (5, 0, 0);
 			} else if (hammertimer < 1) {
