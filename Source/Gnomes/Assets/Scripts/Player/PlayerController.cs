@@ -265,7 +265,16 @@ public class PlayerController : MonoBehaviour
     public bool grounded()
     {
         //return Physics.Raycast(transform.position + 0.1f * Vector3.up, -Vector3.up, 0.20f);
-		return true; // temporary fix MOET AAN GESLEUTELD WORDEN!!!
+
+		if(rb.velocity.y < 0.01 && Physics.Raycast(transform.position + 0.1f * Vector3.up, -Vector3.up, 0.50f) )
+		{
+			return true;
+		}else
+		{
+			return false;
+		}
+
+		//return true; // temporary fix MOET AAN GESLEUTELD WORDEN!!!
     }
 
     public void ExternalForce(Vector3 force, float nomovementtime)
