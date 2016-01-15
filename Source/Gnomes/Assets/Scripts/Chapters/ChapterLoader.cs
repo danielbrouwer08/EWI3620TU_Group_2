@@ -189,7 +189,7 @@ public class ChapterLoader : MonoBehaviour
 			CopyTerrain.AddComponent<TerrainCollider> ().terrainData = mountainTerrain.terrainData;
 
 			//spawn invisible wall so players cant get up the mountain
-			GameObject.Instantiate (invisibleWall, allTerrains [k].transform.position + new Vector3 (25.0f, 25.0f, allTerrains [k].GetComponent<Terrain> ().terrainData.size.z + allTerrains [k].GetComponent<Terrain> ().terrainData.size.z/4.0f), Quaternion.Euler (-90, 0, 0));
+			GameObject.Instantiate (invisibleWall, allTerrains [k].transform.position + new Vector3 (25.0f, 25.0f, allTerrains [k].GetComponent<Terrain> ().terrainData.size.z + allTerrains [k].GetComponent<Terrain> ().terrainData.size.z/8.0f), Quaternion.Euler (-90, 0, 0));
 			//spawnOffset += new Vector3(0.0f,0.0f,mountainTerrain.terrainData.size.y);
 		}
 	}

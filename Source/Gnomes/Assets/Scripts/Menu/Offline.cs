@@ -5,7 +5,10 @@ public class Offline : MonoBehaviour {
 
     public void SetOffline()
     {
-        PlayerPrefs.SetString("menuteamname", "Offline Mode");
+        if (PlayerPrefs.GetString("menuteamname") == null)
+        {
+            PlayerPrefs.SetString("menuteamname", "Offline Mode");
+        }
         Application.LoadLevel("Main Menu");
     }
 }

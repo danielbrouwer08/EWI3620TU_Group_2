@@ -16,9 +16,9 @@ public class GameManger : MonoBehaviour
 	//private Savegame[] online = new Savegame[3];
 	public bool loginSucceed = false;
 	public bool registerSucceed = false;
-	//private bool onlinemode;
-	//private Savegame[] serversaves = new Savegame[3];
-
+    //private bool onlinemode;
+    //private Savegame[] serversaves = new Savegame[3];
+    private string oldusername;
         
 
 	void Awake ()
@@ -69,13 +69,19 @@ public class GameManger : MonoBehaviour
 		StartCoroutine (registerOnServer (user,pass));
 	}
 
+    void Update()
+    {
+        Debug.Log(username);
+    }
+
 	public void onlineMode (string user, string pass)
 	{
 		PlayerPrefs.SetString("teamname",user);
 		PlayerPrefs.SetString("password",pass);
+        oldusername = username;
 		this.password = pass;
 		this.username = user;
-
+        
 
 		StartCoroutine (GetTimeStamp ()); //get timestamp from server (blocking)
 		StartCoroutine (getSaves()); // login and get online saves
@@ -326,7 +332,7 @@ public class GameManger : MonoBehaviour
 			
 			int datecompare = DateTime.Compare (currentTimeStamp, serverTimeStamp);
 			
-			if (datecompare < 0) {
+			if (datecompare < 0 || username != oldusername) {
 				Debug.Log ("using server save file");
 				saves = online;
 				updatePlayerPrefs ();

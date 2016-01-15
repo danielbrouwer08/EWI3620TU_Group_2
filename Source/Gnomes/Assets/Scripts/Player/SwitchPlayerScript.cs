@@ -4,8 +4,14 @@ using System.Collections;
 public class SwitchPlayerScript : MonoBehaviour {
     private GameObject[] players;
     private bool SinglePlayer = false;
-	// Use this for initialization
-	void Start () {
+    Vector3 curposition;
+    Vector3 lastposition;
+    private Animation anim;
+    private float animwalk = 3.5f;
+
+
+    // Use this for initialization
+    void Start () {
         players = GameObject.FindGameObjectsWithTag("Player");
         if (PlayerPrefs.GetString("playermode") == "single")
         {
@@ -19,10 +25,11 @@ public class SwitchPlayerScript : MonoBehaviour {
             players[1].GetComponent<PlayerController>().enabled = false;
             players[0].GetComponent<AIPath>().enabled = false;
         }
-	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    }
+
+    // Update is called once per frame
+    void Update () {
         if (Input.GetButtonDown("SwitchPlayer") && SinglePlayer)
         {
             foreach(GameObject cur in players)
@@ -45,5 +52,27 @@ public class SwitchPlayerScript : MonoBehaviour {
                 }
             }
         }
+
+        foreach (GameObject cur in players)
+        {
+            curposition = cur.GetComponent<Transform>().position;
+            if (SinglePlayer && cur.GetComponent<AIPath>().canMove && !cur.GetComponent<PlayerController>().isActive)
+            {
+                anim = cur.GetComponent<Animation>();
+                anim["Lopen"].speed = animwalk;
+                if (curposition != lastposition)
+                {
+                    anim.Play("Lopen");
+                    Debug.Log("Moving");
+                    lastposition = curposition;
+                }
+                else
+                {
+                    anim.Play("Stilstaan");
+                }
+            }
+        }
+
+
     }
 }

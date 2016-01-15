@@ -11,13 +11,19 @@ public class chapterCheckpoint : MonoBehaviour
 	private bool player2In = false;
 	private GameObject player1;
 	private GameObject player2;
-	private int state = 0;
+    private GameObject[] players;
+    private int state = 0;
 	private GameObject gamemanager;
 	public bool isLastCheckpoint = false;
+    private CheckpointScript player;
+    public bool[] collided;
 
-	void Start()
+
+    void Start()
 	{
-		gamemanager = GameObject.FindWithTag("GameManager");
+        collided = new bool[2];
+        gamemanager = GameObject.FindWithTag("GameManager");
+        players = GameObject.FindGameObjectsWithTag("Player");
 	}
 
 
@@ -108,40 +114,63 @@ public class chapterCheckpoint : MonoBehaviour
 
 	void OnCollisionEnter (Collision collision)
 	{
+        if (collision.gameObject.tag.Equals("Player"))
+        {
+            player = collision.gameObject.GetComponent<CheckpointScript>();
+            if (player.playernumber == 0)
+            {
+                collided[0] = true;
+            }
+            if (player.playernumber == 1)
+            {
+                collided[1] = true;
+            }
 
-		if (collision.gameObject.tag.Equals ("Player")) {
-
-            if (collision.gameObject.GetComponent<PlayerController> ().playerNum == 1) {
-
+            var dict2 = new Dictionary<string, object>();
+            if (collision.gameObject.Equals(players[0]))
+            {
                 if (!player1In)
                 {
+                    dict2["currentScene"] = Application.loadedLevelName;
+                    dict2["playerNum"] = 1;
+
                     Analytics.CustomEvent("checkPoint", new Dictionary<string, object>
                     {
                         { "x-location",  gameObject.transform.position.x},
                         { "z-location", gameObject.transform.position.z},
                         { "playerNum",  1}
                     });
+
+                    UnityAnalyticsHeatmap.HeatmapEvent.Send("checkpoint", gameObject.transform.position, dict2);
                 }
 
                 player1In = true;
-				player1 = collision.gameObject;
-			} else if (collision.gameObject.GetComponent<PlayerController> ().playerNum == 2) {
+                player1 = collision.gameObject;
+            }
+            else if (collision.gameObject.Equals(players[1]))
+            {
 
                 if (!player2In)
                 {
+                    dict2["currentScene"] = Application.loadedLevelName;
+                    dict2["playerNum"] = 1;
+
                     Analytics.CustomEvent("checkPoint", new Dictionary<string, object>
                     {
                         { "x-location",  gameObject.transform.position.x},
                         { "z-location", gameObject.transform.position.z},
                         { "playerNum",  2}
                     });
+
+                    UnityAnalyticsHeatmap.HeatmapEvent.Send("checkpoint", gameObject.transform.position, dict2);
                 }
 
-				player2In = true;
-				player2 = collision.gameObject;
-			}
-		
-		}
+
+                player2In = true;
+                player2 = collision.gameObject;
+            }
+
+        }
 	}
 
 }
