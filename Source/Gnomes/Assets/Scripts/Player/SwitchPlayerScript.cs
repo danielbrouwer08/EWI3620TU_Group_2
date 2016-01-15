@@ -18,7 +18,7 @@ public class SwitchPlayerScript : MonoBehaviour {
             for(int i = 0; i < players.Length; i++) {
                 players[i].AddComponent<AIPath>();
                 players[i].GetComponent<AIPath>().target = players[1 - i].transform;
-                players[i].GetComponent<AIPath>().endReachedDistance = 2;
+                players[i].GetComponent<AIPath>().endReachedDistance = 3;
                 players[i].GetComponent<AIPath>().speed = 9;
             }
             SinglePlayer = true;

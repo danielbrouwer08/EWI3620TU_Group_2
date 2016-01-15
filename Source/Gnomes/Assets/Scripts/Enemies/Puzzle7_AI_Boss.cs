@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Puzzle7_AI_Boss : MonoBehaviour
 {
-	private NavMeshAgent agent;
+	private AIPath AI;
 	private bool player1InRange;
 	private bool player2InRange;
 	private bool cheeseInRange;
@@ -37,14 +37,13 @@ public class Puzzle7_AI_Boss : MonoBehaviour
 	void Awake ()
 	{
 		animation = this.GetComponent<Animation> ();
-		agent = MouseNavagent.GetComponent<NavMeshAgent> ();
 		player1InRange = false;
 		player2InRange = false;
 		cheeseInRange = false;
 		players = GameObject.FindGameObjectsWithTag ("Player");
 		player1 = players [0];
 		player2 = players [1];
-
+        AI = MouseNavagent.GetComponent<AIPath>();
 		//animation["Attack_01"].speed = attackAnimationSpeed;
 
 		actionState = "idle";
@@ -93,7 +92,7 @@ public class Puzzle7_AI_Boss : MonoBehaviour
 				rightWall.GetComponent<WoodenPoleWall> ().appear = true;
 				wallsAreUp = true;
 			}
-			if (Vector3.Distance (player1.transform.position, agent.transform.position) < Vector3.Distance (player2.transform.position, agent.transform.position)) { //if closer to player 1
+			if (Vector3.Distance (player1.transform.position, AI.transform.position) < Vector3.Distance (player2.transform.position, AI.transform.position)) { //if closer to player 1
 				actionState = "huntPlayer1"; //hunt player 1 down
 			} else {
 				actionState = "huntPlayer2"; //else hunt player 2 down
@@ -111,8 +110,8 @@ public class Puzzle7_AI_Boss : MonoBehaviour
 		case "idle":
 			{
 				animation.Play ("idle");
-				if (agent.isActiveAndEnabled) {
-					agent.Stop ();
+				if (AI.enabled) {
+                    AI.canMove = false;
 					determineInrangeObjects ();
 				
 					thinkTimer += Time.deltaTime; //increment the eatingTimer
@@ -128,17 +127,17 @@ public class Puzzle7_AI_Boss : MonoBehaviour
 			}
 		case "huntCheese":
 			{
-				agent.SetDestination (cheese.transform.position);
-				agent.Resume ();
+                AI.target = cheese.transform;
+                AI.canMove = true;
 				animation.Play ("Walk");
-				if (Vector3.Distance (cheese.transform.position, agent.transform.position) < takeActionDistance) { //when the mouse reaches the cheese
+				if (Vector3.Distance (cheese.transform.position, AI.transform.position) < takeActionDistance) { //when the mouse reaches the cheese
 					actionState = "eatCheese"; //change the state to eatCheese
 				}
 				break;
 			}
 		case "eatCheese":
 			{
-				agent.Stop ();
+                AI.canMove = false;
 				//animation.Play("eat");
 				eatingTimer += Time.deltaTime; //increment the eatingTimer
 				if (this.GetComponent<EnemyProperties> ().health < 100) {
@@ -149,22 +148,22 @@ public class Puzzle7_AI_Boss : MonoBehaviour
 					actionState = "idle"; //when cheese is gone, goto idle state.
 					eatingTimer = 0.0f; //reset the eatingtimer
 				}
-				if (Vector3.Distance (cheese.transform.position, agent.transform.position) > takeActionDistance) { //if cheese its position is moved out of the eatinrange, stop eating.
+				if (Vector3.Distance (cheese.transform.position, AI.transform.position) > takeActionDistance) { //if cheese its position is moved out of the eatinrange, stop eating.
 					actionState = "idle";
 				}
 				break;
 			}
 		case "huntPlayer1":
 			{
-				agent.SetDestination (player1.transform.position);
-				agent.Resume ();
+				AI.target = player1.transform;
+                AI.canMove = true;
 				animation.Play ("Walk");
 
-				if (Vector3.Distance (player1.transform.position, agent.transform.position) > Vector3.Distance (player2.transform.position, agent.transform.position)) { //if during the hunt, player2 gets closer change the target
+				if (Vector3.Distance (player1.transform.position, AI.transform.position) > Vector3.Distance (player2.transform.position, AI.transform.position)) { //if during the hunt, player2 gets closer change the target
 					actionState = "huntPlayer2"; //hunt player 2 down
 				}
 				
-				if (Vector3.Distance (player1.transform.position, agent.transform.position) < takeActionDistance) { //when the mouse reaches player1
+				if (Vector3.Distance (player1.transform.position, AI.transform.position) < takeActionDistance) { //when the mouse reaches player1
 					animation.Play ("Attack_01"); //play the attack animation
 					actionState = "attackPlayer1"; //change the state to eatCheese
 				}
@@ -172,13 +171,13 @@ public class Puzzle7_AI_Boss : MonoBehaviour
 			}
 		case "attackPlayer1":
 			{
-				agent.Stop ();
+                AI.canMove = false;
 				attackTimer += Time.deltaTime;
 				if (attackTimer >= attackTime) { //wait till animation for attack is finished
 					//hit player1
 					//print ("hitting player 1");
 					player1.GetComponent<PlayerProperties> ().TakeDamage (damage);
-					player1.GetComponent<PlayerController> ().ExternalForce ((player1.transform.position - agent.transform.position) / Vector3.Distance (player1.transform.position, agent.transform.position) * Knockback, nomovementtime);
+					player1.GetComponent<PlayerController> ().ExternalForce ((player1.transform.position - AI.transform.position) / Vector3.Distance (player1.transform.position, AI.transform.position) * Knockback, nomovementtime);
 					actionState = "idle"; //return to the idle state after attack
 					attackTimer = 0.0f; //reset the attacktimer
 				}
@@ -186,15 +185,15 @@ public class Puzzle7_AI_Boss : MonoBehaviour
 			}
 		case "huntPlayer2":
 			{
-				agent.SetDestination (player2.transform.position);
-				agent.Resume ();
+                AI.target = player2.transform;
+                AI.canMove = true;
 				animation.Play ("Walk");
 
-				if (Vector3.Distance (player1.transform.position, agent.transform.position) < Vector3.Distance (player2.transform.position, agent.transform.position)) { //if during the hunt, player2 gets closer change the target
+				if (Vector3.Distance (player1.transform.position, AI.transform.position) < Vector3.Distance (player2.transform.position, AI.transform.position)) { //if during the hunt, player2 gets closer change the target
 					actionState = "huntPlayer1"; //hunt player 2 down
 				}
 
-				if (Vector3.Distance (player2.transform.position, agent.transform.position) < takeActionDistance) { //when the mouse reaches player1
+				if (Vector3.Distance (player2.transform.position, AI.transform.position) < takeActionDistance) { //when the mouse reaches player1
 					animation.Play ("Attack_01"); //play the attack animation
 					actionState = "attackPlayer2"; //change the state to eatCheese
 				}
@@ -202,13 +201,13 @@ public class Puzzle7_AI_Boss : MonoBehaviour
 			}
 		case "attackPlayer2":
 			{
-				agent.Stop ();
+                AI.canMove = false;
 				attackTimer += Time.deltaTime;
 				if (attackTimer >= attackTime) { //wait till animation for attack is finished
 					//hit player2
 					player2.GetComponent<PlayerProperties> ().TakeDamage (damage);
 					//player2.GetComponent<Rigidbody>().AddForce((player2.transform.position - transform.position) * Knockback);
-					player2.GetComponent<PlayerController> ().ExternalForce ((player2.transform.position - agent.transform.position) / Vector3.Distance (player1.transform.position, agent.transform.position) * Knockback, nomovementtime);
+					player2.GetComponent<PlayerController> ().ExternalForce ((player2.transform.position - AI.transform.position) / Vector3.Distance (player1.transform.position, AI.transform.position) * Knockback, nomovementtime);
 					actionState = "idle"; //return to the idle state after attack
 					attackTimer = 0.0f; //reset the attacktimer
 				}

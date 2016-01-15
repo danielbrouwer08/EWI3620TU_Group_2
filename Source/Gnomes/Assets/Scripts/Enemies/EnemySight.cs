@@ -77,7 +77,7 @@ public class EnemySight : MonoBehaviour {
         if (other.transform.CompareTag("Player"))
         {
             Debug.Log("Muis raakt player");
-            other.transform.GetComponent<PlayerProperties>().health -= 1;
+            other.transform.GetComponent<PlayerProperties>().TakeDamage(1);
         }
     }
 }
