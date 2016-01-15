@@ -32,7 +32,7 @@ public class PlayerProperties : MonoBehaviour {
     {
         gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManger>();
         playerNum = GetComponent<PlayerController>().playerNum;
-        scoretext = GameObject.FindGameObjectWithTag("IngamePanel").transform.FindChild("Player " + playerNum).GetChild(1).GetChild(1).GetChild(0).GetComponent<Text>();
+        scoretext = GameObject.FindGameObjectWithTag("IngamePanel").transform.FindChild("Player " + playerNum).FindChild("Point total").FindChild("Score").FindChild("Text").GetComponent<Text>();
         score = gameManager.getscore(playerNum);
         scoretext.text = score.ToString();
     }
