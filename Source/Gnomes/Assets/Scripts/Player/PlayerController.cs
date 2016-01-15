@@ -110,14 +110,6 @@ public class PlayerController : MonoBehaviour
 	// Update is called every fixed framerate frame
 	void FixedUpdate ()
 	{
-		if(transform.position.y < -25.0f)
-        {
-            GetComponent<PlayerProperties>().Death();
-
-            //Vector3 position = getLastSavedPos();
-            //transform.position = position;
-        }
-
         if (nomovementtime > 0)
         {
             nomovementtime -= Time.fixedDeltaTime;

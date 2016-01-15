@@ -19,6 +19,8 @@ public class GameManger : MonoBehaviour
 	//private bool onlinemode;
 	//private Savegame[] serversaves = new Savegame[3];
 
+        
+
 	void Awake ()
 	{
 		saves = readPlayerPrefs ();
@@ -43,6 +45,18 @@ public class GameManger : MonoBehaviour
 		//onlineMode("Daniel","mijn_eerste_password");
 
 	}
+
+    public int getscore(int player)
+    {
+        if (player == 1)
+        {
+            return saves[currentslot].P1Score;
+        }
+        else
+        {
+            return saves[currentslot].P2Score;
+        }
+    }
 
 	public void register (string user, string pass)
 	{
