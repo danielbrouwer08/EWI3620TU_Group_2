@@ -7,14 +7,15 @@ public class DumbEnemy : MonoBehaviour {
     private bool goback;
     private int state;
     public GameObject pijl;
-
+    private EnemySight sight;
     private float nextFire;
     public float fireRate;
 
 	// Use this for initialization
 	void Start () {
         transform.eulerAngles = new Vector3(0, 180, 0);
-        state = 0;
+        sight = GetComponent<EnemySight>();
+        state = 1;
 	}
 	
 	// Update is called once per frame
@@ -33,7 +34,12 @@ public class DumbEnemy : MonoBehaviour {
                 }
                 break;
             case 1:
-                //Vector3 new_rotation = Vector3.RotateTowards(transform.position, )
+                if(sight.seenEnemy != null)
+                {
+                    Vector3 new_rotation = Vector3.RotateTowards(transform.position, sight.seenEnemy.transform.position, 10f, 0.0f );
+                    transform.rotation = Quaternion.LookRotation(new_rotation);
+                }
+                
                 break;
             default:
                 break;
