@@ -42,7 +42,7 @@ public class WaterScript : MonoBehaviour
             float force = 12000;
             other.gameObject.GetComponent<Rigidbody>().AddForce(total * force);
         }
-        else
+		else if(other.GetComponent<Rigidbody>()!=null)
         {
             other.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY;
             List<Transform> closestWaypoints = FindClosestWaypoint(other);
@@ -68,7 +68,7 @@ public class WaterScript : MonoBehaviour
             other.GetComponent<PlayerController>().runSpeed = other.GetComponent<PlayerController>().runSpeedbegin;
             other.GetComponent<PlayerController>().jumpForce = other.GetComponent<PlayerController>().jumpForcebegin;
         }
-        else
+		else if(other.GetComponent<Rigidbody>()!=null)
         {
             other.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
         }
