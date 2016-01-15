@@ -8,14 +8,26 @@ public class CheckpointScript : MonoBehaviour {
     public AudioClip clip;
     private string kleur;
     private checkpoint checkpoint;
+    public int playernumber;
     
+    void Awake()
+    {
+        if(this.gameObject.name == "kabouterdun")
+        {
+            playernumber = 1;
+        }
+        if(this.gameObject.name == "kabouterdik")
+        {
+            playernumber = 0;
+        }
+    }    
 
     void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Checkpoint")){
             kleur = other.gameObject.GetComponent<Renderer>().sharedMaterial.name;
             checkpoint = other.gameObject.GetComponent<checkpoint>();
-            if (kleur == "checkpointstate2" && checkpoint.audioplayed[0] == true ^ checkpoint.audioplayed[1] == true)
+            if (kleur == "checkpointstate1" && checkpoint.collided[playernumber] == false)
             {
                 source.PlayOneShot(clip);
             }
