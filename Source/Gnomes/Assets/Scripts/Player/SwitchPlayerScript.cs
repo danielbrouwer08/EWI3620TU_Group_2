@@ -63,7 +63,7 @@ public class SwitchPlayerScript : MonoBehaviour {
                 if (curposition != lastposition)
                 {
                     anim.Play("Lopen");
-                    Debug.Log("Moving");
+                    //Debug.Log("Moving");
                     lastposition = curposition;
                 }
                 else

@@ -71,7 +71,7 @@ public class GameManger : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(username);
+        //Debug.Log(username);
     }
 
 	public void onlineMode (string user, string pass)

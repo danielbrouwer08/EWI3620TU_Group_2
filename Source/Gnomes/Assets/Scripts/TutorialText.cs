@@ -19,7 +19,7 @@ public class TutorialText : MonoBehaviour {
 		if(between (10,60))
 		{
 			header.SetActive(true);
-			string displayText = "P1 can move with the <color=red>[arrow]</color> keys. P2 can move with the <color=red>[W,A,S,D]</color> keys. To run press <color=red>[RIGHT-SHIFT] (P1)</color> or <color=red>[LEFT-SHIFT] (P2)</color>. To jump press <color=red>[/] (P1)</color> or <color=red>[C] (P2)</color>. Don't let the wave get to close!";
+			string displayText = "P1 can move with the <color=red>[ARROW]</color> keys. P2 can move with the <color=red>[W,A,S,D]</color> keys. To run press <color=red>[RIGHT-SHIFT] (P1)</color> or <color=red>[LEFT-SHIFT] (P2)</color>. To jump press <color=red>[/] (P1)</color> or <color=red>[C] (P2)</color>. Don't let the wave get too close!";
 			text.GetComponent<Text>().text=displayText;
 		}
 		else if(between (70,100))
