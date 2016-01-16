@@ -19,13 +19,13 @@ public class TutorialText : MonoBehaviour {
 		if(between (10,60))
 		{
 			header.SetActive(true);
-			string displayText = "P1 can move with the 'arrow' keys. P2 can move with the 'W,A,S,D' keys. To run press 'RIGHT-SHIFT' (P1) or 'LEFT-SHIFT' (P2). To jump press '/' (P1) or 'C' (P2). Don't let the wave get to close!";
+			string displayText = "P1 can move with the <color=red>[arrow]</color> keys. P2 can move with the <color=red>[W,A,S,D]</color> keys. To run press <color=red>[RIGHT-SHIFT] (P1)</color> or <color=red>[LEFT-SHIFT] (P2)</color>. To jump press <color=red>[/] (P1)</color> or <color=red>[C] (P2)</color>. Don't let the wave get to close!";
 			text.GetComponent<Text>().text=displayText;
 		}
 		else if(between (70,100))
 		{
 			header.SetActive(true);
-			string displayText = "Both players can pick up several skillitems which are needed to proceed in the level. However the functionality of each item depends on the gnome type (fat or skinny). To pickup/throw an item press '.' for P1 and 'V' for P2. To use the item press ',' for P1 and 'B' for P2";
+			string displayText = "Both players can pick up several skillitems which are needed to proceed in the level. However the functionality of each item depends on the gnome type (fat or skinny). To pickup/throw an item press <color=red>[.] (P1)</color> or <color=red>[V] (P2)</color>. To use the item press <color=red>[,] (P1)</color> or <color=red>[B] (P2)</color>";
 			text.GetComponent<Text>().text=displayText;
 		}else if (between(110,140))
 		{
@@ -41,13 +41,13 @@ public class TutorialText : MonoBehaviour {
 		else if (between(360,400))
 		{
 			header.SetActive(true);
-			string displayText = "With the wingsuit the skinny player can Float to the other side. To enable/disable Float mode press ','. The hammer van be used by the fat player. To use it press 'B'. Try to hit the boulder and see what happends";
+			string displayText = "With the wingsuit the skinny player can Float to the other side. To enable/disable Float mode press <color=red>[,]</color> (P1). The hammer can be used by the fat player. To use it press <color=red>[B] (P2)</color>. Try to hit the boulder and see what happends. Remember: to pickup/throw an item press <color=red>[.] (P1)</color> or <color=red>[V] (P2)</color>.";
 			text.GetComponent<Text>().text=displayText;
 		}
 		else if (between(630,660))
 		{
 			header.SetActive(true);
-			string displayText = "Some targets can trigger certain events. A target has a switch/lever that needs to be pulled (P1 press '.', P2 press 'V'). When the target has a green color it can be triggered by throwing a block against it";
+			string displayText = "Some targets can trigger certain events. A target has a switch/lever that needs to be pulled <color=red>(P1 press [.], P2 press [V])</color>. When the target has a green color it can be triggered by throwing a block against it";
 			text.GetComponent<Text>().text=displayText;
 		}else if (between(830,980))
 		{
