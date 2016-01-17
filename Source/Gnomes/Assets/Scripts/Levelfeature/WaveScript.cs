@@ -33,7 +33,7 @@ public class WaveScript : MonoBehaviour {
 
         for(int i = 0; i < levels.Length; i++)
         {
-            if((xpos > levels[i].transform.position.x - 5) & (xpos < levels[i].transform.position.x + 55))
+			if((xpos > levels[i].transform.position.x - 5) && (xpos < levels[i].transform.position.x + 55) && levels[i].GetComponent<LevelScript>() != null)
             {
                 desiredSpeed = levels[i].GetComponent<LevelScript>().speedvar;
             }
