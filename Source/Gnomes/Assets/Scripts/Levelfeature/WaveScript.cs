@@ -7,7 +7,7 @@ public class WaveScript : MonoBehaviour {
     public ChapterLoader loader;
     public GameObject[] players;
     public GameObject[] levels;
-    public float speed;
+    public float speed = 1;
 	public float multiplier = 0.5f;
 
     // Use this for initialization
@@ -24,18 +24,18 @@ public class WaveScript : MonoBehaviour {
             yield return null;
         }
         levels = GameObject.FindGameObjectsWithTag("Level");
-        Debug.Log("Ik heb de levels toegevoegd");
     }
 
     // Update is called once per frame
     void FixedUpdate () {
         float xpos = transform.position.x;
-        speed = 6;
+        float desiredSpeed = 6;
+
         for(int i = 0; i < levels.Length; i++)
         {
             if((xpos > levels[i].transform.position.x - 5) & (xpos < levels[i].transform.position.x + 55))
             {
-                speed = levels[i].GetComponent<LevelScript>().speedvar;
+                desiredSpeed = levels[i].GetComponent<LevelScript>().speedvar;
             }
         }
 
@@ -53,8 +53,10 @@ public class WaveScript : MonoBehaviour {
         }
         if (count == 2)
         {
-            speed = 6;
+            desiredSpeed = 6;
         }
+        float addedSpeed = (desiredSpeed - speed) * Time.deltaTime;
+        speed += addedSpeed;
 		transform.Translate(speed*multiplier*Time.deltaTime*(new Vector3(1,0,0)));
     }
 }
