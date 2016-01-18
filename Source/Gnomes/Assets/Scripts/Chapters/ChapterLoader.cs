@@ -18,6 +18,7 @@ public class ChapterLoader : MonoBehaviour
 	private GameObject lastTerrainSpawner;
 	private Vector3 spawnOffset = new Vector3 (-50.0f, 0.0f, 0.0f);
 	public bool doneLoading;
+	public float invisibleWallOffset = 1.0f;
 
 	// Use this for initialization
 	void Start ()
@@ -192,7 +193,7 @@ public class ChapterLoader : MonoBehaviour
 
 
 			//spawn invisible wall so players cant get up the mountain
-			GameObject.Instantiate (invisibleWall, allTerrains [k].transform.position + new Vector3 (25.0f, 25.0f, allTerrains [k].GetComponent<Terrain> ().terrainData.size.z + allTerrains [k].GetComponent<Terrain> ().terrainData.size.z/8.0f), Quaternion.Euler (-90, 0, 0));
+			GameObject.Instantiate (invisibleWall, allTerrains [k].transform.position + new Vector3 (25.0f, 25.0f, allTerrains [k].GetComponent<Terrain> ().terrainData.size.z + invisibleWallOffset), Quaternion.Euler (-90, 0, 0));
 			//spawnOffset += new Vector3(0.0f,0.0f,mountainTerrain.terrainData.size.y);
 		}
 	}
