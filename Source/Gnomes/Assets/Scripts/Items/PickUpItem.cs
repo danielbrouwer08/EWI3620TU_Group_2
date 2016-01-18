@@ -59,6 +59,20 @@ public class PickUpItem : MonoBehaviour
 
 		for (int i = 0; i < player.Length; i++) {
 			playerNum = player [i].GetComponent<PlayerController> ().playerNum;
+            if (this.beingCarried)
+            {
+                if (Input.GetButtonDown("Interact" + playerNum))
+                {
+                    Debug.Log("pushing the button");
+                    if (player[i].GetComponent<PlayerProperties>().item.Equals(this.gameObject))
+                    {
+                        Debug.Log("Trying to lose this item...");
+                        this.Loseitem();
+                        break;
+                    }
+                }
+            }
+
             if (Vector3.Distance(transform.position, player[i].transform.position) < pickdistance)
             {
                 Debug.Log("I'm close enough!");
@@ -74,13 +88,8 @@ public class PickUpItem : MonoBehaviour
                     transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
                     beingCarried = true;
                 }
-                break;
             }
-            if (this.beingCarried && Input.GetButtonDown("Interact" + playerNum) && player[i].GetComponent<PlayerProperties>().item != null)
-            {
-                Debug.Log("Trying to lose this item...");
-                Loseitem();
-            }
+
             xPosPlayer = player [i].GetComponent<Transform> ().position.x;
 			zPosPlayer = player [i].GetComponent<Transform> ().position.z;
 		}
