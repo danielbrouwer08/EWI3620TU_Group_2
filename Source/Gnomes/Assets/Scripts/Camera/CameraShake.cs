@@ -10,17 +10,7 @@ public class CameraShake : MonoBehaviour {
     public float duration = 2;
     private Vector3 originalCam;
 
-    void Start () {
-	
-	}
-	
-	void Update () {
-        if (Input.GetKeyDown(KeyCode.Space)){
-            StartCoroutine("Shake");
-        }
-	}
-
-    IEnumerator Shake(){ 
+    public IEnumerator Shake(){ 
         while (elapsed < duration){
             elapsed += Time.deltaTime;
             complete = elapsed / duration;
