@@ -9,9 +9,11 @@ public class CameraShake : MonoBehaviour {
     public float severness = 0.3f;
     public float duration = 2;
     private Vector3 originalCam;
+    public bool shaking;
 
     public IEnumerator Shake(){ 
         while (elapsed < duration){
+            shaking = true;
             elapsed += Time.deltaTime;
             complete = elapsed / duration;
             damper = 1.0f - Mathf.Clamp(4.0f * complete - 3.0f, 0.0f, 1.0f);
@@ -26,6 +28,7 @@ public class CameraShake : MonoBehaviour {
 
             yield return null;
         }
-        elapsed = 0;   
+        elapsed = 0;
+        shaking = false;
     }
 }
