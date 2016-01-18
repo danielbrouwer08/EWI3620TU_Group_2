@@ -37,6 +37,7 @@ public class checkpoint : MonoBehaviour
             player1In = false;
             player2In = false;
             saveCheckpoint();
+            Destroy(players[0].GetComponent<PlayerProperties>().item);
         }
         else if ((player1In || player2In) && state == 0)
         {
