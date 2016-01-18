@@ -14,7 +14,7 @@ public class PickUpItem : MonoBehaviour
 	private int playerNum;
 	private float xPosPlayer;
 	private float zPosPlayer;
-	private GameObject carrier;
+	public GameObject carrier;
 	public float throwforce;
 	bool hasPlayer = false;
 	bool beingCarried = false;
@@ -59,33 +59,31 @@ public class PickUpItem : MonoBehaviour
 
 		for (int i = 0; i < player.Length; i++) {
 			playerNum = player [i].GetComponent<PlayerController> ().playerNum;
-          
-			if (Vector3.Magnitude (transform.position - player [i].transform.position) < pickdistance) {
-				if (Input.GetButtonDown ("Interact" + playerNum) && player [i].GetComponent<PlayerProperties> ().item == null) {
-					carrier = player [i];
-					carrier.GetComponent<PlayerProperties> ().item = gameObject;
-					AddSkilltoPlayer (skill);
-					rb.isKinematic = true;
-					rb.detectCollisions = false;
-					transform.parent = player [i].transform;
-					transform.localPosition = new Vector3 (0.0f, 4.1f, 0.0f);
-					transform.localEulerAngles = new Vector3 (0.0f, 0.0f, 0.0f);
-					beingCarried = true;
-				}else if(Input.GetButtonDown("Interact" + playerNum) && player [i].GetComponent<PlayerProperties> ().item != null)
-				{
-					Loseitem();
-				}
-
-				xPosPlayer = player [i].GetComponent<Transform> ().position.x;
-				zPosPlayer = player [i].GetComponent<Transform> ().position.z;
-			}
-
-
-
-
+            if (Vector3.Distance(transform.position, player[i].transform.position) < pickdistance)
+            {
+                Debug.Log("I'm close enough!");
+                if (Input.GetButtonDown("Interact" + playerNum) && player[i].GetComponent<PlayerProperties>().item == null)
+                {
+                    carrier = player[i];
+                    carrier.GetComponent<PlayerProperties>().item = gameObject;
+                    AddSkilltoPlayer(skill);
+                    rb.isKinematic = true;
+                    rb.detectCollisions = false;
+                    transform.parent = player[i].transform;
+                    transform.localPosition = new Vector3(0.0f, 4.1f, 0.0f);
+                    transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+                    beingCarried = true;
+                }
+                break;
+            }
+            if (this.beingCarried && Input.GetButtonDown("Interact" + playerNum) && player[i].GetComponent<PlayerProperties>().item != null)
+            {
+                Debug.Log("Trying to lose this item...");
+                Loseitem();
+            }
+            xPosPlayer = player [i].GetComponent<Transform> ().position.x;
+			zPosPlayer = player [i].GetComponent<Transform> ().position.z;
 		}
-
-        
 	}
 
 	public void Loseitem ()
@@ -155,30 +153,34 @@ public class PickUpItem : MonoBehaviour
 	void DeleteSkillfromPlayer (string skill)
 	{
 		switch (skill) {
-		case "Fly":
-			if(carrier.GetComponent<Fly> ()!=null)
-			{
-			Destroy (carrier.GetComponent<Fly> ());
-			}
-			break;
-		case "Float":
-			if(carrier.GetComponent<Float> ()!=null)
-			{
-			Destroy (carrier.GetComponent<Float> ());
-			}
-			break;
-		case "Build":
-			if(carrier.GetComponent<Build> ()!=null)
-			{
-			Destroy (carrier.GetComponent<Build> ());
-			}
-			break;
-		case "Demolish":
-			if(carrier.GetComponent<Demolish> ()!=null)
-			{
-			Destroy (carrier.GetComponent<Demolish> ());
-			}
-			break;
+		    case "Fly":
+			    if(carrier.GetComponent<Fly> ()!=null)
+    			{
+	    		    Destroy (carrier.GetComponent<Fly> ());
+		    	}
+    			break;
+	    	case "Float":
+		    	if(carrier.GetComponent<Float> ()!=null)
+			    {
+			        Destroy (carrier.GetComponent<Float> ());
+			    }
+			    break;
+		    case "Build":
+    			if(carrier.GetComponent<Build> ()!=null)
+	    		{
+		    	    Destroy (carrier.GetComponent<Build> ());
+			    }
+    			break;
+	    	case "Demolish":
+		    	if(carrier.GetComponent<Demolish> ()!=null)
+			    {
+        		    Destroy (carrier.GetComponent<Demolish> ());
+			    }
+			    break;
+            default:
+                break;
+
+
 		}
 	}
 }
