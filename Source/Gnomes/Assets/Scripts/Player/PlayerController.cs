@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public Animation anim;
     public bool walking;
     public bool running;
+    public bool pickedrope;
 
     //animation speeds
     public float animwalk1 = 3.5f;
@@ -160,64 +161,69 @@ public class PlayerController : MonoBehaviour
 	//Get input from player
 	void getPlayerInput ()
     {
-        VerticalPlayerInput = Input.GetAxis ("Vertical" + playerNum);
-		HorizontalPlayerInput = Input.GetAxis ("Horizontal" + playerNum);
-        float angle;
-        if (HorizontalPlayerInput == 0)
+        if (!pickedrope)
         {
-            angle = Mathf.PI * (1 + 0.5f * Mathf.Sign(-VerticalPlayerInput));
-        }
-        else
-        {
-            angle = Mathf.Atan(VerticalPlayerInput / HorizontalPlayerInput);
-        }
-
-        //if player presses run button
-        if (Input.GetButton("Run" + playerNum))
-        {
-            running = true;
-            movement = new Vector3(HorizontalPlayerInput * runSpeed * Mathf.Abs(Mathf.Cos(angle)), 0, VerticalPlayerInput * runSpeed * Mathf.Abs(Mathf.Sin(angle)));
-        }
-        else
-        {
-            running = false;
-            movement = new Vector3(HorizontalPlayerInput * walkSpeed * Mathf.Abs(Mathf.Cos(angle)), 0, VerticalPlayerInput * walkSpeed * Mathf.Abs(Mathf.Sin(angle)));
-        }
-
-        //if player presses jump button and is not already in a jump (y velocuty is zero)
-        if (Input.GetButtonDown("Jump" + playerNum) && grounded())
-        {
-            anim.Play("Springen");
-            jump = true;
-        }
-        else if ((HorizontalPlayerInput != 0 || VerticalPlayerInput != 0))
-        {
-            if (!anim.IsPlaying("Springen"))
+            VerticalPlayerInput = Input.GetAxis("Vertical" + playerNum);
+            HorizontalPlayerInput = Input.GetAxis("Horizontal" + playerNum);
+            float angle;
+            if (HorizontalPlayerInput == 0)
             {
-                if (!running)
-                {
-                    if (GetComponent <Fly> () != null && Input.GetButton("Item" + playerNum))
-                    {
-                    } 
-                    else
-                    {
-                        anim.Play("Lopen");
-                    }  
-                }
-                else
-                {
-                    anim.Play("Rennen");
-                }
+                angle = Mathf.PI * (1 + 0.5f * Mathf.Sign(-VerticalPlayerInput));
+            }
+            else
+            {
+                angle = Mathf.Atan(VerticalPlayerInput / HorizontalPlayerInput);
             }
 
-            jump = false;
+            //if player presses run button
+            if (Input.GetButton("Run" + playerNum))
+            {
+                running = true;
+                movement = new Vector3(HorizontalPlayerInput * runSpeed * Mathf.Abs(Mathf.Cos(angle)), 0, VerticalPlayerInput * runSpeed * Mathf.Abs(Mathf.Sin(angle)));
+            }
+            else
+            {
+                running = false;
+                movement = new Vector3(HorizontalPlayerInput * walkSpeed * Mathf.Abs(Mathf.Cos(angle)), 0, VerticalPlayerInput * walkSpeed * Mathf.Abs(Mathf.Sin(angle)));
+            }
+
+            //if player presses jump button and is not already in a jump (y velocuty is zero)
+            if (Input.GetButtonDown("Jump" + playerNum) && grounded())
+            {
+                anim.Play("Springen");
+                jump = true;
+            }
+            else if ((HorizontalPlayerInput != 0 || VerticalPlayerInput != 0))
+            {
+                if (!anim.IsPlaying("Springen"))
+                {
+                    if (!running)
+                    {
+                        if (GetComponent<Fly>() != null && Input.GetButton("Item" + playerNum))
+                        {
+                        }
+                        else
+                        {
+                            anim.Play("Lopen");
+                        }
+                    }
+                    else
+                    {
+                        anim.Play("Rennen");
+                    }
+                }
+
+                jump = false;
+            }
+            else
+            {
+                if (!anim.IsPlaying("Springen"))
+                    anim.Play("Stilstaan");
+                jump = false;
+            }
+
         }
-        else
-        {
-            if (!anim.IsPlaying("Springen"))
-                anim.Play("Stilstaan");
-            jump = false;
-        }
+        
     }
 
     /*public bool grounded()

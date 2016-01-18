@@ -4,9 +4,10 @@ using System.Collections;
 public class PickUpRope : MonoBehaviour
 {
 	
-	private GameObject player;
+	public GameObject player;
     //private float playerNum;
-	private GameObject player2;
+	public GameObject player2;
+    private GameObject chain;
 	private Rigidbody rb;
 	public float pickupRadius;
 	public float x_offset_rope;
@@ -15,20 +16,26 @@ public class PickUpRope : MonoBehaviour
 	public bool isEndPoint;
 	public bool playerGrabbedRope = false;
 	public bool player2GrabbedRope = false;
+    private Vector3 beginpositionchain;
+    private Vector3 beginpositioncapsule;
 		
 	void Start ()
 	{
 		rb = GetComponent<Rigidbody> ();
 		GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-		player = players[0];
-		player2 = players[1];
+        player = GameObject.Find("kabouterdun");
+        player2 = GameObject.Find("kabouterdik");
+        chain = GameObject.Find("chain");
+        beginpositionchain = chain.transform.position;
+        beginpositioncapsule = transform.position;
+        Debug.Log(beginpositioncapsule);
+        Debug.Log(beginpositionchain);
     }
 	
 	// Update is called once per frame
 	void Update ()
 	{
-			
-		bool x_pos_player = (player.transform.position.x < transform.position.x + pickupRadius && player.transform.position.x > transform.position.x - pickupRadius);
+        bool x_pos_player = (player.transform.position.x < transform.position.x + pickupRadius && player.transform.position.x > transform.position.x - pickupRadius);
 		bool y_pos_player = (player.transform.position.y < transform.position.y + pickupRadius && player.transform.position.y > transform.position.y - pickupRadius);
 		bool z_pos_player = (player.transform.position.z < transform.position.z + pickupRadius && player.transform.position.z > transform.position.z - pickupRadius);
 		bool x_pos_player2 = (player2.transform.position.x < transform.position.x + pickupRadius && player2.transform.position.x > transform.position.x - pickupRadius);
@@ -41,22 +48,28 @@ public class PickUpRope : MonoBehaviour
 			if (Input.GetButton("Interact1")) {
 				if(playerGrabbedRope==false && isEndPoint)
 				{
-					transform.parent = player.transform;
+                    transform.parent = player.transform;
 					playerGrabbedRope = true;
-				}else if(playerGrabbedRope==true && isEndPoint)
+                    player.GetComponent<PlayerController>().pickedrope = true;
+
+                }
+                else if(playerGrabbedRope==true && isEndPoint)
 				{
 					transform.parent = null;
 					playerGrabbedRope = false;
 					player.transform.parent = transform;
-
-				}else if(playerGrabbedRope==false && !isEndPoint)
+                    player.GetComponent<PlayerController>().pickedrope = false;
+                }
+                else if(playerGrabbedRope==false && !isEndPoint)
 				{
 					playerGrabbedRope= true;
+                    player.GetComponent<PlayerController>().pickedrope = true;
 					//transform.parent = player.transform.parent;
 					//player.AddComponent<HingeJoint>().connectedBody = rb;
 					//player.GetComponent<HingeJoint>().autoConfigureConnectedAnchor = true;
 				}else{
-					playerGrabbedRope = false;
+                    player.GetComponent<PlayerController>().pickedrope = false;
+                    playerGrabbedRope = false;
 					//transform.parent = null;
 					//Destroy(player.GetComponent<HingeJoint>());
 				}
@@ -64,26 +77,31 @@ public class PickUpRope : MonoBehaviour
 
 			}
 		} else if (player2InRange) { //if player2 is in the neighborhood
-			if (Input.GetButton("Interact2")) {
+            if ((Input.GetButton("Interact2")) || (Input.GetButton("Interact1") && player2.GetComponent<PlayerController>().isSinglePlayer && player2.GetComponent
+                <PlayerController>().isActive)) {
 				if(playerGrabbedRope==false && isEndPoint)
 				{
-					transform.parent = player2.transform;
+                    player2.GetComponent<PlayerController>().pickedrope = true;
+                    transform.parent = player2.transform;
 					player2GrabbedRope = true;
 				}else if(player2GrabbedRope==true && isEndPoint)
 				{
-					transform.parent = null;
+                    player2.GetComponent<PlayerController>().pickedrope = false;
+                    transform.parent = null;
 					player2GrabbedRope = false;
 					player2.transform.parent = transform;
 					
 				}else if(player2GrabbedRope==false && !isEndPoint)
 				{
-					player2GrabbedRope= true;
+                    player2.GetComponent<PlayerController>().pickedrope = true;
+                    player2GrabbedRope = true;
 					//transform.parent = player2.transform.parent;
 
 					//player2.AddComponent<HingeJoint>().connectedBody = rb;
 					//player2.GetComponent<HingeJoint>().autoConfigureConnectedAnchor = true;
 				}else{
-					player2GrabbedRope = false;
+                    player2.GetComponent<PlayerController>().pickedrope = false;
+                    player2GrabbedRope = false;
 					//transform.parent = null;
 					//Destroy(player2.GetComponent<HingeJoint>());
 				}
@@ -91,7 +109,11 @@ public class PickUpRope : MonoBehaviour
 			}
 		}
 
-
+        if(player2.GetComponent<PlayerController>().pickedrope && player.GetComponent<PlayerController>().pickedrope)
+        {
+            player2.GetComponent<PlayerController>().pickedrope = false;
+            player.GetComponent<PlayerController>().pickedrope = false;
+        }
 
 		if (playerGrabbedRope) {
 			if (isEndPoint) {
