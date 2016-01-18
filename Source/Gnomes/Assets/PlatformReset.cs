@@ -6,7 +6,7 @@ public class PlatformReset : MonoBehaviour {
     public Transform[] waypoints;
     private int curwaypoint = 0;
     public float speed = 1;
-    public SwitchScript switcher;
+    public SwitchScript[] switcher;
 
     void Start ()
     {
@@ -15,16 +15,20 @@ public class PlatformReset : MonoBehaviour {
 	
 	void Update ()
     {
-	    if(transform.position.x - player[0].transform.position.x > 10 && transform.position.x - player[1].transform.position.x > 10)
+        if(!switcher[0].switchon && !switcher[1].switchon)
         {
-            //Check if you are on a waypoint, if not:
-            if (transform.position != waypoints[curwaypoint].position)
+            if (transform.position.x - player[0].transform.position.x > 10 && transform.position.x - player[1].transform.position.x > 10)
             {
-                Vector3 vec = Vector3.MoveTowards(transform.position, waypoints[curwaypoint].position, speed);
-                transform.position = vec;
+                //Check if you are on a waypoint, if not:
+                if (transform.position != waypoints[curwaypoint].position)
+                {
+                    Vector3 vec = Vector3.MoveTowards(transform.position, waypoints[curwaypoint].position, speed);
+                    transform.position = vec;
+                }
+                //if a waypoint is reached:
+                else curwaypoint = (curwaypoint + 1) % waypoints.Length;
             }
-            //if a waypoint is reached:
-            else curwaypoint = (curwaypoint + 1) % waypoints.Length;
         }
+
 	}
 }

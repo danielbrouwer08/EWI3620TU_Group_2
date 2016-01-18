@@ -34,7 +34,7 @@ public class SwitchScript : MonoBehaviour {
                 }
             }
         }
-        if(transform.position.x - player[0].transform.position.x > 30 && transform.position.x - player[1].transform.position.x > 30)
+        if(switchon && transform.position.x - player[0].transform.position.x > 30 && transform.position.x - player[1].transform.position.x > 30)
         {
             transform.GetChild(0).transform.RotateAround(transform.position, new Vector3(1, 0, 0), 120f);
             switchon = false;
