@@ -3,10 +3,13 @@ using System.Collections;
 
 public class WaterFallKill : MonoBehaviour {
 	public float force = 100.0f;
+	private float timer = 0.0f;
+	private float killTime = 4.0f;
+
 	// Update is called once per frame
 	void Update () {
-	
-		if(transform.position.y < - 50)
+		timer = timer + Time.deltaTime;
+		if(transform.position.y < - 50  || timer > killTime)
 		{
 			Destroy(this.gameObject);
 		}
