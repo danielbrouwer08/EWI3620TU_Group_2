@@ -5,9 +5,18 @@ public class EnemyProperties : MonoBehaviour {
 
     public float health;
     public GameObject[] wp;
+	private GameObject body;
+	private Shader standardShader;
+	public float visualHitTime = 0.4f;
+	public Color[] colors = new Color[2];
 
     void Start()
     {
+		body = transform.Find("Body").gameObject;
+
+		colors[0] = body.GetComponent<Renderer>().material.color;
+		colors[1] = Color.red;
+		//Debug.Log ("kleur: " + tempColor);
         wp = GameObject.FindGameObjectsWithTag("WoodenPoleWall");
     }
 	
@@ -24,4 +33,15 @@ public class EnemyProperties : MonoBehaviour {
         }
 	}
 
+	public void dealDamage(int damage)
+	{
+		StartCoroutine(visualHit());
+		health = health - damage;
+	}
+
+	IEnumerator visualHit(){
+		body.GetComponent<Renderer>().material.color = colors[0];
+		yield return new WaitForSeconds(visualHitTime);
+		body.GetComponent<Renderer>().material.color = colors[1];
+	} 
 }
