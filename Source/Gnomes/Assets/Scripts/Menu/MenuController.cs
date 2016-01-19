@@ -50,7 +50,7 @@ public class MenuController : MonoBehaviour {
         //headers["Authorization"] = "Basic " + System.Convert.ToBase64String(
         //	System.Text.Encoding.ASCII.GetBytes(username + ":" + password));
 
-        UnityWebRequest www = UnityWebRequest.Get("http://drproject.twi.tudelft.nl:8083/getHighscores");
+        UnityWebRequest www = UnityWebRequest.Get("https://drproject.twi.tudelft.nl:8083/getHighscores");
 
         yield return www.Send();
 

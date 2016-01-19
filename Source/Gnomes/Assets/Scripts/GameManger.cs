@@ -71,7 +71,10 @@ public class GameManger : MonoBehaviour
 
     void Update()
     {
-        //Debug.Log(username);
+        if(Input.GetButtonDown("Reset"))
+        {
+
+        }
     }
 
 	public void onlineMode (string user, string pass)
@@ -200,7 +203,7 @@ public class GameManger : MonoBehaviour
 		
 		Debug.Log (form.data.GetLength (0));
 		
-		UnityWebRequest www = UnityWebRequest.Post ("http://drproject.twi.tudelft.nl:8083/sendSave", form);
+		UnityWebRequest www = UnityWebRequest.Post ("https://drproject.twi.tudelft.nl:8083/sendSave", form);
 
 		www.SetRequestHeader ("Authorization", "Basic " + System.Convert.ToBase64String (System.Text.Encoding.ASCII.GetBytes (username + ":" + password)));
 
@@ -222,7 +225,7 @@ public class GameManger : MonoBehaviour
 		//headers["Authorization"] = "Basic " + System.Convert.ToBase64String(
 		//	System.Text.Encoding.ASCII.GetBytes(username + ":" + password));
 
-		UnityWebRequest www = UnityWebRequest.Get ("http://drproject.twi.tudelft.nl:8083/getTimeStamp");
+		UnityWebRequest www = UnityWebRequest.Get ("https://drproject.twi.tudelft.nl:8083/getTimeStamp");
 
 		www.SetRequestHeader ("Authorization", "Basic " + System.Convert.ToBase64String (System.Text.Encoding.ASCII.GetBytes (username + ":" + password)));
 
@@ -251,7 +254,7 @@ public class GameManger : MonoBehaviour
 
 		Debug.Log (form.data.GetLength (0));
 			
-		UnityWebRequest www = UnityWebRequest.Post ("http://drproject.twi.tudelft.nl:8083/register", form);
+		UnityWebRequest www = UnityWebRequest.Post ("https://drproject.twi.tudelft.nl:8083/register", form);
 			
 		//www.SetRequestHeader("Authorization","Basic " + System.Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes(username + ":" + password)));
 
@@ -285,7 +288,7 @@ public class GameManger : MonoBehaviour
 		Debug.Log("Getting the latest save game...");
 		Savegame[] online = new Savegame[saveslots]; //get local saves
 
-		UnityWebRequest www = UnityWebRequest.Get ("http://drproject.twi.tudelft.nl:8083/getSaves");
+		UnityWebRequest www = UnityWebRequest.Get ("https://drproject.twi.tudelft.nl:8083/getSaves");
 
 		www.SetRequestHeader ("Authorization", "Basic " + System.Convert.ToBase64String (System.Text.Encoding.ASCII.GetBytes (username + ":" + password)));
 

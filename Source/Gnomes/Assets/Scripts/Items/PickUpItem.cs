@@ -61,7 +61,6 @@ public class PickUpItem : MonoBehaviour
 			playerNum = player [i].GetComponent<PlayerController> ().playerNum;
             if (Vector3.Distance(transform.position, player[i].transform.position) < pickdistance)
             {
-                Debug.Log("I'm close enough!");
                 if (Input.GetButtonDown("Interact" + playerNum) && player[i].GetComponent<PlayerProperties>().item == null)
                 {
                     carrier = player[i];

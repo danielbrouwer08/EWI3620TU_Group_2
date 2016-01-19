@@ -218,6 +218,13 @@ public class PlayerController : MonoBehaviour
                 anim.Play("Stilstaan");
             jump = false;
         }
+
+        // Als de speler op een helling staat (raycast schuinachter raakt niet en raycast naar beneden raakt wel), dan krijgt de speler een kracht naar beneden
+        if (!Physics.Raycast(transform.position, -transform.up -2 * transform.forward, 2) && Physics.Raycast(transform.position, -transform.up, 0.5f))
+        {
+            rb.AddForce(-100000 * Vector3.up);
+            nomovementtime = 0.2f;
+        }
     }
 
     /*public bool grounded()
