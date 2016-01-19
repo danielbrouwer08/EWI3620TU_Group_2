@@ -47,10 +47,10 @@ public class PickUpItem : MonoBehaviour
 
 	void Update ()
 	{
-		if (header != null && header.activeInHierarchy)
-		{
-			header.transform.LookAt(cameraSystem.transform);
-		}
+		//if (header != null && header.activeInHierarchy)
+		//{
+		//	header.transform.LookAt(cameraSystem.transform);
+		//}
 
 		if ((Vector3.Magnitude (transform.position - player [0].transform.position) < pickdistance || Vector3.Magnitude (transform.position - player [1].transform.position) < pickdistance) && !beingCarried && header != null) {
 			header.SetActive (true);
