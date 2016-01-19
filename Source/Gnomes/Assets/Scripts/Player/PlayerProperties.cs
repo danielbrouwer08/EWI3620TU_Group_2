@@ -53,7 +53,7 @@ public class PlayerProperties : MonoBehaviour {
         damaged = true;
         health -= damage;
         pijnsource.PlayOneShot(pijnsound);
-        if (camerashaker.shaking == false)
+        if (camerashaker != null && camerashaker.shaking == false)
         {
             camerashaker.StartCoroutine("Shake");
         }

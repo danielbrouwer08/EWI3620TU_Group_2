@@ -4,7 +4,7 @@ using System.Collections;
 public class LeafKill : MonoBehaviour {
 
 	private float timer = 0.0f;
-	private float killTime = 4.0f;
+	private float killTime = 15.0f;
 
 	// Update is called once per frame
 	void Update () {

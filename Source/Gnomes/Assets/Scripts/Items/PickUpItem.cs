@@ -24,6 +24,7 @@ public class PickUpItem : MonoBehaviour
 	private Vector3 startpos;
 	public GameObject header;
 	public GameObject text;
+	private GameObject cameraSystem;
 
 	void OnCollisionExit (Collision other)
 	{
@@ -32,6 +33,8 @@ public class PickUpItem : MonoBehaviour
 
 	void Start ()
 	{
+		cameraSystem = GameObject.FindGameObjectWithTag("MainCamera");
+		
 		if (header != null && text != null) {
 			header.SetActive (false);
 		}
@@ -44,6 +47,11 @@ public class PickUpItem : MonoBehaviour
 
 	void Update ()
 	{
+		if (header != null && header.activeInHierarchy)
+		{
+			header.transform.LookAt(cameraSystem.transform);
+		}
+
 		if ((Vector3.Magnitude (transform.position - player [0].transform.position) < pickdistance || Vector3.Magnitude (transform.position - player [1].transform.position) < pickdistance) && !beingCarried && header != null) {
 			header.SetActive (true);
 			string displayText = "Press '.' (P1) or 'v' (P2) to pick up the " + skill + " skill";
