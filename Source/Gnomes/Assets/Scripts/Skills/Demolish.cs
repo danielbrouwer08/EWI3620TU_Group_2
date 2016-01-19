@@ -46,7 +46,7 @@ public class Demolish : MonoBehaviour
 	void OnCollisonEnter (Collision other)
 	{
 		if (Input.GetButton ("Item" + playerNum) && other.gameObject.CompareTag ("Enemy")) {
-			other.gameObject.GetComponent<EnemyProperties> ().health -= hitDamage;
+			other.gameObject.GetComponent<EnemyProperties>().dealDamage(hitDamage);
 
 		}
 	}
