@@ -10,6 +10,7 @@ public class Build : MonoBehaviour {
     private int i = 0;
 	private string Fire3;
     private int playerNum;
+    private bool isactive;
 
 	void Start ()
     {
@@ -22,7 +23,8 @@ public class Build : MonoBehaviour {
 	
 	void Update ()
     {
-		if(Input.GetButtonDown("Item" + playerNum))
+        isactive = GetComponent<PlayerController>().enabled;
+		if(Input.GetButtonDown("Item" + playerNum) && isactive)
         {
             Debug.Log("blokje");
             Destroy(blocks[i]);

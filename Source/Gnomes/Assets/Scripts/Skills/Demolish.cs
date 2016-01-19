@@ -8,27 +8,67 @@ public class Demolish : MonoBehaviour
 	public int hitDamage = 25;
 	private GameObject hammer;
 	private float hammertimer = 0;
+    private bool hammerdown;
+    public float xoffset;
+    public float yoffset;
+    public float zoffset;
+    public float xrot;
+    public float yrot;
+    public float zrot;
+    public float xrot2;
+    public float yrot2;
+    public float zrot2;
+    private bool status1;
+    private bool isactive;
 
-	void Awake ()
+    void Awake ()
 	{
 		playerNum = GetComponent<PlayerController> ().playerNum;
-	}
+        xoffset = 0f;
+        yoffset = 3.19f;
+        zoffset = 0f;
 
-	void Update ()
-	{
-		if (Input.GetButton ("Item" + playerNum)) {
-			hammertimer += Time.deltaTime;
-			hammer = transform.GetComponentInChildren<PickUpItem>().gameObject;
-			if (hammertimer < 0.5) {
-				hammer.transform.localEulerAngles -= new Vector3 (5, 0, 0);
-			} else if (hammertimer < 1) {
-				hammer.transform.localEulerAngles += new Vector3 (5, 0, 0);
-			} else {
-				hammer.transform.localEulerAngles = new Vector3 (0, 0, 0);
-				hammertimer = 0;
-			}
-		}
-	}
+        xrot = 0;
+        yrot = 0;
+        zrot = 0;
+
+        xrot2 = 320;
+        yrot2 = 10;
+        zrot2 = -2;
+    }
+
+    void Start()
+    {
+        hammer = transform.GetComponentInChildren<PickUpItem>().gameObject;
+        hammer.transform.localPosition = new Vector3(xoffset, yoffset, zoffset);
+        hammer.transform.localEulerAngles = new Vector3(xrot, yrot, zrot);
+    }
+
+    void Update()
+    {
+        isactive = GetComponent<PlayerController>().enabled;
+        if (Input.GetButton("Item" + playerNum) && isactive)
+        {
+            hammerdown = true;
+            status1 = true;
+        }
+
+        if (hammerdown)
+        {
+            if (status1)
+            {
+                hammer.transform.localEulerAngles = new Vector3(xrot2, yrot2, zrot2);
+                status1 = false;
+            }
+            else
+            {
+                hammer.transform.localEulerAngles = new Vector3(xrot, yrot, zrot);
+                hammerdown = false;
+                //hammertimer = 0;
+            }
+        }
+
+    }
 
 	void OnCollisionStay (Collision other)
 	{
