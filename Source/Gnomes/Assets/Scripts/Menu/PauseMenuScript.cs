@@ -16,6 +16,8 @@ public class PauseMenuScript : MonoBehaviour
     public BackgroundController ingameinterface;
     public AudioMixerSnapshot audiopaused;
     public AudioMixerSnapshot audiounpaused;
+    public AudioMixerSnapshot sfxpaused;
+    public AudioMixerSnapshot sfxunpaused;
 
     public Button resumebutton;
     public GameObject[] players;
@@ -62,6 +64,7 @@ public class PauseMenuScript : MonoBehaviour
         menu.ShowMenu(pausemenu);
         Paused = true;
         audiopaused.TransitionTo(.01f);
+        sfxpaused.TransitionTo(.01f);
 
     }
 
@@ -73,6 +76,7 @@ public class PauseMenuScript : MonoBehaviour
         pausemenu.IsOpen = false;
         Paused = false;
         audiounpaused.TransitionTo(.01f);
+        sfxunpaused.TransitionTo(.01f);
     }
 
     public void Mainmenu()
