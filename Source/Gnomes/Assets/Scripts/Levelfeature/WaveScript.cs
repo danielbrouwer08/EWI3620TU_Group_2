@@ -48,7 +48,7 @@ public class WaveScript : MonoBehaviour {
             }
             if (transform.position.x > players[i].transform.position.x + 1)
             {
-                transform.position = new Vector3(players[i].GetComponent<PlayerController>().getLastSavedPos().x - 25, 0, 25f);
+                transform.position = new Vector3(players[i].GetComponent<PlayerController>().getLastSavedPos().x - 25, 0, 0);
             }
         }
         if (count == 2)

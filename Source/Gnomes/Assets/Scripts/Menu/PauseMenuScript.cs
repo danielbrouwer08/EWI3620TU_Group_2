@@ -18,11 +18,18 @@ public class PauseMenuScript : MonoBehaviour
     public AudioMixerSnapshot audiounpaused;
     public AudioMixerSnapshot sfxpaused;
     public AudioMixerSnapshot sfxunpaused;
+    private GameObject menurain;
 
     public Button resumebutton;
     public GameObject[] players;
 
     bool Paused = false;
+
+    void Awake()
+    {
+        menurain = GameObject.FindWithTag("MenuRainSound");
+        DestroyObject(menurain);
+    }
     
     void Start()
     {
@@ -33,9 +40,13 @@ public class PauseMenuScript : MonoBehaviour
     {
         //Debug.Log(Paused);
         if (Input.GetKeyDown("escape")){
-            if (Paused == true)
+            if (Paused == true && menu.currMenu == pausemenu)
             {
                 ResumeTime();
+            }
+            else if (Paused == true && menu.currMenu == optionsmenu)
+            {
+                menu.ShowMenu(pausemenu);
             }
             else if (Paused == false)
             {
