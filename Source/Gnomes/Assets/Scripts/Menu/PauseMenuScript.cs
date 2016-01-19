@@ -18,11 +18,18 @@ public class PauseMenuScript : MonoBehaviour
     public AudioMixerSnapshot audiounpaused;
     public AudioMixerSnapshot sfxpaused;
     public AudioMixerSnapshot sfxunpaused;
+    private GameObject menurain;
 
     public Button resumebutton;
     public GameObject[] players;
 
     bool Paused = false;
+
+    void Awake()
+    {
+        menurain = GameObject.FindWithTag("MenuRainSound");
+        DestroyObject(menurain);
+    }
     
     void Start()
     {
