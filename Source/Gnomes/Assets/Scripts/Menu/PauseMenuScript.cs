@@ -79,7 +79,7 @@ public class PauseMenuScript : MonoBehaviour
 
     }
 
-    void ResumeTime()
+    public void ResumeTime()
     {
         Time.timeScale = 1;
         backgroundimage.IsPause = false;
