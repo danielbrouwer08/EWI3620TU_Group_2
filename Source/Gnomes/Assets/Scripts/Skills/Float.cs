@@ -9,6 +9,7 @@ public class Float : MonoBehaviour
     private bool floating = false;
     private int playerNum;
     public Animation anim;
+    private bool isactive;
 
     void Start()
     {
@@ -19,8 +20,10 @@ public class Float : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Input.GetButtonDown("Item" + playerNum))
+        isactive = GetComponent<PlayerController>().enabled;
+        if (Input.GetButtonDown("Item" + playerNum) && isactive)
         {
+
             if (floating != true)
             {
                 floating = true;

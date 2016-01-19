@@ -8,6 +8,7 @@ public class Demolish : MonoBehaviour
 	public int hitDamage = 25;
 	private GameObject hammer;
 	private float hammertimer = 0;
+    private bool isactive;
 
 	void Awake ()
 	{
@@ -16,7 +17,8 @@ public class Demolish : MonoBehaviour
 
 	void Update ()
 	{
-		if (Input.GetButton ("Item" + playerNum)) {
+        isactive = GetComponent<PlayerController>().enabled;
+		if (Input.GetButton ("Item" + playerNum) && isactive) {
 			hammertimer += Time.deltaTime;
 			hammer = transform.GetComponentInChildren<PickUpItem>().gameObject;
 			if (hammertimer < 0.5) {
