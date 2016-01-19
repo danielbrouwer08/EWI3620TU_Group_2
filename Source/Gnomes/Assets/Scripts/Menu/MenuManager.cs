@@ -7,7 +7,10 @@ public class MenuManager : MonoBehaviour {
 
     // Use this for initialization
     public void Start() {
-        ShowMenu(currMenu);
+        if (currMenu != null)
+        {
+            ShowMenu(currMenu);
+        }
     }
 
     public void ShowMenu(MenuController menu)
