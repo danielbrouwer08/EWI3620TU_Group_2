@@ -20,9 +20,11 @@ public class PlayerProperties : MonoBehaviour {
     private Text scoretext;
     public AudioSource pijnsource;
     public AudioClip pijnsound;
+    private CameraShake camerashaker;
 
 	void Awake ()
     {
+        camerashaker = GameObject.FindWithTag("MainCamera").GetComponent<CameraShake>();
         startinghealth = 100;
         health = startinghealth;
         healthbar.value = health;
@@ -51,6 +53,10 @@ public class PlayerProperties : MonoBehaviour {
         damaged = true;
         health -= damage;
         pijnsource.PlayOneShot(pijnsound);
+        if (camerashaker.shaking == false)
+        {
+            camerashaker.StartCoroutine("Shake");
+        }
     }
 
     public void UpdateScore(int newscore)

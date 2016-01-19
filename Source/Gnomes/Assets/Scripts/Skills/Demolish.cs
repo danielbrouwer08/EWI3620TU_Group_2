@@ -19,6 +19,7 @@ public class Demolish : MonoBehaviour
     public float yrot2;
     public float zrot2;
     private bool status1;
+    private bool isactive;
 
     void Awake ()
 	{
@@ -43,13 +44,13 @@ public class Demolish : MonoBehaviour
         hammer.transform.localEulerAngles = new Vector3(xrot, yrot, zrot);
     }
 
-    void Update ()
-	{
-		if (Input.GetButton ("Item" + playerNum)) {
-			//hammertimer += Time.time;
+    void Update()
+    {
+        isactive = GetComponent<PlayerController>().enabled;
+        if (Input.GetButton("Item" + playerNum) && isactive)
+        {
             hammerdown = true;
             status1 = true;
-          
         }
 
         if (hammerdown)
@@ -66,6 +67,7 @@ public class Demolish : MonoBehaviour
                 //hammertimer = 0;
             }
         }
+
     }
 
 	void OnCollisionStay (Collision other)

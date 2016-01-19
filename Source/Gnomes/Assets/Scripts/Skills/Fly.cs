@@ -8,16 +8,19 @@ public class Fly : MonoBehaviour {
     private float fly = 0;
     public float flyvelocity = 5;
     private int playerNum;
+    private bool isactive;
 
     void Start ()
     {
         rb = GetComponent<Rigidbody>();
         playerNum = GetComponent<PlayerController>().playerNum;
+
     }
 	
 	void FixedUpdate ()
     {
-		if (Input.GetButton("Item" + playerNum))
+        isactive = GetComponent<PlayerController>().enabled;
+        if (Input.GetButton("Item" + playerNum) && isactive)
         {
             float velocityold = rb.velocity.y;
             rb.velocity = new Vector3(rb.velocity.x, flyvelocity, rb.velocity.z);
