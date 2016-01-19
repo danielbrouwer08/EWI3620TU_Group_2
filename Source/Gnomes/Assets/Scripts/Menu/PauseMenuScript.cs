@@ -40,9 +40,13 @@ public class PauseMenuScript : MonoBehaviour
     {
         //Debug.Log(Paused);
         if (Input.GetKeyDown("escape")){
-            if (Paused == true)
+            if (Paused == true && menu.currMenu == pausemenu)
             {
                 ResumeTime();
+            }
+            else if (Paused == true && menu.currMenu == optionsmenu)
+            {
+                menu.ShowMenu(pausemenu);
             }
             else if (Paused == false)
             {
