@@ -40,7 +40,19 @@ public class MenuController : MonoBehaviour {
 
     public void highscores()
     {
+        // Load Global highscores
         StartCoroutine(gethighscores());
+        // Load Local highscores
+        for (int i = 0; i < 10; i++)
+        {
+            if (PlayerPrefs.GetString("Team" + i) != null)
+            {
+                transform.GetChild(0).GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(0).GetChild(i + 1).GetComponent<Text>().text = PlayerPrefs.GetString("Team" + i);
+                transform.GetChild(0).GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(1).GetChild(i + 1).GetComponent<Text>().text = PlayerPrefs.GetInt("Total" + i).ToString();
+                transform.GetChild(0).GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(2).GetChild(i + 1).GetComponent<Text>().text = PlayerPrefs.GetInt("P1" + i).ToString();
+                transform.GetChild(0).GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(3).GetChild(i + 1).GetComponent<Text>().text = PlayerPrefs.GetInt("P2" + i).ToString();
+            }
+        }
     }
 
     IEnumerator gethighscores()
@@ -50,7 +62,7 @@ public class MenuController : MonoBehaviour {
         //headers["Authorization"] = "Basic " + System.Convert.ToBase64String(
         //	System.Text.Encoding.ASCII.GetBytes(username + ":" + password));
 
-        UnityWebRequest www = UnityWebRequest.Get("http://drproject.twi.tudelft.nl:8083/getHighscores");
+        UnityWebRequest www = UnityWebRequest.Get("https://drproject.twi.tudelft.nl:8083/getHighscores");
 
         yield return www.Send();
 

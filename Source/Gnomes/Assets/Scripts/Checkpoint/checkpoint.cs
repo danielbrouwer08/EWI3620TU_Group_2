@@ -50,7 +50,6 @@ public class checkpoint : MonoBehaviour
                 item.GetComponent<PickUpItem>().Loseitem();
                 Destroy(item);
             }
-
         }
         else if ((player1In || player2In) && state == 0)
         {
