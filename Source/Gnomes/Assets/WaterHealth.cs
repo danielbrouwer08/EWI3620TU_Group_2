@@ -5,15 +5,15 @@ using System.Collections.Generic;
 
 public class WaterHealth : MonoBehaviour {
 
-    public int damage;
+    public float damage;
 
 	// Use this for initialization
 	void Start () {
-	
+        damage = 0.5f;
 	}
 	
 	// Update is called once per frame
-	void OnTriggerEnter (Collider other) {
+	void OnTriggerStay (Collider other) {
 
         if (other.gameObject.tag == "Player")
         {
