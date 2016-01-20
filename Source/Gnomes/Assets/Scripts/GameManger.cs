@@ -23,7 +23,8 @@ public class GameManger : MonoBehaviour
 
 	void Awake ()
 	{
-		saves = readPlayerPrefs ();
+        //PlayerPrefs.DeleteAll();
+        saves = readPlayerPrefs ();
 
 		if(!(PlayerPrefs.GetInt ("saveslot")==null))
 		{
@@ -151,27 +152,66 @@ public class GameManger : MonoBehaviour
 
 
 
-	//Add JSON saves array to the playerprefs
-	private  void updatePlayerPrefs ()
-	{
-		PlayerPrefs.SetString ("timeStamp", System.DateTime.Now.ToString ("yyyy-MM-dd HH:mm:ss"));
-		for (int i = 0; i<saveslots; i++) {
-			if ((saves [i]) != null) {
-				PlayerPrefs.SetString ("saveNo" + i, Savegame.getJSON (saves [i]));
-			}else
-			{
-				PlayerPrefs.SetString ("saveNo" + i, Savegame.getJSON(emptySave()));
-			}
-		}
+    //Add JSON saves array to the playerprefs
+    private void updatePlayerPrefs()
+    {
+        PlayerPrefs.SetString("timeStamp", System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+        for (int i = 0; i < saveslots; i++)
+        {
+            if ((saves[i]) != null)
+            {
+                PlayerPrefs.SetString("saveNo" + i, Savegame.getJSON(saves[i]));
+            }
+            else
+            {
+                PlayerPrefs.SetString("saveNo" + i, Savegame.getJSON(emptySave()));
+            }
+        }
+        // Save local highscores
+        if (PlayerPrefs.GetInt("Total9") < saves[currentslot].P1Score + saves[currentslot].P2Score)
+        {
+            int j = -1;
+            int k = 9;
+            for (int i = 9; i >= 0; i--)
+            {
+                Debug.Log(i + ": " + PlayerPrefs.GetString("Team" + i) + " " + username);
+                if (PlayerPrefs.GetString("Team" + i).Equals(username))
+                {
+                    k = i;
+                }
+                if (i == 0 && j == -1)
+                {
+                    j = i;
+                }
+                if (PlayerPrefs.GetInt("Total" + (i - 1)) >= saves[currentslot].P1Score + saves[currentslot].P2Score && j == -1)
+                {
+                    j = i;
+                }
+            }
+            Debug.Log(k + " " + j);
+            if (j <= k)
+            {
+                for (int i = k; i > j; i--)
+                {
+                    PlayerPrefs.SetString("Team" + i, PlayerPrefs.GetString("Team" + (i - 1)));
+                    PlayerPrefs.SetInt("Total" + i, PlayerPrefs.GetInt("Total" + (i - 1)));
+                    PlayerPrefs.SetInt("P1" + i, PlayerPrefs.GetInt("P1" + (i - 1)));
+                    PlayerPrefs.SetInt("P2" + i, PlayerPrefs.GetInt("P2" + (i - 1)));
+                }
+                PlayerPrefs.SetString("Team" + j, username);
+                PlayerPrefs.SetInt("Total" + j, saves[currentslot].P1Score + saves[currentslot].P2Score);
+                PlayerPrefs.SetInt("P1" + j, saves[currentslot].P1Score);
+                PlayerPrefs.SetInt("P2" + j, saves[currentslot].P2Score);
+            }
+        }
+    }
 
-	}
 
 
-	//Read the playerprefs and return the saves
-	private  Savegame[] readPlayerPrefs ()
+    //Read the playerprefs and return the saves
+    private  Savegame[] readPlayerPrefs ()
 	{
 		Savegame[] saves = new Savegame[saveslots];
-		string temp;
 
 		for (int i=0; i<saveslots; i++) {
 			if (PlayerPrefs.GetString ("saveNo" + i) != null) {
@@ -200,7 +240,7 @@ public class GameManger : MonoBehaviour
 		
 		Debug.Log (form.data.GetLength (0));
 		
-		UnityWebRequest www = UnityWebRequest.Post ("http://drproject.twi.tudelft.nl:8083/sendSave", form);
+		UnityWebRequest www = UnityWebRequest.Post ("https://drproject.twi.tudelft.nl:8083/sendSave", form);
 
 		www.SetRequestHeader ("Authorization", "Basic " + System.Convert.ToBase64String (System.Text.Encoding.ASCII.GetBytes (username + ":" + password)));
 
@@ -222,7 +262,7 @@ public class GameManger : MonoBehaviour
 		//headers["Authorization"] = "Basic " + System.Convert.ToBase64String(
 		//	System.Text.Encoding.ASCII.GetBytes(username + ":" + password));
 
-		UnityWebRequest www = UnityWebRequest.Get ("http://drproject.twi.tudelft.nl:8083/getTimeStamp");
+		UnityWebRequest www = UnityWebRequest.Get ("https://drproject.twi.tudelft.nl:8083/getTimeStamp");
 
 		www.SetRequestHeader ("Authorization", "Basic " + System.Convert.ToBase64String (System.Text.Encoding.ASCII.GetBytes (username + ":" + password)));
 
@@ -251,7 +291,7 @@ public class GameManger : MonoBehaviour
 
 		Debug.Log (form.data.GetLength (0));
 			
-		UnityWebRequest www = UnityWebRequest.Post ("http://drproject.twi.tudelft.nl:8083/register", form);
+		UnityWebRequest www = UnityWebRequest.Post ("https://drproject.twi.tudelft.nl:8083/register", form);
 			
 		//www.SetRequestHeader("Authorization","Basic " + System.Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes(username + ":" + password)));
 
@@ -285,7 +325,7 @@ public class GameManger : MonoBehaviour
 		Debug.Log("Getting the latest save game...");
 		Savegame[] online = new Savegame[saveslots]; //get local saves
 
-		UnityWebRequest www = UnityWebRequest.Get ("http://drproject.twi.tudelft.nl:8083/getSaves");
+		UnityWebRequest www = UnityWebRequest.Get ("https://drproject.twi.tudelft.nl:8083/getSaves");
 
 		www.SetRequestHeader ("Authorization", "Basic " + System.Convert.ToBase64String (System.Text.Encoding.ASCII.GetBytes (username + ":" + password)));
 
