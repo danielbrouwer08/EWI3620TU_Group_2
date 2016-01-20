@@ -40,12 +40,15 @@ public class checkpoint : MonoBehaviour
             saveCheckpoint();
             if(players[0].GetComponent<PlayerProperties>().item != null)
             {
-                Destroy(players[0].GetComponent<PlayerProperties>().item);
-
+                GameObject item = players[0].GetComponent<PlayerProperties>().item;
+                item.GetComponent<PickUpItem>().Loseitem();
+                Destroy(item);
             }
             if(players[1].GetComponent<PlayerProperties>().item != null)
             {
-                Destroy(players[1].GetComponent<PlayerProperties>().item);
+                GameObject item = players[1].GetComponent<PlayerProperties>().item;
+                item.GetComponent<PickUpItem>().Loseitem();
+                Destroy(item);
             }
 
         }
