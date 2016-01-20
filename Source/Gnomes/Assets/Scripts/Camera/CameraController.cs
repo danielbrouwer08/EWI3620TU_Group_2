@@ -26,10 +26,11 @@ public class CameraController : MonoBehaviour {
 			camerapos = (gameManager.returnCurrent().P1Pos + gameManager.returnCurrent().P2Pos)/2.0f + cameraOffset;
 		}else
 		{
-			camerapos = transform.position;
+			camerapos = (Player1.transform.position + Player2.transform.position)/2.0f + cameraOffset;
 		}
         offset1 = camerapos - Player1.transform.position;
         offset2 = camerapos - Player2.transform.position;
+        Debug.Log(camerapos);
     }
 
     void LateUpdate () {
@@ -38,7 +39,6 @@ public class CameraController : MonoBehaviour {
 	}
 
     void CameraProperties(){
-        combinedoffset = (offset1 + offset2) / 2;
         combinedposition = (Player1.transform.position + Player2.transform.position) / 2;
         playerdistances = Player1.transform.position - Player2.transform.position;
     }
@@ -63,8 +63,7 @@ public class CameraController : MonoBehaviour {
     }
 
     void UpdateCamera(){
-        CameraProperties();
-        transform.position = combinedposition + combinedoffset;
+        transform.position = (Player1.transform.position + Player2.transform.position) / 2.0f + cameraOffset;
     }
 
 
