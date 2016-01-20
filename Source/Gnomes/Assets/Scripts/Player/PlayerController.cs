@@ -44,8 +44,10 @@ public class PlayerController : MonoBehaviour
     public bool isSinglePlayer = true;
     public bool isActive;
     private int input;
+    GameObject[] players;
+    GameObject otherplayer;
 
-	private GameManger gameManager;
+    private GameManger gameManager;
 
 	//private bool gameOver = false;
 
@@ -90,15 +92,22 @@ public class PlayerController : MonoBehaviour
             Vector3 position = getLastSavedPos();
 			transform.position = position;
 		}
-
-		rb = GetComponent<Rigidbody> ();
+        players = GameObject.FindGameObjectsWithTag("Player");
+        if (players[0].Equals(gameObject))
+        {
+            otherplayer = players[1];
+        }
+        else
+        {
+            otherplayer = players[0];
+        }
+        rb = GetComponent<Rigidbody> ();
         anim = GetComponent<Animation>();
         if (playerNum == 1)
         {
             anim["Springen"].speed = animjump1;
             anim["Lopen"].speed = animwalk1;
             anim["Rennen"].speed = animrun1;
-
         }
         else
         {
@@ -185,11 +194,19 @@ public class PlayerController : MonoBehaviour
             {
                 running = true;
                 movement = new Vector3(HorizontalPlayerInput * runSpeed * Mathf.Abs(Mathf.Cos(angle)), 0, VerticalPlayerInput * runSpeed * Mathf.Abs(Mathf.Sin(angle)));
+                if (isSinglePlayer)
+                {
+                    otherplayer.GetComponent<AIPath>().speed = 17;
+                }
             }
             else
             {
                 running = false;
                 movement = new Vector3(HorizontalPlayerInput * walkSpeed * Mathf.Abs(Mathf.Cos(angle)), 0, VerticalPlayerInput * walkSpeed * Mathf.Abs(Mathf.Sin(angle)));
+                if (isSinglePlayer)
+                {
+                    otherplayer.GetComponent<AIPath>().speed = 12;
+                }
             }
 
             //if player presses jump button and is not already in a jump (y velocuty is zero)
