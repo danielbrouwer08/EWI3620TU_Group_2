@@ -9,12 +9,28 @@ public class WaveScript : MonoBehaviour {
     public GameObject[] levels;
     public float speed = 1;
 	public float multiplier = 0.5f;
+    public float startdistance;
+    public float maxstart;
 
     // Use this for initialization
     void Start () {
         gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManger>();
         players = GameObject.FindGameObjectsWithTag("Player");
         StartCoroutine(loadlevels());
+
+        foreach (GameObject cur in players)
+        {
+            startdistance = cur.GetComponent<Transform>().position.x;
+            if (startdistance > maxstart)
+            {
+                maxstart = startdistance;
+            }
+            Debug.Log(startdistance);
+        }
+
+        Vector3 position = transform.position;
+        transform.position = position + (new Vector3(maxstart - 20, 0, 0));
+
     }
 
     IEnumerator loadlevels()
@@ -33,7 +49,7 @@ public class WaveScript : MonoBehaviour {
 
         for(int i = 0; i < levels.Length; i++)
         {
-			if((xpos > levels[i].transform.position.x - 5) && (xpos < levels[i].transform.position.x + 55) && levels[i].GetComponent<LevelScript>() != null)
+			if((xpos > levels[i].transform.position.x - 10) && (xpos < levels[i].transform.position.x + 55) && levels[i].GetComponent<LevelScript>() != null)
             {
                 desiredSpeed = levels[i].GetComponent<LevelScript>().speedvar;
             }
@@ -54,6 +70,7 @@ public class WaveScript : MonoBehaviour {
         if (count == 2)
         {
             desiredSpeed = 6;
+            count = 0;
         }
         float addedSpeed = (desiredSpeed - speed) * Time.deltaTime;
         speed += addedSpeed;
