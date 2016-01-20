@@ -17,6 +17,7 @@ public class checkpoint : MonoBehaviour
     private GameObject[] players;
     private CheckpointScript player;
     public bool[] collided;
+    private GameObject prefab;
 
     void Start()
     {
