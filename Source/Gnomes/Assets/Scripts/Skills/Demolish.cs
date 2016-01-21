@@ -5,7 +5,6 @@ public class Demolish : MonoBehaviour
 {
 
 	private int playerNum;
-	public int hitDamage = 25;
 	private GameObject hammer;
 	private float hammertimer = 0;
     private bool hammerdown;
@@ -20,6 +19,7 @@ public class Demolish : MonoBehaviour
     public float zrot2;
     private bool status1;
     private bool isactive;
+	public int hitDamage = 25;
 
     void Awake ()
 	{
@@ -70,25 +70,41 @@ public class Demolish : MonoBehaviour
 
     }
 
-	void OnCollisionStay (Collision other)
-	{
+	public void hammerCollision(Collision other){
 		if (Input.GetButton ("Item" + playerNum) && other.gameObject.CompareTag ("Breakable")) {
 			Debug.Log ("verwijder");
 			other.gameObject.SetActive (false);
 		}
-
+		if (Input.GetButton ("Item" + playerNum) && other.gameObject.CompareTag ("Enemy")) {
+			other.gameObject.GetComponent<EnemyProperties>().dealDamage(hitDamage);		
+		}
+		
 		if (Input.GetButton ("Item" + playerNum) && other.gameObject.CompareTag ("Stone")) {
-			other.gameObject.GetComponent<StoneLevel11> ().force = new Vector3 (10000000, 0, 0);
 			other.gameObject.GetComponent<StoneLevel11> ().move = true;
 		}
+
 	}
 
-	void OnCollisonEnter (Collision other)
-	{
-		if (Input.GetButton ("Item" + playerNum) && other.gameObject.CompareTag ("Enemy")) {
-			other.gameObject.GetComponent<EnemyProperties>().dealDamage(hitDamage);
+//	void OnCollisionStay (Collision other)
+//	{
+//		if (Input.GetButton ("Item" + playerNum) && other.gameObject.CompareTag ("Breakable")) {
+//			Debug.Log ("verwijder");
+//			other.gameObject.SetActive (false);
+//		}
+//	}
+//
+//	void OnCollisonEnter (Collision other)
+//	{
+//		if (Input.GetButton ("Item" + playerNum) && other.gameObject.CompareTag ("Enemy")) {
+//			other.gameObject.GetComponent<EnemyProperties>().dealDamage(hitDamage);		
+//		}
+//		
+//		if (Input.GetButton ("Item" + playerNum) && other.gameObject.CompareTag ("Stone")) {
+//			other.gameObject.GetComponent<StoneLevel11> ().move = true;
+//		}
+//		
+//	}
 
-		}
-	}
+
 
 }

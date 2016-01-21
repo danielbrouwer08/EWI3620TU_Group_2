@@ -16,8 +16,8 @@ public class PickUpItem : MonoBehaviour
 	private float zPosPlayer;
 	public GameObject carrier;
 	public float throwforce;
-	bool hasPlayer = false;
-	bool beingCarried = false;
+	private bool hasPlayer = false;
+	public bool beingCarried = false;
 	private Rigidbody rb;
 	private Collider col;
 	public string skill;
@@ -26,9 +26,18 @@ public class PickUpItem : MonoBehaviour
 	public GameObject text;
 	private GameObject cameraSystem;
 
+
 	void OnCollisionExit (Collision other)
 	{
 		hasPlayer = false;
+	}
+
+	void OnCollisionEnter (Collision other)
+	{
+		if(beingCarried && skill == "Demolish")
+		{
+			transform.parent.gameObject.GetComponent<Demolish>().hammerCollision(other);
+		}
 	}
 
 	void Start ()
