@@ -22,8 +22,8 @@ public class PickUpItem : MonoBehaviour
 	private Collider col;
 	public string skill;
 	private Vector3 startpos;
-	public GameObject header;
-	public GameObject text;
+	private GameObject header;
+	private GameObject text;
 	private GameObject cameraSystem;
 
 	void OnCollisionExit (Collision other)
@@ -34,9 +34,15 @@ public class PickUpItem : MonoBehaviour
 	void Start ()
 	{
 		cameraSystem = GameObject.FindGameObjectWithTag("MainCamera");
-		
-		if (header != null && text != null) {
+
+        if (header != null && text != null)
+        {
 			header.SetActive (false);
+            header = transform.FindChild("Canvas").FindChild("Header").gameObject;
+            text = header.transform.FindChild("Text").gameObject;
+            header.transform.parent.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 100);
+            header.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 100);
+            text.GetComponent<Text>().resizeTextMaxSize = 20;
 		}
 		startpos = GetComponent<Transform> ().position;
 		rb = GetComponent<Rigidbody> ();
@@ -58,14 +64,11 @@ public class PickUpItem : MonoBehaviour
 
 	void Update ()
 	{
-		//if (header != null && header.activeInHierarchy)
-		//{
-		//	header.transform.LookAt(cameraSystem.transform);
-		//}
-
-		if ((Vector3.Magnitude (transform.position - player [0].transform.position) < pickdistance || Vector3.Magnitude (transform.position - player [1].transform.position) < pickdistance) && !beingCarried && header != null) {
+        if ((Vector3.Magnitude (transform.position - player [0].transform.position) < pickdistance || Vector3.Magnitude (transform.position - player [1].transform.position) < pickdistance) && !beingCarried && header != null) {
 			header.SetActive (true);
-			string displayText = "Press '.' (P1) or 'v' (P2) to pick up the " + skill + " skill";
+            header.transform.parent.LookAt(cameraSystem.transform);
+            header.transform.parent.Rotate(0, 180, 0);
+            string displayText = "Press '.' (P1) or 'v' (P2) to pick up the " + skill + " skill";
 			text.GetComponent<Text> ().text = displayText;
 		} else if (header != null) {
 			header.SetActive (false);
@@ -99,6 +102,7 @@ public class PickUpItem : MonoBehaviour
                 {
                     carrier = player[i];
                     carrier.GetComponent<PlayerProperties>().item = gameObject;
+
                     AddSkilltoPlayer(skill);
                     //rb.isKinematic = true;
                     //rb.detectCollisions = false;

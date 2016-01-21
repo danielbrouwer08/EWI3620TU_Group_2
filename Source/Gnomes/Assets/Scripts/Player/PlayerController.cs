@@ -145,8 +145,8 @@ public class PlayerController : MonoBehaviour
             }
             //Move the player
             //if (!Physics.Raycast(transform.position, transform.forward, 1.207f)) MOET GEFIXT WORDEN
-			if(true)
-            {
+			//if(true)
+   //         {
                 if (jump)
                 {
                     rb.velocity = new Vector3(movement.x, jumpForce, movement.z);
@@ -155,15 +155,15 @@ public class PlayerController : MonoBehaviour
                 {
                     rb.velocity = new Vector3(movement.x, rb.velocity.y, movement.z);
                 }
-            }
-            else
-            {
-                if(jump)
-                {
-                    rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
-                }
-                rb.AddForce(movement / 20, ForceMode.VelocityChange);
-            }
+            //}
+            //else
+            //{
+            //    if(jump)
+            //    {
+            //        rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
+            //    }
+            //    rb.AddForce(movement / 20, ForceMode.VelocityChange);
+            //}
         }
         if (!Physics.Raycast(transform.position, -transform.forward - transform.up, 2) && Physics.Raycast(transform.position, -transform.up, 0.5f))
         {
