@@ -49,6 +49,17 @@ public class PickUpItem : MonoBehaviour
 		col = GetComponent<Collider> ();
 		player = GameObject.FindGameObjectsWithTag ("Player");
 		playerinrange = new bool[player.Length];
+		rb.isKinematic = false;
+		rb.constraints = RigidbodyConstraints.None;
+
+	}
+
+	void OnCollisionStay (Collision other)
+	{
+		if(beingCarried && skill == "Demolish")
+		{
+			transform.parent.gameObject.GetComponent<Demolish>().hammerCollision(other);
+		}
 	}
 
 	void Update ()
@@ -93,8 +104,9 @@ public class PickUpItem : MonoBehaviour
                     carrier.GetComponent<PlayerProperties>().item = gameObject;
 
                     AddSkilltoPlayer(skill);
-                    rb.isKinematic = true;
-                    rb.detectCollisions = false;
+                    //rb.isKinematic = true;
+                    //rb.detectCollisions = false;
+					rb.constraints = RigidbodyConstraints.FreezeAll; // freeze rotations
                     transform.parent = player[i].transform;
                     transform.localPosition = new Vector3(0.0f, 4.1f, 0.0f);
                     transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
@@ -111,8 +123,9 @@ public class PickUpItem : MonoBehaviour
 	{
 		DeleteSkillfromPlayer (skill);
 		carrier.GetComponent<PlayerProperties> ().item = null;
-		rb.isKinematic = false;
-		rb.detectCollisions = true;
+		//rb.isKinematic = false;
+		//rb.detectCollisions = true;
+		rb.constraints = RigidbodyConstraints.None; //remove constraints
 		transform.parent = null;
 		rb.AddForce (carrier.transform.forward * throwforce + Vector3.up * throwforce * 0.1f);
 		carrier = null;

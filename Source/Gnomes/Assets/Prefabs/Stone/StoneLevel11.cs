@@ -12,7 +12,7 @@ public class StoneLevel11 : MonoBehaviour {
 	void Start () {
 		rb = GetComponent<Rigidbody>();
 		startpos = transform.position;
-		force = new Vector3(0,0,0);
+		force = new Vector3(10000000,0,0);
 		move = false;
 	}
 	
@@ -26,6 +26,7 @@ public class StoneLevel11 : MonoBehaviour {
 			move = false;
 		}else if(move)
 		{
+			rb.constraints = RigidbodyConstraints.FreezePositionZ;
 			rb.AddForce(force);
 		}
 	}
