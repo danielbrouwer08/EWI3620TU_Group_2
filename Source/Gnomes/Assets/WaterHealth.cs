@@ -17,7 +17,7 @@ public class WaterHealth : MonoBehaviour {
 
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("Player in water");
+            //Debug.Log("Player in water");
 
             other.GetComponent<PlayerProperties>().TakeDamage(damage);
 

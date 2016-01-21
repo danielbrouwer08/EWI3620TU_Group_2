@@ -63,8 +63,8 @@ public class checkpoint : MonoBehaviour
 
         PlayerProperties p1prop = player1.GetComponent<PlayerProperties>();
         PlayerProperties p2prop = player2.GetComponent<PlayerProperties>();
-        PlayerController p1cont = player1.GetComponent<PlayerController>();
-        PlayerController p2cont = player2.GetComponent<PlayerController>();
+        //PlayerController p1cont = player1.GetComponent<PlayerController>();
+        //PlayerController p2cont = player2.GetComponent<PlayerController>();
 
         Vector3 p1SpanwPos = transform.position + new Vector3(-1.5f, 3.0f, 0.0f);
         Vector3 p2SpanwPos = transform.position + new Vector3(1.5f, 3.0f, 0.0f);

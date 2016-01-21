@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Teleporterscript : MonoBehaviour {
 
-    private GameObject[] players;
+   	//private GameObject[] players;
     public float playerNum;
     public float teleportNum;
     public float teleportNumNew;
@@ -13,7 +13,7 @@ public class Teleporterscript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         teleporters = GameObject.FindGameObjectsWithTag("Teleporter");
-        players = GameObject.FindGameObjectsWithTag("Player");
+        //players = GameObject.FindGameObjectsWithTag("Player");
     }
 
     // Update is called once per frame

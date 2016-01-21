@@ -57,7 +57,14 @@ public class chapterCheckpoint : MonoBehaviour
 		temp++;
 		currentChapter = currentChapter.Remove((currentChapter.Length-1),1);
 		currentChapter += temp;
-		Application.LoadLevel(currentChapter);
+
+		//Load main menu when reaching the end (chapter4)
+		if(currentChapter=="Chapter4")
+		{
+			Application.LoadLevel("Main Menu");
+		}else{
+			Application.LoadLevel(currentChapter);
+		}
 	}
 
 	void saveCheckpoint ()
@@ -65,8 +72,8 @@ public class chapterCheckpoint : MonoBehaviour
 
 		PlayerProperties p1prop = player1.GetComponent<PlayerProperties> ();
 		PlayerProperties p2prop = player2.GetComponent<PlayerProperties> ();
-		PlayerController p1cont = player1.GetComponent<PlayerController> ();
-		PlayerController p2cont = player2.GetComponent<PlayerController> ();
+		//PlayerController p1cont = player1.GetComponent<PlayerController> ();
+		//PlayerController p2cont = player2.GetComponent<PlayerController> ();
 
 		Vector3 idlePos = new Vector3(25.0f,0.6f,25.0f);
 

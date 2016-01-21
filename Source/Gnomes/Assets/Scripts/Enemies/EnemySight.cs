@@ -61,7 +61,7 @@ public class EnemySight : MonoBehaviour {
                 RaycastHit hit;
                 Debug.DrawLine(transform.position + transform.forward * 1.5f, player[i].position);
                 Physics.Raycast(transform.position + transform.forward * 1.5f, player[i].position - transform.position, out hit);
-                Debug.Log(hit.rigidbody);
+                //Debug.Log(hit.rigidbody);
                 if (hit.rigidbody == player[i])
                 {
                     seenEnemy = playergo[i];
@@ -76,7 +76,7 @@ public class EnemySight : MonoBehaviour {
     {
         if (other.transform.CompareTag("Player"))
         {
-            Debug.Log("Muis raakt player");
+            //Debug.Log("Muis raakt player");
             other.transform.GetComponent<PlayerProperties>().TakeDamage(1);
         }
     }

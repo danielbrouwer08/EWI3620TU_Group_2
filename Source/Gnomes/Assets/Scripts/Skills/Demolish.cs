@@ -7,7 +7,7 @@ public class Demolish : MonoBehaviour
 	private int playerNum;
 	public int hitDamage = 25;
 	private GameObject hammer;
-	private float hammertimer = 0;
+	//private float hammertimer = 0;
 	private bool hammerdown;
 	public float xoffset;
 	public float yoffset;

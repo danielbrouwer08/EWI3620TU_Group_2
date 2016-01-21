@@ -22,7 +22,7 @@ public class PickUpRope : MonoBehaviour
 	void Start ()
 	{
 		rb = GetComponent<Rigidbody> ();
-		GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+		//GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         player = GameObject.Find("kabouterdun");
         player2 = GameObject.Find("kabouterdik");
         chain = GameObject.Find("chain");

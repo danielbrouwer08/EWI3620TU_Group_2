@@ -10,27 +10,22 @@ public class PickUpItem : MonoBehaviour
 {
 	public float pickdistance = 5;
 	private GameObject[] player;
-	private bool[] playerinrange;
+	//private bool[] playerinrange;
 	private int playerNum;
 	private float xPosPlayer;
 	private float zPosPlayer;
 	public GameObject carrier;
 	public float throwforce;
-	bool hasPlayer = false;
+	//bool hasPlayer = false;
 	bool beingCarried = false;
 	private Rigidbody rb;
-	private Collider col;
+	//private Collider col;
 	public string skill;
 	private Vector3 startpos;
 	private GameObject header;
 	private GameObject text;
 	private GameObject cameraSystem;
-
-	void OnCollisionExit (Collision other)
-	{
-		hasPlayer = false;
-	}
-
+	
 	void Start ()
 	{
 		cameraSystem = GameObject.FindGameObjectWithTag("MainCamera");
@@ -46,9 +41,9 @@ public class PickUpItem : MonoBehaviour
 		}
 		startpos = GetComponent<Transform> ().position;
 		rb = GetComponent<Rigidbody> ();
-		col = GetComponent<Collider> ();
+		//col = GetComponent<Collider> ();
 		player = GameObject.FindGameObjectsWithTag ("Player");
-		playerinrange = new bool[player.Length];
+		//playerinrange = new bool[player.Length];
 		rb.isKinematic = false;
 		rb.constraints = RigidbodyConstraints.None;
 

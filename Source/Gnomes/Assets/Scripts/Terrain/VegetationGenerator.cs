@@ -27,7 +27,7 @@ public class VegetationGenerator : MonoBehaviour
 	public float widthScaleFactor;
 	public float heightScaleFactor;
 
-	private bool drawState = false;
+	//private bool drawState = false;
 
 	// Use this for initialization
 	void Start ()
@@ -46,7 +46,7 @@ public class VegetationGenerator : MonoBehaviour
 		lastBranch.GetComponent<MushroomShake>().speed = shakeSpeed;
 		lastBranch.GetComponent<MushroomShake>().flipTime = flipTime;
 
-		Vector3 spawnPosition = new Vector3 (0, (1.0f + localScaleFactor), 0) + transform.position;
+		//Vector3 spawnPosition = new Vector3 (0, (1.0f + localScaleFactor), 0) + transform.position;
 
 		string ruleString = generateRule ();
 		//char[] drawRule = ruleString.ToCharArray;
@@ -68,8 +68,10 @@ public class VegetationGenerator : MonoBehaviour
 			string[] ruleSplit = null;
 
 			if (ruleString.IndexOf (']') < ruleString.IndexOf ('[') || !ruleString.Contains ("[")) {
-				lastBranch = previousBranches [previousBranches.Count - 2]; //get last saved branch
-
+				if(previousBranches.Count - 2 >= 0)
+				{
+					lastBranch = previousBranches [previousBranches.Count - 2]; //get last saved branch
+				}
 				//ruleString.Remove (ruleString.IndexOf (']'));
 				if(previousBranches.Count>1)
 				{
@@ -95,7 +97,7 @@ public class VegetationGenerator : MonoBehaviour
 
 
 
-			if(!string.IsNullOrEmpty(ruleSplit[1]))
+			if(ruleSplit.Length>1 && !string.IsNullOrEmpty(ruleSplit[1]))
 			{
 			ruleString = ruleSplit [1];
 			}else
@@ -119,7 +121,7 @@ public class VegetationGenerator : MonoBehaviour
 		//startingBranch.transform.localScale=scale;
 		Vector3 rotation = new Vector3 (0.0f, 0.0f, 0.0f);
 		float cylinderHeight = (1.0f + localScaleFactor);
-		float cylinderWidth = (1.0f + localScaleFactor);
+		//float cylinderWidth = (1.0f + localScaleFactor);
 
 		for (int i=0; i<drawRule.Length; i++) {
 	
@@ -148,7 +150,7 @@ public class VegetationGenerator : MonoBehaviour
 		
 					//scale = scale * scalingSpeed; //branches will get smaller and smaller each iteration
 					cylinderHeight = 1.0f + lastBranch.transform.lossyScale.y; //update the new cylinderheight according to the new scale
-					cylinderWidth = 1.0f + lastBranch.transform.lossyScale.x; //update the new cylinderwidth according to the new scale
+					//cylinderWidth = 1.0f + lastBranch.transform.lossyScale.x; //update the new cylinderwidth according to the new scale
 				}
 				break;
 			case 'X':

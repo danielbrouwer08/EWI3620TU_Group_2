@@ -27,7 +27,7 @@ public class CheckpointScript : MonoBehaviour {
         if (other.gameObject.CompareTag("Checkpoint")){
             kleur = other.gameObject.GetComponent<Renderer>().sharedMaterial.name;
             checkpoint = other.gameObject.GetComponent<checkpoint>();
-            if (kleur == "checkpointstate1" && checkpoint.collided[playernumber] == false)
+			if (kleur == "checkpointstate1" && checkpoint!=null && checkpoint.collided[playernumber] == false)
             {
                 source.PlayOneShot(clip);
             }
