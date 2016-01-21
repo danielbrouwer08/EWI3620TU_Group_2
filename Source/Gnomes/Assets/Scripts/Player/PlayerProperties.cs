@@ -10,6 +10,8 @@ public class PlayerProperties : MonoBehaviour {
 
     public float startinghealth;
     public Slider healthbar;
+    private Transform inventory;
+    private Text itemtext;
     public float health;
 	public int score;
     private GameManger gameManager;
@@ -24,16 +26,19 @@ public class PlayerProperties : MonoBehaviour {
 
 	void Awake ()
     {
+        playerNum = GetComponent<PlayerController>().playerNum;
+        inventory = GameObject.FindGameObjectWithTag("IngamePanel").transform.FindChild("Player " + playerNum).FindChild("Item inventory");
         camerashaker = GameObject.FindWithTag("MainCamera").GetComponent<CameraShake>();
         startinghealth = 100;
         health = startinghealth;
         healthbar.value = health;
+        itemtext = inventory.FindChild("Item").FindChild("Text").GetComponent<Text>();
+        itemtext.text = "None";
 	}
 
     void Start()
     {
         gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManger>();
-        playerNum = GetComponent<PlayerController>().playerNum;
         scoretext = GameObject.FindGameObjectWithTag("IngamePanel").transform.FindChild("Player " + playerNum).FindChild("Point total").FindChild("Score").FindChild("Text").GetComponent<Text>();
         score = gameManager.getscore(playerNum);
         scoretext.text = score.ToString();
@@ -46,6 +51,14 @@ public class PlayerProperties : MonoBehaviour {
             Death();
         }
         healthbar.value = health;
+        if (item != null)
+        {
+            itemtext.text = item.name;
+        }
+        else
+        {
+            itemtext.text = "None";
+        }
     }
 
     public void TakeDamage(float damage)

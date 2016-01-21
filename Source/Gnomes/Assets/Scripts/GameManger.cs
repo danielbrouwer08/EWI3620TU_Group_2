@@ -25,14 +25,8 @@ public class GameManger : MonoBehaviour
 	{
         //PlayerPrefs.DeleteAll();
         saves = readPlayerPrefs ();
+		currentslot = PlayerPrefs.GetInt ("saveslot");
 
-		if(!(PlayerPrefs.GetInt ("saveslot")==null))
-		{
-			currentslot = PlayerPrefs.GetInt ("saveslot");
-		}else
-		{
-			currentslot = 0;
-		}
 		//int online = PlayerPrefs.GetInt ("onlinemode");
 
 		if(PlayerPrefs.GetString("teamname")!=null)
@@ -322,7 +316,6 @@ public class GameManger : MonoBehaviour
 	//Get saves over the interwebs
 	IEnumerator getSaves ()
 	{
-		Debug.Log("Getting the latest save game...");
 		Savegame[] online = new Savegame[saveslots]; //get local saves
 
 		UnityWebRequest www = UnityWebRequest.Get ("https://drproject.twi.tudelft.nl:8083/getSaves");
@@ -335,17 +328,12 @@ public class GameManger : MonoBehaviour
 			Debug.Log (www.error);
 		} else {
 			// Show results as text
-			Debug.Log (www.downloadHandler.text);
 			string receivedString = www.downloadHandler.text;
-			Debug.Log (receivedString);
 
 			if (receivedString == "401 Unauthorized") {
 				loginSucceed = false;
 			} else {
 				loginSucceed = true;
-
-				Debug.Log ("received:");
-				Debug.Log (receivedString);
 				
 				string[] parts = receivedString.Split (new string[] {"},{"}, System.StringSplitOptions.None);
 				
@@ -353,14 +341,10 @@ public class GameManger : MonoBehaviour
 				parts [parts.Length - 1] = parts [parts.Length - 1].Replace ("}]", "");
 				Savegame temp;
 				
-				Debug.Log ("The parts:");
-				
 				for (int i=0; i<parts.Length; i++) {
 					parts [i] = "{" + parts [i] + "}";
 					temp = Savegame.parseJSON (parts [i]);
 					online [i] = temp; //add saves to saves list
-					Debug.Log("Partsno" + i + ": " + parts[i]);
-					Debug.Log("Extracted savefile" + i + ": " + temp.toString());
 
 
 				}
@@ -373,11 +357,9 @@ public class GameManger : MonoBehaviour
 			int datecompare = DateTime.Compare (currentTimeStamp, serverTimeStamp);
 			
 			if (datecompare < 0 || username != oldusername) {
-				Debug.Log ("using server save file");
 				saves = online;
 				updatePlayerPrefs ();
 			} else{
-				Debug.Log ("using local save file");
 				//saves = local;
 				//updatePlayerPrefs ();
 			}
