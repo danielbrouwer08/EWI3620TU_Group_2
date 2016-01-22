@@ -40,8 +40,11 @@ public class Demolish : MonoBehaviour
 	void Start ()
 	{
 		hammer = transform.GetComponentInChildren<PickUpItem> ().gameObject;
-		hammer.transform.localPosition = new Vector3 (xoffset, yoffset, zoffset);
-		hammer.transform.localEulerAngles = new Vector3 (xrot, yrot, zrot);
+		if(hammer!=null)
+		{
+			hammer.transform.localPosition = new Vector3 (xoffset, yoffset, zoffset);
+			hammer.transform.localEulerAngles = new Vector3 (xrot, yrot, zrot);
+		}
 	}
 
 	void Update ()
