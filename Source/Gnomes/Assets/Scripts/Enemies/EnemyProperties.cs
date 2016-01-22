@@ -7,7 +7,7 @@ public class EnemyProperties : MonoBehaviour {
     public GameObject[] wp;
 	private GameObject body;
 	private Shader standardShader;
-	public float visualHitTime = 0.4f;
+	public float visualHitTime = 0.1f;
 	public Color[] colors = new Color[2];
 
     void Start()
@@ -40,8 +40,8 @@ public class EnemyProperties : MonoBehaviour {
 	}
 
 	IEnumerator visualHit(){
-		body.GetComponent<Renderer>().material.color = colors[0];
-		yield return new WaitForSeconds(visualHitTime);
 		body.GetComponent<Renderer>().material.color = colors[1];
+		yield return new WaitForSeconds(visualHitTime);
+		body.GetComponent<Renderer>().material.color = colors[0];
 	} 
 }
