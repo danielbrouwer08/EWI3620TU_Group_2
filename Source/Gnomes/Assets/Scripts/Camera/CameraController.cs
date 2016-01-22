@@ -4,33 +4,33 @@ using System.Collections;
 public class CameraController : MonoBehaviour {
     public GameObject Player1;
     public GameObject Player2;
-    private Vector3 offset1;
-    private Vector3 offset2;
+  	//private Vector3 offset1;
+    //private Vector3 offset2;
     private Vector3 combinedoffset;
-    private Vector3 combinedposition;
+    //private Vector3 combinedposition;
     private Vector3 playerdistances;
     private Vector3 cameradistance;
     private float cameratrigger;
     public int sensitivity;
 	public Vector3 cameraOffset;
-	private GameManger gameManager;
-	public bool LoadLastCheckpoint;
+	//private GameManger gameManager;
+	//public bool LoadLastCheckpoint;
 	
 	void Start () {
-		gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManger>();
-		Vector3 camerapos;
+		//gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManger>();
+		//Vector3 camerapos;
 
-		if(LoadLastCheckpoint)
-		{
-			Debug.Log (gameManager.returnCurrent().toString());
-			camerapos = (gameManager.returnCurrent().P1Pos + gameManager.returnCurrent().P2Pos)/2.0f + cameraOffset;
-		}else
-		{
-			camerapos = (Player1.transform.position + Player2.transform.position)/2.0f + cameraOffset;
-		}
-        offset1 = camerapos - Player1.transform.position;
-        offset2 = camerapos - Player2.transform.position;
-        Debug.Log(camerapos);
+		//if(LoadLastCheckpoint)
+		//{
+			//Debug.Log (gameManager.returnCurrent().toString());
+		//	camerapos = (gameManager.returnCurrent().P1Pos + gameManager.returnCurrent().P2Pos)/2.0f + cameraOffset;
+		//}else
+		//{
+		//	camerapos = (Player1.transform.position + Player2.transform.position)/2.0f + cameraOffset;
+		//}
+        //offset1 = camerapos - Player1.transform.position;
+        //offset2 = camerapos - Player2.transform.position;
+        //Debug.Log(camerapos);
     }
 
     void LateUpdate () {
@@ -39,7 +39,7 @@ public class CameraController : MonoBehaviour {
 	}
 
     void CameraProperties(){
-        combinedposition = (Player1.transform.position + Player2.transform.position) / 2;
+        //combinedposition = (Player1.transform.position + Player2.transform.position) / 2;
         playerdistances = Player1.transform.position - Player2.transform.position;
     }
 

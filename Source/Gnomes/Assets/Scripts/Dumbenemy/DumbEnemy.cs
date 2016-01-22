@@ -38,7 +38,7 @@ public class DumbEnemy : MonoBehaviour {
                 shootArrow();
                 break;
             case 1:
-                if(sight.seenEnemy != null)
+                if(sight!= null && sight.seenEnemy != null)
                 {
                     transform.LookAt(sight.seenEnemy.transform);
                     if(sight.seenEnemy.transform.position.z > transform.position.z)
@@ -53,7 +53,7 @@ public class DumbEnemy : MonoBehaviour {
                 }
                 break;
             case 2:
-                if(sight.seenEnemy != null)
+				if(sight!= null && sight.seenEnemy != null)
                 {
                     transform.LookAt(sight.seenEnemy.transform);
                 }

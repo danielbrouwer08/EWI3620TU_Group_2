@@ -8,7 +8,6 @@ public class Build : MonoBehaviour {
     private Rigidbody rb;
     private GameObject[] blocks;
     private int i = 0;
-	private string Fire3;
     private int playerNum;
     private bool isactive;
 
@@ -17,7 +16,6 @@ public class Build : MonoBehaviour {
         playerNum = GetComponent<PlayerController>().playerNum;
         rb = GetComponent<Rigidbody>();
         blocks = new GameObject[blockcap];
-		Fire3 = null;
         prefab = Resources.Load("Block") as GameObject;
 	}
 	

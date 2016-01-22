@@ -16,7 +16,7 @@ public class PlayerProperties : MonoBehaviour {
 	public int score;
     private GameManger gameManager;
     private int playerNum;
-    bool damaged;
+//    bool damaged;
     bool dead;
     public GameObject item;
     private Text scoretext;
@@ -55,7 +55,7 @@ public class PlayerProperties : MonoBehaviour {
 
     public void TakeDamage(float damage)
     {
-        damaged = true;
+        //damaged = true;
         health -= damage;
         pijnsource.PlayOneShot(pijnsound);
         if (camerashaker != null && camerashaker.shaking == false)
@@ -131,12 +131,12 @@ public class PlayerProperties : MonoBehaviour {
         if (playerNum == 1)
         {
             spawnpos = gameManager.returnCurrent().P1Pos;
-            print("p1 spawn pos: " + spawnpos);
+            //print("p1 spawn pos: " + spawnpos);
         }
         else
         {
             spawnpos = gameManager.returnCurrent().P2Pos;
-            print("p2 spawn pos: " + spawnpos);
+            //print("p2 spawn pos: " + spawnpos);
         }
 
         transform.position = spawnpos;

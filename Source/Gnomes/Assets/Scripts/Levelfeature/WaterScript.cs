@@ -40,6 +40,13 @@ public class WaterScript : MonoBehaviour
             total = total / total.magnitude;
             Debug.DrawRay(other.transform.position, total * 3);
             float force = 12000;
+
+			//Check if Nan because it introduces errors
+			if(float.IsNaN(total.x) || float.IsNaN(total.y) || float.IsNaN(total.z))
+			{
+				total = new Vector3(0,0,0); //If NaN occured just add 0 force;
+			}
+
             other.gameObject.GetComponent<Rigidbody>().AddForce(total * force);
         }
 		else if(other.GetComponent<Rigidbody>()!=null)

@@ -57,7 +57,7 @@ public class ChapterLoader : MonoBehaviour
 	{
 		//Find all terrain pieces in the level
 		
-		Debug.Log ("Amount of terrains: " + allTerrains.Length);
+		//Debug.Log ("Amount of terrains: " + allTerrains.Length);
 		//Debug.Log ("Childs aantal: " + childs.Count);
 		//For all terrain pieces in a level add a wall / mountain to the side
 		for (int k=0; k<allTerrains.Length; k++) {
@@ -97,7 +97,7 @@ public class ChapterLoader : MonoBehaviour
 			//Create same contour
 			for (int i=0; i<heightmapWidth; i++) {
 				for (int j=0; j<heightmapHeight; j++) {
-					int i_coord = (int)i * lastTerrainData.heightmapResolution / mountainTerrain.terrainData.heightmapResolution;
+					//int i_coord = (int)i * lastTerrainData.heightmapResolution / mountainTerrain.terrainData.heightmapResolution;
 					int j_coord = (int)j * lastTerrainData.heightmapResolution / mountainTerrain.terrainData.heightmapResolution;
 					
 					//float height = (heightsOfLastTerrain[i_coord,lastTerrainData.heightmapHeight-1] * heightScaleFactor);
@@ -128,7 +128,7 @@ public class ChapterLoader : MonoBehaviour
 	{
 		//Find all terrain pieces in the level
 
-		Debug.Log ("Amount of terrains: " + allTerrains.Length);
+		//Debug.Log ("Amount of terrains: " + allTerrains.Length);
 		//Debug.Log ("Childs aantal: " + childs.Count);
 		//For all terrain pieces in a level add a wall / mountain to the side
 		for (int k=0; k<allTerrains.Length; k++) {
@@ -167,7 +167,7 @@ public class ChapterLoader : MonoBehaviour
 			//Create same contour
 			for (int i=0; i<heightmapWidth; i++) {
 				for (int j=0; j<heightmapHeight; j++) {
-					int i_coord = (int)i * lastTerrainData.heightmapResolution / mountainTerrain.terrainData.heightmapResolution;
+					//int i_coord = (int)i * lastTerrainData.heightmapResolution / mountainTerrain.terrainData.heightmapResolution;
 					int j_coord = (int)j * lastTerrainData.heightmapResolution / mountainTerrain.terrainData.heightmapResolution;
 
 					//float height = (heightsOfLastTerrain[i_coord,lastTerrainData.heightmapHeight-1] * heightScaleFactor);
@@ -252,7 +252,7 @@ public class ChapterLoader : MonoBehaviour
 		for (int i=0; i<heightmapWidth; i++) {
 			for (int j=0; j<heightmapHeight; j++) {
 				int i_coord = (int)i * lastTerrainData.heightmapResolution / interpolatorTerrain.terrainData.heightmapResolution;
-				int j_coord = (int)j * lastTerrainData.heightmapResolution / interpolatorTerrain.terrainData.heightmapResolution;
+				//int j_coord = (int)j * lastTerrainData.heightmapResolution / interpolatorTerrain.terrainData.heightmapResolution;
 
 				if (!fromStart) {
 					//print ("heightvalue: " + i + " = " + heightsOfLastTerrain[heightmapWidth-1,j]);

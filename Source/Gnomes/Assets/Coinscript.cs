@@ -22,7 +22,7 @@ public class Coinscript : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("player hit");
+            //Debug.Log("player hit");
             other.GetComponent<PlayerProperties>().UpdateScore(score);
             Destroy(gameObject);
         }

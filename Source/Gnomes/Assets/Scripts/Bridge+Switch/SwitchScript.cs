@@ -17,7 +17,7 @@ public class SwitchScript : MonoBehaviour {
 	void Update () {
         for (int i = 0; i < player.Length; i++)
         {
-            if (Vector3.Distance(player[i].transform.position, transform.position) < 3)
+            if (Vector3.Distance(player[i].transform.position, transform.position) < 5)
             {
 
                 if (Input.GetButtonDown("Interact" + player[i].GetComponent<PlayerController>().playerNum) && !switchon)

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class WaveScript : MonoBehaviour {
-    private GameManger gameManager;
+    //private GameManger gameManager;
     public ChapterLoader loader;
     public GameObject[] players;
     public GameObject[] levels;
@@ -14,7 +14,7 @@ public class WaveScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManger>();
+        //gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManger>();
         players = GameObject.FindGameObjectsWithTag("Player");
         StartCoroutine(loadlevels());
 
@@ -25,7 +25,7 @@ public class WaveScript : MonoBehaviour {
             {
                 maxstart = startdistance;
             }
-            Debug.Log(startdistance);
+            //Debug.Log(startdistance);
         }
 
         Vector3 position = transform.position;

@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
 	public bool loadLastCheckpoint = true;
     public bool isSinglePlayer = true;
     public bool isActive;
-    private int input;
+    //private int input;
     GameObject[] players;
     GameObject otherplayer;
 
@@ -77,15 +77,6 @@ public class PlayerController : MonoBehaviour
 		{
 			isActive = true;
 		}
-
-        if (isSinglePlayer)
-        {
-            input = 1;
-        }
-        else
-        {
-            input = playerNum;
-        }
 
 		if(loadLastCheckpoint==true)
 		{
@@ -321,12 +312,12 @@ public Vector3 getLastSavedPos()
         if (playerNum == 1)
         {
             spawnpos = gameManager.returnCurrent().P1Pos;
-            print("p1 spawn pos: " + spawnpos);
+            //print("p1 spawn pos: " + spawnpos);
         }
         else
         {
             spawnpos = gameManager.returnCurrent().P2Pos;
-            print("p2 spawn pos: " + spawnpos);
+            //print("p2 spawn pos: " + spawnpos);
         }
 
         transform.position = spawnpos;

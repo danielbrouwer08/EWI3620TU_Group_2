@@ -10,53 +10,44 @@ public class PickUpItem : MonoBehaviour
 {
 	public float pickdistance = 5;
 	private GameObject[] player;
-	private bool[] playerinrange;
+	//private bool[] playerinrange;
 	private int playerNum;
 	private float xPosPlayer;
 	private float zPosPlayer;
 	public GameObject carrier;
 	public float throwforce;
-	bool hasPlayer = false;
+	//bool hasPlayer = false;
 	bool beingCarried = false;
 	private Rigidbody rb;
-	private Collider col;
+	//private Collider col;
 	public string skill;
 	private Vector3 startpos;
 	private GameObject header;
 	private GameObject text;
 	private GameObject cameraSystem;
-    private Transform ingamepanel;
-
-	void OnCollisionExit (Collision other)
-	{
-		hasPlayer = false;
-	}
-
+	
 	void Start ()
 	{
 		cameraSystem = GameObject.FindGameObjectWithTag("MainCamera");
-        if (transform.FindChild("Canvas") != null)
-        {
-            header = transform.FindChild("Canvas").FindChild("Header").gameObject;
-            text = header.transform.FindChild("Text").gameObject;
-        }
+
         if (header != null && text != null)
         {
-			header.SetActive (false);      
+			header.SetActive (false);
+            header = transform.FindChild("Canvas").FindChild("Header").gameObject;
+            text = header.transform.FindChild("Text").gameObject;
             header.transform.parent.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 100);
             header.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 100);
             text.GetComponent<Text>().resizeTextMaxSize = 20;
 		}
 		startpos = GetComponent<Transform> ().position;
 		rb = GetComponent<Rigidbody> ();
-		col = GetComponent<Collider> ();
+		//col = GetComponent<Collider> ();
 		player = GameObject.FindGameObjectsWithTag ("Player");
-		playerinrange = new bool[player.Length];
+		//playerinrange = new bool[player.Length];
 		rb.isKinematic = false;
 		rb.constraints = RigidbodyConstraints.None;
-        ingamepanel = GameObject.FindGameObjectWithTag("IngamePanel").transform;
 
-    }
+	}
 
 	void OnCollisionStay (Collision other)
 	{
@@ -90,7 +81,7 @@ public class PickUpItem : MonoBehaviour
                 if (Input.GetButtonDown("Interact" + playerNum))
                 {
                     Debug.Log("pushing the button");
-                    if (player[i].GetComponent<PlayerProperties>().item.Equals(transform.gameObject))
+                    if (player[i].GetComponent<PlayerProperties>().item.Equals(this.gameObject))
                     {
                         Debug.Log("Trying to lose this item...");
                         this.Loseitem();
@@ -165,12 +156,10 @@ public class PickUpItem : MonoBehaviour
 			switch (skill) {
 			case "Fly":
 				carrier.AddComponent<Fly> ();
-                ingamepanel.FindChild("Player 1").FindChild("Item inventory").FindChild("Item").FindChild("Text").GetComponent<Text>().text = skill;
-                break;
+				break;
 			case "Float":
 				carrier.AddComponent<Float> ();
-                ingamepanel.FindChild("Player 1").FindChild("Item inventory").FindChild("Item").FindChild("Text").GetComponent<Text>().text = skill;
-                break;
+				break;
 			// case "Build": carrier.AddComponent<Build>(); break;
 			// case "Demolish": carrier.AddComponent<Demolish>(); break;
 			}
@@ -181,12 +170,10 @@ public class PickUpItem : MonoBehaviour
 			// case "Float": carrier.AddComponent<Float>(); break;
 			case "Build":
 				carrier.AddComponent<Build> ();
-                ingamepanel.FindChild("Player 2").FindChild("Item inventory").FindChild("Item").FindChild("Text").GetComponent<Text>().text = skill;
-                break;
+				break;
 			case "Demolish":
 				carrier.AddComponent<Demolish> ();
-                ingamepanel.FindChild("Player 2").FindChild("Item inventory").FindChild("Item").FindChild("Text").GetComponent<Text>().text = skill;
-                break;
+				break;
 			}
 		}
 
@@ -221,14 +208,8 @@ public class PickUpItem : MonoBehaviour
 			    break;
             default:
                 break;
+
+
 		}
-        if (carrier.name.Equals("kabouterdun"))
-        {
-            ingamepanel.FindChild("Player 1").FindChild("Item inventory").FindChild("Item").FindChild("Text").GetComponent<Text>().text = "None";
-        }
-        else
-        {
-            ingamepanel.FindChild("Player 2").FindChild("Item inventory").FindChild("Item").FindChild("Text").GetComponent<Text>().text = "None";
-        }
-    }
+	}
 }
