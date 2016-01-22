@@ -64,9 +64,9 @@ public class killMouse : MonoBehaviour {
 
         }
 
-        if (hammerdown && transform.parent.name != "level7")
+        if (hammerdown && transform.parent != null && transform.parent.name != "level7")
         {
-            Debug.Log("check");
+            //Debug.Log("check");
             if (status1)
             {
                 this.transform.localEulerAngles = new Vector3(xrot2, yrot2, zrot2);

@@ -19,6 +19,7 @@ public class WaterFallSpawner : MonoBehaviour
 	void Start()
 	{
 		player = GameObject.FindGameObjectsWithTag("Player");
+		spawn_z_offset = -1.0f;
 		//StartCoroutine(waterSpawner());
 	}
 

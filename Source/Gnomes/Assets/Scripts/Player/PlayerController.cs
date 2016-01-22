@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
 
 	//private bool gameOver = false;
 
-	// Iinitialization
+	// Initialization
 	void Start ()
 	{
         jumpForce = jumpForcebegin;
@@ -111,6 +111,7 @@ public class PlayerController : MonoBehaviour
 	// Update is called every fixed framerate frame
 	void FixedUpdate ()
 	{
+        // If the player can't move for a period of time, this time is reduced, and the movement is skipped
         if (nomovementtime > 0)
         {
             nomovementtime -= Time.fixedDeltaTime;
@@ -134,27 +135,15 @@ public class PlayerController : MonoBehaviour
                 //Make player look in direction of movement
                 transform.forward = Vector3.RotateTowards(transform.forward, new Vector3(movement.x, 0, movement.z),Time.fixedDeltaTime*rotatespeed,0);
             }
-            //Move the player
-            //if (!Physics.Raycast(transform.position, transform.forward, 1.207f)) MOET GEFIXT WORDEN
-			//if(true)
-   //         {
-                if (jump)
-                {
-                    rb.velocity = new Vector3(movement.x, jumpForce, movement.z);
-                }
-                else
-                {
-                    rb.velocity = new Vector3(movement.x, rb.velocity.y, movement.z);
-                }
-            //}
-            //else
-            //{
-            //    if(jump)
-            //    {
-            //        rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
-            //    }
-            //    rb.AddForce(movement / 20, ForceMode.VelocityChange);
-            //}
+            //Lets the player jump
+            if (jump)
+            {
+                rb.velocity = new Vector3(movement.x, jumpForce, movement.z);
+            }
+            else
+            {
+                rb.velocity = new Vector3(movement.x, rb.velocity.y, movement.z);
+            }
         }
         Debug.DrawRay(transform.position, -transform.forward - transform.up);
         if (!Physics.Raycast(transform.position, -transform.forward - transform.up, 2) && Physics.Raycast(transform.position, -transform.up, 0.5f))
@@ -282,31 +271,25 @@ public class PlayerController : MonoBehaviour
         return som < 0.5f;
     }*/
 
+    // Determines if the player is standing on the ground
     public bool grounded()
     {
-        //return Physics.Raycast(transform.position + 0.1f * Vector3.up, -Vector3.up, 0.20f);
-		if(Physics.Raycast(transform.position + 0.1f * Vector3.up, -Vector3.up, 0.50f) ||
-           Physics.Raycast(transform.position + transform.forward + 0.1f * Vector3.up, -Vector3.up, 0.50f) ||
-           Physics.Raycast(transform.position - transform.forward + 0.1f * Vector3.up, -Vector3.up, 0.50f) ||
-           Physics.Raycast(transform.position + transform.right + 0.1f * Vector3.up, -Vector3.up, 0.50f) ||
-           Physics.Raycast(transform.position - transform.right + 0.1f * Vector3.up, -Vector3.up, 0.50f))
-		{
-			return true;
-		}else
-		{
-			return false;
-		}
-
-		//return true; // temporary fix MOET AAN GESLEUTELD WORDEN!!!
+        return Physics.Raycast(transform.position + 0.1f * Vector3.up, -Vector3.up, 0.50f) ||
+               Physics.Raycast(transform.position + transform.forward + 0.1f * Vector3.up, -Vector3.up, 0.50f) ||
+               Physics.Raycast(transform.position - transform.forward + 0.1f * Vector3.up, -Vector3.up, 0.50f) ||
+               Physics.Raycast(transform.position + transform.right + 0.1f * Vector3.up, -Vector3.up, 0.50f) ||
+               Physics.Raycast(transform.position - transform.right + 0.1f * Vector3.up, -Vector3.up, 0.50f);
     }
 
+    // Other scripts can acces this to get an external force on the player, the player can then not move for a given time
     public void ExternalForce(Vector3 force, float nomovementtime)
     {
         rb.AddForce(force, ForceMode.VelocityChange);
         this.nomovementtime = nomovementtime;
     }
 
-public Vector3 getLastSavedPos()
+    // Gets the last saved position so it can respawn there
+    public Vector3 getLastSavedPos()
     {
         Vector3 spawnpos;
 

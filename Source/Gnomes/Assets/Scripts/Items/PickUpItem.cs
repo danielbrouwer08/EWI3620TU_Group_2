@@ -22,27 +22,33 @@ public class PickUpItem : MonoBehaviour
 	//private Collider col;
 	public string skill;
 	private Vector3 startpos;
-	private GameObject header;
-	private GameObject text;
+	private Transform header;
+	private Transform text;
 	private GameObject cameraSystem;
     private Transform ingamepanel;
 
     void Start ()
 	{
 		cameraSystem = GameObject.FindGameObjectWithTag("MainCamera");
-
-        if (header != null && text != null)
+        if (transform.FindChild("Canvas") != null)
         {
-			header.SetActive (false);
-            header = transform.FindChild("Canvas").FindChild("Header").gameObject;
-            text = header.transform.FindChild("Text").gameObject;
-            header.transform.parent.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 100);
-            header.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 100);
-            text.GetComponent<Text>().resizeTextMaxSize = 20;
-		}
+            if(transform.FindChild("Canvas").FindChild("Header") != null)
+            {
+                if (transform.FindChild("Canvas").FindChild("Header").FindChild("Text") != null)
+                {
+                    header = transform.FindChild("Canvas").FindChild("Header");
+                    header.gameObject.SetActive(false);
+                    text = header.transform.FindChild("Text");
+                    header.parent.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 100);
+                    header.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 100);
+                    text.GetComponent<Text>().resizeTextMaxSize = 20;
+                }
+            }
+        }
 		startpos = GetComponent<Transform> ().position;
 		rb = GetComponent<Rigidbody> ();
-		//col = GetComponent<Collider> ();
+        //col = GetComponent<Collider> ();
+        Debug.Log(GameObject.FindGameObjectsWithTag("Player"));
 		player = GameObject.FindGameObjectsWithTag ("Player");
 		//playerinrange = new bool[player.Length];
 		rb.isKinematic = false;
@@ -61,17 +67,17 @@ public class PickUpItem : MonoBehaviour
 	void Update ()
 	{
         if ((Vector3.Magnitude (transform.position - player [0].transform.position) < pickdistance || Vector3.Magnitude (transform.position - player [1].transform.position) < pickdistance) && !beingCarried && header != null) {
-			header.SetActive (true);
-            header.transform.parent.LookAt(cameraSystem.transform);
-            header.transform.parent.Rotate(0, 180, 0);
+			header.gameObject.SetActive (true);
+            header.parent.LookAt(cameraSystem.transform);
+            header.parent.Rotate(0, 180, 0);
             string displayText = "Press '.' (P1) or 'v' (P2) to pick up the " + skill + " skill";
 			text.GetComponent<Text> ().text = displayText;
 		} else if (header != null) {
-			header.SetActive (false);
+			header.gameObject.SetActive (false);
 		}
 
 
-		if ((transform.position.z > 100 || transform.position.z < -100 || transform.position.x < 0 || transform.position.y < -50) && carrier == null) {
+		if ((transform.position.z > 100 || transform.position.z < -10 || transform.position.x < 0 || transform.position.y < -50) && carrier == null) {
 			Respawnitem ();
 		}
 

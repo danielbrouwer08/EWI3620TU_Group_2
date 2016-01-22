@@ -5,7 +5,7 @@ public class Demolish : MonoBehaviour
 {
 
 	private int playerNum;
-	public int hitDamage = 25;
+	public int hitDamage = 4;
 	private GameObject hammer;
 	//private float hammertimer = 0;
 	private bool hammerdown;
@@ -74,6 +74,7 @@ public class Demolish : MonoBehaviour
 			other.gameObject.SetActive (false);
 		}
 		if (Input.GetButton ("Item" + playerNum) && other.gameObject.CompareTag ("Enemy")) {
+			//Debug.Log ("Mouse is going down muhahahahaha");
 			other.gameObject.GetComponent<EnemyProperties> ().dealDamage (hitDamage);		
 		}
 		
