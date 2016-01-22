@@ -69,7 +69,7 @@ public class WaveScript : MonoBehaviour {
         }
         if (count == 2)
         {
-            desiredSpeed = 6;
+            desiredSpeed = 10;
             count = 0;
         }
         float addedSpeed = (desiredSpeed - speed) * Time.deltaTime;
