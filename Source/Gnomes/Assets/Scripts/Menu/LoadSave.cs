@@ -10,7 +10,7 @@ public class LoadSave : MonoBehaviour
         gamemanager = GameObject.FindWithTag("GameManager").GetComponent<GameManger>();
     }
 
-    public void LoadLevel(int sl)
+    public void LoadSaveSlot(int sl)
     {
         string chapter = gamemanager.saves[sl].chapter;
         PlayerPrefs.SetInt("saveslot", sl);
