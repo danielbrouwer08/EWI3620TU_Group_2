@@ -49,7 +49,7 @@ public class PlayerProperties : MonoBehaviour {
     // Updates the healthbar and lets it die when it reaches zero
 	void Update ()
     {
-        if(health <= 0 || transform.position.y < -25.0f)
+        if(health <= 0 || transform.position.z < -10.0f)
         {
             Death();
         }
