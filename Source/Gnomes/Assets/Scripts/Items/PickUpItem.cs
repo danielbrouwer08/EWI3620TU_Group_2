@@ -25,8 +25,9 @@ public class PickUpItem : MonoBehaviour
 	private GameObject header;
 	private GameObject text;
 	private GameObject cameraSystem;
-	
-	void Start ()
+    private Transform ingamepanel;
+
+    void Start ()
 	{
 		cameraSystem = GameObject.FindGameObjectWithTag("MainCamera");
 
@@ -46,8 +47,8 @@ public class PickUpItem : MonoBehaviour
 		//playerinrange = new bool[player.Length];
 		rb.isKinematic = false;
 		rb.constraints = RigidbodyConstraints.None;
-
-	}
+        ingamepanel = GameObject.FindGameObjectWithTag("IngamePanel").transform;
+    }
 
 	void OnCollisionStay (Collision other)
 	{
@@ -156,10 +157,12 @@ public class PickUpItem : MonoBehaviour
 			switch (skill) {
 			case "Fly":
 				carrier.AddComponent<Fly> ();
-				break;
+                    ingamepanel.FindChild("Player 1").FindChild("Item inventory").FindChild("Item").FindChild("Text").GetComponent<Text>().text = skill;
+                    break;
 			case "Float":
 				carrier.AddComponent<Float> ();
-				break;
+                    ingamepanel.FindChild("Player 1").FindChild("Item inventory").FindChild("Item").FindChild("Text").GetComponent<Text>().text = skill;
+                    break;
 			// case "Build": carrier.AddComponent<Build>(); break;
 			// case "Demolish": carrier.AddComponent<Demolish>(); break;
 			}
@@ -170,10 +173,12 @@ public class PickUpItem : MonoBehaviour
 			// case "Float": carrier.AddComponent<Float>(); break;
 			case "Build":
 				carrier.AddComponent<Build> ();
-				break;
+                    ingamepanel.FindChild("Player 2").FindChild("Item inventory").FindChild("Item").FindChild("Text").GetComponent<Text>().text = skill;
+                    break;
 			case "Demolish":
 				carrier.AddComponent<Demolish> ();
-				break;
+                    ingamepanel.FindChild("Player 2").FindChild("Item inventory").FindChild("Item").FindChild("Text").GetComponent<Text>().text = skill;
+                    break;
 			}
 		}
 
@@ -208,8 +213,14 @@ public class PickUpItem : MonoBehaviour
 			    break;
             default:
                 break;
-
-
 		}
-	}
+        if (carrier.name.Equals("kabouterdun"))
+        {
+            ingamepanel.FindChild("Player 1").FindChild("Item inventory").FindChild("Item").FindChild("Text").GetComponent<Text>().text = "None";
+        }
+        else
+        {
+            ingamepanel.FindChild("Player 2").FindChild("Item inventory").FindChild("Item").FindChild("Text").GetComponent<Text>().text = "None";
+        }
+    }
 }
