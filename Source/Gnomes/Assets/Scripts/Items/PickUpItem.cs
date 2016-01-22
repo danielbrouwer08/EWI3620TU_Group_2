@@ -51,7 +51,7 @@ public class PickUpItem : MonoBehaviour
 
 	void OnCollisionStay (Collision other)
 	{
-		if(beingCarried && skill == "Demolish")
+		if(beingCarried && skill == "Demolish" && transform.parent.gameObject.GetComponent<Demolish>() != null)
 		{
 			transform.parent.gameObject.GetComponent<Demolish>().hammerCollision(other);
 		}
@@ -80,10 +80,10 @@ public class PickUpItem : MonoBehaviour
             {
                 if (Input.GetButtonDown("Interact" + playerNum))
                 {
-                    Debug.Log("pushing the button");
+                   //Debug.Log("pushing the button");
                     if (player[i].GetComponent<PlayerProperties>().item.Equals(this.gameObject))
                     {
-                        Debug.Log("Trying to lose this item...");
+                        //Debug.Log("Trying to lose this item...");
                         this.Loseitem();
                         break;
                     }

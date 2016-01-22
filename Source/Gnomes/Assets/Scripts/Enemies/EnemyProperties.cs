@@ -24,7 +24,7 @@ public class EnemyProperties : MonoBehaviour {
     {
         if(health <= 0)
         {
-            Debug.Log(health);
+            //Debug.Log(health);
             Destroy(gameObject);
             for (int i=0; i<wp.Length; i++)
             {
