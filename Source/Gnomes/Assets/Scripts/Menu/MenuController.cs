@@ -42,15 +42,16 @@ public class MenuController : MonoBehaviour {
     {
         // Load Global highscores
         StartCoroutine(gethighscores());
+        Transform viewport = transform.FindChild("MaskPanel").FindChild("Panel").FindChild("Scores").FindChild("Local").FindChild("Viewport");
         // Load Local highscores
         for (int i = 0; i < 10; i++)
         {
             if (PlayerPrefs.GetString("Team" + i) != null)
             {
-                transform.GetChild(0).GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(0).GetChild(i + 1).GetComponent<Text>().text = PlayerPrefs.GetString("Team" + i);
-                transform.GetChild(0).GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(1).GetChild(i + 1).GetComponent<Text>().text = PlayerPrefs.GetInt("Total" + i).ToString();
-                transform.GetChild(0).GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(2).GetChild(i + 1).GetComponent<Text>().text = PlayerPrefs.GetInt("P1" + i).ToString();
-                transform.GetChild(0).GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(3).GetChild(i + 1).GetComponent<Text>().text = PlayerPrefs.GetInt("P2" + i).ToString();
+                viewport.FindChild("Team").FindChild("Text (" + (i + 1) + ")").GetComponent<Text>().text = PlayerPrefs.GetString("Team" + i);
+                viewport.FindChild("Total").FindChild("Text (" + (i + 1) + ")").GetComponent<Text>().text = PlayerPrefs.GetInt("Total" + i).ToString();
+                viewport.FindChild("P1").FindChild("Text (" + (i + 1) + ")").GetComponent<Text>().text = PlayerPrefs.GetInt("P1" + i).ToString();
+                viewport.FindChild("P2").FindChild("Text (" + (i + 1) + ")").GetComponent<Text>().text = PlayerPrefs.GetInt("P2" + i).ToString();
             }
         }
     }
@@ -73,21 +74,22 @@ public class MenuController : MonoBehaviour {
         else
         {
             // Show results as text
-            Debug.Log(www.downloadHandler.text);
             string receivedString = www.downloadHandler.text;
 
             string[] parts = receivedString.Split(new string[] { "},{" }, System.StringSplitOptions.None);
             parts[0] = parts[0].Replace("[{", "");
             parts[parts.Length - 1] = parts[parts.Length - 1].Replace("}]", "");
 
+            Transform viewport = transform.FindChild("MaskPanel").FindChild("Panel").FindChild("Scores").FindChild("Global").FindChild("Viewport");
+
             for (int i = 0; i < parts.Length; i++)
             {
                 parts[i] = "{" + parts[i] + "}";
                 var temp = JSON.Parse(parts[i]);
-                transform.GetChild(0).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(0).GetChild(i+1).GetComponent<Text>().text = temp["Name"];
-                transform.GetChild(0).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(1).GetChild(i+1).GetComponent<Text>().text = (temp["P1Score"].AsFloat + temp["P2Score"].AsFloat).ToString();
-                transform.GetChild(0).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(2).GetChild(i+1).GetComponent<Text>().text = temp["P1Score"];
-                transform.GetChild(0).GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(3).GetChild(i+1).GetComponent<Text>().text = temp["P2Score"];
+                viewport.FindChild("Team").FindChild("Text (" + (i + 1) + ")").GetComponent<Text>().text = temp["Name"];
+                viewport.FindChild("Total").FindChild("Text (" + (i + 1) + ")").GetComponent<Text>().text = (temp["P1Score"].AsFloat + temp["P2Score"].AsFloat).ToString();
+                viewport.FindChild("P1").FindChild("Text (" + (i + 1) + ")").GetComponent<Text>().text = temp["P1Score"];
+                viewport.FindChild("P2").FindChild("Text (" + (i + 1) + ")").GetComponent<Text>().text = temp["P2Score"];
             }
             //serverTimeStamp = DateTime.Parse(receivedString.Replace("\"", ""));
             //Debug.Log (receivedString);

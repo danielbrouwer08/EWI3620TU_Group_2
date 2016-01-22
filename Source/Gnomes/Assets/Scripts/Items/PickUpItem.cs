@@ -110,7 +110,7 @@ public class PickUpItem : MonoBehaviour
                     //rb.detectCollisions = false;
 					rb.constraints = RigidbodyConstraints.FreezeAll; // freeze rotations
                     transform.parent = player[i].transform;
-                    transform.localPosition = new Vector3(0.0f, 4.1f, 0.0f);
+                    transform.localPosition = new Vector3(0.0f, 4.8f, 0.0f);
                     transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
                     beingCarried = true;
                 }
