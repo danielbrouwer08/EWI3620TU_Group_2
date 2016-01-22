@@ -24,7 +24,8 @@ public class PlayerProperties : MonoBehaviour {
     public AudioClip pijnsound;
     private CameraShake camerashaker;
 
-	void Awake ()
+    // Finds several gameobjects and components
+    void Awake ()
     {
         playerNum = GetComponent<PlayerController>().playerNum;
         inventory = GameObject.FindGameObjectWithTag("IngamePanel").transform.FindChild("Player " + playerNum).FindChild("Item inventory");
@@ -36,6 +37,7 @@ public class PlayerProperties : MonoBehaviour {
         itemtext.text = "None";
 	}
 
+    // Finds several gameobjects and components
     void Start()
     {
         gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManger>();
@@ -44,15 +46,17 @@ public class PlayerProperties : MonoBehaviour {
         scoretext.text = score.ToString();
     }
 	
+    // Updates the healthbar and lets it die when it reaches zero
 	void Update ()
     {
-        if(health <= 0 || transform.position.y < -25.0f)
+        if(health <= 0 || transform.position.z < -10.0f)
         {
             Death();
         }
         healthbar.value = health;
     }
 
+    // Other scripts can acces this method to damage the player
     public void TakeDamage(float damage)
     {
         //damaged = true;
@@ -64,12 +68,14 @@ public class PlayerProperties : MonoBehaviour {
         }
     }
 
+    // Other scripts can acces this method to increase the score
     public void UpdateScore(int newscore)
     {
         score = score + newscore;
         scoretext.text = score.ToString();
     }
 
+    // This script or other scripts can acces this method, which says what happens when a character dies
     public void Death()
     {
         int playerNum = GetComponent<PlayerController>().playerNum;
@@ -109,6 +115,7 @@ public class PlayerProperties : MonoBehaviour {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         
         transform.position = position;
+        // If the players are too far from each other, the other player dies too
         if(Mathf.Abs(players[0].transform.position.x - players[1].transform.position.x) > 100)
         {
             if(players[0].name.Equals(gameObject.name))
@@ -124,6 +131,7 @@ public class PlayerProperties : MonoBehaviour {
 
     }
 
+    // Gets the last saved position so it can respawn there
     public Vector3 getLastSavedPos()
     {
         Vector3 spawnpos;
