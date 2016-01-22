@@ -87,10 +87,8 @@ public class PickUpItem : MonoBehaviour
             {
                 if (Input.GetButtonDown("Interact" + playerNum))
                 {
-                    Debug.Log("pushing the button");
-                    if (player[i].GetComponent<PlayerProperties>().item.Equals(this.gameObject))
+                    if (player[i].GetComponent<PlayerProperties>().item != null && player[i].GetComponent<PlayerProperties>().item.Equals(this.gameObject))
                     {
-                        Debug.Log("Trying to lose this item...");
                         this.Loseitem();
                         break;
                     }
@@ -99,7 +97,6 @@ public class PickUpItem : MonoBehaviour
 
             if (Vector3.Distance(transform.position, player[i].transform.position) < pickdistance)
             {
-                //Debug.Log("I'm close enough!");
                 if (Input.GetButtonDown("Interact" + playerNum) && player[i].GetComponent<PlayerProperties>().item == null)
                 {
                     carrier = player[i];
@@ -119,19 +116,28 @@ public class PickUpItem : MonoBehaviour
             xPosPlayer = player [i].GetComponent<Transform> ().position.x;
 			zPosPlayer = player [i].GetComponent<Transform> ().position.z;
 		}
+
+        if(Vector3.Distance(transform.position, startpos) > 100)
+        {
+            Loseitem();
+            Respawnitem();
+        }
 	}
 
 	public void Loseitem ()
 	{
-		DeleteSkillfromPlayer (skill);
-		carrier.GetComponent<PlayerProperties> ().item = null;
-		//rb.isKinematic = false;
-		//rb.detectCollisions = true;
-		rb.constraints = RigidbodyConstraints.None; //remove constraints
-		transform.parent = null;
-		rb.AddForce (carrier.transform.forward * throwforce + Vector3.up * throwforce * 0.1f);
-		carrier = null;
-		beingCarried = false;
+        if (carrier != null)
+        {
+            DeleteSkillfromPlayer(skill);
+            carrier.GetComponent<PlayerProperties>().item = null;
+            //rb.isKinematic = false;
+            //rb.detectCollisions = true;
+            rb.constraints = RigidbodyConstraints.None; //remove constraints
+            transform.parent = null;
+            rb.AddForce(carrier.transform.forward * throwforce + Vector3.up * throwforce * 0.1f);
+            carrier = null;
+            beingCarried = false;
+        }
 	}
 
 	public void Respawnitem ()
@@ -192,41 +198,45 @@ public class PickUpItem : MonoBehaviour
 
 	void DeleteSkillfromPlayer (string skill)
 	{
-		switch (skill) {
-		    case "Fly":
-			    if(carrier.GetComponent<Fly> ()!=null)
-    			{
-	    		    Destroy (carrier.GetComponent<Fly> ());
-		    	}
-    			break;
-	    	case "Float":
-		    	if(carrier.GetComponent<Float> ()!=null)
-			    {
-			        Destroy (carrier.GetComponent<Float> ());
-			    }
-			    break;
-		    case "Build":
-    			if(carrier.GetComponent<Build> ()!=null)
-	    		{
-		    	    Destroy (carrier.GetComponent<Build> ());
-			    }
-    			break;
-	    	case "Demolish":
-		    	if(carrier.GetComponent<Demolish> ()!=null)
-			    {
-        		    Destroy (carrier.GetComponent<Demolish> ());
-			    }
-			    break;
-            default:
-                break;
-		}
-        if (carrier.name.Equals("kabouterdun"))
+        if (carrier != null)
         {
-            ingamepanel.FindChild("Player 1").FindChild("Item inventory").FindChild("Item").FindChild("Text").GetComponent<Text>().text = "None";
-        }
-        else
-        {
-            ingamepanel.FindChild("Player 2").FindChild("Item inventory").FindChild("Item").FindChild("Text").GetComponent<Text>().text = "None";
+            switch (skill)
+            {
+                case "Fly":
+                    if (carrier.GetComponent<Fly>() != null)
+                    {
+                        Destroy(carrier.GetComponent<Fly>());
+                    }
+                    break;
+                case "Float":
+                    if (carrier.GetComponent<Float>() != null)
+                    {
+                        Destroy(carrier.GetComponent<Float>());
+                    }
+                    break;
+                case "Build":
+                    if (carrier.GetComponent<Build>() != null)
+                    {
+                        Destroy(carrier.GetComponent<Build>());
+                    }
+                    break;
+                case "Demolish":
+                    if (carrier.GetComponent<Demolish>() != null)
+                    {
+                        Destroy(carrier.GetComponent<Demolish>());
+                    }
+                    break;
+                default:
+                    break;
+            }
+            if (carrier.name.Equals("kabouterdun"))
+            {
+                ingamepanel.FindChild("Player 1").FindChild("Item inventory").FindChild("Item").FindChild("Text").GetComponent<Text>().text = "None";
+            }
+            else
+            {
+                ingamepanel.FindChild("Player 2").FindChild("Item inventory").FindChild("Item").FindChild("Text").GetComponent<Text>().text = "None";
+            }
         }
     }
 }
