@@ -165,6 +165,7 @@ public class PlayerController : MonoBehaviour
             //    rb.AddForce(movement / 20, ForceMode.VelocityChange);
             //}
         }
+        Debug.DrawRay(transform.position, -transform.forward - transform.up);
         if (!Physics.Raycast(transform.position, -transform.forward - transform.up, 2) && Physics.Raycast(transform.position, -transform.up, 0.5f))
         {
             rb.AddForce(new Vector3(0,-10000,0));
