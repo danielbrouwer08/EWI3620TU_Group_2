@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
 	public bool loadLastCheckpoint = true;
     public bool isSinglePlayer = true;
     public bool isActive;
-    private int input;
+    //private int input;
     GameObject[] players;
     GameObject otherplayer;
 
@@ -77,15 +77,6 @@ public class PlayerController : MonoBehaviour
 		{
 			isActive = true;
 		}
-
-        if (isSinglePlayer)
-        {
-            input = 1;
-        }
-        else
-        {
-            input = playerNum;
-        }
 
 		if(loadLastCheckpoint==true)
 		{
@@ -294,8 +285,11 @@ public class PlayerController : MonoBehaviour
     public bool grounded()
     {
         //return Physics.Raycast(transform.position + 0.1f * Vector3.up, -Vector3.up, 0.20f);
-
-		if(rb.velocity.y < 0.01 && Physics.Raycast(transform.position + 0.1f * Vector3.up, -Vector3.up, 0.50f) )
+		if(Physics.Raycast(transform.position + 0.1f * Vector3.up, -Vector3.up, 0.50f) ||
+           Physics.Raycast(transform.position + transform.forward + 0.1f * Vector3.up, -Vector3.up, 0.50f) ||
+           Physics.Raycast(transform.position - transform.forward + 0.1f * Vector3.up, -Vector3.up, 0.50f) ||
+           Physics.Raycast(transform.position + transform.right + 0.1f * Vector3.up, -Vector3.up, 0.50f) ||
+           Physics.Raycast(transform.position - transform.right + 0.1f * Vector3.up, -Vector3.up, 0.50f))
 		{
 			return true;
 		}else
@@ -319,12 +313,12 @@ public Vector3 getLastSavedPos()
         if (playerNum == 1)
         {
             spawnpos = gameManager.returnCurrent().P1Pos;
-            print("p1 spawn pos: " + spawnpos);
+            //print("p1 spawn pos: " + spawnpos);
         }
         else
         {
             spawnpos = gameManager.returnCurrent().P2Pos;
-            print("p2 spawn pos: " + spawnpos);
+            //print("p2 spawn pos: " + spawnpos);
         }
 
         transform.position = spawnpos;

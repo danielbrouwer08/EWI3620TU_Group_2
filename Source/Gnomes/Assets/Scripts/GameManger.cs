@@ -55,7 +55,7 @@ public class GameManger : MonoBehaviour
 
 	public void register (string user, string pass)
 	{
-		Debug.Log ("Register");
+		//Debug.Log ("Register");
 		//this.password = pass;
 		//this.username = user;
 		//PlayerPrefs.SetString("teamname",user);
@@ -88,7 +88,7 @@ public class GameManger : MonoBehaviour
 	{
 		//Savegame[] local = readPlayerPrefs (); //get local saves
 
-		Debug.Log ("using local save file");
+		Debug.Log ("Using local save file");
 		//saves = local;
 	}
 	
@@ -100,7 +100,7 @@ public class GameManger : MonoBehaviour
 	//add new savegame to the savesarray and add to the playerprefs the json string
 	public  void addNewSave (Savegame savegame)
 	{
-		Debug.Log ("Adding the following savefile to the playerprefs: " + savegame.toString ());
+		//Debug.Log ("Adding the following savefile to the playerprefs: " + savegame.toString ());
 		saves [currentslot] = savegame;
 		updatePlayerPrefs ();
 
@@ -136,7 +136,7 @@ public class GameManger : MonoBehaviour
 		int P1Score = 0;
 		int P2Score = 0;
 		currentslot = 0;
-		//Debug.Log ("Adding the following savefile to the playerprefs: " + savegame.toString ());
+
 		return new Savegame(P1Pos, P1Health, P1Score, P2Pos, P2Health, P2Score,"Chapter1");
 		//updatePlayerPrefs ();
 		
@@ -168,7 +168,7 @@ public class GameManger : MonoBehaviour
             int k = 9;
             for (int i = 9; i >= 0; i--)
             {
-                Debug.Log(i + ": " + PlayerPrefs.GetString("Team" + i) + " " + username);
+                //Debug.Log(i + ": " + PlayerPrefs.GetString("Team" + i) + " " + username);
                 if (PlayerPrefs.GetString("Team" + i).Equals(username))
                 {
                     k = i;
@@ -182,7 +182,7 @@ public class GameManger : MonoBehaviour
                     j = i;
                 }
             }
-            Debug.Log(k + " " + j);
+            //Debug.Log(k + " " + j);
             if (j <= k)
             {
                 for (int i = k; i > j; i--)
@@ -222,7 +222,7 @@ public class GameManger : MonoBehaviour
 
 	IEnumerator sendSave ()
 	{
-		Debug.Log ("in upload()");
+		//Debug.Log ("in upload()");
 		WWWForm form = new WWWForm ();
 
 		//Add timestamp to data 
@@ -232,19 +232,19 @@ public class GameManger : MonoBehaviour
 		//Add current savefile to data
 		form.AddField ("save", PlayerPrefs.GetString ("saveNo" + currentslot));
 		
-		Debug.Log (form.data.GetLength (0));
+		//Debug.Log (form.data.GetLength (0));
 		
 		UnityWebRequest www = UnityWebRequest.Post ("https://drproject.twi.tudelft.nl:8083/sendSave", form);
 
 		www.SetRequestHeader ("Authorization", "Basic " + System.Convert.ToBase64String (System.Text.Encoding.ASCII.GetBytes (username + ":" + password)));
 
-		Debug.Log ("in using");
+		//Debug.Log ("in using");
 		yield return www.Send ();
-		Debug.Log ("na return");
+		//Debug.Log ("na return");
 		if (www.isError) {
 			Debug.Log (www.error);
 		} else {
-			Debug.Log ("Form upload complete!");
+			Debug.Log ("Savefiles uploaded succesfully!");
 
 		}
 	}
@@ -266,9 +266,9 @@ public class GameManger : MonoBehaviour
 			Debug.Log (www.error);
 		} else {
 			// Show results as text
-			Debug.Log (www.downloadHandler.text);
+			//Debug.Log (www.downloadHandler.text);
 			string receivedString = www.downloadHandler.text;
-			Debug.Log ("Timestamp received from server: " + receivedString);
+			//Debug.Log ("Timestamp received from server: " + receivedString);
 			serverTimeStamp = DateTime.Parse (receivedString.Replace ("\"", ""));
 			//Debug.Log (receivedString);
 		}
@@ -283,29 +283,29 @@ public class GameManger : MonoBehaviour
 		form.AddField ("pass", pass);
 			
 
-		Debug.Log (form.data.GetLength (0));
+		//Debug.Log (form.data.GetLength (0));
 			
 		UnityWebRequest www = UnityWebRequest.Post ("https://drproject.twi.tudelft.nl:8083/register", form);
 			
 		//www.SetRequestHeader("Authorization","Basic " + System.Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes(username + ":" + password)));
 
-		Debug.Log ("in using");
+		//Debug.Log ("in using");
 		yield return www.Send ();
-		Debug.Log ("na return");
+		//Debug.Log ("na return");
 		if (www.isError) {
-			Debug.Log (www.error);
+			//Debug.Log (www.error);
 		} else {
-			Debug.Log ("Register complete!");
-			Debug.Log (www.downloadHandler.text);
+			//Debug.Log ("Register complete!");
+			//Debug.Log (www.downloadHandler.text);
 			string receivedString = www.downloadHandler.text;
 				
 			if(receivedString=="true")
 			{
-				Debug.Log("Registration succesful :D");
+				Debug.Log("Registration succesful");
 				registerSucceed = true;
 			}else
 			{
-				Debug.Log("Registration failed :(");
+				Debug.Log("Registration failed");
 				registerSucceed = false;
 			}
 		}

@@ -6,8 +6,8 @@ public class TerrainSpawner : MonoBehaviour
 {
 				
 	private GameObject terrainObject;
-	private int deltaWidth;
-	private int deltaHeight;
+	//private int deltaWidth;
+	//private int deltaHeight;
 
 	//Terrain properties
 	public float addHeightChance;	//Chance that a patch is raised
@@ -31,17 +31,17 @@ public class TerrainSpawner : MonoBehaviour
 	public float scaleIntensity;
 	public int amountOfMushrooms;	//amount of objects to try and spawn
 
-    //Coinproperties
-    public GameObject Coin;
-    public float coinWidth;
-    public float coinYOffset;
-    public int amountOfCoins;
+	//Coinproperties
+	public GameObject Coin;
+	public float coinWidth;
+	public float coinYOffset;
+	public int amountOfCoins;
 
-    //DumbEnemyProperties
-    public GameObject dumbEnemy;
-    public float enemyWidth;
-    public float enemyYOffset;
-    public int amountOfEnemys;
+	//DumbEnemyProperties
+	public GameObject dumbEnemy;
+	public float enemyWidth;
+	public float enemyYOffset;
+	public int amountOfEnemys;
 
 	//Vegetationproperties
 	public GameObject vegetation;
@@ -54,19 +54,16 @@ public class TerrainSpawner : MonoBehaviour
 	private int widthOfPatch = 13;
 	private int amountOfPatches2D = 5;
 	private float terrainLength = 50;
-
-		
 	private List<Vector3> mushroomLocations = new List<Vector3> (); //used to store the locations of the spawned mushrooms.
-	private List<float> mushroomWidths = new List<float>(); //used to store the width of each mushroom (list is ordered so it corrosponds to the mushroomLocations list)
-	private List<Vector3> vegetationLocations = new List<Vector3> (); //used to store the locations of the spawned l system vegetations 
-    private List<Vector3> coinLocations = new List<Vector3>(); //used to store the locations of the spawned coins.
-    private List<Vector3> enemyLocations = new List<Vector3>(); //used to store the locations of the spawned enemies.
+	private List<float> mushroomWidths = new List<float> (); //used to store the width of each mushroom (list is ordered so it corrosponds to the mushroomLocations list)
+	//private List<Vector3> vegetationLocations = new List<Vector3> (); //used to store the locations of the spawned l system vegetations 
+	private List<Vector3> coinLocations = new List<Vector3> (); //used to store the locations of the spawned coins.
+	private List<Vector3> enemyLocations = new List<Vector3> (); //used to store the locations of the spawned enemies.
 
 
 
-    public bool removeGrassOnElevatedPatches;
+	public bool removeGrassOnElevatedPatches;
 	public bool removeGrassOnWater;
-
 	public bool done;
 
 	// Use this for initialization
@@ -125,14 +122,14 @@ public class TerrainSpawner : MonoBehaviour
 		//Add heightmap to the terrainData.
 		terrain.terrainData.SetHeights (0, 0, heightmap);
 
-        //Add enemy to the terrainData
-        addEnemy(terrain, amountOfEnemys);
+		//Add enemy to the terrainData
+		addEnemy (terrain, amountOfEnemys);
         
-        //Add coins to the terrainData
-        addCoins(terrain, amountOfCoins);
+		//Add coins to the terrainData
+		addCoins (terrain, amountOfCoins);
 
-        //Add mushrooms to the terrainData
-        addMushrooms(terrain, amountOfMushrooms);
+		//Add mushrooms to the terrainData
+		addMushrooms (terrain, amountOfMushrooms);
 
 		//Add Water to the terrain
 		GameObject.Instantiate (water, TerrainSpawnPosition + new Vector3 (0, waterHeight * risingFactor, 0), Quaternion.Euler (0, 0, 0));
@@ -141,7 +138,7 @@ public class TerrainSpawner : MonoBehaviour
 		terrain.terrainData.SetDetailLayer (0, 0, 0, calculateNewDetailmap (terrain, heightmap)); //add new detailmap that has some patches of grass removed
 
 		//Add vegetation
-		addVegetation(terrain);
+		addVegetation (terrain);
 
 		//Remove grass
 		//int[,] newDetailmap = calculateNewDetailmap(terrain);
@@ -155,7 +152,6 @@ public class TerrainSpawner : MonoBehaviour
 		CopyTerrain.AddComponent<TerrainCollider> ().terrainData = terrain.terrainData;
 	}
 
-
 	void addVegetation (Terrain terrain)
 	{
 		//print ("adding vegetation");
@@ -165,22 +161,19 @@ public class TerrainSpawner : MonoBehaviour
 		float[] tempCoord = new float[2];
 
 
-		for(float i=0;i<terrainLength;i=i+spaceBetweenVegetation)
-		{
-			for(float j=0;j<terrainWidth;j=j+spaceBetweenVegetation){
+		for (float i=0; i<terrainLength; i=i+spaceBetweenVegetation) {
+			for (float j=0; j<terrainWidth; j=j+spaceBetweenVegetation) {
 
-				tempCoord[0] = i + terrain.transform.position.x;
-				tempCoord[1] = j + terrain.transform.position.z;
+				tempCoord [0] = i + terrain.transform.position.x;
+				tempCoord [1] = j + terrain.transform.position.z;
 
 				float yCoord = terrain.SampleHeight (new Vector3 (i, 0.0f, j)); //height at the x,z point
-				Vector3 vegetationSpawnPosition = new Vector3 (tempCoord[0], yCoord + vegetationYOffset, tempCoord[1]); //Spawn position for the vegetation:
+				Vector3 vegetationSpawnPosition = new Vector3 (tempCoord [0], yCoord + vegetationYOffset, tempCoord [1]); //Spawn position for the vegetation:
 
-				if(!occupiedByEnemy(tempCoord) && !occupiedByCoin(tempCoord) && !occupiedByMushroom(tempCoord) && terrain.SampleHeight (new Vector3 (tempCoord[0], 0.0f, tempCoord[1])) > waterHeight) //if coordinate is not occupied by a mushroom and is not water
-				{
-					float randomNum = Random.Range(0.0f,1.0f);
-					if(randomNum < vegetationSpawnChance) //random chance the vegetation gets spawned
-					{
-						GameObject spawnedVegetation = (GameObject)GameObject.Instantiate (vegetation, vegetationSpawnPosition, Quaternion.Euler (0.0f, 0.0f, 0.0f));
+				if (!occupiedByEnemy (tempCoord) && !occupiedByCoin (tempCoord) && !occupiedByMushroom (tempCoord) && terrain.SampleHeight (new Vector3 (tempCoord [0], 0.0f, tempCoord [1])) > waterHeight) { //if coordinate is not occupied by a mushroom and is not water
+					float randomNum = Random.Range (0.0f, 1.0f);
+					if (randomNum < vegetationSpawnChance) { //random chance the vegetation gets spawned
+						GameObject.Instantiate (vegetation, vegetationSpawnPosition, Quaternion.Euler (0.0f, 0.0f, 0.0f));
 					}
 
 				}
@@ -189,14 +182,12 @@ public class TerrainSpawner : MonoBehaviour
 		}
 	}
 
-	bool occupiedByMushroom(float[] coordinate)
+	bool occupiedByMushroom (float[] coordinate)
 	{
-		for(int i=0;i<mushroomLocations.Count;i++)
-		{
-			bool xLocationOccupied = mushroomLocations[i].x < coordinate[0] + mushroomWidths[i] && mushroomLocations[i].x > coordinate[0] -mushroomWidths[i];
-			bool zLocationOccupied = mushroomLocations[i].y < coordinate[1] + mushroomWidths[i] && mushroomLocations[i].y > coordinate[1] -mushroomWidths[i];
-			if(xLocationOccupied && zLocationOccupied) //if the coordinate is occupied by the mushroom width
-			{
+		for (int i=0; i<mushroomLocations.Count; i++) {
+			bool xLocationOccupied = mushroomLocations [i].x < coordinate [0] + mushroomWidths [i] && mushroomLocations [i].x > coordinate [0] - mushroomWidths [i];
+			bool zLocationOccupied = mushroomLocations [i].y < coordinate [1] + mushroomWidths [i] && mushroomLocations [i].y > coordinate [1] - mushroomWidths [i];
+			if (xLocationOccupied && zLocationOccupied) { //if the coordinate is occupied by the mushroom width
 				return true;
 			}
 
@@ -205,205 +196,184 @@ public class TerrainSpawner : MonoBehaviour
 		return false;
 	}
 
-    bool occupiedByCoin(float[] coordinate)
-    {
-        for (int i = 0; i < coinLocations.Count; i++)
-        {
-            bool xLocationOccupied = coinLocations[i].x < coordinate[0] + coinWidth && coinLocations[i].x > coordinate[0] - coinWidth;
-            bool zLocationOccupied = coinLocations[i].y < coordinate[1] + coinWidth && coinLocations[i].y > coordinate[1] - coinWidth;
-            if (xLocationOccupied && zLocationOccupied) //if the coordinate is occupied by the mushroom width
-            {
-                return true;
-            }
-
-        }
-
-        return false;
-    }
-
-    bool occupiedByEnemy(float[] coordinate)
-    {
-        for (int i = 0; i < enemyLocations.Count; i++)
-        {
-            bool xLocationOccupied = enemyLocations[i].x < coordinate[0] + enemyWidth && enemyLocations[i].x > coordinate[0] - enemyWidth;
-            bool zLocationOccupied = enemyLocations[i].y < coordinate[1] + enemyWidth && enemyLocations[i].y > coordinate[1] - enemyWidth;
-            if (xLocationOccupied && zLocationOccupied) //if the coordinate is occupied by the enemy width
-            {
-                return true;
-            }
-
-        }
-
-        return false;
-    }
-
-
-    void addCoins(Terrain terrain, int amount)
-    {
-        int coinsadded = 0;
-
-        TerrainData terrainData = terrain.terrainData;
-        float terrainLength = terrainData.size.x;
-        float terrainWidth = terrainData.size.z;
-
-        float deltaLength = terrainLength / amountOfPatches2D;
-        float deltaWidth = terrainWidth / amountOfPatches2D;
-
-        int patchN0;
-        //Patch is identified with x and y value
-        List<int> patchN0ListX = new List<int>();
-        List<int> patchN0ListZ = new List<int>();
-
-        //Generate random list of patchnumbers for x-axis where objects have to be placed. List has a max length of 10 and min length of 1.
-        for (int i = 0; i < amount; i++)
-        {
-            patchN0 = Random.Range(1, (amountOfPatches2D - 1)); //range from 1 to amountOfPatches2D-1 so the outer edges dont get mushrooms.
-            //if (patchN0 % 2 != 0)
-            //{//only allow even numbers as patches (fixes bug that mushrooms spawn to close together)
-            //    if (patchN0 == (amountOfPatches2D))
-            //    {
-            //        patchN0--;
-            //    }
-            //    else
-            //    {
-            //        patchN0++;
-            //    }
-            //}
-            if (!patchN0ListX.Contains(patchN0))
-            {
-                //Only add a patch to the list if the list not already contains it.
-                patchN0ListX.Add(patchN0);
-            }
-        }
-
-        //Generate random list of patchnumbers for z-axis where mushrooms have to be placed. List has the same length as patches data for X
-        for (int i = 0; i < patchN0ListX.Count; i++)
-        {
-            patchN0 = Random.Range(0, (amountOfPatches2D));
-
-            //if (patchN0 % 2 != 0)
-            //{//only allow even numbers as patches (fixes bug that mushrooms spawn to close together)
-            //    if (patchN0 == (amountOfPatches2D))
-            //    {
-            //        patchN0--;
-            //    }
-            //    else
-            //    {
-            //        patchN0++;
-            //    }
-            //}
-            patchN0ListZ.Add(patchN0);
-        }
-
-        //place onjects on the patches
-        for (int i = 0; i < patchN0ListX.Count; i++)
-        {
-            float[] XZCoord = patchLocation(patchN0ListX[i], patchN0ListZ[i], terrain, TerrainSpawnPosition);
-
-            float xCoord = XZCoord[0];
-            float zCoord = XZCoord[1];
-
-
-            float yCoord = terrain.SampleHeight(new Vector3(xCoord, 0.0f, zCoord));
-
-            //Spawn position for the mushroom:
-            Vector3 coinSpawnPosition = new Vector3(xCoord, yCoord + coinYOffset, zCoord);
-
-            //Spawn the mushroom avoiding water
-            if (!occupiedByEnemy(XZCoord) && terrain.SampleHeight(new Vector3(xCoord, 0.0f, zCoord)) >= waterHeight)
-            {
-
-                GameObject spawnedCoin = (GameObject)GameObject.Instantiate(Coin, coinSpawnPosition, Quaternion.Euler(0, 0, 0));
-                coinsadded++;
-
-                coinLocations.Add(coinSpawnPosition); //add location to the list
-            }
-        }
-
-        //Debug.Log("COINSADDED" + coinsadded);
-    }
-
-    void addEnemy(Terrain terrain, int amount)
-    {
-
-        TerrainData terrainData = terrain.terrainData;
-        float terrainLength = terrainData.size.x;
-        float terrainWidth = terrainData.size.z;
-
-        float deltaLength = terrainLength / amountOfPatches2D;
-        float deltaWidth = terrainWidth / amountOfPatches2D;
-
-        int patchN0;
-        //Patch is identified with x and y value
-        List<int> patchN0ListX = new List<int>();
-        List<int> patchN0ListZ = new List<int>();
-
-        //Generate random list of patchnumbers for x-axis where objects have to be placed. List has a max length of 10 and min length of 1.
-        for (int i = 0; i < amount; i++)
-        {
-            patchN0 = Random.Range(1, (amountOfPatches2D - 1)); //range from 1 to amountOfPatches2D-1 so the outer edges dont get mushrooms.
-          
-            if (!patchN0ListX.Contains(patchN0))
-            {
-                //Only add a patch to the list if the list not already contains it.
-                patchN0ListX.Add(patchN0);
-            }
-        }
-
-        //Generate random list of patchnumbers for z-axis where mushrooms have to be placed. List has the same length as patches data for X
-        for (int i = 0; i < patchN0ListX.Count; i++)
-        {
-            patchN0 = Random.Range(0, (amountOfPatches2D));
-
-            if (patchN0 % 2 != 0)
-            {//only allow even numbers as patches (fixes bug that mushrooms spawn to close together)
-                if (patchN0 == (amountOfPatches2D))
-                {
-                    patchN0--;
-                }
-                else
-                {
-                    patchN0++;
-                }
-            }
-            patchN0ListZ.Add(patchN0);
-        }
-
-        //place onjects on the patches
-        for (int i = 0; i < patchN0ListX.Count; i++)
-        {
-            float[] XZCoord = patchLocation(patchN0ListX[i], patchN0ListZ[i], terrain, TerrainSpawnPosition);
-
-            float xCoord = XZCoord[0];
-            float zCoord = XZCoord[1];
-
-
-            float yCoord = terrain.SampleHeight(new Vector3(xCoord, 0.0f, zCoord));
-
-            //Spawn position for the mushroom:
-            Vector3 enemySpawnPosition = new Vector3(xCoord, yCoord + coinYOffset, zCoord);
-
-            //Spawn the mushroom avoiding water
-            if (terrain.SampleHeight(new Vector3(xCoord, 0.0f, zCoord)) >= waterHeight)
-            {
-
-                GameObject spawnedEnemy = (GameObject)GameObject.Instantiate(dumbEnemy, enemySpawnPosition, Quaternion.Euler(0, 0, 0));
-
-                enemyLocations.Add(enemySpawnPosition); //add location to the list
-            }
-        }
-    }
-
-
-
-    void addMushrooms (Terrain terrain, int amount)
+	bool occupiedByCoin (float[] coordinate)
 	{
-        TerrainData terrainData = terrain.terrainData;
-		float terrainLength = terrainData.size.x;
-		float terrainWidth = terrainData.size.z;
+		for (int i = 0; i < coinLocations.Count; i++) {
+			bool xLocationOccupied = coinLocations [i].x < coordinate [0] + coinWidth && coinLocations [i].x > coordinate [0] - coinWidth;
+			bool zLocationOccupied = coinLocations [i].y < coordinate [1] + coinWidth && coinLocations [i].y > coordinate [1] - coinWidth;
+			if (xLocationOccupied && zLocationOccupied) { //if the coordinate is occupied by the mushroom width
+				return true;
+			}
 
-		float deltaLength = terrainLength / amountOfPatches2D;
-		float deltaWidth = terrainWidth / amountOfPatches2D;
+		}
+
+		return false;
+	}
+
+	bool occupiedByEnemy (float[] coordinate)
+	{
+		for (int i = 0; i < enemyLocations.Count; i++) {
+			bool xLocationOccupied = enemyLocations [i].x < coordinate [0] + enemyWidth && enemyLocations [i].x > coordinate [0] - enemyWidth;
+			bool zLocationOccupied = enemyLocations [i].y < coordinate [1] + enemyWidth && enemyLocations [i].y > coordinate [1] - enemyWidth;
+			if (xLocationOccupied && zLocationOccupied) { //if the coordinate is occupied by the enemy width
+				return true;
+			}
+
+		}
+
+		return false;
+	}
+
+	void addCoins (Terrain terrain, int amount)
+	{
+		int coinsadded = 0;
+
+		//TerrainData terrainData = terrain.terrainData;
+		//float terrainLength = terrainData.size.x;
+		//float terrainWidth = terrainData.size.z;
+
+		//float deltaLength = terrainLength / amountOfPatches2D;
+		//float deltaWidth = terrainWidth / amountOfPatches2D;
+
+		int patchN0;
+		//Patch is identified with x and y value
+		List<int> patchN0ListX = new List<int> ();
+		List<int> patchN0ListZ = new List<int> ();
+
+		//Generate random list of patchnumbers for x-axis where objects have to be placed. List has a max length of 10 and min length of 1.
+		for (int i = 0; i < amount; i++) {
+			patchN0 = Random.Range (1, (amountOfPatches2D - 1)); //range from 1 to amountOfPatches2D-1 so the outer edges dont get mushrooms.
+			//if (patchN0 % 2 != 0)
+			//{//only allow even numbers as patches (fixes bug that mushrooms spawn to close together)
+			//    if (patchN0 == (amountOfPatches2D))
+			//    {
+			//        patchN0--;
+			//    }
+			//    else
+			//    {
+			//        patchN0++;
+			//    }
+			//}
+			if (!patchN0ListX.Contains (patchN0)) {
+				//Only add a patch to the list if the list not already contains it.
+				patchN0ListX.Add (patchN0);
+			}
+		}
+
+		//Generate random list of patchnumbers for z-axis where mushrooms have to be placed. List has the same length as patches data for X
+		for (int i = 0; i < patchN0ListX.Count; i++) {
+			patchN0 = Random.Range (0, (amountOfPatches2D));
+
+			//if (patchN0 % 2 != 0)
+			//{//only allow even numbers as patches (fixes bug that mushrooms spawn to close together)
+			//    if (patchN0 == (amountOfPatches2D))
+			//    {
+			//        patchN0--;
+			//    }
+			//    else
+			//    {
+			//        patchN0++;
+			//    }
+			//}
+			patchN0ListZ.Add (patchN0);
+		}
+
+		//place onjects on the patches
+		for (int i = 0; i < patchN0ListX.Count; i++) {
+			float[] XZCoord = patchLocation (patchN0ListX [i], patchN0ListZ [i], terrain, TerrainSpawnPosition);
+
+			float xCoord = XZCoord [0];
+			float zCoord = XZCoord [1];
+
+
+			float yCoord = terrain.SampleHeight (new Vector3 (xCoord, 0.0f, zCoord));
+
+			//Spawn position for the mushroom:
+			Vector3 coinSpawnPosition = new Vector3 (xCoord, yCoord + coinYOffset, zCoord);
+
+			//Spawn the mushroom avoiding water
+			if (!occupiedByEnemy (XZCoord) && terrain.SampleHeight (new Vector3 (xCoord, 0.0f, zCoord)) >= waterHeight) {
+
+				GameObject.Instantiate (Coin, coinSpawnPosition, Quaternion.Euler (0, 0, 0));
+				coinsadded++;
+
+				coinLocations.Add (coinSpawnPosition); //add location to the list
+			}
+		}
+
+		//Debug.Log("COINSADDED" + coinsadded);
+	}
+
+	void addEnemy (Terrain terrain, int amount)
+	{
+
+		//TerrainData terrainData = terrain.terrainData;
+		//float terrainLength = terrainData.size.x;
+		//float terrainWidth = terrainData.size.z;
+
+		//float deltaLength = terrainLength / amountOfPatches2D;
+		//float deltaWidth = terrainWidth / amountOfPatches2D;
+
+		int patchN0;
+		//Patch is identified with x and y value
+		List<int> patchN0ListX = new List<int> ();
+		List<int> patchN0ListZ = new List<int> ();
+
+		//Generate random list of patchnumbers for x-axis where objects have to be placed. List has a max length of 10 and min length of 1.
+		for (int i = 0; i < amount; i++) {
+			patchN0 = Random.Range (1, (amountOfPatches2D - 1)); //range from 1 to amountOfPatches2D-1 so the outer edges dont get mushrooms.
+          
+			if (!patchN0ListX.Contains (patchN0)) {
+				//Only add a patch to the list if the list not already contains it.
+				patchN0ListX.Add (patchN0);
+			}
+		}
+
+		//Generate random list of patchnumbers for z-axis where mushrooms have to be placed. List has the same length as patches data for X
+		for (int i = 0; i < patchN0ListX.Count; i++) {
+			patchN0 = Random.Range (0, (amountOfPatches2D));
+
+			if (patchN0 % 2 != 0) {//only allow even numbers as patches (fixes bug that mushrooms spawn to close together)
+				if (patchN0 == (amountOfPatches2D)) {
+					patchN0--;
+				} else {
+					patchN0++;
+				}
+			}
+			patchN0ListZ.Add (patchN0);
+		}
+
+		//place onjects on the patches
+		for (int i = 0; i < patchN0ListX.Count; i++) {
+			float[] XZCoord = patchLocation (patchN0ListX [i], patchN0ListZ [i], terrain, TerrainSpawnPosition);
+
+			float xCoord = XZCoord [0];
+			float zCoord = XZCoord [1];
+
+
+			float yCoord = terrain.SampleHeight (new Vector3 (xCoord, 0.0f, zCoord));
+
+			//Spawn position for the enemy:
+			Vector3 enemySpawnPosition = new Vector3 (xCoord, yCoord + coinYOffset, zCoord);
+
+			//Spawn the enemy avoiding water
+			if (terrain.SampleHeight (new Vector3 (xCoord, 0.0f, zCoord)) >= waterHeight) {
+				//Spawn enemy
+				GameObject.Instantiate (dumbEnemy, enemySpawnPosition, Quaternion.Euler (0, 0, 0));
+
+				enemyLocations.Add (enemySpawnPosition); //add location to the list
+			}
+		}
+	}
+
+	void addMushrooms (Terrain terrain, int amount)
+	{
+		//TerrainData terrainData = terrain.terrainData;
+		//float terrainLength = terrainData.size.x;
+		//float terrainWidth = terrainData.size.z;
+
+		//float deltaLength = terrainLength / amountOfPatches2D;
+		//float deltaWidth = terrainWidth / amountOfPatches2D;
 
 		int patchN0;
 		//Patch is identified with x and y value
@@ -412,7 +382,7 @@ public class TerrainSpawner : MonoBehaviour
 
 		//Generate random list of patchnumbers for x-axis where objects have to be placed. List has a max length of 10 and min length of 1.
 		for (int i=0; i<amount; i++) {
-			patchN0 = Random.Range (1, (amountOfPatches2D-1)); //range from 1 to amountOfPatches2D-1 so the outer edges dont get mushrooms.
+			patchN0 = Random.Range (1, (amountOfPatches2D - 1)); //range from 1 to amountOfPatches2D-1 so the outer edges dont get mushrooms.
 			if (patchN0 % 2 != 0) {//only allow even numbers as patches (fixes bug that mushrooms spawn to close together)
 				if (patchN0 == (amountOfPatches2D)) {
 					patchN0--;
@@ -456,25 +426,23 @@ public class TerrainSpawner : MonoBehaviour
 			Vector3 mushroomSpawnPosition = new Vector3 (xCoord, yCoord + mushroomYOffset, zCoord);
 
 			//Spawn the mushroom avoiding water
-			if (!occupiedByEnemy(XZCoord) && !occupiedByCoin(XZCoord) && terrain.SampleHeight (new Vector3 (xCoord, 0.0f, zCoord)) >= waterHeight) {
+			if (!occupiedByEnemy (XZCoord) && !occupiedByCoin (XZCoord) && terrain.SampleHeight (new Vector3 (xCoord, 0.0f, zCoord)) >= waterHeight) {
 				float xRot = Random.Range (-mushroomXRotationRange, mushroomXRotationRange);
 				float yRot = Random.Range (-mushroomYRotationRange, mushroomYRotationRange);
 				float zRot = Random.Range (-mushroomZRotationRange, mushroomZRotationRange);
 
 				GameObject spawnedMushroom = (GameObject)GameObject.Instantiate (Mushroom, mushroomSpawnPosition, Quaternion.Euler (xRot, yRot, zRot));
 
-				float scaleFactor = scaleIntensity*Random.Range (0.5f,2.0f); //random scaling of each object
+				float scaleFactor = scaleIntensity * Random.Range (0.5f, 2.0f); //random scaling of each object
 
-				spawnedMushroom.transform.localScale=new Vector3(scaleFactor,scaleFactor,scaleFactor);
+				spawnedMushroom.transform.localScale = new Vector3 (scaleFactor, scaleFactor, scaleFactor);
 
-				mushroomLocations.Add(mushroomSpawnPosition); //add location to the list
-				mushroomWidths.Add(scaleFactor*mushroomWidth); //add the width
+				mushroomLocations.Add (mushroomSpawnPosition); //add location to the list
+				mushroomWidths.Add (scaleFactor * mushroomWidth); //add the width
 
 			}
 		}
 	}
-
-
 
 	float[,] calculateNewHeightmap (Terrain terrain, int heightmapWidth, int heightmapHeight)
 	{
@@ -491,10 +459,11 @@ public class TerrainSpawner : MonoBehaviour
 				float RandomHeigthValue = Random.Range (0.5f, 1.0f) * risingFactor;
 
 
-				if (g == 0 || g == (amountOfPatches2D) - 1) { //outer lines will get same heigth so terrainpieces will match in heigth
+				if (g == 0 || g == (amountOfPatches2D) - 1) { //outer lines will get same heigth so terrainpieces will match in height
 					for (int i=widthOfPatch*h; i<widthOfPatch*(h+1); i++) {
 						for (int j=lengthOfPatch*g; j<lengthOfPatch*(g+1); j++) {
 							newHeightmap [i, j] = 0.25f * risingFactor;
+							//newHeightmap [i, j] = 1; //outer lines will get height of 0 to match in height
 						}
 					}
 				} else if (Random.Range (0.0f, 1.0f) > (1 - addHeightChance)) { //if true uphigh the patch with RandomHeightValue
@@ -517,6 +486,31 @@ public class TerrainSpawner : MonoBehaviour
 
 			}
 		}
+
+
+//		float sampleheight = 0.25f * risingFactor;
+//		for(int j=0;j<lengthOfPatch;j++)
+//		{
+//			for (int i=0;i<heightmapHeight;i++)
+//			{
+//				newHeightmap[i,j] = sampleheight - sampleheight*(j/lengthOfPatch);
+//				newHeightmap[i,newHeightmap.GetLength(1)-1-j] = sampleheight*(j/lengthOfPatch);
+//			} 
+//		}
+
+		//Following code is to make a ramp for the beginning and endpiece of the terrain. So it always matches the interpolator terrainpieces
+		float sampleheight = 0.25f * risingFactor;
+		for (int j=0; j<lengthOfPatch; j++) {
+			for (int i=0; i<heightmapHeight; i++) {
+				//newHeightmap [i, j] = sampleheight - sampleheight * (j / lengthOfPatch);
+				//newHeightmap [i, newHeightmap.GetLength (1) - 1 - j] = sampleheight * (j / lengthOfPatch);
+				//newHeightmap [i,j] = 1.0f - j*0.05f; 
+
+				newHeightmap[i,j] = sampleheight * (j / lengthOfPatch);
+				newHeightmap [i, newHeightmap.GetLength (1) - 1 - j] = sampleheight * (j / lengthOfPatch);
+			} 
+		}  
+
 		//terrain.terrainData.SetDetailLayer(0, 0, 0, DetailMap); //add new detailmap that has some patches of grass removed
 		return newHeightmap;
 	}
@@ -528,7 +522,7 @@ public class TerrainSpawner : MonoBehaviour
 
 		int[] heigtmapCoord = new int[2];
 
-		float[] worldCoord = new float[2];
+		//float[] worldCoord = new float[2];
 		int[] detailmapCoord = new int[2];
 		//int[] detailmapCoord = heightmapCoordToDetailmapCoord(heigtmapCoord,terrain.terrainData); //convert heightmap coordinate to detailmapcoordinate
 	
@@ -599,8 +593,8 @@ public class TerrainSpawner : MonoBehaviour
 	float[,] calculateNewRandomHeightmap (int heightmapWidth, int heightmapHeight)
 	{
 		float[,] newHeightmap = new float[heightmapWidth, heightmapHeight];
-		for (int i=0; i<heightmapWidth; i=i+deltaWidth) {
-			for (int j=0; j<heightmapHeight; j=j+deltaHeight) {
+		for (int i=0; i<heightmapWidth; i=i+1) {
+			for (int j=0; j<heightmapHeight; j=j+1) {
 				//Change height on terrain on random places with a random height
 				if (j <= heightmapWidth && i <= heightmapHeight && Random.Range (0.0f, 1.0f) > (1 - addHeightChance))
 					newHeightmap [i, j] = Random.Range (0.0f, 0.1f);
@@ -613,8 +607,8 @@ public class TerrainSpawner : MonoBehaviour
 	float[,] returnEmptyHeightmap (int heightmapWidth, int heightmapHeight)
 	{
 		float[,] newHeightmap = new float[heightmapWidth, heightmapHeight];
-		for (int i=0; i<heightmapWidth; i=i+deltaWidth) {
-			for (int j=0; j<heightmapHeight; j=j+deltaHeight) {
+		for (int i=0; i<heightmapWidth; i=i+1) {
+			for (int j=0; j<heightmapHeight; j=j+1) {
 				//Change height on terrain on random places with a random height
 				if (j <= heightmapWidth && i <= heightmapHeight && Random.Range (0.0f, 1.0f) > (1 - addHeightChance))
 					newHeightmap [i, j] = 0.0f;

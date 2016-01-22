@@ -7,7 +7,7 @@ public class Demolish : MonoBehaviour
 	private int playerNum;
 	public int hitDamage = 25;
 	private GameObject hammer;
-	private float hammertimer = 0;
+	//private float hammertimer = 0;
 	private bool hammerdown;
 	public float xoffset;
 	public float yoffset;
@@ -40,8 +40,11 @@ public class Demolish : MonoBehaviour
 	void Start ()
 	{
 		hammer = transform.GetComponentInChildren<PickUpItem> ().gameObject;
-		hammer.transform.localPosition = new Vector3 (xoffset, yoffset, zoffset);
-		hammer.transform.localEulerAngles = new Vector3 (xrot, yrot, zrot);
+		if(hammer!=null)
+		{
+			hammer.transform.localPosition = new Vector3 (xoffset, yoffset, zoffset);
+			hammer.transform.localEulerAngles = new Vector3 (xrot, yrot, zrot);
+		}
 	}
 
 	void Update ()
