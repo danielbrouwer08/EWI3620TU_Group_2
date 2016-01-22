@@ -46,7 +46,7 @@ public class PlayerProperties : MonoBehaviour {
 	
 	void Update ()
     {
-        if(health <= 0 || transform.position.y < -25.0f)
+        if(health <= 0 || transform.position.z < -10.0f)
         {
             Death();
         }
