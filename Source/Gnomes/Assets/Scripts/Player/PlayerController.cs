@@ -145,7 +145,7 @@ public class PlayerController : MonoBehaviour
                 rb.velocity = new Vector3(movement.x, rb.velocity.y, movement.z);
             }
         }
-        // If the player is on a steep mountain, forces it down by a force and letting it not work
+        Debug.DrawRay(transform.position, -transform.forward - transform.up);
         if (!Physics.Raycast(transform.position, -transform.forward - transform.up, 2) && Physics.Raycast(transform.position, -transform.up, 0.5f))
         {
             rb.AddForce(new Vector3(0,-10000,0));
