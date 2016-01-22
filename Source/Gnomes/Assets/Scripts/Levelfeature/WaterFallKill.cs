@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class WaterFallKill : MonoBehaviour {
-	public float force = 100.0f;
+	public float force = 1.0f;
 	private float timer = 0.0f;
 	private float killTime = 4.0f;
 
@@ -14,6 +14,12 @@ public class WaterFallKill : MonoBehaviour {
 			Destroy(this.gameObject);
 		}
 
+	}
+
+	void Start(){
+		//Add waterhealth script to the waterfalls
+		this.gameObject.AddComponent<WaterHealth>();
+		this.gameObject.GetComponent<WaterHealth>().damage = 10.0f;
 	}
 
 	void OnCollisionStay(Collision collisionInfo) {

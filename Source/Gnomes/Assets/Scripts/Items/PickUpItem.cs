@@ -77,7 +77,7 @@ public class PickUpItem : MonoBehaviour
 		}
 
 
-		if ((transform.position.z > 100 || transform.position.z < -100 || transform.position.x < 0 || transform.position.y < -50) && carrier == null) {
+		if ((transform.position.z > 100 || transform.position.z < -10 || transform.position.x < 0 || transform.position.y < -50) && carrier == null) {
 			Respawnitem ();
 		}
 
@@ -110,7 +110,7 @@ public class PickUpItem : MonoBehaviour
                     //rb.detectCollisions = false;
 					rb.constraints = RigidbodyConstraints.FreezeAll; // freeze rotations
                     transform.parent = player[i].transform;
-                    transform.localPosition = new Vector3(0.0f, 4.1f, 0.0f);
+                    transform.localPosition = new Vector3(0.0f, 4.8f, 0.0f);
                     transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
                     beingCarried = true;
                 }
