@@ -293,8 +293,11 @@ public class PlayerController : MonoBehaviour
     public bool grounded()
     {
         //return Physics.Raycast(transform.position + 0.1f * Vector3.up, -Vector3.up, 0.20f);
-
-		if(rb.velocity.y < 0.01 && Physics.Raycast(transform.position + 0.1f * Vector3.up, -Vector3.up, 0.50f) )
+		if(Physics.Raycast(transform.position + 0.1f * Vector3.up, -Vector3.up, 0.50f) ||
+           Physics.Raycast(transform.position + transform.forward + 0.1f * Vector3.up, -Vector3.up, 0.50f) ||
+           Physics.Raycast(transform.position - transform.forward + 0.1f * Vector3.up, -Vector3.up, 0.50f) ||
+           Physics.Raycast(transform.position + transform.right + 0.1f * Vector3.up, -Vector3.up, 0.50f) ||
+           Physics.Raycast(transform.position - transform.right + 0.1f * Vector3.up, -Vector3.up, 0.50f))
 		{
 			return true;
 		}else

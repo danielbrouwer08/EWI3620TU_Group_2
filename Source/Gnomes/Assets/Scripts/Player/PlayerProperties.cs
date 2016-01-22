@@ -51,14 +51,6 @@ public class PlayerProperties : MonoBehaviour {
             Death();
         }
         healthbar.value = health;
-        if (item != null)
-        {
-            itemtext.text = item.name;
-        }
-        else
-        {
-            itemtext.text = "None";
-        }
     }
 
     public void TakeDamage(float damage)
