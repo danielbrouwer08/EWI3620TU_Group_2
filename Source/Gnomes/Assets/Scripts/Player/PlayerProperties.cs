@@ -139,12 +139,12 @@ public class PlayerProperties : MonoBehaviour {
         if (playerNum == 1)
         {
             spawnpos = gameManager.returnCurrent().P1Pos;
-            print("p1 spawn pos: " + spawnpos);
+            //print("p1 spawn pos: " + spawnpos);
         }
         else
         {
             spawnpos = gameManager.returnCurrent().P2Pos;
-            print("p2 spawn pos: " + spawnpos);
+            //print("p2 spawn pos: " + spawnpos);
         }
 
         transform.position = spawnpos;
