@@ -128,7 +128,7 @@ public class PlayerProperties : MonoBehaviour {
             }
         }
         health = startinghealth;
-
+        UpdateScore(-score / 10);
     }
 
     // Gets the last saved position so it can respawn there
