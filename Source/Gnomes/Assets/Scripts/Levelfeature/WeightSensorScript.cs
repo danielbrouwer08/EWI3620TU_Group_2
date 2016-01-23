@@ -30,7 +30,6 @@ public class WeightSensorScript : MonoBehaviour {
     {
 
         objectCount += 1;
-        Debug.Log(objectCount);
 
     }
 

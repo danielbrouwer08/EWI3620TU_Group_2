@@ -46,7 +46,6 @@ public class Teleporterscript : MonoBehaviour {
         {
             if (teleporter.GetComponent<Teleporterscript>().teleportNum == teleportNumNew)
             {
-                Debug.Log(teleportNumNew);
                 return position = teleporter.transform.position + new Vector3(0,0,2f);
             }
         }

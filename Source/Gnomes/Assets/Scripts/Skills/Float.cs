@@ -39,7 +39,6 @@ public class Float : MonoBehaviour
         }
         if (floating)
         {
-            Debug.Log("Speel animatie zweven");
             anim.Play("Zweven");
         }
     }

@@ -243,9 +243,6 @@ public class GameManger : MonoBehaviour
 		//Debug.Log ("na return");
 		if (www.isError) {
 			Debug.Log (www.error);
-		} else {
-			Debug.Log ("Savefiles uploaded succesfully!");
-
 		}
 	}
 

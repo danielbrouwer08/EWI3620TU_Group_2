@@ -48,7 +48,6 @@ public class PickUpItem : MonoBehaviour
 		startpos = GetComponent<Transform> ().position;
 		rb = GetComponent<Rigidbody> ();
         //col = GetComponent<Collider> ();
-        Debug.Log(GameObject.FindGameObjectsWithTag("Player"));
 		player = GameObject.FindGameObjectsWithTag ("Player");
 		//playerinrange = new bool[player.Length];
 		rb.isKinematic = false;
@@ -58,7 +57,7 @@ public class PickUpItem : MonoBehaviour
 
 	void OnCollisionStay (Collision other)
 	{
-		if(beingCarried && skill == "Demolish")
+		if(beingCarried && skill == "Demolish" && transform.parent.gameObject.GetComponent<Demolish>() != null)
 		{
 			transform.parent.gameObject.GetComponent<Demolish>().hammerCollision(other);
 		}

@@ -24,7 +24,6 @@ public class Build : MonoBehaviour {
         isactive = GetComponent<PlayerController>().enabled;
 		if(Input.GetButtonDown("Item" + playerNum) && isactive)
         {
-            Debug.Log("blokje");
             Destroy(blocks[i]);
             blocks[i] = Instantiate(prefab, rb.position + transform.forward + new Vector3(0, 3, 0), Quaternion.identity) as GameObject;
             i++;

@@ -17,7 +17,6 @@ public class FeedbackSubmit : MonoBehaviour {
             { "feedback", fbtxt },
 
         });
-        Debug.Log(fbtxt);
     }
     
 }
