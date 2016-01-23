@@ -96,11 +96,10 @@ public class PickUpItem : MonoBehaviour
 
             if (Vector3.Distance(transform.position, player[i].transform.position) < pickdistance)
             {
-                if (Input.GetButtonDown("Interact" + playerNum) && player[i].GetComponent<PlayerProperties>().item == null)
+                if (Input.GetButtonDown("Interact" + playerNum) && player[i].GetComponent<PlayerProperties>().item == null && carrier == null)
                 {
                     carrier = player[i];
                     carrier.GetComponent<PlayerProperties>().item = gameObject;
-
                     AddSkilltoPlayer(skill);
                     //rb.isKinematic = true;
                     //rb.detectCollisions = false;
