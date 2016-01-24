@@ -27,9 +27,9 @@ public class WaterScript : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<PlayerController>().walkSpeed = 2;
-            other.GetComponent<PlayerController>().runSpeed = 2;
-            other.GetComponent<PlayerController>().jumpForce = 2;
+            other.GetComponent<PlayerController>().walkSpeed = 1;
+            other.GetComponent<PlayerController>().runSpeed = 1;
+            other.GetComponent<PlayerController>().jumpForce = 1;
 
             List<Transform> closestWaypoints = FindClosestWaypoint(other);
             Vector3 total = new Vector3(0, 0, 0);

@@ -25,8 +25,9 @@ public class WaterFallKill : MonoBehaviour {
 	void OnCollisionStay(Collision collisionInfo) {
 		if(collisionInfo.collider.tag == "Player")
 		{
-			collisionInfo.gameObject.GetComponent<PlayerController>().ExternalForce(new Vector3(0.0f,0.0f,-force),1.0f);
+			collisionInfo.gameObject.GetComponent<PlayerProperties>().Death();
 		}
+
 	}
 
 }

@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour
 	// Initialization
 	void Start ()
 	{
+		runSpeedbegin = 15.0f;
         jumpForce = jumpForcebegin;
         walkSpeed = walkSpeedbegin;
         runSpeed = runSpeedbegin;

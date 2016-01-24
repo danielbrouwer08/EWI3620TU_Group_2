@@ -9,7 +9,7 @@ public class WaterHealth : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        damage = 0.5f;
+        damage = 1.0f;
 	}
 	
 	// Update is called once per frame
